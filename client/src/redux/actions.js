@@ -1,6 +1,6 @@
 import axios from 'axios';
-//Actions
-//export const GET_DRINKS = 'GET_DRINKS'
+// Actions
+// export const GET_DRINKS = 'GET_DRINKS'
 
-//Actions Creators
+// Actions Creators
 // export const getDrinks = () => async dispatch => {}
