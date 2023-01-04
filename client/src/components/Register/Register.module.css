@@ -1,0 +1,13 @@
+:root{
+  --color-primary: #F1EEE5;
+  --color-btn: #D9D9D9;
+}
+
+.container{
+  width: 1200px;
+  height: 100vh;
+}
+
+.form{
+  background-color: var(--color-primary);
+}
