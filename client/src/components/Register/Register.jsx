@@ -33,49 +33,25 @@ function Register() {
     <div className={s.form}>
       <form className={`${s.form__content} ${s.container}`}>
         <h1 className={s.form__title}>Register</h1>
-        
+
         <div className={s.form__inputs}>
+
           <div className={s.form__group}>
-            <label htmlFor="email" className={s.form__lbl}>
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder=""
-              className={s.form__input}
-              value={user.email}
-              name="email"
-              onChange={HandlerInputs}
-            />
+            <input id="email" type="email" placeholder=" " className={s.form__input} value={user.email} name="email" onChange={HandlerInputs} />
+            <label htmlFor="email" className={s.form__lbl}>Email:</label>
+            <span className={s.form__bar}></span>
           </div>
 
           <div className={s.form__group}>
-            <label htmlFor="password" className={s.form__lbl}>
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              placeholder=""
-              className={s.form__input}
-              value={user.password}
-              name="password"
-              onChange={HandlerInputs}
-            />
+            <input id="password" type="password" placeholder=" " className={s.form__input} value={user.password} name="password" onChange={HandlerInputs} />
+            <label htmlFor="password" className={s.form__lbl}>Password:</label>
+            <span className={s.form__bar}></span>
           </div>
 
-          <input
-            type="submit"
-            className={s.form__submit}
-            value="Register"
-            onClick={HandlerSubmit}
-          />
+          <input type="submit" className={s.form__submit} value="Register" onClick={HandlerSubmit} />
         </div>
 
-        <div className={s.form__alert}>
-          {viewAlert}
-        </div>
+        <div className={s.form__alert}>{viewAlert}</div>
       </form>
     </div>
   );
