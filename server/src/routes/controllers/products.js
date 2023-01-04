@@ -9,7 +9,7 @@ const getAllProducts = async (req, res) => {
         })
         res.status(200).send(allDrinks)
     } catch (error) {
-        res.status(404).send({ error: error.message })
+        res.status(500).send({ error: error.message })
     }
 }
 
