@@ -28,6 +28,12 @@
 .form__title{
   font-size: 2.3rem;
   margin-bottom: 8px;
+  color: #F1EEE5;
+}
+.nav{
+  background: #464A8C;
+  width: 100%;
+  height: 40px;
 }
 
 .form__group{

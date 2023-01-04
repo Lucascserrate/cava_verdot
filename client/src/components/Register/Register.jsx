@@ -31,6 +31,7 @@ function Register() {
 
   return (
     <div className={s.form}>
+      <div className={s.nav}></div>
       <form className={`${s.form__content} ${s.container}`}>
         <h1 className={s.form__title}>Register</h1>
 
