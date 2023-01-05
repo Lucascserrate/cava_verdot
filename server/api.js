@@ -4,7 +4,7 @@ const drinks = [
       name: "La Montesa 2018",
       description: `Álvaro Palacios deja su
       impronta enológica en este tinto que tan bien refleja todas las características de 
-      su lugar de origen, las laderas de suelo arcillo-calcáreo del Monte Yerga, en Alfaro. 
+      su lugar de country, las laderas de suelo arcillo-calcáreo del Monte Yerga, en Alfaro. 
       La Montesa 2018 culmina el proceso natural, iniciado años atrás, hacia una identidad clásica.
       En esta añada ha habido un cambio de imagen definitivo. La etiqueta sigue el modelo de Quiñón de Valmira
       y cierra la línea definitiva de los vinos de la bodega: equilibrio de elementos, claridad en la jerarquía de contenidos
@@ -12,10 +12,10 @@ const drinks = [
       stock: 52,
       price: 14.65,
       image: "https://media.drinksandco.com/wines/la-montesa-1750981_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 2,
@@ -28,10 +28,10 @@ const drinks = [
       stock: 52,
       price: 10.5,
       image: "https://media.drinksandco.com/wines/pruno-1724979_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 3,
@@ -45,10 +45,10 @@ const drinks = [
       price: 15.63,
       image:
         "https://media.drinksandco.com/wines/petalos-del-bierzo-1707355_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 4,
@@ -61,10 +61,10 @@ const drinks = [
       stock: 52,
       price: 10.5,
       image: "https://media.drinksandco.com/wines/pruno-1724979_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 5,
@@ -77,10 +77,10 @@ const drinks = [
       price: 13.82,
       image:
         "https://media.drinksandco.com/wines/ramon-bilbao-reserva-1417664_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 6,
@@ -91,10 +91,10 @@ const drinks = [
       stock: 52,
       price: 13.82,
       image: "https://media.drinksandco.com/wines/malleolus-1780021_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 7,
@@ -108,10 +108,10 @@ const drinks = [
       price: 10.9,
       image:
         "https://media.drinksandco.com/wines/anselmo-mendes-dao-1322902_e.jpg",
-      origen: "portugal",
+      country: "portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 8,
@@ -124,10 +124,10 @@ const drinks = [
       stock: 32,
       price: 8.48,
       image: "https://media.drinksandco.com/wines/papa-figos-douro-1726791_e.jpg",
-      origen: "portugal",
+      country: "portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 9,
@@ -140,10 +140,10 @@ const drinks = [
       stock: 32,
       price: 17.01,
       image: "https://media.drinksandco.com/wines/meandro-1691397_e.jpg",
-      origen: "portugal",
+      country: "portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 10,
@@ -156,10 +156,10 @@ const drinks = [
       stock: 32,
       price: 13.5,
       image: "https://media.drinksandco.com/wines/pousio-reserva-1433806_e.jpg",
-      origen: "portugal",
+      country: "portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 11,
@@ -173,10 +173,10 @@ const drinks = [
       price: 17.9,
       image:
         "https://media.drinksandco.com/wines/anselmo-mendes-douro-nao-convencional-1761694_e.jpg",
-      origen: "portugal",
+      country: "portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 11,
@@ -190,10 +190,10 @@ const drinks = [
       price: 17.9,
       image:
         "https://media.drinksandco.com/wines/anselmo-mendes-douro-nao-convencional-1761694_e.jpg",
-      origen: "portugal",
+      country: "portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 12,
@@ -206,10 +206,10 @@ const drinks = [
       stock: 32,
       price: 4.25,
       image: "https://media.drinksandco.com/wines/blanc-pescador-661493_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "White Wine",
+      subCategory: "White Wine",
     },
     {
       id: 13,
@@ -226,10 +226,10 @@ const drinks = [
       price: 5.3,
       image:
         "https://media.drinksandco.com/wines/gazela-vinho-verde-722954_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "White Wine",
+      subCategory: "White Wine",
     },
     {
       id: 14,
@@ -243,10 +243,10 @@ const drinks = [
       price: 3.97,
       image:
         "https://media.drinksandco.com/wines/gazela-vinho-verde-722954_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "White Wine",
+      subCategory: "White Wine",
     },
     {
       id: 15,
@@ -260,10 +260,10 @@ const drinks = [
       price: 11.76,
       image:
         "https://media.drinksandco.com/wines/aimery-blanquette-limoux-brut-1042747-s10_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "White Wine",
+      subCategory: "White Wine",
     },
     {
       id: 16,
@@ -277,10 +277,10 @@ const drinks = [
       price: 21.9,
       image:
         "https://media.drinksandco.com/wines/e-guigal-crozes-hermitage-blanc-1618323_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "White Wine",
+      subCategory: "White Wine",
     },
     {
       id: 16,
@@ -294,10 +294,10 @@ const drinks = [
       price: 9.17,
       image:
         "https://media.drinksandco.com/wines/santero-dile-d-rosso-1120448_e.png",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 17,
@@ -310,10 +310,10 @@ const drinks = [
       stock: 32,
       price: 13.98,
       image: "https://media.drinksandco.com/wines/asti-diama-dolce-1122639_e.png",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "White Wine",
+      subCategory: "White Wine",
     },
     {
       id: 18,
@@ -327,10 +327,10 @@ const drinks = [
       price: 6.95,
       image:
         "https://media.drinksandco.com/wines/anno-domini-moscato-veneto-1471615-s10_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "White Wine",
+      subCategory: "White Wine",
     },
     {
       id: 19,
@@ -340,10 +340,10 @@ const drinks = [
       stock: 32,
       price: 12.5,
       image: "https://media.drinksandco.com/wines/parxet-brut-159848_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "sparkling Wine",
+      subCategory: "sparkling Wine",
     },
     {
       id: 20,
@@ -359,10 +359,10 @@ const drinks = [
       price: 14.95,
       image:
         "https://media.drinksandco.com/wines/segura-viudas-reserva-heredad-264481_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "sparkling Wine",
+      subCategory: "sparkling Wine",
     },
     {
       id: 21,
@@ -376,10 +376,10 @@ const drinks = [
       price: 5.95,
       image:
         "https://media.drinksandco.com/wines/segura-viudas-reserva-heredad-264481_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "sparkling Wine",
+      subCategory: "sparkling Wine",
     },
     {
       id: 21,
@@ -391,10 +391,10 @@ const drinks = [
       price: 5.95,
       image:
         "https://media.drinksandco.com/wines/roger-de-flor-brut-nature-165313_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "sparkling Wine",
+      subCategory: "sparkling Wine",
     },
     {
       id: 22,
@@ -407,10 +407,10 @@ const drinks = [
       price: 61.85,
       image:
         "https://media.drinksandco.com/wines/moet-chandon-ice-imperial-536985_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "sparkling Wine",
+      subCategory: "sparkling Wine",
     },
     {
       id: 23,
@@ -423,16 +423,16 @@ const drinks = [
       price: 73.5,
       image:
         "https://media.drinksandco.com/wines/campolargo-espumante-bruto-rose-1736736_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "sparkling Wine",
+      subCategory: "sparkling Wine",
     },
     {
       id: 24,
       name: "Graham's Fine Tawny",
       description: `El Graham's Fine Tawny es un vino Oporto que se produce en las Bodegas Graham's, una compañía que lleva más de 200 años perpetuando los métodos tradicionales y siendo parte fundamental de la industria de los vinos. 
-      Su nombre se debe a la ciudad en la que Graham's se asentó al momento de su origen, Oporto, en Portugal.
+      Su nombre se debe a la ciudad en la que Graham's se asentó al momento de su country, Oporto, en Portugal.
       Este exquisito vino debe su sabor único al contacto del mosto con el oxígeno de los barriles de madera.
       Así, se conservan los sabores del fruto y se combinan con sabores acaramelados y maderosos. La particularidad del Graham's Fine Tawny es que durante su elaboración se interrumpe la 
       fermentación para añadir un aguardiente claro de uva.`,
@@ -440,10 +440,10 @@ const drinks = [
       price: 73.5,
       image:
         "https://media.drinksandco.com/wines/grahams-fine-tawny-165926_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 25,
@@ -455,10 +455,10 @@ const drinks = [
       price: 14.53,
       image:
         "https://media.drinksandco.com/wines/grahams-fine-tawny-165926_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 26,
@@ -469,10 +469,10 @@ const drinks = [
       stock: 23,
       price: 8.36,
       image: "https://media.drinksandco.com/wines/ferreira-tawny-946453_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 27,
@@ -484,26 +484,26 @@ const drinks = [
       stock: 23,
       price: 7.25,
       image: "https://media.drinksandco.com/wines/tio-pepe-160674_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 28,
       name: "Fino la Ina",
       description: `La historia de Bodegas Lustau inicia en 1896, en los viñedos de la finca Nuestra Señora de la Esperanza, donde Don José Ruiz Berdejo, secretario judicial y almacenista de vinos, produce sus primeras botellas, las cuales vendía a las grandes bodegas. En 1931, María Ruiz Berdejo Alberti, hija de Don José, adquiere una bodega en el Callejón de Asta, trasladando la producción de los vinos a los terruños del jerez. En los años 40, Don Emilio Lustau Ortega, esposo de María Ruiz, reubica la bodega en el casco antiguo de Jerez de la Frontera, iniciando la comercialización y exportación de sus propias marcas de vinos y brandies. En 1990, la compañía Luis Caballero,
-      asume las riendas de la bodega, proyectándola como un referente a nivel mundial. Fino la Ina, es un vino clásico de la Denominación de Origen Jerez-Xérès-Sherry,
+      asume las riendas de la bodega, proyectándola como un referente a nivel mundial. Fino la Ina, es un vino clásico de la Denominación de country Jerez-Xérès-Sherry,
       elaborado a partir del método tradicional de Solera y Criadera, y añejado hasta 5 años en barricas de roble americano. De color amarillo intenso,
       pajizo, deleita con sus fragancias elegantes de almendras y notas minerales. En boca, se degusta seco, estructurado, redondo y armónico, con un final largo y persistente.
       Sirve una copa del distinguido vino Fino la Ina, y brinda con lo más selecto de las variedades Palomino y Palomino Fino, el sabor clásico del jerez que conquistará tu paladar.`,
       stock: 23,
       price: 6.25,
       image: "https://media.drinksandco.com/wines/fino-la-ina-165073_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 29,
@@ -513,10 +513,10 @@ const drinks = [
       stock: 23,
       price: 9.35,
       image: "https://media.drinksandco.com/wines/croft-original-1l-564318_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 30,
@@ -530,10 +530,10 @@ const drinks = [
       price: 8.9,
       image:
         "https://media.drinksandco.com/wines/nectar-pedro-ximenez-1459129_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 31,
@@ -547,10 +547,10 @@ const drinks = [
       price: 16.35,
       image:
         "https://media.drinksandco.com/wines/banyuls-grand-cru-descossy-1845755-s10_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 32,
@@ -564,10 +564,10 @@ const drinks = [
       price: 9.17,
       image:
         "https://media.drinksandco.com/wines/dom-brial-rivesalte-ambre-1839347-s10_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 33,
@@ -581,10 +581,10 @@ const drinks = [
       price: 66.13,
       image:
         "https://media.drinksandco.com/wines/pascal-labasse-jurancon-723003-s10_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 34,
@@ -598,10 +598,10 @@ const drinks = [
       price: 10.06,
       image:
         "https://media.drinksandco.com/wines/dom-brial-rivesaltes-tuile-1807070-s10_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 35,
@@ -615,10 +615,10 @@ const drinks = [
       price: 10.48,
       image:
         "https://media.drinksandco.com/wines/martinez-marsala-superiore-riserva-secco-1502210-s10_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 36,
@@ -632,10 +632,10 @@ const drinks = [
       price: 7.08,
       image:
         "https://media.drinksandco.com/wines/marsala-la-canellese-cremovo-1l-1635353-s10_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 37,
@@ -649,10 +649,10 @@ const drinks = [
       price: 21.77,
       image:
         "https://media.drinksandco.com/wines/astoria-fervo-refrontolo-passito-50cl-1146583-s10_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 38,
@@ -670,10 +670,10 @@ const drinks = [
       stock: 23,
       price: 3.98,
       image: "https://media.drinksandco.com/wines/cresta-rosa-661498_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 39,
@@ -686,10 +686,10 @@ const drinks = [
       stock: 23,
       price: 4.5,
       image: "https://media.drinksandco.com/wines/penascal-rosado-371013_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 40,
@@ -701,10 +701,10 @@ const drinks = [
       stock: 23,
       price: 4.34,
       image: "https://media.drinksandco.com/wines/penascal-rosado-371013_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 41,
@@ -719,10 +719,10 @@ const drinks = [
       price: 4.95,
       image:
         "https://media.drinksandco.com/wines/mateus-rose-the-original-450288_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 42,
@@ -733,10 +733,10 @@ const drinks = [
       price: 4.23,
       image:
         "https://media.drinksandco.com/wines/casal-mendes-rose-1095528_e.png",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 43,
@@ -747,10 +747,10 @@ const drinks = [
       price: 10.9,
       image:
         "https://media.drinksandco.com/wines/macanita-touriga-nacional-em-rose-1905822_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 44,
@@ -763,10 +763,10 @@ const drinks = [
       price: 19.5,
       image:
         "https://media.drinksandco.com/wines/chateau-miraval-cotes-de-provence-rose-1736552_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 46,
@@ -778,10 +778,10 @@ const drinks = [
       stock: 23,
       price: 17.82,
       image: "https://media.drinksandco.com/wines/grandin-brut-rose-722825_e.png",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 47,
@@ -794,10 +794,10 @@ const drinks = [
       price: 6.99,
       image:
         "https://media.drinksandco.com/wines/leduc-frouin-rose-danjou-1461151-s10_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 48,
@@ -810,10 +810,10 @@ const drinks = [
       price: 4.59,
       image:
         "https://media.drinksandco.com/wines/cavicchioli-lambrusco-rosato-1357456_e.png",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 49,
@@ -828,10 +828,10 @@ const drinks = [
       price: 4.66,
       image:
         "https://media.drinksandco.com/wines/lambrusco-canti-rosat-167569-s10_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 50,
@@ -846,10 +846,10 @@ const drinks = [
       price: 3.76,
       image:
         "https://media.drinksandco.com/wines/lambrusco-bellavita-rosado-1288254-s10_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 51,
@@ -862,10 +862,10 @@ const drinks = [
       stock: 23,
       price: 4.3,
       image: "https://media.drinksandco.com/wines/moscatel-iberia-433134_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 52,
@@ -879,10 +879,10 @@ const drinks = [
       price: 9.5,
       image:
         "https://media.drinksandco.com/wines/moscatel-naranja-50cl-1524306_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 53,
@@ -895,42 +895,42 @@ const drinks = [
       stock: 23,
       price: 6.5,
       image: "https://media.drinksandco.com/wines/malaga-virgen-px-651680_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 54,
       name: "De Muller Moscatel Añejo",
       description: `De Muller Moscatel Añejo, el magistral vino dulce de De Muller, de Terragona,
-      conocida mundialmente por sus viñedos y su amplia variedad de vinos de calidad elaborados bajo la Denominación de origen de Tarragona y también de Priorat y Terra Alta.
+      conocida mundialmente por sus viñedos y su amplia variedad de vinos de calidad elaborados bajo la Denominación de country de Tarragona y también de Priorat y Terra Alta.
       De Muller Moscatel Añejo está elaborado con uvas seleccionadas de Moscatel de Alejandría, está envejecido
       en roble francés y fue premiado en 2014 con la Medalla de Oro al mejor Moscatel Añejo de Tarragona.`,
       stock: 23,
       price: 7.22,
       image:
         "https://media.drinksandco.com/wines/de-muller-moscatel-anejo-415786_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 55,
       name: "Sauternes Calvet 50cl 2018",
       description: `De Muller Moscatel Añejo, el magistral vino dulce de De Muller, de Terragona,
-      conocida mundialmente por sus viñedos y su amplia variedad de vinos de calidad elaborados bajo la Denominación de origen de Tarragona y también de Priorat y Terra Alta.
+      conocida mundialmente por sus viñedos y su amplia variedad de vinos de calidad elaborados bajo la Denominación de country de Tarragona y también de Priorat y Terra Alta.
       De Muller Moscatel Añejo está elaborado con uvas seleccionadas de Moscatel de Alejandría, está envejecido
       en roble francés y fue premiado en 2014 con la Medalla de Oro al mejor Moscatel Añejo de Tarragona.`,
       stock: 23,
       price: 15.58,
       image:
         "https://media.drinksandco.com/wines/sauternes-calvet-50cl-1734577-s10_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 56,
@@ -943,10 +943,10 @@ const drinks = [
       price: 17.01,
       image:
         "https://media.drinksandco.com/wines/domaine-de-crabitey-1714244_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 57,
@@ -959,10 +959,10 @@ const drinks = [
       price: 22.0,
       image:
         "https://media.drinksandco.com/wines/chateau-violet-lamothe-1763227-s313_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 58,
@@ -975,10 +975,10 @@ const drinks = [
       price: 22.0,
       image:
         "https://media.drinksandco.com/wines/chantalouette-monbazillac-1627594-s10_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 59,
@@ -990,10 +990,10 @@ const drinks = [
       stock: 23,
       price: 447.1,
       image: "https://media.drinksandco.com/wines/chateau-dyquem-1440635_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 60,
@@ -1006,10 +1006,10 @@ const drinks = [
       price: 39.9,
       image:
         "https://media.drinksandco.com/wines/moscatel-setubal-alambre-20-anos-50cl-1281520_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 61,
@@ -1022,10 +1022,10 @@ const drinks = [
       price: 7.33,
       image:
         "https://media.drinksandco.com/wines/ermelinda-freitas-moscatel-de-setubal-1825958-s723_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 62,
@@ -1038,10 +1038,10 @@ const drinks = [
       price: 6.69,
       image:
         "https://media.drinksandco.com/wines/horacio-simoes-moscatel-setubal-1781406-s723_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 63,
@@ -1054,10 +1054,10 @@ const drinks = [
       price: 23.0,
       image:
         "https://media.drinksandco.com/wines/burmester-sotto-voce-ruby-reserve-1857436-s251_e.png",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 64,
@@ -1070,10 +1070,10 @@ const drinks = [
       price: 103.33,
       image:
         "https://media.drinksandco.com/wines/taylors-vargellas-vintage-1302795-s723_e.jpg",
-      origen: "Portugal",
+      country: "Portugal",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 65,
@@ -1087,10 +1087,10 @@ const drinks = [
       price: 7.45,
       image:
         "https://media.drinksandco.com/wines/santero-958-dile-d-moscato-1071905_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 66,
@@ -1104,10 +1104,10 @@ const drinks = [
       price: 4.45,
       image:
         "https://media.drinksandco.com/wines/caldirola-fragolino-rosso-1442974_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 67,
@@ -1121,10 +1121,10 @@ const drinks = [
       price: 6.99,
       image:
         "https://media.drinksandco.com/wines/moscato-santero-1681773-s313_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 68,
@@ -1138,10 +1138,10 @@ const drinks = [
       price: 7.5,
       image:
         "https://media.drinksandco.com/wines/fragolino-santero-814751-s313_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 69,
@@ -1155,10 +1155,10 @@ const drinks = [
       price: 12.5,
       image:
         "https://media.drinksandco.com/wines/moscato-dasti-santa-vittoria-1720935_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Wine",
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 70,
@@ -1172,10 +1172,10 @@ const drinks = [
       stock: 47,
       price: 7.9,
       image: "https://media.drinksandco.com/wines/win-tempranillo-1334907_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Non-alcoholic Wine",
+      subCategory: "Non-alcoholic Wine",
     },
     {
       id: 71,
@@ -1189,10 +1189,10 @@ const drinks = [
       price: 6.7,
       image:
         "https://media.drinksandco.com/wines/freixenet-alcohol-free-1239727_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Non-alcoholic Wine",
+      subCategory: "Non-alcoholic Wine",
     },
     {
       id: 72,
@@ -1205,10 +1205,10 @@ const drinks = [
       stock: 47,
       price: 8.5,
       image: "https://media.drinksandco.com/wines/natureo-1886072_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Wine",
-      sub_category: "Non-alcoholic Wine",
+      subCategory: "Non-alcoholic Wine",
     },
     {
       id: 73,
@@ -1224,7 +1224,7 @@ const drinks = [
       price: 89.9,
       image:
         "https://media.drinksandco.com/wines/lagavulin-16-years-556312_e.jpg",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Whisky",
     },
@@ -1241,7 +1241,7 @@ const drinks = [
       price: 38.9,
       image:
         "https://media.drinksandco.com/wines/talisker-10-years-1454687_e.jpg",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Whisky",
     },
@@ -1260,7 +1260,7 @@ const drinks = [
       stock: 10,
       price: 50.9,
       image: "https://media.drinksandco.com/wines/ardbeg-10-years-434631_e.png",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Whisky",
     },
@@ -1276,7 +1276,7 @@ const drinks = [
       price: 42.0,
       image:
         "https://media.drinksandco.com/wines/johnnie-walker-green-label-15-years-1242435_e.jpg",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Whisky",
     },
@@ -1293,7 +1293,7 @@ const drinks = [
       price: 38.99,
       image:
         "https://media.drinksandco.com/wines/buchanans-deluxe-aged-12-years-1l-1918908_e.jpg",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Whisky",
     },
@@ -1311,7 +1311,7 @@ const drinks = [
       price: 34.86,
       image:
         "https://media.drinksandco.com/wines/aberlour-12-years-double-cask-estuche-1l-1873540_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Whisky",
     },
@@ -1329,7 +1329,7 @@ const drinks = [
       price: 34.86,
       image:
         "https://media.drinksandco.com/wines/aberlour-12-years-double-cask-estuche-1l-1873540_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Whisky",
     },
@@ -1347,7 +1347,7 @@ const drinks = [
       price: 38.03,
       image:
         "https://media.drinksandco.com/wines/scapa-the-orcadian-1290509_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Whisky",
     },
@@ -1363,7 +1363,7 @@ const drinks = [
       stock: 10,
       price: 31.3,
       image: "https://media.drinksandco.com/wines/the-naked-grouse-826809_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Whisky",
     },
@@ -1381,7 +1381,7 @@ const drinks = [
       price: 74.5,
       image:
         "https://media.drinksandco.com/wines/johnnie-walker-18-anos-the-ultimate-1282399-s350_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Whisky",
     },
@@ -1399,7 +1399,7 @@ const drinks = [
       price: 34.46,
       image:
         "https://media.drinksandco.com/wines/glen-grant-12-years-75cl-1215008_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Whisky",
     },
@@ -1417,7 +1417,7 @@ const drinks = [
       price: 107.5,
       image:
         "https://media.drinksandco.com/wines/glen-grant-12-years-75cl-1215008_e.jpg",
-      origen: "Japan",
+      country: "Japan",
       rating: 0,
       category: "Whisky",
     },
@@ -1434,7 +1434,7 @@ const drinks = [
       price: 49.9,
       image:
         "https://media.drinksandco.com/wines/nikka-from-the-barrel-50cl-881071_e.jpg",
-      origen: "Japan",
+      country: "Japan",
       rating: 0,
       category: "Whisky",
     },
@@ -1454,7 +1454,7 @@ const drinks = [
       price: 157.5,
       image:
         "https://media.drinksandco.com/wines/the-yamazaki-12-years-592711_e.jpg",
-      origen: "Japan",
+      country: "Japan",
       rating: 0,
       category: "Whisky",
     },
@@ -1474,7 +1474,7 @@ const drinks = [
       price: 127.0,
       image:
         "https://media.drinksandco.com/wines/the-yamazaki-distillers-reserve-1016363_e.jpg",
-      origen: "Japan",
+      country: "Japan",
       rating: 0,
       category: "Whisky",
     },
@@ -1484,7 +1484,7 @@ const drinks = [
       description: `
       Masataka Taketsuru fue el pionero de la industria del whisky en Japón. Desde niño, la fragancia del sake rondaba su hogar, y en su adolescencia, aprende el arte de la cerveza 
       en la escuela técnica de Osaka. Inquieto por conocer más del mundo de los licores, viaja a Escocia en 1918, e inicia estudios de química en la Universidad de Glasgow. 
-      También experimenta la química del amor, ya que allí conoce a su esposa Rita, de origen escocés. El talentoso joven tiene la oportunidad de ser aprendiz en varias destilerías, 
+      También experimenta la química del amor, ya que allí conoce a su esposa Rita, de country escocés. El talentoso joven tiene la oportunidad de ser aprendiz en varias destilerías, 
       anotando acuciosamente cada detalle en sus cuadernos de notas, los cuales 
       se convertirían en material de consulta altamente apreciados en la industria del whisky japonés.
       Luego de regresar a Japón, Masataka inicia su propia destilería en Yoichi, Hokkaido, en 1934. En 1940 lanza su whisky Nikka, que también 
@@ -1497,7 +1497,7 @@ const drinks = [
       price: 66.95,
       image:
         "https://media.drinksandco.com/wines/nikka-taketsuru-pure-malt-998526_e.jpg",
-      origen: "Japan",
+      country: "Japan",
       rating: 0,
       category: "Whisky",
     },
@@ -1507,14 +1507,14 @@ const drinks = [
       description: `
       Jack Daniel's proviene de una de las destilerías más grandes del mundo. Sin embargo, todavía se las arreglan para elaborar un Whisky único de Tennessee. ¿Cuál es el secreto? La destilación es similar a la del Bourbon, pero con una diferencia notable: el proceso de filtración.
       De hecho, se filtra a través del carbón de arce. Este proceso se llama "Proceso del Condado de Lincoln" y distingue a Jack Daniel's de Bourbon. También le ofrece un sabor dulce y ahumado.
-      En cuanto al origen del mito, existen diferentes versiones: una historia cuenta que la receta del Jack Daniel's era la 7ª receta; la otra, que podía tratarse del 7º
+      En cuanto al country del mito, existen diferentes versiones: una historia cuenta que la receta del Jack Daniel's era la 7ª receta; la otra, que podía tratarse del 7º
       lote de prueba... Quien lo sabía era Mr. Jack, pero sea como sea fue una alegría que no fuera a por la número 8. Porque, desde que en 1866 su creador diera con la fórmula,
       seguimos disfrutando de un fantástico whiskey.
       `,
       stock: 10,
       price: 22.5,
       image: "https://media.drinksandco.com/wines/jack-daniels-1121921_e.jpg",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Whisky",
     },
@@ -1530,7 +1530,7 @@ const drinks = [
       stock: 10,
       price: 28.5,
       image: "https://media.drinksandco.com/wines/jack-daniels-1l-435889_e.jpg",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Whisky",
     },
@@ -1548,7 +1548,7 @@ const drinks = [
       price: 38.9,
       image:
         "https://media.drinksandco.com/wines/bulleit-bourbon-10-year-old-1342848_e.jpg",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Whisky",
     },
@@ -1566,7 +1566,7 @@ const drinks = [
       price: 41.42,
       image:
         "https://media.drinksandco.com/wines/sazerac-rye-75cl-1344139-s10_e.jpg",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Whisky",
     },
@@ -1583,7 +1583,7 @@ const drinks = [
       price: 25.95,
       image:
         "https://media.drinksandco.com/wines/connemara-original-1272524_e.jpg",
-      origen: "Irland",
+      country: "Irland",
       rating: 0,
       category: "Whisky",
     },
@@ -1600,7 +1600,7 @@ const drinks = [
       price: 28.84,
       image:
         "https://media.drinksandco.com/wines/jameson-black-barrel-1192793_e.jpg",
-      origen: "Irland",
+      country: "Irland",
       rating: 0,
       category: "Whisky",
     },
@@ -1620,7 +1620,7 @@ const drinks = [
       stock: 10,
       price: 19.05,
       image: "https://media.drinksandco.com/wines/tullamore-dew-1l-437067_e.png",
-      origen: "Irland",
+      country: "Irland",
       rating: 0,
       category: "Whisky",
     },
@@ -1633,7 +1633,7 @@ const drinks = [
       stock: 10,
       price: 18.35,
       image: "https://media.drinksandco.com/wines/jameson-437502_e.jpg",
-      origen: "Irland",
+      country: "Irland",
       rating: 0,
       category: "Whisky",
     },
@@ -1654,7 +1654,7 @@ const drinks = [
       price: 13.0,
       image:
         "https://media.drinksandco.com/wines/kilbeggan-traditional-1769412_e.jpg",
-      origen: "Irland",
+      country: "Irland",
       rating: 0,
       category: "Whisky",
     },
@@ -1677,7 +1677,7 @@ const drinks = [
       price: 52.49,
       image:
         "https://media.drinksandco.com/wines/redbreast-12-year-old-estuche-1547281_e.jpg",
-      origen: "Irland",
+      country: "Irland",
       rating: 0,
       category: "Whisky",
     },
@@ -1696,7 +1696,7 @@ const drinks = [
       price: 25.9,
       image:
         "https://media.drinksandco.com/wines/martin-millers-gin-437525_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Gin",
     },
@@ -1711,7 +1711,7 @@ const drinks = [
       stock: 10,
       price: 28.5,
       image: "https://media.drinksandco.com/wines/brockmans-gin-850511_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Gin",
     },
@@ -1729,7 +1729,7 @@ const drinks = [
       stock: 10,
       price: 25.95,
       image: "https://media.drinksandco.com/wines/the-london-gin-n1-837736_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Gin",
     },
@@ -1747,7 +1747,7 @@ const drinks = [
       stock: 10,
       price: 25.95,
       image: "https://media.drinksandco.com/wines/the-london-gin-n1-837736_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Gin",
     },
@@ -1766,7 +1766,7 @@ const drinks = [
       stock: 10,
       price: 18.3,
       image: "https://media.drinksandco.com/wines/mombasa-club-gin-434478_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Gin",
     },
@@ -1783,7 +1783,7 @@ const drinks = [
       price: 45.06,
       image:
         "https://media.drinksandco.com/wines/martin-millers-westbourne-strength-443368_e.jpg",
-      origen: "England",
+      country: "England",
       rating: 0,
       category: "Gin",
     },
@@ -1799,7 +1799,7 @@ const drinks = [
       stock: 25,
       price: 23.5,
       image: "https://media.drinksandco.com/wines/nordes-gin-837766_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Gin",
     },
@@ -1818,7 +1818,7 @@ const drinks = [
       stock: 25,
       price: 15.79,
       image: "https://media.drinksandco.com/wines/nordes-gin-837766_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Gin",
     },
@@ -1827,14 +1827,14 @@ const drinks = [
       name: "Gin Mare",
       description: `
       Gin Mare es quizá una de las marcas españolas de Gin más internacionales. Lanzada en 2010, sus creadores tenían en mente producir una ginebra que 
-      reflejara la herencia mediterránea de la marca. Y lo consiguieron gracias a la gama de ingredientes botánicos de origen mediterráneo que incluyen albahaca italiana, 
+      reflejara la herencia mediterránea de la marca. Y lo consiguieron gracias a la gama de ingredientes botánicos de country mediterráneo que incluyen albahaca italiana, 
       tomillo griego, romero turco y cítricos españoles. Destilerías M.G elabora Gin Mare
       en un antiguo refugio de monjes en el pequeño pueblo pesquero catalán de Vilanova i la Geltrú. Una ginebra muy refrescante y limpia ideal para gin-tonics herbales con un toque de lima.
       `,
       stock: 25,
       price: 33.9,
       image: "https://media.drinksandco.com/wines/gin-mare-889376_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Gin",
     },
@@ -1843,7 +1843,7 @@ const drinks = [
       name: "Gin Siderit",
       description: `
       La exquisita delicadeza de la Gin Siderit se debe a la doble maceración y a la triple destilación a la que 
-      se someten los elementos florales que le dan origen en las instalaciones de las Bodegas Siderit. Esta ginebra es un homenaje a la planta Hibiscus Sabdariffa
+      se someten los elementos florales que le dan country en las instalaciones de las Bodegas Siderit. Esta ginebra es un homenaje a la planta Hibiscus Sabdariffa
       (mejor conocida como hibisco o Flor de Jamaica) originaria y codiciada en tierras africanas por sus propiedades medicinales y por su increíble aromaticidad.
       Son 12 los elementos botánicos, provenientes de tierras europeas, los que se fusionan para dar inigualable riqueza, frescura y complejidad a la Gin Siderit.
       Es una ginebra de Torrelavega que ha ganado reconocimiento gracias a la preferencia de sus consumidores.
@@ -1851,7 +1851,7 @@ const drinks = [
       stock: 25,
       price: 27.5,
       image: "https://media.drinksandco.com/wines/gin-siderit-625710_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Gin",
     },
@@ -1868,7 +1868,7 @@ const drinks = [
       stock: 15,
       price: 29.75,
       image: "https://media.drinksandco.com/wines/gin-bruni-collins-942677_e.png",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Gin",
     },
@@ -1886,7 +1886,7 @@ const drinks = [
       stock: 15,
       price: 31.9,
       image: "https://media.drinksandco.com/wines/hendricks-gin-434359_e.jpg",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Gin",
     },
@@ -1904,7 +1904,7 @@ const drinks = [
       price: 16.9,
       image:
         "https://media.drinksandco.com/wines/tanqueray-london-dry-gin-434619_e.jpg",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Gin",
     },
@@ -1923,7 +1923,7 @@ const drinks = [
       stock: 15,
       price: 29.9,
       image: "https://media.drinksandco.com/wines/tanqueray-no-ten-437461_e.jpg",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Gin",
     },
@@ -1943,7 +1943,7 @@ const drinks = [
       price: 23.95,
       image:
         "https://media.drinksandco.com/wines/tanqueray-malacca-gin-1l-649694_e.png",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Gin",
     },
@@ -1961,7 +1961,7 @@ const drinks = [
       price: 18.0,
       image:
         "https://media.drinksandco.com/wines/tanqueray-flor-de-sevilla-1361160_e.jpg",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Gin",
     },
@@ -1978,7 +1978,7 @@ const drinks = [
       price: 18.0,
       image:
         "https://media.drinksandco.com/wines/gvine-floraison-1l-944733_e.png",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Gin",
     },
@@ -1986,7 +1986,7 @@ const drinks = [
       id: 111,
       name: "Gin Magellan",
       description: `
-      El origen de esta ginebra es muy atípico así como sus ingredientes, 
+      El country de esta ginebra es muy atípico así como sus ingredientes, 
       ya que estamos hablando de una ginebra en la que el enebro no es tan importante como en la mayoría de ginebras.
       Magellan es una ginebra Premium francesa, y como muchos ya habéis intuido, lleva el nombre del comandante español que fue quién inspiró su creación.
       Lamentablemente, este, no consiguió ver el producto acabado ya que murió en una batalla durante el viaje.
@@ -1995,7 +1995,7 @@ const drinks = [
       price: 20.75,
       image:
         "https://media.drinksandco.com/wines/gvine-floraison-1l-944733_e.png",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Gin",
     },
@@ -2011,7 +2011,7 @@ const drinks = [
       stock: 15,
       price: 19.25,
       image: "https://media.drinksandco.com/wines/citadelle-434354_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Gin",
     },
@@ -2025,7 +2025,7 @@ const drinks = [
       stock: 15,
       price: 35.25,
       image: "https://media.drinksandco.com/wines/gvine-nouaison-434358_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Gin",
     },
@@ -2045,7 +2045,7 @@ const drinks = [
       price: 31.5,
       image:
         "https://media.drinksandco.com/wines/ron-barcelo-imperial-434531_e.jpg",
-      origen: "Dominican Republic",
+      country: "Dominican Republic",
       rating: 0,
       category: "Ron",
     },
@@ -2066,7 +2066,7 @@ const drinks = [
       price: 25.6,
       image:
         "https://media.drinksandco.com/wines/matusalem-15-anos-gran-reserva-434434_e.png",
-      origen: "Dominican Republic",
+      country: "Dominican Republic",
       rating: 0,
       category: "Ron",
     },
@@ -2083,7 +2083,7 @@ const drinks = [
       price: 14.9,
       image:
         "https://media.drinksandco.com/wines/ron-barcelo-anejo-1697844_e.jpg",
-      origen: "Dominican Republic",
+      country: "Dominican Republic",
       rating: 0,
       category: "Ron",
     },
@@ -2100,7 +2100,7 @@ const drinks = [
       stock: 15,
       price: 14.1,
       image: "https://media.drinksandco.com/wines/brugal-anejo-437577_e.jpg",
-      origen: "Dominican Republic",
+      country: "Dominican Republic",
       rating: 0,
       category: "Ron",
     },
@@ -2121,7 +2121,7 @@ const drinks = [
       price: 15.25,
       image:
         "https://media.drinksandco.com/wines/ron-barcelo-gran-anejo-435009_e.jpg",
-      origen: "Dominican Republic",
+      country: "Dominican Republic",
       rating: 0,
       category: "Ron",
     },
@@ -2139,7 +2139,7 @@ const drinks = [
       stock: 15,
       price: 28.5,
       image: "https://media.drinksandco.com/wines/dos-maderas-5-5-889549_e.jpg",
-      origen: "Dominican Republic",
+      country: "Dominican Republic",
       rating: 0,
       category: "Ron",
     },
@@ -2155,7 +2155,7 @@ const drinks = [
       price: 8.5,
       image:
         "https://media.drinksandco.com/wines/arehucas-ron-miel-guanche-483772_e.jpg",
-      origen: "Dominican Republic",
+      country: "Dominican Republic",
       rating: 0,
       category: "Ron",
     },
@@ -2176,7 +2176,7 @@ const drinks = [
       price: 9.5,
       image:
         "https://media.drinksandco.com/wines/ron-negrita-blanco-1l-436383_e.jpg",
-      origen: "Dominican Republic",
+      country: "Dominican Republic",
       rating: 0,
       category: "Ron",
     },
@@ -2195,7 +2195,7 @@ const drinks = [
       price: 15.5,
       image:
         "https://media.drinksandco.com/wines/legendario-elixir-de-cuba-653749_e.jpg",
-      origen: "Cuba",
+      country: "Cuba",
       rating: 0,
       category: "Ron",
     },
@@ -2217,7 +2217,7 @@ const drinks = [
       price: 49.9,
       image:
         "https://media.drinksandco.com/wines/havana-club-seleccion-de-maestros-435816_e.jpg",
-      origen: "Cuba",
+      country: "Cuba",
       rating: 0,
       category: "Ron",
     },
@@ -2236,7 +2236,7 @@ const drinks = [
       price: 22.5,
       image:
         "https://media.drinksandco.com/wines/havana-club-7-anos-929341_e.jpg",
-      origen: "Cuba",
+      country: "Cuba",
       rating: 0,
       category: "Ron",
     },
@@ -2253,7 +2253,7 @@ const drinks = [
       price: 14.9,
       image:
         "https://media.drinksandco.com/wines/havana-club-especial-821116_e.jpg",
-      origen: "Cuba",
+      country: "Cuba",
       rating: 0,
       category: "Ron",
     },
@@ -2271,7 +2271,7 @@ const drinks = [
       price: 12.5,
       image:
         "https://media.drinksandco.com/wines/havana-club-3-anos-591334_e.jpg",
-      origen: "Cuba",
+      country: "Cuba",
       rating: 0,
       category: "Ron",
     },
@@ -2289,7 +2289,7 @@ const drinks = [
       price: 12.5,
       image:
         "https://media.drinksandco.com/wines/havana-club-3-anos-591334_e.jpg",
-      origen: "Cuba",
+      country: "Cuba",
       rating: 0,
       category: "Ron",
     },
@@ -2305,7 +2305,7 @@ const drinks = [
       price: 39.9,
       image:
         "https://media.drinksandco.com/wines/vodka-beluga-noble-837936_e.jpg",
-      origen: "Cuba",
+      country: "Cuba",
       rating: 0,
       category: "Vodka",
     },
@@ -2323,7 +2323,7 @@ const drinks = [
       price: 9.06,
       image:
         "https://media.drinksandco.com/wines/vodka-beluga-noble-837936_e.jpg",
-      origen: "Russian",
+      country: "Russian",
       rating: 0,
       category: "Vodka",
     },
@@ -2340,7 +2340,7 @@ const drinks = [
       stock: 15,
       price: 9.06,
       image: "https://media.drinksandco.com/wines/moskovskaya-479534_e.jpg",
-      origen: "Russian",
+      country: "Russian",
       rating: 0,
       category: "Vodka",
     },
@@ -2359,7 +2359,7 @@ const drinks = [
       stock: 15,
       price: 10.75,
       image: "https://media.drinksandco.com/wines/russian-standard-437169_e.jpg",
-      origen: "Russian",
+      country: "Russian",
       rating: 0,
       category: "Vodka",
     },
@@ -2372,7 +2372,7 @@ const drinks = [
       stock: 15,
       price: 12.9,
       image: "https://media.drinksandco.com/wines/smirnoff-1l-436890_e.jpg",
-      origen: "Russian",
+      country: "Russian",
       rating: 0,
       category: "Vodka",
     },
@@ -2388,7 +2388,7 @@ const drinks = [
       stock: 15,
       price: 59.99,
       image: "https://media.drinksandco.com/wines/stolichnaya-elit-436958_e.jpg",
-      origen: "Russian",
+      country: "Russian",
       rating: 0,
       category: "Vodka",
     },
@@ -2402,7 +2402,7 @@ const drinks = [
       stock: 15,
       price: 17.0,
       image: "https://media.drinksandco.com/wines/absolut-vodka-1l-920226_e.jpg",
-      origen: "Suecia",
+      country: "Suecia",
       rating: 0,
       category: "Vodka",
     },
@@ -2417,7 +2417,7 @@ const drinks = [
       stock: 15,
       price: 15.65,
       image: "https://media.drinksandco.com/wines/absolut-mango-1l-434789_e.jpg",
-      origen: "Suecia",
+      country: "Suecia",
       rating: 0,
       category: "Vodka",
     },
@@ -2432,7 +2432,7 @@ const drinks = [
       price: 15.56,
       image:
         "https://media.drinksandco.com/wines/absolut-raspberri-1l-434794_e.jpg",
-      origen: "Suecia",
+      country: "Suecia",
       rating: 0,
       category: "Vodka",
     },
@@ -2447,7 +2447,7 @@ const drinks = [
       stock: 15,
       price: 17.23,
       image: "https://media.drinksandco.com/wines/absolut-apeach-1l-434790_e.png",
-      origen: "Suecia",
+      country: "Suecia",
       rating: 0,
       category: "Vodka",
     },
@@ -2462,7 +2462,7 @@ const drinks = [
       price: 16.64,
       image:
         "https://media.drinksandco.com/wines/absolut-mode-edition-463770_e.jpg",
-      origen: "Suecia",
+      country: "Suecia",
       rating: 0,
       category: "Vodka",
     },
@@ -2477,7 +2477,7 @@ const drinks = [
       price: 16.64,
       image:
         "https://media.drinksandco.com/wines/absolut-mode-edition-463770_e.jpg",
-      origen: "Suecia",
+      country: "Suecia",
       rating: 0,
       category: "Vodka",
     },
@@ -2491,7 +2491,7 @@ const drinks = [
       stock: 15,
       price: 39.95,
       image: "https://media.drinksandco.com/wines/belvedere-pure-1l-634403_e.jpg",
-      origen: "Polonia",
+      country: "Polonia",
       rating: 0,
       category: "Vodka",
     },
@@ -2507,7 +2507,7 @@ const drinks = [
       stock: 15,
       price: 16.42,
       image: "https://media.drinksandco.com/wines/belvedere-pure-1l-634403_e.jpg",
-      origen: "Polonia",
+      country: "Polonia",
       rating: 0,
       category: "Vodka",
     },
@@ -2524,7 +2524,7 @@ const drinks = [
       price: 53.9,
       image:
         "https://media.drinksandco.com/wines/belvedere-intense-1l-556752_e.jpg",
-      origen: "Polonia",
+      country: "Polonia",
       rating: 0,
       category: "Vodka",
     },
@@ -2539,7 +2539,7 @@ const drinks = [
       price: 53.9,
       image:
         "https://media.drinksandco.com/wines/belvedere-intense-1l-556752_e.jpg",
-      origen: "Polonia",
+      country: "Polonia",
       rating: 0,
       category: "Vodka",
     },
@@ -2555,7 +2555,7 @@ const drinks = [
       price: 39.9,
       image:
         "https://media.drinksandco.com/wines/grey-goose-vodka-1l-435793_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Vodka",
     },
@@ -2569,7 +2569,7 @@ const drinks = [
       stock: 15,
       price: 32.9,
       image: "https://media.drinksandco.com/wines/ciroc-vodka-434383_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Vodka",
     },
@@ -2583,7 +2583,7 @@ const drinks = [
       stock: 15,
       price: 44.9,
       image: "https://media.drinksandco.com/wines/grey-goose-vodka-434400_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Vodka",
     },
@@ -2598,7 +2598,7 @@ const drinks = [
       price: 89.95,
       image:
         "https://media.drinksandco.com/wines/grey-goose-vx-vodka-exceptionelle-1l-941345_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Vodka",
     },
@@ -2613,7 +2613,7 @@ const drinks = [
       price: 82.16,
       image:
         "https://media.drinksandco.com/wines/luis-felipe-brandy-gran-reserva-443224_e.png",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Brandy",
     },
@@ -2628,7 +2628,7 @@ const drinks = [
       price: 149.9,
       image:
         "https://media.drinksandco.com/wines/ximenez-spinola-tres-mil-botellas-1019382_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Brandy",
     },
@@ -2642,7 +2642,7 @@ const drinks = [
       stock: 15,
       price: 24.36,
       image: "https://media.drinksandco.com/wines/cardenal-mendoza-446531_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Brandy",
     },
@@ -2656,7 +2656,7 @@ const drinks = [
       stock: 15,
       price: 75.5,
       image: "https://media.drinksandco.com/wines/jaime-i-1004568_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Brandy",
     },
@@ -2665,13 +2665,13 @@ const drinks = [
       name: "1866 Gran Reserva",
       description: `
       Desde su nacimiento en el año 1866, la malagueña Osborne se ha convertido en la Ginebra Mediterránea y el Mediterráneo forma parte de la naturaleza misma de la compañía. En cada una de sus botellas, en cada trago, esta ginebra que es hoy la más emblemática en España, nos trae las sensaciones y
-      el sabor de su lugar de origen. Por más de un siglo y medio la compañía se ha preocupado porque sus productos reflejen y sean abanderados del espíritu, el sentir y la actitud mediterránea.
+      el sabor de su lugar de country. Por más de un siglo y medio la compañía se ha preocupado porque sus productos reflejen y sean abanderados del espíritu, el sentir y la actitud mediterránea.
       `,
       stock: 15,
       price: 49.54,
       image:
         "https://media.drinksandco.com/wines/1866-gran-reserva-1352345-s350_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Brandy",
     },
@@ -2680,13 +2680,13 @@ const drinks = [
       name: "Torres 15 1L",
       description: `
       Torres 15 1L es un brandy elaborado en Francia por la familia Torres, una bodega que se destaca por el esfuerzo y la pasión de cinco generaciones dedicadas al vino.
-       Su origen en el Penedés se remonta al siglo XVII con viñedos cultivados por sus antepasados y un comercio incipiente del vino en esta comarca.
+       Su country en el Penedés se remonta al siglo XVII con viñedos cultivados por sus antepasados y un comercio incipiente del vino en esta comarca.
       `,
       stock: 15,
       price: 25.5,
       image:
         "https://media.drinksandco.com/wines/torres-15-1l-1290872-s350_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Brandy",
     },
@@ -2702,7 +2702,7 @@ const drinks = [
       price: 52.28,
       image:
         "https://media.drinksandco.com/wines/chateau-du-tariquet-xo-bas-armagnac-1552163_e.jpg",
-      origen: "France",
+      country: "France",
       rating: 0,
       category: "Brandy",
     },
@@ -2718,7 +2718,7 @@ const drinks = [
       price: 16.15,
       image:
         "https://media.drinksandco.com/wines/brandy-vecchia-romagna-440539_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Brandy",
     },
@@ -2733,7 +2733,7 @@ const drinks = [
       stock: 15,
       price: 78.25,
       image: "https://media.drinksandco.com/wines/villa-zarri-50cl-440676_e.jpg",
-      origen: "Italy",
+      country: "Italy",
       rating: 0,
       category: "Brandy",
     },
@@ -2748,7 +2748,7 @@ const drinks = [
       price: 45.75,
       image:
         "https://media.drinksandco.com/wines/tequila-herradura-reposado-434566_e.jpg",
-      origen: "Mexico",
+      country: "Mexico",
       rating: 0,
       category: "Tequila",
     },
@@ -2762,7 +2762,7 @@ const drinks = [
       price: 230.75,
       image:
         "https://media.drinksandco.com/wines/tequila-herradura-reposado-434566_e.jpg",
-      origen: "Mexico",
+      country: "Mexico",
       rating: 0,
       category: "Tequila",
     },
@@ -2778,7 +2778,7 @@ const drinks = [
       price: 75.75,
       image:
         "https://media.drinksandco.com/wines/tequila-patron-anejo-1l-1169491_e.jpg",
-      origen: "Mexico",
+      country: "Mexico",
       rating: 0,
       category: "Tequila",
     },
@@ -2794,7 +2794,7 @@ const drinks = [
       price: 9.75,
       image:
         "https://media.drinksandco.com/wines/kick-the-rules-crema-de-mango-con-tequila-1802347-s350_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Tequila",
     },
@@ -2809,7 +2809,7 @@ const drinks = [
       stock: 15,
       price: 10.75,
       image: "https://media.drinksandco.com/wines/aguascalientes-1l-434811_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Tequila",
     },
@@ -2824,7 +2824,7 @@ const drinks = [
       price: 12.18,
       image:
         "https://media.drinksandco.com/wines/black-flame-tequila-con-fresa-1349705-s350_e.jpg",
-      origen: "Spain",
+      country: "Spain",
       rating: 0,
       category: "Tequila",
     },
@@ -2841,7 +2841,7 @@ const drinks = [
       price: 41.9,
       image:
         "https://media.drinksandco.com/wines/black-flame-tequila-con-fresa-1349705-s350_e.jpg",
-      origen: "Mexico",
+      country: "Mexico",
       rating: 0,
       category: "Mezcal",
     },
@@ -2858,7 +2858,7 @@ const drinks = [
       price: 71.5,
       image:
         "https://media.drinksandco.com/wines/casamigos-mezcal-joven-1889169_e.jpg",
-      origen: "Mexico",
+      country: "Mexico",
       rating: 0,
       category: "Mezcal",
     },
@@ -2875,7 +2875,7 @@ const drinks = [
       price: 29.95,
       image:
         "https://media.drinksandco.com/wines/mezcal-zignum-silver-1133490-s350_e.jpg",
-      origen: "Mexico",
+      country: "Mexico",
       rating: 0,
       category: "Mezcal",
     },
@@ -2892,7 +2892,7 @@ const drinks = [
       price: 42.45,
       image:
         "https://media.drinksandco.com/wines/mezcal-sacrificio-reposado-1320579-s10_e.jpg",
-      origen: "Mexico",
+      country: "Mexico",
       rating: 0,
       category: "Mezcal",
     },
@@ -2909,7 +2909,7 @@ const drinks = [
       price: 48.72,
       image:
         "https://media.drinksandco.com/wines/mezcal-alipus-santa-ana-1825643_e.jpg",
-      origen: "Mexico",
+      country: "Mexico",
       rating: 0,
       category: "Mezcal",
     },
@@ -2923,7 +2923,7 @@ const drinks = [
       stock: 15,
       price: 25.95,
       image: "https://media.drinksandco.com/wines/makers-mark-446518_e.jpg",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Bourbon",
     },
@@ -2937,7 +2937,7 @@ const drinks = [
       stock: 15,
       price: 24.95,
       image: "https://media.drinksandco.com/wines/bulleit-bourbon-435145_e.jpg",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Bourbon",
     },
@@ -2951,7 +2951,7 @@ const drinks = [
       price: 105.95,
       image:
         "https://media.drinksandco.com/wines/blantons-the-original-single-barrel-bourbon-1196215_e.jpg",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Bourbon",
     },
@@ -2965,7 +2965,7 @@ const drinks = [
       stock: 15,
       price: 25.95,
       image: "https://media.drinksandco.com/wines/buffalo-trace-435143_e.jpg",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Bourbon",
     },
@@ -2980,7 +2980,7 @@ const drinks = [
       price: 43.95,
       image:
         "https://media.drinksandco.com/wines/glenmorangie-the-lasanta-12-anos-1843479-s48_e.jpg",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Bourbon",
     },
@@ -2995,7 +2995,7 @@ const drinks = [
       price: 201.95,
       image:
         "https://www.wine-searcher.com/images/labels/11/73/11031173.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Beer",
     },
@@ -3010,7 +3010,7 @@ const drinks = [
       price: 3.95,
       image:
         "https://www.wine-searcher.com/images/labels/11/73/11031173.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-      origen: "Scotland",
+      country: "Scotland",
       rating: 0,
       category: "Beer",
     },
@@ -3025,7 +3025,7 @@ const drinks = [
       price: 4.95,
       image:
         "https://www.wine-searcher.com/images/labels/50/08/10935008.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Beer",
     },
@@ -3040,7 +3040,7 @@ const drinks = [
       price: 4.95,
       image:
         "https://www.wine-searcher.com/images/labels/76/33/11167633.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Beer",
     },
@@ -3055,7 +3055,7 @@ const drinks = [
       price: 2.95,
       image:
         "https://www.wine-searcher.com/images/labels/88/54/10288854.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Beer",
     },
@@ -3070,7 +3070,7 @@ const drinks = [
       price: 2.95,
       image:
         "https://www.wine-searcher.com/images/labels/22/24/10342224.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-      origen: "USA",
+      country: "USA",
       rating: 0,
       category: "Beer",
     },
@@ -3085,7 +3085,7 @@ const drinks = [
       price: 4.95,
       image:
         "https://www.wine-searcher.com/images/labels/25/49/10552549.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-      origen: "India",
+      country: "India",
       rating: 0,
       category: "Beer",
     },
@@ -3100,7 +3100,7 @@ const drinks = [
       price: 4.95,
       image:
         "https://www.wine-searcher.com/images/labels/78/17/10307817.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-      origen: "India",
+      country: "India",
       rating: 0,
       category: "Beer",
     },
@@ -3115,7 +3115,7 @@ const drinks = [
       price: 4,
       image:
         "https://www.wine-searcher.com/images/labels/78/17/10307817.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-      origen: "India",
+      country: "India",
       rating: 0,
       category: "Beer",
     },
@@ -3205,39 +3205,39 @@ const drinks = [
     }
   ];
   
-  const sub_category = [
+  const subCategory = [
     {
       id: 1,
-      sub_category: "Red Wine",
+      subCategory: "Red Wine",
     },
     {
       id: 2,
-      sub_category: "White Wine",
+      subCategory: "White Wine",
     },
     {
       id: 3,
-      sub_category: "sparkling Wine",
+      subCategory: "sparkling Wine",
     },
     {
       id: 4,
-      sub_category: "Generous Wine",
+      subCategory: "Generous Wine",
     },
     {
       id: 5,
-      sub_category: "Pink Wine",
+      subCategory: "Pink Wine",
     },
     {
       id: 6,
-      sub_category: "Sweet Wine",
+      subCategory: "Sweet Wine",
     },
     {
       id: 7,
-      sub_category: "Non-alcoholic Wine",
+      subCategory: "Non-alcoholic Wine",
     },
   ];
   
   exports.drinks = drinks;
-  exports.sub_category = sub_category;
+  exports.subCategory = subCategory;
   exports.category = categorys;
   exports.countrys = countrys;
   
