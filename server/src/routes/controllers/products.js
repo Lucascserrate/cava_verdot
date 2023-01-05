@@ -1,4 +1,4 @@
-const { Drink, Category, Country, subCategory } = require('../../db');
+const { Drink, Category, Country, SubCategory } = require('../../db');
 
 const getAllProducts = async (req, res) => {
   const { id } = req.params
@@ -69,7 +69,7 @@ const postProduct = async (req, res) => {
       }
     });
     if (validateCountry === null) return res.status(404).send(`country '${country}' does not exist`);
-    const validateSubCategory = subCategory.findOne({
+    const validateSubCategory = SubCategory.findOne({
       where : {
         subCategory:subCategory
       }
