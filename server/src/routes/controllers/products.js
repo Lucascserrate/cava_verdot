@@ -54,6 +54,8 @@ const getAllProducts = async (req, res) => {
   }
 }
 
+const postProduct = async (req, res) => {
+  res.status(200).send('mesaje de confirmación')
+}
 
-
-module.exports = getAllProducts;
+module.exports = {getAllProducts, postProduct};
