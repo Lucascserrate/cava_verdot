@@ -1,4 +1,4 @@
-const { Drink, Category } = require('../../db');
+const { Drink, Category, Country, subCategory } = require('../../db');
 
 const getAllProducts = async (req, res) => {
   const { id } = req.params
@@ -55,7 +55,41 @@ const getAllProducts = async (req, res) => {
 }
 
 const postProduct = async (req, res) => {
-  res.status(200).send('mesaje de confirmación')
+  const {name, description, stock, price, image, country, rating, category, subCategory} = req.body;
+  try {
+    const validateCategory = await Category.findOne({
+      where: {
+        category:category
+      }
+    })
+    if (validateCategory === null) return res.status(404).send(`category '${category}' does not exist`);
+    const validateCountry = await Country.findOne({
+      where:{
+        country:country
+      }
+    });
+    if (validateCountry === null) return res.status(404).send(`country '${country}' does not exist`);
+    const validateSubCategory = subCategory.findOne({
+      where : {
+        subCategory:subCategory
+      }
+    })
+    if ( validateSubCategory === null) return res.status(404).send(`subCategory '${subCategory}' does not exist`)
+    const newProduct = await Drink.create({
+      name,
+      description,
+      stock,
+      price,
+      rating,
+      image,
+      country: validateCountry.id,
+      categoryId: validateCategory.id
+    })
+
+    res.status(200).send(`Success '${newProduct.name}' has been created`)
+  } catch (error) {
+    res.status(500).send({error:error.message})
+  }
 }
 
 module.exports = {getAllProducts, postProduct};
