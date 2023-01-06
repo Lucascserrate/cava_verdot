@@ -1,0 +1,29 @@
+:root{
+  --error: #8C2A1F;
+  --ok: #428734;
+}
+.alert{
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  max-height: 100%;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+.error{
+  border: 1px solid var(--error);
+  background-image: linear-gradient(90deg, #c03a2b48, #c03a2b48);
+}
+.error__red{
+  color: var(--error);
+}
+.ok{
+  border: 1px solid var(--ok);
+  background-image: linear-gradient(90deg, #5cbe4948, #5cbe4948);
+}
+.ok__green{
+  color: var(--ok);
+}

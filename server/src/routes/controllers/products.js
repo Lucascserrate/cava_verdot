@@ -1,3 +1,4 @@
+
 const { Drink, Category, Country, SubCategory } = require("../../db");
 
 const getAllProducts = async (req, res) => {
@@ -5,6 +6,7 @@ const getAllProducts = async (req, res) => {
   const { name } = req.query;
   const { category } = req.query;
   const { country } = req.query;
+  
   try {
     if (category) {
       const AllOfcategory = await Category.findOne({
@@ -128,9 +130,9 @@ const postProduct = async (req, res) => {
       rating,
       image,
       country: validateCountry.id,
+
       categoryId: validateCategory.id,
     });
-
     res.status(200).send(`Success '${newProduct.name}' has been created`);
   } catch (error) {
     res.status(500).send({ error: error.message });
