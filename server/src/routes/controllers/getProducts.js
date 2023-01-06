@@ -36,36 +36,41 @@ const getAllProducts = async (req, res) => {
           .send({ error: `the category '${category}' not found` });
       }
     }
-
     if (country) {
+      let countryFirstToMayus = country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
       const AllOfcountry = await Country.findOne({
         where: {
-          country: country,
+          country: countryFirstToMayus,
         },
       });
       if (AllOfcountry !== null) {
-        const drinksByCountry = await Drink.findAll({
+        const drinksBycountry = await Drink.findAll({
           where: {
-            country: AllOfcountry.id,
+            countryId: AllOfcountry.id,
           },
           include: [
             {
               model: Country,
             },
+            {
+              model: Category,
+            },
           ],
         });
-        return res.status(200).send(drinksByCountry);
+        return res.status(200).send(drinksBycountry);
       } else {
         return res
           .status(404)
-          .send({ error: `the category '${category}' not found` });
+          .send({ error: `the category '${country}' not found` });
       }
     }
-
     const allDrinks = await Drink.findAll({
       include: [
         {
           model: Category,
+        },
+        {
+          model: Country,
         },
       ],
     });
@@ -91,4 +96,4 @@ const getAllProducts = async (req, res) => {
 };
 
 
-module.exports = {getAllProducts};
+module.exports = { getAllProducts };
