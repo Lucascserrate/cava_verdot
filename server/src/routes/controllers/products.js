@@ -1,3 +1,4 @@
+
 const { Drink, Category, Country, SubCategory } = require("../../db");
 
 const getAllProducts = async (req, res) => {
@@ -5,6 +6,7 @@ const getAllProducts = async (req, res) => {
   const { name } = req.query;
   const { category } = req.query;
   const { country } = req.query;
+  
   try {
     if (category) {
       let categoryFirstToMayus = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();

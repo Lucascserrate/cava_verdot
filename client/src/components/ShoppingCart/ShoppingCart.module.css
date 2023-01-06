@@ -1,0 +1,47 @@
+.container {
+    margin: 20px;
+    background-color: #ffffff;
+    height: 70px;
+    width: 70px;
+    border-radius: 40px;
+    box-shadow: rgba(169, 169, 169, 0.626) 0 .1px 10px 0;
+    border: 1px solid #e6e6e6;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    right: 20px;
+    top: 40px;
+
+}
+
+.container:hover {
+    scale: 1.02;
+}
+
+.img {
+    height: 38px;
+}
+
+.amount {
+    position: absolute;
+    right: -4px;
+    top: -2px;
+
+    background-color: #051937;
+    border-radius: 40px;
+    height: 25px;
+    width: 25px;
+    font-size: 15px;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}

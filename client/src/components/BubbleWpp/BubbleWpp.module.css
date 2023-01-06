@@ -1,0 +1,11 @@
+.img {
+    height: 70px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+}
+
+.img:hover {
+    opacity: .9;
+}
