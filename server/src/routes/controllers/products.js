@@ -1,5 +1,5 @@
 
-const { Drink, Category, Country, SubCategory } = require("../../db");
+const { Drink, Category, Country } = require("../../db");
 
 const getAllProducts = async (req, res) => {
   const { id } = req.params;
