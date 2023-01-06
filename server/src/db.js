@@ -47,9 +47,9 @@ const { Category, Drink, Country, SubCategory } = sequelize.models;
 Category.hasMany(Drink);
 Drink.belongsTo(Category);
 Country.hasMany(Drink);
-Drink.belongsTo(Country);
+Drink.belongsTo(Country, { foreignKey: 'countryId' });
 Category.hasMany(SubCategory);
-SubCategory.belongsTo(Category);
+SubCategory.belongsTo(Category, { foreignKey: 'categoryId' });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
