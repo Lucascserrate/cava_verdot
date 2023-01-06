@@ -9,19 +9,23 @@ const getAllProducts = async (req, res) => {
   
   try {
     if (category) {
+      let categoryFirstToMayus = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
       const AllOfcategory = await Category.findOne({
         where: {
-          category: category,
+          category: categoryFirstToMayus,
         },
       });
       if (AllOfcategory !== null) {
         const drinksByCategory = await Drink.findAll({
           where: {
-            category: AllOfcategory.id,
+            categoryId: AllOfcategory.id,
           },
           include: [
             {
               model: Category,
+            },
+            {
+              model: Country,
             },
           ],
         });
