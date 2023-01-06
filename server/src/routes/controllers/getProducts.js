@@ -76,10 +76,18 @@ const getAllProducts = async (req, res) => {
     });
 
     if (id) {
-      const drinksId = allDrinks.filter((e) => e.id === id);
-
-      drinksId.length
-        ? res.status(200).send(drinksId)
+      const drinkById = await Drink.findByPk(id,
+        { include: [
+            {
+              model: Country,
+            },
+            {
+              model: Category,
+            },
+          ],
+        });
+      drinkById.id
+        ? res.status(200).send(drinkById)
         : res.status(404).send("drinks id not found");
     } else if (name) {
       const drinksName = allDrinks.filter((e) =>
