@@ -3,6 +3,8 @@ import s from './Home.module.css'
 import Navbar from '../Navbar/Navbar'
 import CarouselSlide from '../Carousel/Carousel'
 import BubbleWpp from '../BubbleWpp/BubbleWpp'
+import Footer from '../Footer/Footer'
+
 
 
 const Home = () => {
@@ -11,6 +13,7 @@ const Home = () => {
             <Navbar />
             <CarouselSlide />
             <BubbleWpp />
+            <Footer />
         </div>
     )
 }
