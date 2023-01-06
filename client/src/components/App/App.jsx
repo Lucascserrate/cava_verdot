@@ -1,15 +1,15 @@
 import React from 'react'
 import Register from '../Register/Register'
 import Login from '../Login/Login'
-import {Routes, Route} from 'react-router-dom'
-import CarouselSlide from '../Carousel/Carousel'
+import { Routes, Route } from 'react-router-dom'
+import Home from '../Home/Home'
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path='/register' element={<Register/>}/>
-        <Route path="/slide" element={<CarouselSlide/>}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </div>
   )
