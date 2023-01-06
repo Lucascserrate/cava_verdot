@@ -14,7 +14,7 @@ function Cards() {
   
   return (
     <div className={s.cards}>
-
+      <Card/>
     </div>
   )
 }
