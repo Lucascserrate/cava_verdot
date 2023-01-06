@@ -98,6 +98,7 @@ const getAllProducts = async (req, res) => {
         ? res.status(200).send(drinksName)
         : res.status(404).send("drink not found");
     } else res.status(200).send(allDrinks);
+    
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
