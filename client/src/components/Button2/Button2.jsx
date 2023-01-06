@@ -1,7 +1,7 @@
 import React from 'react';
-import s from './Button1.module.css'
+import s from './Button2.module.css'
 
-const Button1 = ({ value }) => {
+const Button2 = ({ value }) => {
     return (
         <>
             <button className={s.btn} >
@@ -11,4 +11,4 @@ const Button1 = ({ value }) => {
     )
 }
 
-export default Button1
+export default Button2
