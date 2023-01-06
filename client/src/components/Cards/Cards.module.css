@@ -1,0 +1,21 @@
+:root{
+  --primary: #F1EEE5;
+}
+
+.cards{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px 0;
+  background-color: var(--primary);
+  width: 100%;
+  min-height: 100vh;
+  max-height: 100%;
+  padding: 30px 0;
+}
+.cards__link{
+  width: 230px;
+  height: 280px;
+  margin: 0 auto;
+  text-decoration: none;
+  color: #000;
+}
