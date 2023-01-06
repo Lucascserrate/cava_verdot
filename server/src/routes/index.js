@@ -6,6 +6,6 @@ const countrys = require("./countrys.routes.js");
 const drinks = require("./drinksIntegred.routes.js");
 router.use("/categories", category);
 router.use("/products", productMiddleware);
-router.use("/countrys", countrys);
+router.use("/countries", countrys);
 router.use("/drinks", drinks);
 module.exports = router;

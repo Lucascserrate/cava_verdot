@@ -5,8 +5,7 @@ const drinksDB = async (req, res) => {
   const drinksAPI = await drinks;
 
   let list = Promise.all(
-    drinksAPI.map(async (drink, index) => {
-      if (index) {
+    drinksAPI.map(async (drink) => {
         let categoryDB = await Category.findOne({
           where: {
             category: drink.category,
@@ -30,7 +29,6 @@ const drinksDB = async (req, res) => {
           },
         });
         return await newDrink;
-      }
     })
   ).then((response) => res.json(response));
 
