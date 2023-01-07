@@ -11,7 +11,7 @@ import Footer from '../Footer/Footer'
 const Home = () => {
     return (
         <div className={s.container}>
-            <Navbar />
+            <Navbar searchbar='true' />
             <CarouselSlide />
             <ShoppingCart />
             <BubbleWpp />
