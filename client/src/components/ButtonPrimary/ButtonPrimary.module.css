@@ -1,9 +1,3 @@
-:root {
-    --colorPrimary: #592D4A;
-    --colorWhite: #e8e8e8;
-    --colorBone: #F1EEE5;
-}
-
 .btn {
     display: inline-block;
     transition: all 0.2s ease-in;
