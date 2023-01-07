@@ -6,16 +6,15 @@
     color: #fff;
     padding: 0.6em 1.6em;
     font-size: 16px;
-    border-radius: 0.5em;
+    border-radius: var(--borderRadiusButtons);
     background: var(--colorPrimary);
     border: 1px solid var(--colorPrimary);
     cursor: pointer;
-    opacity: .85;
 }
 
 
 
 
 .btn:hover {
-    opacity: 1;
+    opacity: .9;
 }

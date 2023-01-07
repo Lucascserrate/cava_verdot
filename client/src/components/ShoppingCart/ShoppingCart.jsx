@@ -4,7 +4,7 @@ import img from '../../assets/cart.png'
 import { useState } from 'react';
 
 const ShoppingCart = () => {
-    const [cart, setCart] = useState(1)
+    const [cart, setCart] = useState(0)
 
     return (
         <div className={s.container}>
