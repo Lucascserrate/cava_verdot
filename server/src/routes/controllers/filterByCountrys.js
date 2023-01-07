@@ -1,25 +1,13 @@
 const { drinks } = require("../../../api.js");
-
-/*
-filterByCountrys.get("/:country", async (req, res) => {
-  try {
-    let countrys = await drinks.filter(
-      (drink) => drink.country === req.params.country
-    );
-    res.json(await countrys);
-  } catch (error) {
-    res.json(error.message);
-  }
-});
-*/
-
+const {Country} = require("../../db.js")
 const filterByCountrys = async (req, res) => {
+ /*
+  const { country } = req.params;
   try {
-    let countrys = await drinks.filter(
-      (drink) => drink.country === req.params.country
-    );
-    res.json(await countrys);
+    
+    }
   } catch (error) {}
+ */
 };
 
 module.exports = filterByCountrys;

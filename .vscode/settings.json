@@ -1,0 +1,5 @@
+{
+    "merge-conflict.autoNavigateNextConflict.enabled": true,
+    "editor.parameterHints.enabled": true,
+    "merge-conflict.diffViewPosition": "Beside"
+}

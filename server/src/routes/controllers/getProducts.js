@@ -36,45 +36,58 @@ const getAllProducts = async (req, res) => {
           .send({ error: `the category '${category}' not found` });
       }
     }
-
     if (country) {
+      let countryFirstToMayus = country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
       const AllOfcountry = await Country.findOne({
         where: {
-          country: country,
+          country: countryFirstToMayus,
         },
       });
       if (AllOfcountry !== null) {
-        const drinksByCountry = await Drink.findAll({
+        const drinksBycountry = await Drink.findAll({
           where: {
-            country: AllOfcountry.id,
+            countryId: AllOfcountry.id,
           },
           include: [
             {
               model: Country,
             },
+            {
+              model: Category,
+            },
           ],
         });
-        return res.status(200).send(drinksByCountry);
+        return res.status(200).send(drinksBycountry);
       } else {
         return res
           .status(404)
-          .send({ error: `the category '${category}' not found` });
+          .send({ error: `the category '${country}' not found` });
       }
     }
-
     const allDrinks = await Drink.findAll({
       include: [
         {
           model: Category,
         },
+        {
+          model: Country,
+        },
       ],
     });
 
     if (id) {
-      const drinksId = allDrinks.filter((e) => e.id === id);
-
-      drinksId.length
-        ? res.status(200).send(drinksId)
+      const drinkById = await Drink.findByPk(id,
+        { include: [
+            {
+              model: Country,
+            },
+            {
+              model: Category,
+            },
+          ],
+        });
+      drinkById.id
+        ? res.status(200).send(drinkById)
         : res.status(404).send("drinks id not found");
     } else if (name) {
       const drinksName = allDrinks.filter((e) =>
@@ -85,10 +98,11 @@ const getAllProducts = async (req, res) => {
         ? res.status(200).send(drinksName)
         : res.status(404).send("drink not found");
     } else res.status(200).send(allDrinks);
+    
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
 };
 
 
-module.exports = {getAllProducts};
+module.exports = { getAllProducts };

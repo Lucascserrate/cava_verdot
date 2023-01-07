@@ -5,15 +5,15 @@ const scotland = "Scotland";
 const england = "England";
 const suecia = "Suecia";
 const irland = "Irland";
-const USA = "USA"
-const cuba = "Cuba"
-const italy = "Italy"
-const Dom = "Dominican Republic"
-const france = "France"
-const polonia = "Polonia"
-const mexico = "Mexico"
-const india = "India"
-const russian = "Russian"
+const USA = "USA";
+const cuba = "Cuba";
+const italy = "Italy";
+const Dom = "Dominican Republic";
+const france = "France";
+const polonia = "Polonia";
+const mexico = "Mexico";
+const india = "India";
+const russian = "Russian";
 const drinks = [
   {
     id: 1,
@@ -3175,9 +3175,9 @@ const categorys = [
     category: "Beer",
   },
   {
-    id:10,
-    category: "Vodka"
-  }
+    id: 10,
+    category: "Vodka",
+  },
 ];
 const countrys = [
   {

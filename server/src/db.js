@@ -6,7 +6,7 @@ const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/cava`,
+  `postgresql://postgres:GohVvSOTUJpecFhUdeB4@containers-us-west-161.railway.app:5970/railway`,
   {
     logging: false,
     native: false,
@@ -47,9 +47,9 @@ const { Category, Drink, Country, SubCategory } = sequelize.models;
 Category.hasMany(Drink);
 Drink.belongsTo(Category);
 Country.hasMany(Drink);
-Drink.belongsTo(Country, { foreignKey: 'countryId' });
+Drink.belongsTo(Country, { foreignKey: "countryId" });
 Category.hasMany(SubCategory);
-SubCategory.belongsTo(Category, { foreignKey: 'categoryId' });
+SubCategory.belongsTo(Category, { foreignKey: "categoryId" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
