@@ -1,7 +1,8 @@
-import { GET_DRINKS } from "./actions";
+import { GET_DRINKS, GET_DRINK } from "./actions";
 
 const initialState = {
   drinks: [],
+  drink: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         drinks: action.payload,
       };
+    case GET_DRINK:
+      return{
+        ...state,
+        drink: action.payload,
+      }
     default:
       return state;
   }
