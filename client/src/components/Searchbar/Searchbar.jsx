@@ -11,7 +11,6 @@ export default function Searchbar() {
     function handleInputChange(e) {
         e.preventDefault()
         setName(e.target.value)
-        console.log(name)
     }
 
     function handleSubmit(e) {
@@ -21,7 +20,7 @@ export default function Searchbar() {
 
     return (
         <div class="search">
-            <input type="text" className={s.search__input} placeholder="Search Product..." />
+            <input type="text" className={s.search__input} onChange={(e) => handleInputChange(e)} placeholder="Search Product..." />
             <button className={s.search__button}>
                 <svg className={s.search__icon} aria-hidden="true" viewBox="0 0 24 24">
                     <g>
