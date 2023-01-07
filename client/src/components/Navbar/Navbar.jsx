@@ -5,32 +5,31 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import SearchBar from '../Searchbar/Searchbar';
 import icon from '../Navbar/cavaicon.jfif'
+import Button3 from '../Button3/Button3';
 
-export default function NavBar() {
-    
-    function handleClick(e){
+export default function NavBar({ searchbar }) {
+    function handleClick(e) {
         e.preventDefault();
     }
 
-    return(
-        (<div>
+    return (
+        <div className={s.bg}>
+            <div className={s.container}>
+                <div className={s.left}>
+                    <div className={s.img}>
+                        {/* <img src={icon} alt="logo"  /> */}
+                    </div>
+                    <p className={s.title}>CAVA VERDOT</p>
+                    <ul className={s.navButtons}>
+                        <Link to='/store'><li>Store</li></Link>
+                    </ul>
+                </div>
+                {searchbar && <SearchBar />}
+                <div className={s.right}>
+                    <Link to='/login'><Button3 value='Sign In' /></Link>
+                </div>
 
-            <div className={s.image}>
-                    <img src={icon} alt="" width="100px" height="200px"/>
             </div>
-
-            <div className={s.title}>
-                <h1>CAVA VERDOT</h1>
-            </div>          
-                        
-            <SearchBar/>
-
-            <Link to='/home'><button>Home</button></Link>
-
-            <Link to='/store'><button>Store</button></Link>
-
-            <Link to='/login'><button>Sign In/Log In</button></Link>
-        
-        </div>)
+        </div>
     )
 }
