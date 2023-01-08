@@ -27,3 +27,8 @@ li {
 .list li:focus {
     background-color: #2bff00;
 }
+.aside__btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
