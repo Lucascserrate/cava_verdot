@@ -38,7 +38,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_DRINK_BY_NAME:
       return{
         ...state,
-        drink: action.payload,
+        drinks: action.payload,
       }
     default:
       return state;
