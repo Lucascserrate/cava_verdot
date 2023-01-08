@@ -1,9 +1,11 @@
-import { GET_DRINKS, GET_DRINK, GET_ALL_CATEGORIES, GET_CATEGORY_PRODUCT } from "./actions";
+import { GET_DRINKS, GET_DRINK, GET_ALL_CATEGORIES, GET_CATEGORY_PRODUCT, MODIFY_CART } from "./actions";
 
 const initialState = {
   drinks: [],
   drink: [],
   categories: [],
+  cart: 0
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -13,18 +15,23 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         drinks: action.payload,
       };
+    case MODIFY_CART:
+      return {
+        ...state,
+        cart: parseInt(state.cart) + parseInt(action.payload)
+      }
     case GET_DRINK:
-      return{
+      return {
         ...state,
         drink: action.payload,
       }
     case GET_ALL_CATEGORIES:
-      return{
+      return {
         ...state,
         categories: action.payload,
       }
     case GET_CATEGORY_PRODUCT:
-      return{
+      return {
         ...state,
         drinks: action.payload,
       }
