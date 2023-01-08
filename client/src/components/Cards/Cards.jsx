@@ -55,7 +55,7 @@ function Cards() {
       <div className={s.cards__content}>
         {datos.length
           ? datos.map((e) => (
-            <Link to={`/cards/${e.id}`} key={e.id} className={s.cards__link}>
+            <Link to={`/store/${e.id}`} key={e.id} className={s.cards__link}>
               <Card id={e.id} img={e.image} name={e.name} />
             </Link>
           ))
