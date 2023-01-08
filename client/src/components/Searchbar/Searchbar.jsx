@@ -2,6 +2,7 @@ import React from 'react'
 import s from './Searchbar.module.css'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { getDrinkName } from '../../redux/actions'
 
 export default function Searchbar() {
 
@@ -15,7 +16,7 @@ export default function Searchbar() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        //dispatch(getProduct(name))
+        dispatch(getDrinkName(name))
     }
 
     return (

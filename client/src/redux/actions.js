@@ -5,6 +5,8 @@ export const GET_DRINKS = 'GET_DRINKS';
 export const GET_DRINK = 'GET_DRINK';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 export const GET_CATEGORY_PRODUCT = 'GET_CATEGORY_PRODUCT';
+export const GET_DRINK_BY_NAME = 'GET_DRINK_BY_NAME';
+
 
 // Actions Creators get all products
 export const getDrinks = () => {
@@ -42,3 +44,12 @@ export const getCategoryProduct = (category) => {
     dispatch({ type: GET_CATEGORY_PRODUCT, payload: datosApi });
   }
 }
+
+// Actions Creators get product id
+export const getDrinkName = (name) => {
+  return async (dispatch) => {
+    let datosApi = await axios.get(`http://localhost:3001/products/${name}`);
+    dispatch({ type: GET_DRINK, payload: datosApi })
+  }
+}
+
