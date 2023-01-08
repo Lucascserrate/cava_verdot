@@ -3,8 +3,8 @@ const { countrys } = require("../../../api");
 const getAllCountrys = async (req, res) => {
   try {
     let countr = await countrys.map((country) => {
-        Country.findOrCreate({
-        where: { country: country.country, id: country.id },
+      Country.findOrCreate({
+        where: { country: country.country },
       });
     });
     const allCountrys = await Country.findAll();

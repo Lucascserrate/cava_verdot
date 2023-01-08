@@ -15,7 +15,7 @@ function App() {
         <Route path='/cards' element={<Cards />} />
       </Routes>
     </div>
-  )
+  );
 }
 
 export default App

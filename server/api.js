@@ -3139,43 +3139,33 @@ const drinks = [
 
 const categorys = [
   {
-    id: 1,
     category: "Wine",
   },
   {
-    id: 2,
     category: "Whisky",
   },
   {
-    id: 3,
     category: "Gin",
   },
   {
-    id: 4,
     category: "Ron",
   },
   {
-    id: 5,
     category: "Brandy",
   },
   {
-    id: 6,
     category: "Tequila",
   },
   {
-    id: 7,
     category: "Mezcal",
   },
   {
-    id: 8,
     category: "Bourbon",
   },
   {
-    id: 9,
     category: "Beer",
   },
   {
-    id: 10,
     category: "Vodka",
   },
 ];
@@ -3269,3 +3259,4 @@ exports.drinks = drinks;
 exports.sub_category = sub_category;
 exports.categorys = categorys;
 exports.countrys = countrys;
+ 
