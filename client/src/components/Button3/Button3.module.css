@@ -5,13 +5,11 @@
     overflow: hidden;
     z-index: 1;
     color: #592D4A;
-    padding: 0.7em 1.7em;
-    font-size: 18px;
+    padding: 0.6em 1.6em;
+    font-size: 16px;
     border-radius: 0.5em;
     background: #e8e8e8;
     border: 1px solid #e8e8e8;
-    box-shadow: 6px 6px 12px #c5c5c5,
-        -6px -6px 12px #ffffff;
 
     cursor: pointer;
 }

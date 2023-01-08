@@ -1,0 +1,36 @@
+.bg {
+    background-color: var(--colorPrimary);
+}
+
+.container {
+    height: 60px;
+    width: 90%;
+    margin: auto;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* .img {
+    height: 60px;
+} */
+
+.left {
+    display: flex;
+}
+
+.title {
+    color: var(--colorWhite);
+    font-size: 20px;
+}
+
+.navButtons li {
+    margin-left: 30px;
+    color: var(--colorWhite);
+}
+
+.navButtons:hover {
+    opacity: .8;
+}
