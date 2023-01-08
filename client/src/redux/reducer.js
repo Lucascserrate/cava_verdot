@@ -1,7 +1,8 @@
-import { GET_DRINKS } from "./actions";
+import { GET_DRINKS, MODIFY_CART } from "./actions";
 
 const initialState = {
   drinks: [],
+  cart: 0
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         drinks: action.payload,
       };
+    case MODIFY_CART:
+      return {
+        ...state,
+        cart: parseInt(state.cart) + parseInt(action.payload)
+      }
     default:
       return state;
   }

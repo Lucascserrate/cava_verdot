@@ -24,7 +24,7 @@ function Cards() {
 
   // cuando se carguen los datos del state, llenamos datos
   useEffect(() => {
-    if(state){
+    if (state) {
       setDatos([...state].splice(0, 15));
     }
   }, [state]);
@@ -55,10 +55,10 @@ function Cards() {
       <div className={s.cards__content}>
         {datos.length
           ? datos.map((e) => (
-              <Link key={e.id} className={s.cards__link}>
-                <Card img={e.image} name={e.name} />
-              </Link>
-            ))
+            <Link key={e.id} className={s.cards__link}>
+              <Card id={e.id} img={e.image} name={e.name} />
+            </Link>
+          ))
           : "Cargando datos..."}
       </div>
       <div className={s.cards__paginado}>
