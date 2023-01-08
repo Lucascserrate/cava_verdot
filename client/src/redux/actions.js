@@ -45,11 +45,11 @@ export const getCategoryProduct = (category) => {
   }
 }
 
-// Actions Creators get product id
+// Actions Creators get product by name
 export const getDrinkName = (name) => {
   return async (dispatch) => {
-    let datosApi = await axios.get(`http://localhost:3001/products/${name}`);
-    dispatch({ type: GET_DRINK, payload: datosApi })
+    let datosApi = await axios.get("http://localhost:3001/products?name=" +name);
+    dispatch({ type: GET_DRINK_BY_NAME, payload: datosApi })
   }
 }
 

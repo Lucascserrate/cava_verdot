@@ -9,7 +9,7 @@ function Store() {
   return (
     <div className={s.store}>
       <div className={s.container}>
-        <NavBar/>
+        <NavBar searchbar='true' />
         <div className={s.store__components}>
             <AsideFilters/>
             <Cards/>
