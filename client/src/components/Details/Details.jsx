@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { modifyCart } from '../../redux/actions';
 import Footer from '../Footer/Footer'
+import Loader from '../Loader/Loader';
 
 const Details = () => {
 
@@ -28,34 +29,40 @@ const Details = () => {
     const handlerAdd = () => {
         dispatch(modifyCart(cartAmount.value))
     }
+    console.log(detail.country?.country);
 
     return (
         <>
             <NavBar />
             <ShoppingCart />
-            <div className={s.container}>
-                <div className={s.grid}>
-                    <div>
-                        <img className={s.img} src={detail.image ? detail.image : '#'} alt='img' />
+            {
+                Object.keys(detail).length
+                    ? <div className={s.container}>
+                        <div className={s.grid}>
+                            <div>
+                                <img className={s.img} src={detail.image ? detail.image : '#'} alt='img' />
+                            </div>
+                            <div>
+                                <h1 className={s.name}>{detail.name ? detail.name : 'Nombre del Producto'}</h1>
+                                <p>⭐⭐⭐⭐⭐</p>
+                                <p className={s.price}>${detail.price ? detail.price : 100}</p>
+                                <div>
+                                    <span className={s.bold}>Amount:</span>
+                                    <input id='amount' className={s.inputAmount} type="number" defaultValue='1' min='1' maxLength='5' />
+                                </div>
+                                <div className={s.buttons}>
+                                    <ButtonPrimary handlerAdd={handlerAdd} value='Add' />
+                                    <Button3 value='Pay Now' />
+                                </div>
+                                <p className={s.country}><span className={s.bold}>Country:</span> {detail.country?.country}</p>
+                            </div>
+                        </div>
+                        <br></br>
+                        <div>{detail.description}</div>
                     </div>
-                    <div>
-                        <h1 className={s.name}>{detail.name ? detail.name : 'Nombre del Producto'}</h1>
-                        <p>⭐⭐⭐⭐⭐</p>
-                        <p className={s.price}>${detail.price ? detail.price : 100}</p>
-                        <div>
-                            <span className={s.bold}>Amount:</span>
-                            <input id='amount' className={s.inputAmount} type="number" defaultValue='1' min='1' maxLength='5' />
-                        </div>
-                        <div className={s.buttons}>
-                            <ButtonPrimary handlerAdd={handlerAdd} value='Add' />
-                            <Button3 value='Pay Now' />
-                        </div>
-                        {/* <p className={s.country}>{detail ? detail.country.country : 'Country'}</p> */}
-                    </div>                                               
-            </div>
-            <br></br>
-                <div>{detail.description}</div>  
-            </div> 
+                    : <Loader />
+            }
+
             <br></br>
             <Footer />
         </>

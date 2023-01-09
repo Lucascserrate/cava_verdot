@@ -6,6 +6,7 @@ import s from "./Cards.module.css";
 import { getDrinks } from "../../redux/actions";
 import arrowLeft from '../../assets/bxs-left-arrow.svg'
 import arrowRight from '../../assets/bxs-right-arrow.svg'
+import Loader from '../Loader/Loader';
 
 function Cards() {
   // estados del paginado
@@ -59,7 +60,7 @@ function Cards() {
               <Card id={e.id} img={e.image} name={e.name} />
             </Link>
           ))
-          : "Cargando datos..."}
+          : <Loader />}
       </div>
       <div className={s.cards__paginado}>
         <button onClick={prev} className={s.cards__btn} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>
