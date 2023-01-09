@@ -6,6 +6,7 @@ import Store from '../Store/Store'
 import Details from '../Details/Details'
 import FORMIKPostProductForm from '../FormularioPostProduct/FORMIKPostProductForm'
 import About from '../About/About'
+import Login from '../Login/Login'
 
 function App() {
   return (
