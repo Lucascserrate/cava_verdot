@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { PostProduct, getAllCategories } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import s from './PostProduct.module.css'
 
@@ -220,7 +220,11 @@ useEffect(() => {
                 </Form>
             )}
           </Formik>
-        
+        <>
+        <Link to='/'>
+            <button className={s.form__submit}>Back Home</button>
+        </Link>
+        </>
         </div>
     );
 }
