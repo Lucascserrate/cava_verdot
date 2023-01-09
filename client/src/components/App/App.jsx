@@ -5,6 +5,7 @@ import Home from '../Home/Home'
 import Store from '../Store/Store'
 import Details from '../Details/Details'
 import FORMIKPostProductForm from '../FormularioPostProduct/FORMIKPostProductForm'
+import Login from '../Login/Login'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/store/:id' element={<Details />} />
         <Route path='/register' element={<Register />} />
         <Route path='/postproduct' element={<FORMIKPostProductForm />} />
+        <Route path='/login' element={<Login/>}/>
       </Routes>
     </div>
   );

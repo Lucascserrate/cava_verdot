@@ -26,6 +26,7 @@
   text-decoration: none;
   display: inline-block;
   font-weight: 400;
+  z-index: 0;
 }
 
 .login__contain{
