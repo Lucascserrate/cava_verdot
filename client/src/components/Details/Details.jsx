@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import s from './Details.module.css';
-import img from '../../assets/3375734277.png'
 import NavBar from '../Navbar/Navbar';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import Button3 from '../Button3/Button3';
@@ -27,9 +26,7 @@ const Details = () => {
 
     const handlerAdd = () => {
         dispatch(modifyCart(cartAmount.value))
-        console.log(cartAmount.value);
     }
-
 
     return (
         <>
@@ -52,7 +49,7 @@ const Details = () => {
                             <ButtonPrimary handlerAdd={handlerAdd} value='Add' />
                             <Button3 value='Pay Now' />
                         </div>
-
+                        {/* <p className={s.country}>{detail ? detail.country.country : 'Country'}</p> */}
                     </div>
                 </div>
             </div>
