@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import s from './Details.module.css';
-import img from '../../assets/3375734277.png'
 import NavBar from '../Navbar/Navbar';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import Button3 from '../Button3/Button3';
@@ -9,6 +8,7 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { modifyCart } from '../../redux/actions';
+import Footer from '../Footer/Footer'
 
 const Details = () => {
 
@@ -27,9 +27,7 @@ const Details = () => {
 
     const handlerAdd = () => {
         dispatch(modifyCart(cartAmount.value))
-        console.log(cartAmount.value);
     }
-
 
     return (
         <>
@@ -52,10 +50,14 @@ const Details = () => {
                             <ButtonPrimary handlerAdd={handlerAdd} value='Add' />
                             <Button3 value='Pay Now' />
                         </div>
-
-                    </div>
-                </div>
+                        {/* <p className={s.country}>{detail ? detail.country.country : 'Country'}</p> */}
+                    </div>                                               
             </div>
+            <br></br>
+                <div>{detail.description}</div>  
+            </div> 
+            <br></br>
+            <Footer />
         </>
     )
 }
