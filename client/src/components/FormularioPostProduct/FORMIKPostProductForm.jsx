@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { PostProduct, getAllCategories } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import s from "./PostProduct.module.css";
+
+import React, {useState, useEffect} from 'react'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { PostProduct, getAllCategories } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import s from './PostProduct.module.css'
+
 
 const PostProductForm = () => {
   const [formularioEnviado, cambiarFormularioEnviado] = useState(false);
@@ -231,18 +233,20 @@ const PostProductForm = () => {
                 <div><ErrorMessage name='Categories' component={() => (<span className={s.error}>{errors.categories}</span>)} /></div>
                 
             </div>            */}
-              <button type="submit" className={s.form__submit}>
-                Publicar
-              </button>
-              {formularioEnviado && (
-                <p className="exito">Publicado con exito!</p>
-              )}
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
-};
+
+                <button  type='submit' className={s.form__submit}>Publicar</button> 
+                {formularioEnviado && <p className='exito'>Publicado con exito!</p>}                            
+                </div>
+                </Form>
+            )}
+          </Formik>
+        <>
+        <Link to='/'>
+            <button className={s.form__submit}>Back Home</button>
+        </Link>
+        </>
+        </div>
+    );
+}
 
 export default PostProductForm;
