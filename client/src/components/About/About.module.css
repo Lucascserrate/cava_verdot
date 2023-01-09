@@ -1,0 +1,16 @@
+.form__submit{
+  background: var(--color-btn);
+  color: black;
+  padding: .8em 1.5em;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+.image{
+  width: 1000px;
+  height: 500px;
+}
