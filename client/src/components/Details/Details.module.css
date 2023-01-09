@@ -55,3 +55,10 @@
 .country {
     margin: 20px 0;
 }
+
+.description {
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: rgba(169, 169, 169, 0.626) 0 .1px 10px 0;
+    border: 1px solid #e6e6e6;
+}

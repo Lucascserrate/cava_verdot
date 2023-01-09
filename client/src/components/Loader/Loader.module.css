@@ -1,5 +1,5 @@
 .container {
-    height: 100vh;
+    height: 80vh;
     width: 100%;
 
     display: flex;
@@ -11,7 +11,7 @@
 
 .img {
     height: 300px;
-    margin-bottom: 300px;
+    margin-bottom: 200px;
     object-fit: cover;
     background-size: cover;
 }
