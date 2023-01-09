@@ -1,55 +1,33 @@
-<<<<<<< HEAD
-import React from "react";
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getSort, getUpdate } from '../../redux/actions';
+
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { getSort, getUpdate, getAllCategories, getCategoryProduct } from '../../redux/actions';
 import s from "./AsideFilters.module.css";
 
 const AsideFilters = () => {
+  const state = useSelector(state => state.categories.data);
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllCategories())
+  }, [dispatch])
 
   const handleSort = (e) => {
     dispatch(getSort(e.target.value))
     dispatch(getUpdate())
   }
-=======
-import React, {useEffect} from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import { getAllCategories, getCategoryProduct } from '../../redux/actions';
-import s from "./AsideFilters.module.css";
 
-const AsideFilters = () => {
-  const state = useSelector(state => state.categories.data);
-  const dispatch = useDispatch();
-
-  useEffect(()=> {
-    dispatch(getAllCategories())
-  },[dispatch])
->>>>>>> origin/develop
 
   return (
     <aside className={s.container}>
       <p className={s.label}>CATEGORIES</p>
       <ul className={s.list}>
-<<<<<<< HEAD
-        <li>Ron</li>
-        <li>Wine</li>
-        <li>Gin</li>
-        <li>Whisky</li>
-        <li>Brandy</li>
-        <li>Tequila</li>
-        <li>Bourbon</li>
-        <li>Mezcal</li>
-        <li>Vodka</li>
-        <li>Beer</li>
-=======
         {
           state?.map(e => (
-            <li key={e.id} ><button className={s.aside__btn} onClick={()=> dispatch(getCategoryProduct(e.category))} value={e.category}>{e.category}</button></li>
+            <li key={e.id} ><button className={s.aside__btn} onClick={() => dispatch(getCategoryProduct(e.category))} value={e.category}>{e.category}</button></li>
           ))
         }
->>>>>>> origin/develop
-      </ul>
+      </ul >
       <p className={s.label}>SORT</p>
       <div className={s.radioBox}>
         <label>
@@ -67,7 +45,7 @@ const AsideFilters = () => {
           </div>
         </label>
       </div>
-    </aside>
+    </aside >
   );
 };
 
