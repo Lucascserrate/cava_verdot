@@ -15,7 +15,7 @@ export const POST_PRODUCT = 'POST_PRODUCT'
 export const getDrinks = () => {
   return async (dispatch) => {
     let datosApi = await axios.get("http://localhost:3001/products/");
-    dispatch({ type: GET_DRINKS, payload: datosApi })
+    dispatch({ type: GET_DRINKS, payload: datosApi.data })
   }
 }
 
@@ -36,7 +36,7 @@ export const getDrinkId = (id) => {
 export const getAllCategories = () => {
   return async (dispatch) => {
     let datosApi = await axios.get('http://localhost:3001/categories/');
-    dispatch({ type: GET_ALL_CATEGORIES, payload: datosApi });
+    dispatch({ type: GET_ALL_CATEGORIES, payload: datosApi.data });
   }
 }
 
@@ -44,13 +44,13 @@ export const getAllCategories = () => {
 export const getCategoryProduct = (category) => {
   return async (dispatch) => {
     let datosApi = await axios.get(`http://localhost:3001/products?category=${category}`);
-    dispatch({ type: GET_CATEGORY_PRODUCT, payload: datosApi });
+    dispatch({ type: GET_CATEGORY_PRODUCT, payload: datosApi.data });
   }
 }
 
 export const getSort = payload => async dispatch => {
   let json = await axios.get(`http://localhost:3001/order?direction=${payload}`)
-  return dispatch({ type: GET_SORT, payload: json })
+  return dispatch({ type: GET_SORT, payload: json.data })
 }
 
 export const getUpdate = () => async dispatch => {
