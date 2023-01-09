@@ -8,6 +8,7 @@ export const GET_CATEGORY_PRODUCT = 'GET_CATEGORY_PRODUCT';
 export const GET_SORT = 'GET_SORT';
 export const GETUPDATE = 'GETUPDATE';
 export const GET_DRINK_BY_NAME = 'GET_DRINK_BY_NAME';
+export const POST_PRODUCT = 'POST_PRODUCT'
 
 
 // Actions Creators get all products
@@ -61,5 +62,15 @@ export const getDrinkName = (name) => {
     let datosApi = await axios.get("http://localhost:3001/products?name=" + name);
     dispatch({ type: GET_DRINK_BY_NAME, payload: datosApi })
   }
+}
+
+//Action PostProduct
+
+export const PostProduct = (payload) =>{
+  return async function (dipatch){
+    const dataPost = await axios.post('http://localhost:3001/', payload)
+
+    return dataPost
+}
 }
 

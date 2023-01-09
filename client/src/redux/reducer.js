@@ -1,4 +1,5 @@
-import { GET_DRINKS, GET_DRINK, GET_ALL_CATEGORIES, GET_CATEGORY_PRODUCT, MODIFY_CART, GET_SORT, GET_DRINK_BY_NAME } from "./actions";
+import { GET_DRINKS, GET_DRINK, GET_ALL_CATEGORIES, GET_CATEGORY_PRODUCT, MODIFY_CART, GET_SORT, GET_DRINK_BY_NAME, POST_PRODUCT } from "./actions";
+
 
 const initialState = {
   drinks: [],
@@ -44,6 +45,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         drinks: action.payload,
       }
+      case POST_PRODUCT:
+        return{
+          ...state,
+        }
     default:
       return state;
   }
