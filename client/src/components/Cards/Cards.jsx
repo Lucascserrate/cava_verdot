@@ -14,7 +14,7 @@ function Cards() {
   const [currentPage, setCurrentPage] = useState(0);
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.drinks.data);
+  const state = useSelector((state) => state.drinks);
 
   useEffect(() => {
     dispatch(getDrinks());

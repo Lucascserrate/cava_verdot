@@ -5,7 +5,7 @@ import { getSort, getUpdate, getAllCategories, getCategoryProduct } from '../../
 import s from "./AsideFilters.module.css";
 
 const AsideFilters = () => {
-  const state = useSelector(state => state.categories.data);
+  const state = useSelector(state => state.categories);
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const AsideFilters = () => {
     dispatch(getUpdate())
   }
 
+  console.log(state);
 
   return (
     <aside className={s.container}>
