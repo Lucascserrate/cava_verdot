@@ -26,8 +26,8 @@ function Footer() {
           <Link to={"/about"} className={s.footer__link}>
             About Us
           </Link>
-          <Link to={"/suggestions"} className={s.footer__link}>
-            Suggestions
+          <Link to={"/postproduct"} className={s.footer__link}>
+            Create Product
           </Link>
         </div>
 
