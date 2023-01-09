@@ -13,7 +13,7 @@ export default function NavBar({ searchbar }) {
     const dispatch=useDispatch()
 
     function handleClick(e) {
-        e.preventDefault();
+        //e.preventDefault();
         dispatch(getDrinks())
     }
 
@@ -22,7 +22,7 @@ export default function NavBar({ searchbar }) {
             <div className={s.container}>
                 <div className={s.left}>
                     {/* <img className={s.img} src={logo} alt="logo" /> */}
-                    <p className={s.title}>CAVA VERDOT</p>
+                    <Link to='/'><p className={s.title}>CAVA VERDOT</p></Link>
                     <ul className={s.navButtons}>
                         <Link to='/store' onClick={(e)=>handleClick(e)}><li>Store</li></Link>
                     </ul>

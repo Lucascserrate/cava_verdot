@@ -8,6 +8,7 @@ import { useParams } from 'react-router';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { modifyCart } from '../../redux/actions';
+import Footer from '../Footer/Footer'
 
 const Details = () => {
 
@@ -50,9 +51,13 @@ const Details = () => {
                             <Button3 value='Pay Now' />
                         </div>
                         {/* <p className={s.country}>{detail ? detail.country.country : 'Country'}</p> */}
-                    </div>
-                </div>
+                    </div>                                               
             </div>
+            <br></br>
+                <div>{detail.description}</div>  
+            </div> 
+            <br></br>
+            <Footer />
         </>
     )
 }
