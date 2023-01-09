@@ -6,10 +6,15 @@ import { Link } from "react-router-dom";
 import SearchBar from '../Searchbar/Searchbar';
 /* import logo from '../../assets/copa_cavaverdot.svg' */
 import Button3 from '../Button3/Button3';
+import { getDrinks } from "../../redux/actions";
 
 export default function NavBar({ searchbar }) {
+
+    const dispatch=useDispatch()
+
     function handleClick(e) {
         e.preventDefault();
+        dispatch(getDrinks())
     }
 
     return (
@@ -19,7 +24,7 @@ export default function NavBar({ searchbar }) {
                     {/* <img className={s.img} src={logo} alt="logo" /> */}
                     <p className={s.title}>CAVA VERDOT</p>
                     <ul className={s.navButtons}>
-                        <Link to='/store'><li>Store</li></Link>
+                        <Link to='/store' onClick={(e)=>handleClick(e)}><li>Store</li></Link>
                     </ul>
                 </div>
                 {searchbar && <SearchBar />}

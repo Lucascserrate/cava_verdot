@@ -32,6 +32,7 @@ li {
 .list li:focus {
     background-color: #2bff00;
 }
+<<<<<<< HEAD
 
 .radioBox {
     border-radius: 3px;
@@ -58,4 +59,10 @@ li {
 
 .radio:checked {
     color: #2bff00;
+=======
+.aside__btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+>>>>>>> origin/develop
 }

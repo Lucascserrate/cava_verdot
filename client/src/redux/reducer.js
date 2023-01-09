@@ -5,8 +5,6 @@ const initialState = {
   drink: [],
   categories: [],
   cart: 0,
-  update: false
-
 };
 
 const rootReducer = (state = initialState, action) => {
