@@ -18,7 +18,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/postproduct' element={<FORMIKPostProductForm />} />
         <Route path='/about' element={<About />} />
-        <Route path='/login' element={<About />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </div>
   );
