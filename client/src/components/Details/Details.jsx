@@ -46,6 +46,7 @@ const Details = () => {
                             <div>
                                 <h1 className={s.name}>{detail?.name}</h1>
                                 <p>⭐⭐⭐⭐⭐</p>
+                                <div className={s.tags} >{detail.category?.category}</div>
                                 <p className={s.price}>${detail?.price}</p>
                                 <div>
                                     <span className={s.bold}>Amount:</span>
