@@ -3,9 +3,6 @@
   --color-bg: #464A8C;
 }
 
-a:visited {
-  color: #F1EEE5;
-}
 
 .footer {
   width: 100%;
@@ -47,6 +44,10 @@ a:visited {
   text-decoration: none;
   color: var(--color-primary);
   font-size: 1.2rem;
+}
+
+.footer__link:visited {
+  color: var(--color-primary);
 }
 
 .footer__link:hover {
