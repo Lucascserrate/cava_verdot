@@ -9,7 +9,11 @@ function Register() {
   return (
     <div className={s.form}>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ 
+          email: "",
+         password: "",
+
+         }}
         validate={(values) => {
           let errores = {};
 
@@ -31,6 +35,7 @@ function Register() {
           return errores;
         }}
         onSubmit={(values, { resetForm }) => {
+          
           resetForm();
           setTimeAlert(true);
           setTimeout(() => setTimeAlert(false), 5000);
