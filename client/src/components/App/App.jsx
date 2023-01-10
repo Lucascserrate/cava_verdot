@@ -7,6 +7,7 @@ import Details from '../Details/Details'
 import FORMIKPostProductForm from '../FormularioPostProduct/FORMIKPostProductForm'
 import About from '../About/About'
 import Login from '../Login/Login'
+import FinalRegister from '../FinalRegister/FinalRegister'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/postproduct' element={<FORMIKPostProductForm />} />
         <Route path='/about' element={<About />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/finalregister' element={<FinalRegister />} />
       </Routes>
     </div>
   );
