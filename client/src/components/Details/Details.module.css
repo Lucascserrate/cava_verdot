@@ -1,0 +1,64 @@
+.container {
+    width: 60%;
+    margin: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+}
+
+.img {
+    height: 700px;
+}
+
+
+.name {
+    font-size: 26px;
+    color: #191919;
+}
+
+.price {
+    font-size: 26px;
+    color: #191919;
+    line-height: 2;
+}
+
+.bold {
+    color: #191919;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.inputAmount {
+    display: inline-block;
+    border-radius: 3px;
+    color: #191919;
+    padding: 5px 10px;
+    margin: 0 10px;
+    max-width: 60px;
+    line-height: 22px;
+}
+
+.buttons {
+    width: 200px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons :first-child {
+    margin: 10px 0;
+}
+
+.country {
+    margin: 20px 0;
+}
+
+.description {
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: rgba(169, 169, 169, 0.626) 0 .1px 10px 0;
+    border: 1px solid #e6e6e6;
+}

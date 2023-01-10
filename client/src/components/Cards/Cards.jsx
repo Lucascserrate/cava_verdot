@@ -6,6 +6,7 @@ import s from "./Cards.module.css";
 import { getDrinks } from "../../redux/actions";
 import arrowLeft from '../../assets/bxs-left-arrow.svg'
 import arrowRight from '../../assets/bxs-right-arrow.svg'
+import Loader from '../Loader/Loader';
 
 function Cards() {
   // estados del paginado
@@ -13,7 +14,7 @@ function Cards() {
   const [currentPage, setCurrentPage] = useState(0);
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.drinks.data);
+  const state = useSelector((state) => state.drinks);
 
   useEffect(() => {
     dispatch(getDrinks());
@@ -24,7 +25,7 @@ function Cards() {
 
   // cuando se carguen los datos del state, llenamos datos
   useEffect(() => {
-    if(state){
+    if (state) {
       setDatos([...state].splice(0, 15));
     }
   }, [state]);
@@ -55,11 +56,11 @@ function Cards() {
       <div className={s.cards__content}>
         {datos.length
           ? datos.map((e) => (
-              <Link to={`/cards/${e.id}`} key={e.id} className={s.cards__link}>
-                <Card img={e.image} name={e.name} />
-              </Link>
-            ))
-          : "Cargando datos..."}
+            <Link to={`/store/${e.id}`} key={e.id} className={s.cards__link}>
+              <Card id={e.id} img={e.image} name={e.name} />
+            </Link>
+          ))
+          : <Loader />}
       </div>
       <div className={s.cards__paginado}>
         <button onClick={prev} className={s.cards__btn} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>

@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
   sequelize.define(
-    "country",
+    "role",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -10,9 +9,9 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      country: {
-        type: DataTypes.STRING,
-        allowNull: true,
+      role: {
+        type: DataTypes.ENUM('user','admin'),
+        allowNull: false,
       },
     },
     {

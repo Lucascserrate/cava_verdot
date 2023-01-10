@@ -2,6 +2,10 @@
     background-color: var(--colorPrimary);
 }
 
+li {
+    list-style: none;
+}
+
 .container {
     height: 60px;
     width: 90%;
@@ -15,6 +19,7 @@
 
 /* .img {
     height: 60px;
+    background-color: var(--colorPrimary);
 } */
 
 .left {

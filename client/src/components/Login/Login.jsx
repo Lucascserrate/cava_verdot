@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {Formik, Form, ErrorMessage, Field} from 'formik';
+import {Link} from 'react-router-dom'
 import s from './Login.module.css';
 import Alert from '../Alert/Alert';
+import Button3 from '../Button3/Button3'
 
 function Login() {
   const [timeAlert, setTimeAlert] = useState(false);
@@ -9,7 +11,7 @@ function Login() {
   return (
     <div className={s.login}>
       <a href="#modal" className={s.cta}>
-        Login
+        <Button3 value='Sign In'/>
       </a>
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -90,6 +92,8 @@ function Login() {
                   className={s.login__submit}
                   value="Iniciar Sesion"
                 />
+                <p>¿No tiene cuenta?<Link to='/register'> Registrate.</Link></p>
+                
               </div>
 
               <a href="#" className={s.login__close}>

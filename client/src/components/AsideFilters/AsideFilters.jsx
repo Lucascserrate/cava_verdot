@@ -1,23 +1,53 @@
-import React from 'react';
-import s from './AsideFilters.module.css'
+
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { getSort, getUpdate, getAllCategories, getCategoryProduct } from '../../redux/actions';
+import s from "./AsideFilters.module.css";
 
 const AsideFilters = () => {
-    return (
-        <aside className={s.container}>
-            <p className={s.label}>
-                CATEGORIES
-            </p>
-            <ul className={s.list}>
-                <li>Cervezas</li>
-                <li>Rones</li>
-                <li>Whiskys</li>
-                <li>Vinos</li>
-                <li>Tequilas</li>
-                <li>Vodkas</li>
-                <li>Champagne</li>
-            </ul>
-        </aside>
-    )
-}
+  const state = useSelector(state => state.categories);
+  const dispatch = useDispatch()
 
-export default AsideFilters
+  useEffect(() => {
+    dispatch(getAllCategories())
+  }, [dispatch])
+
+  const handleSort = (e) => {
+    dispatch(getSort(e.target.value))
+    dispatch(getUpdate())
+  }
+
+  console.log(state);
+
+  return (
+    <aside className={s.container}>
+      <p className={s.label}>CATEGORIES</p>
+      <ul className={s.list}>
+        {
+          state?.map(e => (
+            <li key={e.id} ><button className={s.aside__btn} onClick={() => dispatch(getCategoryProduct(e.category))} value={e.category}>{e.category}</button></li>
+          ))
+        }
+      </ul >
+      <p className={s.label}>SORT</p>
+      <div className={s.radioBox}>
+        <label>
+          <div className={s.radioText}>
+            <span>Name(A-Z)</span>
+            <input className={s.radio} type="radio" value='asc' name="sort" onChange={(e) => handleSort(e)} />
+          </div>
+        </label>
+      </div>
+      <div className={s.radioBox}>
+        <label>
+          <div className={s.radioText}>
+            <span>Name(Z-A)</span>
+            <input className={s.radio} type="radio" value='desc' name="sort" onChange={(e) => handleSort(e)} />
+          </div>
+        </label>
+      </div>
+    </aside >
+  );
+};
+
+export default AsideFilters;

@@ -33,9 +33,9 @@ export default function CarouselSlide(){
     <h2>Jacks Daniels Whiskey</h2>
     <p className="price">$15.00</p>
     <p>Alguna descripcion del producto...</p>
-    <p>
+    {/* <p>
         <button>Añadir al carrito</button>
-    </p>
+    </p> */}
   </div>
   <div className="card">
     <img className="product--image"
@@ -43,9 +43,9 @@ export default function CarouselSlide(){
     <h2>LUIGI BOSCA · Malbec</h2>
     <p className="price">$14.020</p>
     <p>Alguna descripcion del producto...</p>
-    <p>
+    {/* <p>
         <button>Añadir al carrito</button>
-    </p>
+    </p> */}
   </div>
   <div className="card">
     <img className="product--image"
@@ -53,9 +53,9 @@ export default function CarouselSlide(){
     <h2>LUIGI BOSCA · Riesling </h2>
     <p className="price">$10.00</p>
     <p>Alguna descripcion del producto...</p>
-    <p>
+    {/* <p>
         <button>Añadir al carrito</button>
-    </p>
+    </p> */}
   </div>
   <div className="card">
     <img className="product--image"
@@ -63,9 +63,9 @@ export default function CarouselSlide(){
     <h2>Cerveza Patagonia</h2>
     <p className="price">$5.00</p>
     <p>Alguna descripcion del producto...</p>
-    <p>
+    {/* <p>
         <button>Añadir al carrito</button>
-    </p>
+    </p> */}
   </div>
   <div className="card">
     <img className="product--image"
@@ -73,9 +73,9 @@ export default function CarouselSlide(){
     <h2>Champagne Extra Brut CHANDON</h2>
     <p className="price">$12.00</p>
     <p>Alguna descripcion del producto...</p>
-    <p>
+    {/* <p>
         <button>Añadir al carrito</button>
-    </p>
+    </p> */}
   </div>
 </Carousel>;
         </div>
