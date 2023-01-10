@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modifyCart } from '../../redux/actions';
 import Footer from '../Footer/Footer'
 import Loader from '../Loader/Loader';
+import { Link } from 'react-router-dom';
 
 const Details = () => {
 
@@ -43,7 +44,7 @@ const Details = () => {
                             <div>
                                 <img className={s.img} src={detail.image ? detail.image : '#'} alt='img' />
                             </div>
-                            <div>
+                            <div className={s.detailContainer}>
                                 <h1 className={s.name}>{detail?.name}</h1>
                                 <p>⭐⭐⭐⭐⭐</p>
                                 <div className={s.tags} >{detail.category?.category}</div>
@@ -65,7 +66,7 @@ const Details = () => {
                                     cart
                                         ? <div className={s.buttons}>
                                             <ButtonPrimary handlerAdd={handlerAdd} value='Add more' />
-                                            <Button3 value='Pay Now' />
+                                            <Link className={s.buttons} to='/cart'> <Button3 value='Pay Now' /></Link>
                                         </div>
                                         : <div className={s.buttons}> <Button3 handlerAdd={handlerAdd} value='Add' /> </div>
                                 }

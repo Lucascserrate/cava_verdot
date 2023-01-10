@@ -14,6 +14,9 @@
     object-fit: cover;
 }
 
+.detailContainer {
+    margin-top: 20px;
+}
 
 .name {
     font-size: 26px;
