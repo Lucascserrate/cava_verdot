@@ -18,11 +18,12 @@
     transition: transform 500ms;
     transition-timing-function: cubic-bezier(.75, -3, .25, 4);
 
+    animation: opacidad 500ms cubic-bezier(.75, -3, .25, 4) 1;
+
 }
 
 .container:hover {
-    scale: 1.02;
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 .img {
@@ -45,6 +46,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+@keyframes opacidad {
+    0% {
+        opacity: 0;
+        right: 0;
+        top: 80px;
+    }
 
+    100% {
+        opacity: 1;
+        right: 30px;
+        top: 80px;
+    }
 }

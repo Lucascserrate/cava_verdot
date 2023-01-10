@@ -10,14 +10,15 @@
     border-radius: var(--borderRadiusButtons);
     background: #e8e8e8;
     border: 1px solid #e8e8e8;
-
     cursor: pointer;
 }
 
 .btn:active {
     color: #666;
+    scale: .98;
     box-shadow: inset 4px 4px 12px #c5c5c5,
         inset -4px -4px 12px #ffffff;
+    transition: 50ms;
 }
 
 .btn:before {
