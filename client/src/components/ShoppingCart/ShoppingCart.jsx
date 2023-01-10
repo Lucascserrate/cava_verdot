@@ -7,10 +7,17 @@ import { useSelector } from 'react-redux';
 const ShoppingCart = () => {
     const cart = useSelector(state => state.cart)
     return (
-        <div className={s.container}>
-            <img className={s.img} src={img} alt="Shooping Cart" />
-            <div className={s.amount}>{cart}</div>
-        </div>
+        <>
+            {
+                cart ?
+                    <div className={s.container}>
+                        <img className={s.img} src={img} alt="Shooping Cart" />
+                        <div className={s.amount}>{cart}</div>
+                    </div>
+                    : undefined
+            }
+
+        </>
     )
 }
 

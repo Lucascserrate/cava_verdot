@@ -29,8 +29,8 @@ const Details = () => {
 
     const handlerAdd = () => {
         dispatch(modifyCart(cartAmount.value))
+        cartAmount.value = 1
     }
-    console.log(detail.country?.country);
 
     return (
         <>
@@ -48,14 +48,28 @@ const Details = () => {
                                 <p>⭐⭐⭐⭐⭐</p>
                                 <div className={s.tags} >{detail.category?.category}</div>
                                 <p className={s.price}>${detail?.price}</p>
+                                <div className={s.itemsTextContainer}>
+                                    {
+                                        cart === 1
+                                            ? <p className={s.itemsText}>An item in your bag</p> :
+                                            cart > 1
+                                                ? <p className={s.itemsText}>{cart} items in your bag </p>
+                                                : undefined
+                                    }
+                                </div>
                                 <div>
                                     <span className={s.bold}>Amount:</span>
                                     <input id='amount' className={s.inputAmount} type="number" defaultValue='1' min='1' maxLength='5' />
                                 </div>
-                                <div className={s.buttons}>
-                                    <ButtonPrimary handlerAdd={handlerAdd} value='Add' />
-                                    {cart ? <Button3 value='Pay Now' /> : undefined}
-                                </div>
+                                {
+                                    cart
+                                        ? <div className={s.buttons}>
+                                            <ButtonPrimary handlerAdd={handlerAdd} value='Add more' />
+                                            <Button3 value='Pay Now' />
+                                        </div>
+                                        : <div className={s.buttons}> <Button3 handlerAdd={handlerAdd} value='Add' /> </div>
+                                }
+
                                 <p className={s.country}><span className={s.bold}>Country:</span> {detail.country?.country}</p>
                             </div>
                         </div>

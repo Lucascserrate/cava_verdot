@@ -1,10 +1,9 @@
 .container {
-    margin: 20px;
     background-color: #ffffff;
     height: 70px;
     width: 70px;
     border-radius: 40px;
-    box-shadow: rgba(169, 169, 169, 0.626) 0 .1px 10px 0;
+    box-shadow: #a9a9a9a0 0 .1px 10px 0;
     border: 1px solid #e6e6e6;
     cursor: pointer;
 
@@ -12,14 +11,18 @@
     justify-content: center;
     align-items: center;
 
-    position: absolute;
-    right: 20px;
-    top: 40px;
+    position: fixed;
+    right: 30px;
+    top: 80px;
+
+    transition: transform 500ms;
+    transition-timing-function: cubic-bezier(.75, -3, .25, 4);
 
 }
 
 .container:hover {
     scale: 1.02;
+    transform: scale(1.08);
 }
 
 .img {

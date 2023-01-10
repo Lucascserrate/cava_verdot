@@ -6,7 +6,7 @@
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .img {
@@ -35,7 +35,7 @@
 }
 
 .price {
-    margin: 20px 0;
+    margin: 10px 0;
     font-size: 26px;
     color: #191919;
     line-height: 2;
@@ -44,6 +44,15 @@
 .bold {
     color: #191919;
     font-weight: bold;
+    font-size: 15px;
+}
+
+.itemsTextContainer {
+    margin-bottom: 8px;
+    min-height: 8px;
+}
+
+.itemsText {
     font-size: 15px;
 }
 
@@ -59,8 +68,6 @@
 
 .buttons {
     width: 200px;
-    min-height: 110px;
-    position: relative;
 
     display: flex;
     flex-direction: column;

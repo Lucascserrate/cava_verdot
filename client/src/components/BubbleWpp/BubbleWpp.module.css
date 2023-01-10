@@ -4,8 +4,21 @@
     right: 30px;
     bottom: 20px;
     cursor: pointer;
+
+    animation: opacidad 4s;
+    animation-delay: 3s;
 }
 
 .img:hover {
     opacity: .9;
+}
+
+@keyframes opacidad {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
