@@ -1,7 +1,7 @@
 const { Drink } = require("../../db.js");
 const Price = async (req, res) => {
-  const { direction } = req.query;
-  if (direction == "up") {
+  const { price } = req.query;
+  if (price == "up") {
     let drinks2 = await Drink.findAll();
     
     let orderByPrice = await drinks2.sort((a, b) => {
@@ -16,7 +16,7 @@ const Price = async (req, res) => {
     });
     res.json(await orderByPrice);
   }
-  if (direction == "down") {
+  if (price == "down") {
     let drinks2 = await Drink.findAll();
     let orderByPrice = await drinks2.sort((a, b) => {
       if (a.price > b.price) {
