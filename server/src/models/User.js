@@ -13,30 +13,31 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isAlpha: true,
+          is: /^[a-záéíóúäëïöü]*$/i,
         },
       },
       surname: {
         type: DataTypes.STRING,
         validate: {
-          isAlpha: true,
+          is: /^[a-záéíóúäëïöü]*$/i,
         },
       },
       age: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          min:18,
+          min: 18,
         },
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           isEmail: true,
         },
       },
-      passord: {
+      password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -49,13 +50,14 @@ module.exports = (sequelize) => {
         validate: {
           isUrl: true,
         },
-        defaultValue: "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg",
-        allowNull:false,
+        defaultValue:
+          "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg",
+        allowNull: false,
       },
       status: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
-        allowNull:false,
+        allowNull: false,
       },
     },
     {
