@@ -7,7 +7,7 @@
     color: #592D4A;
     padding: 0.6em 1.6em;
     font-size: 16px;
-    border-radius: 0.5em;
+    border-radius: var(--borderRadiusButtons);
     background: #e8e8e8;
     border: 1px solid #e8e8e8;
 

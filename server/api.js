@@ -3255,8 +3255,20 @@ const sub_category = [
   },
 ];
 
+const roles = [
+  {
+    id: 1,
+    role: "user",
+  },
+  {
+    id: 2,
+    role: "admin",
+  }
+];
+
+
 exports.drinks = drinks;
 exports.sub_category = sub_category;
 exports.categorys = categorys;
 exports.countrys = countrys;
- 
+exports.roles = roles;

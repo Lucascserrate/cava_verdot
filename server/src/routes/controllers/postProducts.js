@@ -13,6 +13,15 @@ const postProduct = async (req, res) => {
     category,
     subCategory,
   } = req.body;
+  console.log({name,
+    description,
+    stock,
+    price,
+    image,
+    country,
+    rating,
+    category,
+    subCategory,})
   try {
     const validateCategory = await Category.findOne({
       where: {
@@ -49,9 +58,10 @@ const postProduct = async (req, res) => {
       countryId: validateCountry.id,
       categoryId: validateCategory.id,
     });
+    
     res.status(200).send(`Success '${newProduct.name}' has been created`);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(500).send(console.log(error),{ error: error.message });
   }
 };
 

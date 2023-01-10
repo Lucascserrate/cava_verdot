@@ -17,7 +17,7 @@ function Footer() {
         </div>
 
         <div className={`${s.footer__group} ${s.footer__group__medio}`}>
-          <Link to={"/home"} className={s.footer__link}>
+          <Link to={"/"} className={s.footer__link}>
             Home
           </Link>
           <Link to={"/store"} className={s.footer__link}>
@@ -26,8 +26,8 @@ function Footer() {
           <Link to={"/about"} className={s.footer__link}>
             About Us
           </Link>
-          <Link to={"/suggestions"} className={s.footer__link}>
-            Suggestions
+          <Link to={"/postproduct"} className={s.footer__link}>
+            Create Product
           </Link>
         </div>
 
