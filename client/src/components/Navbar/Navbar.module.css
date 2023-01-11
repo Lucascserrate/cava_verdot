@@ -17,18 +17,18 @@ li {
     justify-content: space-between;
 }
 
-/* .img {
-    height: 60px;
-    background-color: var(--colorPrimary);
-} */
+.img {
+    height: 65px;
+}
 
 .left {
     display: flex;
 }
 
-.title {
-    color: var(--colorWhite);
-    font-size: 20px;
+
+.navButtons {
+    display: flex;
+    align-items: center;
 }
 
 .navButtons li {
@@ -36,6 +36,6 @@ li {
     color: var(--colorWhite);
 }
 
-.navButtons:hover {
+.navButtons li:hover {
     opacity: .8;
 }

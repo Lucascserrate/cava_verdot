@@ -10,15 +10,80 @@
 }
 
 .cartList {
-    border: 1px solid black;
+    min-height: 300px;
 }
 
 .title {
     font-size: 26px;
     color: #191919;
+    margin-bottom: 10px;
 }
 
-.pay {
-    border: 1px solid black;
+.cartItem {
+    display: flex;
 
+    height: 90px;
+    padding: 5px 8px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.img {
+    height: 70px;
+
+}
+
+.gridd {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-right: 10px;
+}
+
+.itemTitle {
+    color: #191919;
+    font-size: 15px;
+}
+
+.close {
+    color: #c3c3c3;
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+}
+
+.amount {
+    color: #191919;
+    font-size: 15px;
+}
+
+.hr {
+    margin: 20px 5px;
+    opacity: .5;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0 8px 20px 8px;
+}
+
+.totals {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+
+.pay {
+    margin-left: 20px;
 }
