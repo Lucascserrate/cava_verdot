@@ -3,6 +3,7 @@ import s from './ShoppingCart.module.css'
 import img from '../../assets/cart.png'
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
     const cart = useSelector(state => state.cart)
@@ -10,10 +11,12 @@ const ShoppingCart = () => {
         <>
             {
                 cart ?
-                    <div className={s.container}>
-                        <img className={s.img} src={img} alt="Shooping Cart" />
-                        <div className={s.amount}>{cart}</div>
-                    </div>
+                    <Link to='/cart'>
+                        <div className={s.container}>
+                            <img className={s.img} src={img} alt="Shooping Cart" />
+                            <div className={s.amount}>{cart}</div>
+                        </div>
+                    </Link>
                     : undefined
             }
 
