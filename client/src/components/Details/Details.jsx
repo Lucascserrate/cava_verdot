@@ -22,11 +22,12 @@ const Details = () => {
 
     const getDetail = async () => {
         let res = await axios.get(`http://localhost:3001/products/${id}`)
-        setDetail(res?.data)
+        setDetail(res?.data[0])
     }
     useEffect(() => {
         getDetail()
     }, [])
+
 
     const handlerAdd = () => {
         dispatch(modifyCart(cartAmount.value))

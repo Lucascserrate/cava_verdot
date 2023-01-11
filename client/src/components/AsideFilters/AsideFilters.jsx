@@ -1,7 +1,7 @@
 
-import React, { useEffect,/*  useState  */ } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { getSort, getUpdate, getAllCategories, getCategoryProduct } from '../../redux/actions';
+import { getSort, getAllCategories, getCategoryProduct } from '../../redux/actions';
 import s from "./AsideFilters.module.css";
 
 const AsideFilters = () => {
@@ -14,7 +14,6 @@ const AsideFilters = () => {
 
   const handleSort = (e) => {
     dispatch(getSort(e.target.value))
-    dispatch(getUpdate())
   }
 
   console.log(state);
