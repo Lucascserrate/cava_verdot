@@ -1,104 +1,79 @@
-
 const { Drink, Category, Country } = require("../../db");
-
+const filterByPrice = require("./FilterFunctions/FilterByPrice.js");
+const FilterById = require("./FilterFunctions/FilterById.js");
+const FilterByName = require("./FilterFunctions/FilterByName");
+const FilterCategory = require("./FilterFunctions/FilterCategory.js")
+const FilterCountry = require("./FilterFunctions/FilterCountry.js")
 const getAllProducts = async (req, res) => {
   const { id } = req.params;
-  const { name } = req.query;
-  const { category } = req.query;
-  const { country } = req.query;
-  
+  const { name, country, category, price } = req.query;
+
   try {
-    if (category) {
-      let categoryFirstToMayus = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
-      const AllOfcategory = await Category.findOne({
-        where: {
-          category: categoryFirstToMayus,
-        },
-      });
-      if (AllOfcategory !== null) {
-        const drinksByCategory = await Drink.findAll({
-          where: {
-            categoryId: AllOfcategory.id,
-          },
-          include: [
-            {
-              model: Category,
-            },
-            {
-              model: Country,
-            },
-          ],
-        });
-        return res.status(200).send(drinksByCategory);
-      } else {
-        return res
-          .status(404)
-          .send({ error: `the category '${category}' not found` });
-      }
-    }
-    if (country) {
-      let countryFirstToMayus = country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
-      const AllOfcountry = await Country.findOne({
-        where: {
-          country: countryFirstToMayus,
-        },
-      });
-      if (AllOfcountry !== null) {
-        const drinksBycountry = await Drink.findAll({
-          where: {
-            countryId: AllOfcountry.id,
-          },
-          include: [
-            {
-              model: Country,
-            },
-            {
-              model: Category,
-            },
-          ],
-        });
-        return res.status(200).send(drinksBycountry);
-      } else {
-        return res
-          .status(404)
-          .send({ error: `the category '${country}' not found` });
-      }
-    }
-    const allDrinks = await Drink.findAll({
+    let drinks = await Drink.findAll({
       include: [
-        {
-          model: Category,
-        },
         {
           model: Country,
         },
+        {
+          model: Category,
+        },
       ],
-    });
-
+    })
+    if (name) {
+      drinks = await FilterByName(drinks, name)
+    }
     if (id) {
-      const drinkById = await Drink.findByPk(id,
-        { include: [
-            {
-              model: Country,
-            },
-            {
-              model: Category,
-            },
-          ],
-        });
-      drinkById.id
-        ? res.status(200).send(drinkById)
-        : res.status(404).send("drinks id not found");
-    } else if (name) {
-      const drinksName = allDrinks.filter((e) =>
-        e.name.toLowerCase().includes(name.toLowerCase())
-      );
+      drinks = await FilterById(drinks, id)
+    }
+    if (price) {
+      drinks = await filterByPrice(drinks, price)
+    }
 
-      drinksName.length
-        ? res.status(200).send(drinksName)
-        : res.status(404).send("drink not found");
-    } else res.status(200).send(allDrinks);
-    
+    if (category) {
+
+      let categoryFirstToMayus = await category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+
+      let categoryExist = await Category.findOne({
+        where: {
+          category: categoryFirstToMayus
+        }
+      })
+      if (categoryExist === null) {
+        res.status(404).json(`the category '${category}' not found`)
+      }
+      if (categoryExist) {
+        drinks = await FilterCategory(drinks, categoryFirstToMayus)
+        if (await drinks.length === 0) {
+          return res.status(404).json({ error: "No hay ningun elemento con esta categoria" })
+        }
+      }
+    }
+    if (price) {
+
+    }
+    if (country) {
+      let countryFirstToMayus = country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
+      let countryExist = await Country.findOne({
+        where: {
+          country: countryFirstToMayus
+        }
+      })
+
+      if (countryExist === null) {
+        res.status(404).json(`the category '${category}' not found`)
+      }
+
+      if (countryExist) {
+        drinks = await FilterCountry(drinks, countryFirstToMayus)
+        if (await drinks.length === 0) {
+          return res.status(404).json({ error: "No hay ningun elemento con este pais" })
+        }
+      }
+    }
+
+
+    return res.status(200).send(await drinks);
+
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
