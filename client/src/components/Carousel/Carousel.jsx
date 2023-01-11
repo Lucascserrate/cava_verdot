@@ -55,7 +55,7 @@ const product = carousel.map((e) => (
 
   return (
     <div className={`${carousel} Slide`}>
-      <h1>Algunos de nuestros productos</h1>
+      <h1 className={s.carousel__title}>Algunos de nuestros productos</h1>
       <Carousel showDots={true} responsive={responsive} className={s.carousel__cards}>
         {product}
       </Carousel>
