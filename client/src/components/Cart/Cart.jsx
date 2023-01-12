@@ -3,8 +3,11 @@ import Footer from '../Footer/Footer';
 import NavBar from '../Navbar/Navbar';
 import s from './Cart.module.css'
 import img from '../../assets/3375734277.png'
+import { useSelector } from 'react-redux';
 
 const Cart = () => {
+    const cart = useSelector(state => state.cart)
+
     return (
         <>
             <NavBar />

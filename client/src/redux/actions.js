@@ -1,6 +1,6 @@
 import axios from 'axios';
 // Actions
-export const MODIFY_CART = 'MODIFY_CART'
+export const MODIFY_BUBBLE_CART = 'MODIFY_BUBBLE_CART'
 export const GET_DRINKS = 'GET_DRINKS';
 export const GET_DRINK = 'GET_DRINK';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
@@ -20,8 +20,8 @@ export const getDrinks = () => {
 }
 
 // Action Creators Para modificar la cantidad del carrito
-export const modifyCart = payload => dispatch => {
-  return dispatch({ type: MODIFY_CART, payload })
+export const modifyBubbleCart = payload => dispatch => {
+  return dispatch({ type: MODIFY_BUBBLE_CART, payload })
 }
 
 // Actions Creators get product id
@@ -75,6 +75,6 @@ export const PostProduct = (payload) => {
 export const getCountries = () => {
   return async (dispatch) => {
     const dataApi = await axios.get('http://localhost:3001/countries');
-    dispatch({type: GET_COUNTRIES, payload: dataApi.data})
+    dispatch({ type: GET_COUNTRIES, payload: dataApi.data })
   }
 }
