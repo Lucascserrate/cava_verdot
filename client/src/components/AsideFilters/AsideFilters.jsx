@@ -16,8 +16,6 @@ const AsideFilters = () => {
     dispatch(getSort(e.target.value))
   }
 
-  console.log(state);
-
   return (
     <aside className={s.container}>
       <p className={s.label}>CATEGORIES</p>
