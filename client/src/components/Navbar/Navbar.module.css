@@ -1,41 +1,41 @@
 .bg {
-  background-color: var(--colorPrimary);
-  height: 90px;
-  display: flex;
+    background-color: var(--colorPrimary);
+    height: 90px;
+    display: flex;
 }
 
 li {
-  list-style: none;
+    list-style: none;
 }
 
 .container {
-  height: 60px;
-  width: 90%;
-  margin: auto;
+    height: 70px;
+    width: 90%;
+    margin: auto;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .img {
-  height: 65px;
+    height: 65px;
 }
 
 .left {
-  display: flex;
+    display: flex;
 }
 
 .navButtons {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .navButtons li {
-  margin-left: 30px;
-  color: var(--colorWhite);
+    margin-left: 30px;
+    color: var(--colorWhite);
 }
 
 .navButtons li:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
