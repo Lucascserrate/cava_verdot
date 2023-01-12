@@ -45,7 +45,7 @@ const AsideFilters = () => {
 
   // despachamos la accion al dar clic al btn aplicar filtros
   const handleApplyFilter = () => {
-    dispatch(getProductFilter(category, price, country))
+    dispatch(getProductFilter(category, price, country));
     // si surge error, descomentar este codigo
     // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);
   }

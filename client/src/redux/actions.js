@@ -43,8 +43,12 @@ export const getAllCategories = () => {
 // Action creator get category product
 export const getProductFilter = (category, price, country) => {
   return async (dispatch) => {
-    let datosApi = await axios.get(`/products?category=${category}&price=${price}&country=${country}`);
-    dispatch({ type: GET_PRODUCT_FILTER, payload: datosApi.data });
+    try {
+      let datosApi = await axios.get(`/products?category=${category}&price=${price}&country=${country}`);
+      dispatch({ type: GET_PRODUCT_FILTER, payload: datosApi.data });
+    } catch (error) {
+      alert("No hay productos con esos filtros");
+    }
   }
 }
 
