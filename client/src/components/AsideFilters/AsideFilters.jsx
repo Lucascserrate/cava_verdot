@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getSort,
-  getUpdate,
   getAllCategories,
   getProductFilter,
   getCountries,
@@ -27,7 +26,6 @@ const AsideFilters = () => {
 
   const handleSort = (e) => {
     dispatch(getSort(e.target.value));
-    dispatch(getUpdate());
   };
 
   // capturamos el valor de category
