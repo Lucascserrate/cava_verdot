@@ -49,13 +49,13 @@ const AsideFilters = () => {
     // si surge error, descomentar este codigo
     // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);
   }
-  
+
 
   return (
     <aside className={s.container}>
       <p className={s.label}>CATEGORIES</p>
       {state?.map((e) => (
-        <div className={s.radioBox}  key={e.id}>
+        <div className={s.radioBox} key={e.id}>
           <label>
             <div className={s.radioText}>
               <span>{e.category}</span>
@@ -115,7 +115,7 @@ const AsideFilters = () => {
       </div>
       <p className={s.label}>COUNTRIES</p>
       {stateCountries?.map((e) => (
-        <div className={s.radioBox}  key={e.id}>
+        <div className={s.radioBox} key={e.id}>
           <label>
             <div className={s.radioText}>
               <span>{e.country}</span>

@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.css'
 import Register from '../Register/Register'
 import { Routes, Route } from 'react-router-dom'
 import Home from '../Home/Home'
@@ -9,6 +10,7 @@ import About from '../About/About'
 import Login from '../Login/Login'
 import FinalRegister from '../FinalRegister/FinalRegister'
 import Cart from '../Cart/Cart'
+
 
 function App() {
   return (
