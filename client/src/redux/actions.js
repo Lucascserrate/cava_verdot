@@ -4,11 +4,12 @@ export const MODIFY_CART = 'MODIFY_CART'
 export const GET_DRINKS = 'GET_DRINKS';
 export const GET_DRINK = 'GET_DRINK';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
-export const GET_CATEGORY_PRODUCT = 'GET_CATEGORY_PRODUCT';
+export const GET_PRODUCT_FILTER = 'GET_PRODUCT_FILTER';
 export const GET_SORT = 'GET_SORT';
 export const GETUPDATE = 'GETUPDATE';
 export const GET_DRINK_BY_NAME = 'GET_DRINK_BY_NAME';
 export const POST_PRODUCT = 'POST_PRODUCT'
+export const GET_COUNTRIES = 'GET_COUNTRIES';
 
 
 // Actions Creators get all products
@@ -41,10 +42,10 @@ export const getAllCategories = () => {
 }
 
 // Action creator get category product
-export const getCategoryProduct = (category) => {
+export const getProductFilter = (category, price, country) => {
   return async (dispatch) => {
-    let datosApi = await axios.get(`http://localhost:3001/products?category=${category}`);
-    dispatch({ type: GET_CATEGORY_PRODUCT, payload: datosApi.data });
+    let datosApi = await axios.get(`http://localhost:3001/products?category=${category}&price=${price}&country=${country}`);
+    dispatch({ type: GET_PRODUCT_FILTER, payload: datosApi.data });
   }
 }
 
@@ -74,3 +75,10 @@ export const PostProduct = (payload) =>{
 }
 }
 
+// Action getCountries
+export const getCountries = () => {
+  return async (dispatch) => {
+    const dataApi = await axios.get('http://localhost:3001/countries');
+    dispatch({type: GET_COUNTRIES, payload: dataApi.data})
+  }
+}
