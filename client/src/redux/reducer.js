@@ -3,7 +3,7 @@ import {
   GET_DRINK,
   GET_ALL_CATEGORIES,
   GET_PRODUCT_FILTER,
-  MODIFY_CART,
+  MODIFY_BUBBLE_CART,
   GET_SORT,
   GET_DRINK_BY_NAME,
   POST_PRODUCT,
@@ -14,7 +14,7 @@ const initialState = {
   drinks: [],
   drink: [],
   categories: [],
-  shoppingCart: 0,
+  bubbleCart: 0,
   countries: [],
   cart: []
 };
@@ -26,10 +26,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         drinks: action.payload,
       };
-    case MODIFY_CART:
+    case MODIFY_BUBBLE_CART:
       return {
         ...state,
-        shoppingCart: parseInt(state.shoppingCart) + parseInt(action.payload),
+        bubbleCart: parseInt(state.bubbleCart) + parseInt(action.payload),
       };
     case GET_DRINK:
       return {

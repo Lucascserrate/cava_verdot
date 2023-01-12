@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import s from './Details.module.css';
 import NavBar from '../Navbar/Navbar';
-import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import BubbleCart from '../BubbleCart/BubbleCart';
 import Button3 from '../Button3/Button3';
 import ButtonPrimary from '../ButtonPrimary/ButtonPrimary';
 import { useParams } from 'react-router';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { modifyCart } from '../../redux/actions';
+import { modifyBubbleCart } from '../../redux/actions';
 import Footer from '../Footer/Footer'
 import Loader from '../Loader/Loader';
 import { Link } from 'react-router-dom';
@@ -30,14 +30,14 @@ const Details = () => {
 
 
     const handlerAdd = () => {
-        dispatch(modifyCart(cartAmount.value))
+        dispatch(modifyBubbleCart(cartAmount.value))
         cartAmount.value = 1
     }
 
     return (
         <>
             <NavBar />
-            <ShoppingCart />
+            <BubbleCart />
             {
                 Object.keys(detail).length
                     ? <div className={s.container}>
