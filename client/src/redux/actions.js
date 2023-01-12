@@ -61,7 +61,7 @@ export const getUpdate = () => async dispatch => {
 export const getDrinkName = (name) => {
   return async (dispatch) => {
     let datosApi = await axios.get("http://localhost:3001/products?name=" + name);
-    dispatch({ type: GET_DRINK_BY_NAME, payload: datosApi })
+    dispatch({ type: GET_DRINK_BY_NAME, payload: datosApi.data })
   }
 }
 
