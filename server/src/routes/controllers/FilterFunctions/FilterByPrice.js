@@ -2,7 +2,7 @@ module.exports = async function FilterByPrice(drinks, price) {
     let filter;
     if (price === 'menor a 100') {
 
-        filter = drinks.filter(e => e.price <= 100)
+        filter = drinks.filter(e => e.price < 100)
 
 
     }

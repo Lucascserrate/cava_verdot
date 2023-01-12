@@ -48,9 +48,7 @@ const getAllProducts = async (req, res) => {
         }
       }
     }
-    if (price) {
 
-    }
     if (country) {
       let countryFirstToMayus = country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
       let countryExist = await Country.findOne({
