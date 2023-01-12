@@ -21,7 +21,7 @@ const Details = () => {
     const cart = useSelector(state => state.cart)
 
     const getDetail = async () => {
-        let res = await axios.get(`http://localhost:3001/products/${id}`)
+        let res = await axios.get(`https://cavaverdot-production.up.railway.app/products/${id}`)
         setDetail(res?.data[0])
     }
     useEffect(() => {
