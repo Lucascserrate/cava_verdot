@@ -4,7 +4,7 @@ import AsideFilters from "../AsideFilters/AsideFilters";
 import Cards from "../Cards/Cards";
 import NavBar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import BubbleCart from "../BubbleCart/BubbleCart";
 
 function Store() {
   return (
@@ -15,7 +15,7 @@ function Store() {
         <Cards />
       </div>
       <Footer />
-      <ShoppingCart />
+      <BubbleCart />
     </div>
   );
 }
