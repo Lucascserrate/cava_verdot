@@ -6,6 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './redux/store';
+import axios from 'axios'
+
+// en caso de trabajar con el back en local, descomentar esta linea y comentar la otra
+// axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://cavaverdot-production.up.railway.app';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
