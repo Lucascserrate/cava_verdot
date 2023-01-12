@@ -3,6 +3,9 @@
   --color-bg: #464A8C;
 }
 
+*{
+  /* outline: 1px solid red; */
+}
 
 .footer {
   width: 100%;
@@ -13,7 +16,6 @@
 
 .container {
   width: 90%;
-  max-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
 }
