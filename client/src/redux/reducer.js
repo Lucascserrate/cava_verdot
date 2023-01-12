@@ -14,8 +14,9 @@ const initialState = {
   drinks: [],
   drink: [],
   categories: [],
-  cart: 0,
+  shoppingCart: 0,
   countries: [],
+  cart: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -28,7 +29,7 @@ const rootReducer = (state = initialState, action) => {
     case MODIFY_CART:
       return {
         ...state,
-        cart: parseInt(state.cart) + parseInt(action.payload),
+        shoppingCart: parseInt(state.shoppingCart) + parseInt(action.payload),
       };
     case GET_DRINK:
       return {
@@ -60,7 +61,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
     case GET_COUNTRIES:
-      return{
+      return {
         ...state,
         countries: action.payload,
       }
