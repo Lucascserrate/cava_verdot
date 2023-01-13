@@ -1,5 +1,5 @@
-const { User, Drink, Role, ShopingCart } = require("../../db");
-const { Op, Model } = require("sequelize");
+const { User, Drink, ShopingCart } = require("../../db");
+const { Op } = require("sequelize");
 
 const getShopingCart = async (req, res) => {
   const { userId } = req.query;
@@ -29,12 +29,13 @@ const getShopingCart = async (req, res) => {
       cart = await Promise.all(
         inCart.map(async (drink) => {
           aux = await Drink.findByPk(drink.drinkId, {
-            attributes: ["name", "price", "image"],
+            attributes: ["name", "price", "image", "stock"],
           });
           return {
             name: aux.name,
             image: aux.image,
             price: aux.price,
+            stock: aux.stock,
             amount: drink.amount,
             subtotal: aux.price * drink.amount,
           };
