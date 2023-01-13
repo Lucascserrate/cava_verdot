@@ -14,7 +14,7 @@ export const GET_COUNTRIES = 'GET_COUNTRIES';
 // Actions Creators get all products
 export const getDrinks = () => {
   return async (dispatch) => {
-    let datosApi = await axios.get("https://cavaverdot-production.up.railway.app/products/");
+    let datosApi = await axios.get("/products/");
     dispatch({ type: GET_DRINKS, payload: datosApi.data })
   }
 }
@@ -27,7 +27,7 @@ export const modifyBubbleCart = payload => dispatch => {
 // Actions Creators get product id
 export const getDrinkId = (id) => {
   return async (dispatch) => {
-    let datosApi = await axios.get(`https://cavaverdot-production.up.railway.app/products/${id}`);
+    let datosApi = await axios.get(`/products/${id}`);
     dispatch({ type: GET_DRINK, payload: datosApi.data })
   }
 }
@@ -35,7 +35,7 @@ export const getDrinkId = (id) => {
 // Action creator get all categories
 export const getAllCategories = () => {
   return async (dispatch) => {
-    let datosApi = await axios.get('https://cavaverdot-production.up.railway.app/categories/');
+    let datosApi = await axios.get('/categories/');
     dispatch({ type: GET_ALL_CATEGORIES, payload: datosApi.data });
   }
 }
@@ -43,20 +43,24 @@ export const getAllCategories = () => {
 // Action creator get category product
 export const getProductFilter = (category, price, country) => {
   return async (dispatch) => {
-    let datosApi = await axios.get(`https://cavaverdot-production.up.railway.app/products?category=${category}&price=${price}&country=${country}`);
-    dispatch({ type: GET_PRODUCT_FILTER, payload: datosApi.data });
+    try {
+      let datosApi = await axios.get(`/products?category=${category}&price=${price}&country=${country}`);
+      dispatch({ type: GET_PRODUCT_FILTER, payload: datosApi.data });
+    } catch (error) {
+      alert("No hay productos con esos filtros");
+    }
   }
 }
 
 export const getSort = payload => async dispatch => {
-  let json = await axios.get(`https://cavaverdot-production.up.railway.app/order?direction=${payload}`)
+  let json = await axios.get(`/order?direction=${payload}`)
   return dispatch({ type: GET_SORT, payload: json.data })
 }
 
 // Actions Creators get product by name
 export const getDrinkName = (name) => {
   return async (dispatch) => {
-    let datosApi = await axios.get("https://cavaverdot-production.up.railway.app/products?name=" + name);
+    let datosApi = await axios.get("/products?name=" + name);
     dispatch({ type: GET_DRINK_BY_NAME, payload: datosApi.data })
   }
 }
@@ -65,7 +69,7 @@ export const getDrinkName = (name) => {
 
 export const PostProduct = (payload) => {
   return async function (dipatch) {
-    const dataPost = await axios.post('https://cavaverdot-production.up.railway.app/', payload)
+    const dataPost = await axios.post('/', payload)
 
     return dataPost
   }
@@ -74,7 +78,7 @@ export const PostProduct = (payload) => {
 // Action getCountries
 export const getCountries = () => {
   return async (dispatch) => {
-    const dataApi = await axios.get('https://cavaverdot-production.up.railway.app/countries');
+    const dataApi = await axios.get('/countries');
     dispatch({ type: GET_COUNTRIES, payload: dataApi.data })
   }
 }
