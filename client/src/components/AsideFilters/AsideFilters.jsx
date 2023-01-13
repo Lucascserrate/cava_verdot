@@ -6,6 +6,7 @@ import {
   getProductFilter,
   getCountries,
 } from "../../redux/actions";
+import Button3 from "../Button3/Button3";
 import s from "./AsideFilters.module.css";
 
 const AsideFilters = () => {
@@ -53,114 +54,126 @@ const AsideFilters = () => {
 
   return (
     <aside className={s.container}>
-      <p className={s.label}>CATEGORIES</p>
-      {state?.map((e) => (
-        <div className={s.radioBox} key={e.id}>
+      <section id="opt1" className={s.aside__section}>
+        <a href="#opt1" className={s.label}>CATEGORIES</a>
+        {state?.map((e) => (
+          <div className={s.radioBox} key={e.id}>
+            <label>
+              <div className={s.radioText}>
+                <span>{e.category}</span>
+                <input
+                  className={s.radio}
+                  type="radio"
+                  value={e.category}
+                  name="categories"
+                  onChange={onChangeCategory}
+                />
+              </div>
+            </label>
+          </div>
+        ))}
+      </section>
+      
+      <section id="opt2" className={s.aside__section}>
+        <a href="#opt2" className={s.label}>PRICE</a>
+        <div className={s.radioBox}>
           <label>
             <div className={s.radioText}>
-              <span>{e.category}</span>
+              <span>menor a 100</span>
               <input
                 className={s.radio}
                 type="radio"
-                value={e.category}
-                name="categories"
-                onChange={onChangeCategory}
+                value="menor a 100"
+                name="price"
+                onChange={onChangePrice}
               />
             </div>
           </label>
         </div>
-      ))}
-      <p className={s.label}>PRICE</p>
-      <div className={s.radioBox}>
-        <label>
-          <div className={s.radioText}>
-            <span>menor a 100</span>
-            <input
-              className={s.radio}
-              type="radio"
-              value="menor a 100"
-              name="price"
-              onChange={onChangePrice}
-            />
-          </div>
-        </label>
-      </div>
-      <div className={s.radioBox}>
-        <label>
-          <div className={s.radioText}>
-            <span>de 100 a 300</span>
-            <input
-              className={s.radio}
-              type="radio"
-              value="de 100 a 300"
-              name="price"
-              onChange={onChangePrice}
-            />
-          </div>
-        </label>
-      </div>
-      <div className={s.radioBox}>
-        <label>
-          <div className={s.radioText}>
-            <span>de 300 a 500</span>
-            <input
-              className={s.radio}
-              type="radio"
-              value="de 300 a 500"
-              name="price"
-              onChange={onChangePrice}
-            />
-          </div>
-        </label>
-      </div>
-      <p className={s.label}>COUNTRIES</p>
-      {stateCountries?.map((e) => (
-        <div className={s.radioBox} key={e.id}>
+        <div className={s.radioBox}>
           <label>
             <div className={s.radioText}>
-              <span>{e.country}</span>
+              <span>de 100 a 300</span>
               <input
                 className={s.radio}
                 type="radio"
-                value={e.country}
-                name="countries"
-                onChange={onChangeCountry}
+                value="de 100 a 300"
+                name="price"
+                onChange={onChangePrice}
               />
             </div>
           </label>
         </div>
-      ))}
+        <div className={s.radioBox}>
+          <label>
+            <div className={s.radioText}>
+              <span>de 300 a 500</span>
+              <input
+                className={s.radio}
+                type="radio"
+                value="de 300 a 500"
+                name="price"
+                onChange={onChangePrice}
+              />
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section id="opt3" className={s.aside__section}>
+        <a href="#opt3" className={s.label}>COUNTRIES</a>
+        {stateCountries?.map((e) => (
+          <div className={s.radioBox} key={e.id}>
+            <label>
+              <div className={s.radioText}>
+                <span>{e.country}</span>
+                <input
+                  className={s.radio}
+                  type="radio"
+                  value={e.country}
+                  name="countries"
+                  onChange={onChangeCountry}
+                />
+              </div>
+            </label>
+          </div>
+        ))}
+      </section>
+      
+      <section id="opt4" className={s.aside__section}>
+        <a href="#opt4" className={s.label}>SORT</a>
+        <div className={s.radioBox}>
+          <label>
+            <div className={s.radioText}>
+              <span>Name(A-Z)</span>
+              <input
+                className={s.radio}
+                type="radio"
+                value="asc"
+                name="sort"
+                onChange={(e) => handleSort(e)}
+              />
+            </div>
+          </label>
+        </div>
+        <div className={s.radioBox}>
+          <label>
+            <div className={s.radioText}>
+              <span>Name(Z-A)</span>
+              <input
+                className={s.radio}
+                type="radio"
+                value="desc"
+                name="sort"
+                onChange={(e) => handleSort(e)}
+              />
+            </div>
+          </label>
+        </div>
+      </section>
+
       <div>
-        <button onClick={handleApplyFilter}>Aplicar Filtros</button>
-      </div>
-      <p className={s.label}>SORT</p>
-      <div className={s.radioBox}>
-        <label>
-          <div className={s.radioText}>
-            <span>Name(A-Z)</span>
-            <input
-              className={s.radio}
-              type="radio"
-              value="asc"
-              name="sort"
-              onChange={(e) => handleSort(e)}
-            />
-          </div>
-        </label>
-      </div>
-      <div className={s.radioBox}>
-        <label>
-          <div className={s.radioText}>
-            <span>Name(Z-A)</span>
-            <input
-              className={s.radio}
-              type="radio"
-              value="desc"
-              name="sort"
-              onChange={(e) => handleSort(e)}
-            />
-          </div>
-        </label>
+        <Button3 value={'Aplicar Filtros'} handlerAdd={handleApplyFilter}/>
       </div>
     </aside>
   );
