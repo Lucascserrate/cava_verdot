@@ -21,7 +21,7 @@ const Details = () => {
     const bubbleCart = useSelector(state => state.bubbleCart)
 
     const getDetail = async () => {
-        let res = await axios.get(`http://localhost:3001/products/${id}`)
+        let res = await axios.get(`/products/${id}`)
         setDetail(res?.data[0])
     }
     useEffect(() => {
