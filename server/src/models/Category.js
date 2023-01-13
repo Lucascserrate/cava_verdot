@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      avalible:{
+        type: DataTypes.BOOLEAN,
+        defaultValue:true
+      }
     },
     {
       createdAt: false,
