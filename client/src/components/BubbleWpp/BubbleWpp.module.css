@@ -1,0 +1,32 @@
+.img {
+    height: 80px;
+    position: fixed;
+    right: 30px;
+    bottom: 20px;
+    cursor: pointer;
+
+    animation: opacidad 500ms cubic-bezier(.75, -3, .25, 4) 1;
+
+    transition: transform 500ms;
+    transition-timing-function: cubic-bezier(.75, -3, .25, 4);
+
+}
+
+.img:hover {
+    opacity: .9;
+    transform: scale(1.05);
+}
+
+@keyframes opacidad {
+    0% {
+        opacity: 0;
+        right: 30px;
+        bottom: 0;
+    }
+
+    100% {
+        opacity: 1;
+        right: 30px;
+        bottom: 20px;
+    }
+}

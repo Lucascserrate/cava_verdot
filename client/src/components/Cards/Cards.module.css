@@ -1,0 +1,40 @@
+:root{
+  --primary: #F1EEE5;
+}
+.cards{
+  width: 100%;
+  padding: 30px 0;
+}
+.cards__content{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px 20px;
+  padding: 0 10px;
+}
+.cards__link{
+  margin: 0 auto;
+  text-decoration: none;
+  color: #000;
+}
+
+.cards__paginado{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+.cards__btn{
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.cards__arrow{
+  display: block;
+  width: 40px;
+}
+.cards__currentpage{
+  font-size: 1.2rem;
+}
