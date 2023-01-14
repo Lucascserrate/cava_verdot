@@ -2,7 +2,7 @@ const { User, Drink, ShopingCart } = require("../../db");
 const { Op } = require("sequelize");
 
 const deleteItemShopingCart = async (req, res) => {
-  const { userId, drinkId } = req.body;
+  const { userId, drinkId } = req.query;
   try {
     //validando datos recibidos
     if (!userId) {

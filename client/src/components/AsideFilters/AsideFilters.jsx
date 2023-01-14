@@ -73,7 +73,7 @@ const AsideFilters = () => {
           </div>
         ))}
       </section>
-      
+
       <section id="opt2" className={s.aside__section}>
         <a href="#opt2" className={s.label}>PRICE</a>
         <div className={s.radioBox}>
@@ -139,7 +139,7 @@ const AsideFilters = () => {
           </div>
         ))}
       </section>
-      
+
       <section id="opt4" className={s.aside__section}>
         <a href="#opt4" className={s.label}>SORT</a>
         <div className={s.radioBox}>
@@ -173,7 +173,7 @@ const AsideFilters = () => {
       </section>
 
       <div>
-        <Button3 value={'Aplicar Filtros'} handlerAdd={handleApplyFilter}/>
+        <Button3 value={'Aplicar Filtros'} handler={() => handleApplyFilter()} />
       </div>
     </aside>
   );
