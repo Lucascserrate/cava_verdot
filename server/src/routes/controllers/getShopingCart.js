@@ -29,9 +29,10 @@ const getShopingCart = async (req, res) => {
       cart = await Promise.all(
         inCart.map(async (drink) => {
           aux = await Drink.findByPk(drink.drinkId, {
-            attributes: ["name", "price", "image", "stock"],
+            attributes: ["id", "name", "price", "image", "stock"],
           });
           return {
+            id: aux.id,
             name: aux.name,
             image: aux.image,
             price: aux.price,
