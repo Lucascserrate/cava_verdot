@@ -5,7 +5,8 @@ import s from './Cart.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getCart } from '../../redux/actions';
-/* import axios from 'axios'; */
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -16,10 +17,9 @@ const Cart = () => {
     }, [dispatch, user])
 
 
-    /*     const handleDelete = async (id) => {
-            let user = window.localStorage.getItem('userId')
-            await axios.delete(`http://localhost:3001/shopingCart?userId=${user}&drinkId=${id}`)
-        } */
+    const handleDelete = async (id) => {
+        await axios.delete(`/shopingCart?userId=${user}&drinkId=${id}`)
+    }
 
 
 
@@ -32,15 +32,15 @@ const Cart = () => {
                         <h2 className={s.title}>Shopping Cart</h2>
                         {
                             cart?.map(e => <div className={s.cartItem}>
-                                {/* <Link to={`/store/${e.id}`}> <img className={s.img} src={e.image} alt={e.name} /></Link> */}
+                                <Link to={`/store/${e.id}`}> <img className={s.img} src={e.image} alt={e.name} /></Link>
                                 <div className={s.gridd}>
                                     <div className={s.between}>
                                         <p className={s.itemTitle}>{e.name}</p>
-                                        <button className={s.close} /* onClick={handleDelete(e.id)} */ >✖</button>
+                                        <button className={s.close} onClick={() => handleDelete(e.id)}  >✖</button>
                                     </div>
                                     <div className={s.between}>
                                         <p className={s.amount}>Amount: {e.amount}</p>
-                                        <p>${e.price}</p>
+                                        <p>${e.subtotal}</p>
                                     </div>
                                 </div>
                             </div>
