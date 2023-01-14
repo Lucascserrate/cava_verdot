@@ -98,9 +98,14 @@ const postAddToShopingCart = async (req, res) => {
         );
       }
     }
+    //obtener el total de productos de un usuario
+    /* const totalProducts = await ShopingCart.sum("amount", {
+      where: { userId },
+    }); */
     //TODO:agregar id a User (es necesario primero crear un PutUser)
     return res.status(200).send({
       userId: userId ? userId : newUser.id,
+      //totalProducts: totalProducts,
       message: `Drink '${searchDrink.name}' has been add`,
     });
   } catch (error) {
