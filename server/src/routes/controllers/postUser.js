@@ -1,6 +1,7 @@
 const { User, Role } = require("../../db");
 const { roles } = require("../../../api.js");
-const e = require("express");
+const bcrypt = require("bcrypt");
+//const generateHash = require("../../utils/password.js");
 
 const postUser = async (req, res) => {
   const { name, surname, age, email, password, address, image } = req.body;
@@ -55,13 +56,19 @@ const postUser = async (req, res) => {
     if (!allRoles.length) {
       allRoles = await Role.bulkCreate(roles);
     }
+    //encriptando password
+    async function generateHash(password) {
+      const hash = await bcrypt.hash(password, 12);
+      return hash;
+    }
+    const pws = await generateHash(password);
     //creando nuevo usuario
     const newUser = await User.create({
       name,
       surname,
       age,
       email,
-      password,
+      password: pws,
       address,
       image,
       roleId: 1,
