@@ -2,6 +2,8 @@ const { Router } = require("express");
 const { User } = require("../../db.js");
 const bcrypt = require("bcrypt");
 const router = Router();
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
 
 async function compareHash(password, passwordHashed) {
   const validate = await bcrypt.compare(password, passwordHashed);
@@ -18,17 +20,24 @@ router.post("/", async (req, res) => {
       where: {
         email,
       },
-      attributes: ["password"],
+      attributes: ["password", "roleId"],
     });
     if (emailExists === null)
-      return res.status(404).send("Invalid credentials");
+      return res.status(401).send("Invalid credentials");
     //validando password
     const passwordValidation = await compareHash(
       password,
       emailExists.password
     );
-    if (passwordValidation) return res.status(200).send("succesfull");
-    return res.status(400).send("Invalid credentials");
+    if (passwordValidation) {
+      const token = jwt.sign(
+        { email: email, role: emailExists.roleId },
+        JWT_SECRET,
+        { expiresIn: "3h" }
+      );
+      return res.status(200).send(token);
+    }
+    return res.status(401).send("Invalid credentials");
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
