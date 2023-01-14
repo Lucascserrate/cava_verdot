@@ -2,11 +2,26 @@ import React from 'react';
 import Footer from '../Footer/Footer';
 import NavBar from '../Navbar/Navbar';
 import s from './Cart.module.css'
-import img from '../../assets/3375734277.png'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getCart } from '../../redux/actions';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Cart = () => {
+    const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
+    let user = window.localStorage.getItem('userId')
+    useEffect(() => {
+        dispatch(getCart(user))
+    }, [dispatch, user])
+
+
+    const handleDelete = async (id) => {
+        await axios.delete(`/shopingCart?userId=${user}&drinkId=${id}`)
+    }
+
+
 
     return (
         <>
@@ -15,21 +30,22 @@ const Cart = () => {
                 <div className={s.grid}>
                     <div className={s.cartList}>
                         <h2 className={s.title}>Shopping Cart</h2>
-
-                        <div className={s.cartItem}>
-                            <img className={s.img} src={img} alt="" />
-                            <div className={s.gridd}>
-                                <div className={s.between}>
-                                    <p className={s.itemTitle}>Vino cualquiera</p>
-                                    <button className={s.close}>✖</button>
-                                </div>
-                                <div className={s.between}>
-                                    <p className={s.amount}>Amount: 5</p>
-                                    <p>$1000</p>
+                        {
+                            cart?.map(e => <div className={s.cartItem}>
+                                <Link to={`/store/${e.id}`}> <img className={s.img} src={e.image} alt={e.name} /></Link>
+                                <div className={s.gridd}>
+                                    <div className={s.between}>
+                                        <p className={s.itemTitle}>{e.name}</p>
+                                        <button className={s.close} onClick={() => handleDelete(e.id)}  >✖</button>
+                                    </div>
+                                    <div className={s.between}>
+                                        <p className={s.amount}>Amount: {e.amount}</p>
+                                        <p>${e.subtotal}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
+                            )
+                        }
                         <div>
                             <hr className={s.hr} />
                             <div className={s.total}>

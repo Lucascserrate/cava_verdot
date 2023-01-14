@@ -9,6 +9,7 @@ export const GET_SORT = 'GET_SORT';
 export const GET_DRINK_BY_NAME = 'GET_DRINK_BY_NAME';
 export const POST_PRODUCT = 'POST_PRODUCT'
 export const GET_COUNTRIES = 'GET_COUNTRIES';
+export const GET_CART = 'GET_CART';
 
 
 // Actions Creators get all products
@@ -81,4 +82,10 @@ export const getCountries = () => {
     const dataApi = await axios.get('/countries');
     dispatch({ type: GET_COUNTRIES, payload: dataApi.data })
   }
+}
+
+export const getCart = id => async dispatch => {
+  let json = await axios.get(`/shopingCart?userId=${id}`)
+  console.log(json.data)
+  return dispatch({ type: GET_CART, payload: json.data })
 }
