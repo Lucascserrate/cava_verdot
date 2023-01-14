@@ -5,7 +5,7 @@ import s from './Cart.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getCart } from '../../redux/actions';
-import axios from 'axios';
+/* import axios from 'axios'; */
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -13,13 +13,15 @@ const Cart = () => {
     let user = window.localStorage.getItem('userId')
     useEffect(() => {
         dispatch(getCart(user))
-    }, [dispatch])
+    }, [dispatch, user])
 
 
     /*     const handleDelete = async (id) => {
             let user = window.localStorage.getItem('userId')
             await axios.delete(`http://localhost:3001/shopingCart?userId=${user}&drinkId=${id}`)
         } */
+
+
 
     return (
         <>
@@ -30,7 +32,7 @@ const Cart = () => {
                         <h2 className={s.title}>Shopping Cart</h2>
                         {
                             cart?.map(e => <div className={s.cartItem}>
-                                <img className={s.img} src={e.image} alt={e.name} />
+                                {/* <Link to={`/store/${e.id}`}> <img className={s.img} src={e.image} alt={e.name} /></Link> */}
                                 <div className={s.gridd}>
                                     <div className={s.between}>
                                         <p className={s.itemTitle}>{e.name}</p>
