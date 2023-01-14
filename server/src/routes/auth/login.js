@@ -11,6 +11,8 @@ async function compareHash(password, passwordHashed) {
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
   try {
+    if (!email) return res.status(404).send("Email is required");
+    if (!password) return res.status(404).send("password is required");
     //validando email
     const emailExists = await User.findOne({
       where: {
@@ -19,16 +21,16 @@ router.post("/", async (req, res) => {
       attributes: ["password"],
     });
     if (emailExists === null)
-      return res.status(404).send("this email is not registered");
+      return res.status(404).send("Invalid credentials");
     //validando password
     const passwordValidation = await compareHash(
       password,
       emailExists.password
     );
     if (passwordValidation) return res.status(200).send("succesfull");
-    return res.status(400).send("Incorrect password");
-  } catch (e) {
-    console.log(e);
+    return res.status(400).send("Invalid credentials");
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ error: error.message });
   }
 });
