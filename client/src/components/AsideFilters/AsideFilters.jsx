@@ -250,7 +250,7 @@ const AsideFilters = () => {
       </section>
 
       <div>
-        <Button3 value={"Aplicar Filtros"} handlerAdd={handleApplyFilter} />
+        <Button3 value={"Aplicar Filtros"} handler={() => handleApplyFilter()} />
       </div>
     </aside>
   );
