@@ -18,16 +18,21 @@ function AlertAge() {
     setCaptureInput({...captureInputs, [e.target.name]: e.target.value});
   }
 
+  const date = new Date();
+  const year = date.getFullYear();
+  const age = Number(year) - Number(captureInputs.anio);
+
   const handleOnClick = (e) => {
     e.preventDefault();
     if(captureInputs.dia === "" || captureInputs.mes === "" || captureInputs.anio === ""){
       setMessageError("Ingrese los datos de edad");
-    }else if(captureInputs.anio > 2005){
+    }else if(age < 18){
       setMessageError("Eres menor de edad");
     }else{
       sessionStorage.setItem("dia", captureInputs.dia)
       sessionStorage.setItem("mes", captureInputs.mes)
       sessionStorage.setItem("anio", captureInputs.anio)
+      sessionStorage.setItem("age", age)
       setView('alertage--view')
     }
   }

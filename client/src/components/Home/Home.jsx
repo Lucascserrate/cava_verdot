@@ -25,7 +25,6 @@ const Home = () => {
       }, 2000)
     }
   },[]);
-
   return (
     <div className={s.container}>
       <div className={s.alertage__component}>
