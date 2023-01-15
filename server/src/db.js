@@ -60,8 +60,6 @@ Category.hasMany(SubCategory);
 SubCategory.belongsTo(Category, { foreignKey: "categoryId" });
 Role.hasMany(User);
 User.belongsTo(Role);
-ShopingCart.hasOne(User);
-User.belongsTo(ShopingCart);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

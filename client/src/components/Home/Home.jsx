@@ -18,6 +18,7 @@ const Home = () => {
       <BubbleCart />
       <BubbleWpp />
       {
+        /* notification && setTimeout(() => (<Notification setNotification={setNotification} />), 100) */
         notification && <Notification setNotification={setNotification} />
       }
       <Footer />

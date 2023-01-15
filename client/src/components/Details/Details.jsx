@@ -18,21 +18,43 @@ const Details = () => {
     let { id } = useParams()
     const dispatch = useDispatch()
     const cartAmount = document.getElementById('amount')
-    const cart = useSelector(state => state.cart)
+    const bubbleCart = useSelector(state => state.bubbleCart)
 
     const getDetail = async () => {
         let res = await axios.get(`/products/${id}`)
         setDetail(res?.data[0])
     }
+
+
     useEffect(() => {
         getDetail()
     }, [])
 
 
-    const handlerAdd = () => {
+    const handlerAdd = async () => {
         dispatch(modifyBubbleCart(cartAmount.value))
+        let user = window.localStorage.getItem('userId')
+        if (user) {
+            let post = await axios.post('/shopingCart?add=true', {
+                userId: user,
+                drinkId: id,
+                amount: parseInt(cartAmount.value)
+            })
+            console.log(typeof cartAmount.value);
+            return post
+        } else {
+            let post = await axios.post('/shopingCart?add=true', {
+                drinkId: id,
+                amount: parseInt(cartAmount.value)
+            })
+            console.log(parseInt(cartAmount.value))
+            window.localStorage.setItem('userId', post.data.userId)
+        }
         cartAmount.value = 1
+
     }
+
+
 
     return (
         <>
@@ -52,10 +74,10 @@ const Details = () => {
                                 <p className={s.price}>${detail?.price}</p>
                                 <div className={s.itemsTextContainer}>
                                     {
-                                        cart === 1
+                                        bubbleCart === 1
                                             ? <p className={s.itemsText}>An item in your bag</p> :
-                                            cart > 1
-                                                ? <p className={s.itemsText}>{cart} items in your bag </p>
+                                            bubbleCart > 1
+                                                ? <p className={s.itemsText}>{bubbleCart} items in your bag </p>
                                                 : undefined
                                     }
                                 </div>
@@ -64,12 +86,12 @@ const Details = () => {
                                     <input id='amount' className={s.inputAmount} type="number" defaultValue='1' min='1' maxLength='5' />
                                 </div>
                                 {
-                                    cart
+                                    bubbleCart
                                         ? <div className={s.buttons}>
-                                            <ButtonPrimary handlerAdd={handlerAdd} value='Add more' />
+                                            <ButtonPrimary handler={() => handlerAdd()} value='Add more' />
                                             <Link className={s.buttons} to='/cart'> <Button3 value='Pay Now' /></Link>
                                         </div>
-                                        : <div className={s.buttons}> <Button3 handlerAdd={handlerAdd} value='Add' /> </div>
+                                        : <div className={s.buttons}> <Button3 handler={() => handlerAdd()} value='Add' /> </div>
                                 }
 
                                 <p className={s.country}><span className={s.bold}>Country:</span> {detail.country?.country}</p>

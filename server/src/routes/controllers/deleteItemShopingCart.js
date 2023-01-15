@@ -1,8 +1,8 @@
 const { User, Drink, ShopingCart } = require("../../db");
 const { Op } = require("sequelize");
 
-const getShopingCart = async (req, res) => {
-  const { userId } = req.query;
+const deleteItemShopingCart = async (req, res) => {
+  const { userId, drinkId } = req.query;
   try {
     //validando datos recibidos
     if (!userId) {
@@ -12,6 +12,20 @@ const getShopingCart = async (req, res) => {
       if (searchUser === null)
         return res.status(400).send("This user does not exist");
     }
+    let searchDrink;
+    if (!drinkId) {
+      return res.status(400).send("drinkId is requiered");
+    } else {
+      searchDrink = await Drink.findByPk(drinkId);
+      if (searchDrink === null)
+        return res.status(400).send("This drink does not exist");
+    }
+    //eliminando bebida seleccionada por el usuario
+    await ShopingCart.destroy({
+      where: {
+        [Op.and]: [{ drinkId: drinkId }, { userId: userId }],
+      },
+    });
     //obteniendo bebidas seleccionadas por el usuario
     const inCart = await ShopingCart.findAll({
       where: {
@@ -49,4 +63,4 @@ const getShopingCart = async (req, res) => {
   }
 };
 
-module.exports = { getShopingCart };
+module.exports = { deleteItemShopingCart };

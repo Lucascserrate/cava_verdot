@@ -135,6 +135,7 @@ const AsideFilters = () => {
         ))}
       </section>
 
+
       <section className='aside__section'>
         <a href="#" name="price" className={viewPrice} onClick={handleOnClick}>
           PRICE

@@ -1,8 +1,11 @@
 const { User, Drink, Role, ShopingCart } = require("../../db");
 const { roles } = require("../../../api.js");
+const { Op } = require("sequelize");
 
 const postAddToShopingCart = async (req, res) => {
   const { userId, drinkId, amount } = req.body;
+  const { add } = req.query;
+  console.log(add);
   try {
     let errors = {};
     //validando datos recibidos
@@ -57,11 +60,11 @@ const postAddToShopingCart = async (req, res) => {
       //buscando bebida en el carrito de usuario en caso de previa existencia de usuario
       searchShopingCart = await ShopingCart.findOne({
         where: {
-          drinkId: drinkId,
+          [Op.and]: [{ userId: userId }, { drinkId: drinkId }],
         },
       });
+      console.log("esto", searchShopingCart);
     }
-    userId ? console.log(userId) : console.log(newUser.id);
     if (!searchShopingCart) {
       //agregando bebida y cantidad
       await ShopingCart.create({
@@ -71,20 +74,38 @@ const postAddToShopingCart = async (req, res) => {
       });
     } else {
       //actualizando cantidad de bebida
-      await ShopingCart.update(
-        {
-          amount: amount,
-        },
-        {
-          where: {
-            userId: userId,
+      if (add) {
+        await ShopingCart.update(
+          {
+            amount: searchShopingCart.amount + amount,
           },
-        }
-      );
+          {
+            where: {
+              [Op.and]: [{ userId: userId }, { drinkId: drinkId }],
+            },
+          }
+        );
+      } else {
+        await ShopingCart.update(
+          {
+            amount: amount,
+          },
+          {
+            where: {
+              [Op.and]: [{ userId: userId }, { drinkId: drinkId }],
+            },
+          }
+        );
+      }
     }
+    //obtener el total de productos de un usuario
+    /* const totalProducts = await ShopingCart.sum("amount", {
+      where: { userId },
+    }); */
     //TODO:agregar id a User (es necesario primero crear un PutUser)
     return res.status(200).send({
       userId: userId ? userId : newUser.id,
+      //totalProducts: totalProducts,
       message: `Drink '${searchDrink.name}' has been add`,
     });
   } catch (error) {
