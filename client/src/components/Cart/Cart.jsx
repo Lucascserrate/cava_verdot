@@ -14,13 +14,13 @@ const Cart = () => {
     let user = window.localStorage.getItem('userId')
     useEffect(() => {
         dispatch(getCart(user))
-    }, [dispatch, user])
+    }, [dispatch, user, /* cart */])
 
 
     const handleDelete = async (id) => {
-        await axios.delete(`/shopingCart?userId=${user}&drinkId=${id}`)
+        let del = await axios.delete(`/shopingCart?userId=${user}&drinkId=${id}`)
+        return del
     }
-
 
 
     return (
@@ -50,7 +50,7 @@ const Cart = () => {
                             <hr className={s.hr} />
                             <div className={s.total}>
                                 <p className={s.totals}>Total</p>
-                                <p className={s.totals}>$2500</p>
+                                <p className={s.totals}>${/* cart?.reduce((acc, e) => acc.subtotal + e.subtotal) */}</p>
                             </div>
                         </div>
                         <p></p>
