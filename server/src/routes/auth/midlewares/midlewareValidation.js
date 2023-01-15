@@ -12,8 +12,8 @@ const midlewareValidation = async (req, res, next) => {
       res.status(401).send({ message: "Not authorized" });
     } else {
       const payload = jwt.verify(token, JWT_SECRET);
-      console.log(payload);
       req.role = payload.role;
+      console.log(req.role);
       next();
     }
   } catch (error) {

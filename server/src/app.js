@@ -4,17 +4,12 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
 const passport = require("passport");
-const PassportLocal = require("passport-local");
 const session = require("express-session");
 require("./routes/auth/midlewares/passport.js");
-//require("./db.js");
 
 const server = express();
 server.use(session({ secret: "keyboard cat", cookie: { maxAge: 60000 } }));
-
 server.use(passport.initialize());
-//server.use(passport.session());
-
 server.name = "API";
 server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));

@@ -31,3 +31,21 @@ passport.use(
     }
   )
 );
+
+/* const PassportJWT = require("passport-jwt");
+const { JWT_SECRET } = process.env;
+passport.use(
+  new PassportJWT.Strategy(
+    {
+      jwtFromRequest: PassportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: JWT_SECRET,
+    },
+    (payload, done) => {
+      try {
+        done(null, payload);
+      } catch (error) {
+        done(error);
+      }
+    }
+  )
+); */

@@ -2,7 +2,6 @@ const { Drink, Category, Country, SubCategory } = require("../../db");
 
 const postProduct = async (req, res) => {
   const {
-    role,
     name,
     description,
     stock,
@@ -13,8 +12,9 @@ const postProduct = async (req, res) => {
     category,
     subCategory,
   } = req.body;
+  const role = req.role;
   try {
-    if (role !== 2) return res.status(400).send({ message: "Not authorized" });
+    if (role !== 3) return res.status(400).send({ message: "Not authorized" });
     let errors = {};
     !category ? (errors.category = `category is required`) : null;
     !name ? (errors.name = `name is required`) : null;

@@ -1,6 +1,9 @@
 const { User, Role } = require("../../db");
 const { roles } = require("../../../api.js");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { generateHash } = require("../../utils/password.js");
+const { JWT_SECRET } = process.env;
 //const generateHash = require("../../utils/password.js");
 
 const postUser = async (req, res) => {
@@ -57,10 +60,6 @@ const postUser = async (req, res) => {
       allRoles = await Role.bulkCreate(roles);
     }
     //encriptando password
-    async function generateHash(password) {
-      const hash = await bcrypt.hash(password, 12);
-      return hash;
-    }
     const pws = await generateHash(password);
     //creando nuevo usuario
     const newUser = await User.create({
@@ -71,11 +70,18 @@ const postUser = async (req, res) => {
       password: pws,
       address,
       image,
-      roleId: 1,
+      roleId: 2,
     });
-    return res
+    const token = jwt.sign(
+      { email: newUser.email, role: newUser.roleId },
+      JWT_SECRET,
+      { expiresIn: "3h" }
+    );
+
+    return res.status(200).send(token);
+    /* return res
       .status(200)
-      .send(`The user "${newUser.name}" has been created successfully`);
+      .send(`The user "${newUser.name}" has been created successfully`); */
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

@@ -3258,15 +3258,19 @@ const sub_category = [
 const roles = [
   {
     id: 1,
-    role: "user",
+    role: "temp",
   },
   {
     id: 2,
-    role: "admin",
+    role: "user",
   },
   {
     id: 3,
-    role: "temp",
+    role: "admin",
+  },
+  {
+    id: 4,
+    role: "superAdmin",
   },
 ];
 
