@@ -1,5 +1,6 @@
 
 const { Drink, Category, Country, SubCategory } = require("../../db");
+const {uploadImage} = require("../../Cloudinary/cloudinary.js");
 
 const postProduct = async (req, res) => {
   const {
@@ -23,6 +24,10 @@ const postProduct = async (req, res) => {
     category,
     subCategory,})
   try {
+    //si llega la img en base64 guardala en cloudinary
+    const result = await uploadImage(image);
+    console.log(result)
+
     const validateCategory = await Category.findOne({
       where: {
         category: category,
@@ -48,13 +53,15 @@ const postProduct = async (req, res) => {
       return res
         .status(404)
         .send(`subCategory '${subCategory}' does not exist`); */
+
+        
     const newProduct = await Drink.create({
       name,
       description,
       stock,
       price,
       rating,
-      image,
+      image: result.url,
       countryId: validateCountry.id,
       categoryId: validateCategory.id,
     });

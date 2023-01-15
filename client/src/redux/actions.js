@@ -70,7 +70,7 @@ export const getDrinkName = (name) => {
 
 export const PostProduct = (payload) => {
   return async function (dipatch) {
-    const dataPost = await axios.post('/', payload)
+    const dataPost = await axios.post('/products', payload)
 
     return dataPost
   }
