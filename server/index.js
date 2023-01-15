@@ -6,4 +6,3 @@ conn.sync({ force: false }).then(() => {
     console.log(`%s listening at ${PORT}`);
   });
 });
-

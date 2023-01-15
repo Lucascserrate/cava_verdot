@@ -1,8 +1,8 @@
-
 const { Drink, Category, Country, SubCategory } = require("../../db");
 
 const postProduct = async (req, res) => {
   const {
+    role,
     name,
     description,
     stock,
@@ -13,41 +13,39 @@ const postProduct = async (req, res) => {
     category,
     subCategory,
   } = req.body;
-  console.log({name,
-    description,
-    stock,
-    price,
-    image,
-    country,
-    rating,
-    category,
-    subCategory,})
   try {
-    const validateCategory = await Category.findOne({
-      where: {
-        category: category,
-      },
-    });
-    if (validateCategory === null){
-      return res.status(404).send(`category '${category}' does not exist`);
+    if (role !== 2) return res.status(400).send({ message: "Not authorized" });
+    let errors = {};
+    !category ? (errors.category = `category is required`) : null;
+    !name ? (errors.name = `name is required`) : null;
+    !description ? (errors.description = "description is required") : null;
+    !stock ? (errors.stock = "stock is required") : null;
+    !price ? (errors.price = "price is required") : null;
+    !image ? (errors.image = "image is required") : null;
+    !country ? (errors.country = "country is required") : null;
+    !rating ? (errors.rating = "rating  is required") : null;
+
+    if (category) {
+      const validateCategory = await Category.findOne({
+        where: {
+          category: category,
+        },
+      });
+      !validateCategory
+        ? (errors.categoryExist = `category '${category}' does not exist`)
+        : null;
     }
-    const validateCountry = await Country.findOne({
-      where: {
-        country: country,
-      },
-    });
-    if (validateCountry === null){
-      return res.status(404).send(`country '${country}' does not exist`);
+    if (country) {
+      const validateCountry = await Country.findOne({
+        where: {
+          country: country,
+        },
+      });
+      validateCountry
+        ? (errors.countryExist = `country '${country}' does not exist`)
+        : null;
     }
-    /* const validateSubCategory = SubCategory.findOne({
-      where: {
-        subCategory: subCategory,
-      },
-    });
-    if (validateSubCategory === null)
-      return res
-        .status(404)
-        .send(`subCategory '${subCategory}' does not exist`); */
+    if (Object.keys(errors).length) return res.status(400).send(errors);
     const newProduct = await Drink.create({
       name,
       description,
@@ -58,10 +56,11 @@ const postProduct = async (req, res) => {
       countryId: validateCountry.id,
       categoryId: validateCategory.id,
     });
-    
-    res.status(200).send(`Success '${newProduct.name}' has been created`);
+
+    //res.status(200).send(`Success '${newProduct.name}' has been created`);
+    res.status(200).send(`Success has been created`);
   } catch (error) {
-    res.status(500).send(console.log(error),{ error: error.message });
+    res.status(500).send(console.log(error), { error: error.message });
   }
 };
 

@@ -5,6 +5,9 @@ module.exports = async function generateHash(password) {
   return hash;
 };
 
-module.exports = function compareHash(password, hashed) {
-  return bcrypt.compare(password, hashed);
-};
+async function compareHash(password, passwordHashed) {
+  const validate = await bcrypt.compare(password, passwordHashed);
+  return validate;
+}
+
+module.exports = { compareHash };
