@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "./Register.module.css";
 import Alert from "../Alert/Alert";
+import axios from "axios"
 
 function Register() {
   const [timeAlert, setTimeAlert] = useState(false);
@@ -16,8 +17,8 @@ function Register() {
           password: "",
           name: "",
           surname: "",
-          age: "",
-          adress: "",
+          age: sessionStorage.getItem("age"),
+          address: "",
           image: "",
         }}
         validate={(values) => {
@@ -57,22 +58,28 @@ function Register() {
           // }
 
           //Validaciones ADRESS
-          if (!values.adress) {
-            errores.adress = "Por favor ingresa una dirección.";
+          if (!values.address) {
+            errores.address = "Por favor ingresa una dirección.";
           }
 
           //Validaciones IMAGE
           if (!values.image) {
-            errores.img = "Por favor ingresa la URL de una imagen.";
+            errores.image = "Por favor ingresa la URL de una imagen.";
           }
 
           return errores;
         }}
-        onSubmit={(values, { resetForm }) => {
-          resetForm();
-          setTimeAlert(true);
-          setTimeout(() => setTimeAlert(false), 5000);
-          console.log(getAge, values);
+        onSubmit={async (values, { resetForm }) => {
+          try {
+            const res = await axios.post("/users", values);
+            resetForm();
+            setTimeAlert(true);
+            setTimeout(() => setTimeAlert(false), 5000);
+            sessionStorage.setItem("token", res)
+            console.log(res.data);
+          } catch (error) {
+            console.log(error);
+          }
         }}
       >
         {({ errors }) => (
@@ -147,22 +154,22 @@ function Register() {
               <div>
                 <div className={s.form__group}>
                   <Field
-                    id="adress"
+                    id="address"
                     type="text"
                     placeholder=" "
                     className={s.form__input}
-                    name="adress"
+                    name="address"
                   />
-                  <label htmlFor="adress" className={s.form__lbl}>
-                    Adress:
+                  <label htmlFor="address" className={s.form__lbl}>
+                    Address:
                   </label>
                   <span className={s.form__bar}></span>
                 </div>
                 <div className={s.form__message}>
                   <ErrorMessage
-                    name="adress"
+                    name="address"
                     component={() => (
-                      <span className={s.error}>{errors.adress}</span>
+                      <span className={s.error}>{errors.address}</span>
                     )}
                   />
                 </div>
