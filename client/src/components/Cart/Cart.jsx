@@ -11,6 +11,7 @@ import axios from 'axios';
 const Cart = () => {
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
+
     let user = window.localStorage.getItem('userId')
     useEffect(() => {
         dispatch(getCart(user))
@@ -22,6 +23,10 @@ const Cart = () => {
         return del
     }
 
+    console.log(cart.length ? cart.reduce((acc, e) => {
+        return acc + e.subtotal
+    }, 0) : undefined);
+
 
     return (
         <>
@@ -31,7 +36,7 @@ const Cart = () => {
                     <div className={s.cartList}>
                         <h2 className={s.title}>Shopping Cart</h2>
                         {
-                            cart?.map(e => <div className={s.cartItem}>
+                            cart?.map(e => <div key={e.id} className={s.cartItem}>
                                 <Link to={`/store/${e.id}`}> <img className={s.img} src={e.image} alt={e.name} /></Link>
                                 <div className={s.gridd}>
                                     <div className={s.between}>
@@ -50,7 +55,9 @@ const Cart = () => {
                             <hr className={s.hr} />
                             <div className={s.total}>
                                 <p className={s.totals}>Total</p>
-                                <p className={s.totals}>${/* cart?.reduce((acc, e) => acc.subtotal + e.subtotal) */}</p>
+                                <p className={s.totals}>${cart.length ? cart.reduce((acc, e) => {
+                                    return acc + e.subtotal
+                                }, 0) : undefined}</p>
                             </div>
                         </div>
                         <p></p>

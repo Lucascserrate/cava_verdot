@@ -86,6 +86,5 @@ export const getCountries = () => {
 
 export const getCart = id => async dispatch => {
   let json = await axios.get(`/shopingCart?userId=${id}`)
-  console.log(json.data)
   return dispatch({ type: GET_CART, payload: json.data })
 }
