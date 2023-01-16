@@ -10,23 +10,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: blueviolet;
+  background-color: rgba(0, 0, 0, .4);
   display: flex;
-  opacity: 0;
-  transition: opacity 1s 1.5s;
-  pointer-events: none;
 }
 .login__modal:target{
   opacity: 1;
   pointer-events: unset;
   transition-delay: 0s;
-}
-
-.cta{
-  text-decoration: none;
-  display: inline-block;
-  font-weight: 400;
-  z-index: 0;
 }
 
 .login__contain{
@@ -40,25 +30,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  transition: clip-path 1s;
   text-align: center;
-}
-.login__modal:target .login__contain{
-  animation: showmodal 2s 1.5s both;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-
-@keyframes showModal {
-  0%{
-    transform: translateY(-200%) rotate(10deg);
-  }
-  50%{
-    transform: translateY(0) rotate(-10deg);
-  }
-  100%{
-    transform: translateY(0) rotate(0);
-  }
 }
 
 .login__close{
@@ -75,6 +47,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  cursor: pointer;
 }
 
 .login__title{
