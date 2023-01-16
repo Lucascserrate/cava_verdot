@@ -4,11 +4,21 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
 const passport = require("passport");
-const session = require("express-session");
+//const session = require("express-session");
 require("./routes/auth/midlewares/passport.js");
 
 const server = express();
-server.use(session({ secret: "keyboard cat", cookie: { maxAge: 60000 } }));
+server.use(
+  require("express-session")({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 24 * 60 * 60,
+    },
+  })
+);
+//server.use(session({ secret: "keyboard cat", cookie: { maxAge: 60000 } }));
 server.use(passport.initialize());
 server.name = "API";
 server.use(express.json());
