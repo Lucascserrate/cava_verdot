@@ -4,23 +4,30 @@
 }
 
 .card__content{
-  width: 400px;
-  height: 430px;
-  background-color: #fff;
+  width: 260px;
+  height: 360px;
+  background: linear-gradient(#fff 72%, #121212 28%);
   display: flex;
   flex-direction: column;
+  gap: 10px;
   text-align: center;
   align-items: center;
   justify-content: center;
   padding: 20px 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  border-radius: 5px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .5);
   font-size: 1rem;
+  margin: 0 auto;
+}
+.card__items{
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 .card__img{
-  width: 340px;
-  height: 100%;
-  object-fit: cover;
+  max-width: 240px;
+  display: block;
   background-size: cover;
 }
 
@@ -29,4 +36,14 @@
   height: 100%;
   display: flex;
   padding: 10px 0 30px 0;
+  background: rgba(0, 0, 0, .2);
+}
+.name{
+  width: 240px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.name, .price{
+  color: #fff;
 }

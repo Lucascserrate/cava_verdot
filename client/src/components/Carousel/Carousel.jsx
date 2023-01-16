@@ -47,8 +47,10 @@ const product = carousel.map((e) => (
  
     <div key={e.id} className={`${s.card__content} card`}>
       <img src={e.image} alt='product_image' className={`${s.card__img} product--img`}/>
-      <h2 className="name">{e.name}</h2>
-      <p className="price">{e.price}</p>
+      <div className={s.card__items}>
+        <h2 className={s.name}>{e.name}</h2>
+        <p className={s.price}>$ {e.price}</p>
+      </div>
     </div>
   
 ))
@@ -56,7 +58,7 @@ const product = carousel.map((e) => (
   return (
     <div className={`${carousel} Slide`}>
       <h1 className={s.carousel__title}>Algunos de nuestros productos</h1>
-      <Carousel showDots={true} responsive={responsive} className={s.carousel__cards}>
+      <Carousel showDots={true} responsive={responsive} className={s.carousel__cards} removeArrowOnDeviceType={["tablet", "mobile"]}>
         {product}
       </Carousel>
     </div>
