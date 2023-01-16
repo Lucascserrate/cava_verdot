@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import { getCart } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import PasarelaStripe from '../Pasarela/PasarelaStripe';
+
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -15,7 +17,7 @@ const Cart = () => {
     let user = window.localStorage.getItem('userId')
     useEffect(() => {
         dispatch(getCart(user))
-    }, [dispatch, user, /* cart */])
+    }, [dispatch, user, cart])
 
 
     const handleDelete = async (id) => {
@@ -59,6 +61,7 @@ const Cart = () => {
                     </div>
                     <div className={s.pay}>
                         <h2 className={s.title}>Payment Methods</h2>
+                        <PasarelaStripe />
                     </div>
                 </div>
 

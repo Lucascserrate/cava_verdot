@@ -5,8 +5,18 @@ import Cards from "../Cards/Cards";
 import NavBar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import BubbleCart from "../BubbleCart/BubbleCart";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { modifyBubbleCart } from '../../redux/actions';
 
 function Store() {
+  const dispatch = useDispatch()
+  let user = window.localStorage.getItem('userId')
+
+  useEffect(() => {
+    dispatch(modifyBubbleCart(user))
+  }, [dispatch])
+
   return (
     <div className={s.store}>
       <NavBar searchbar="true" />
