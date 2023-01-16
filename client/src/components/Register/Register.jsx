@@ -75,7 +75,7 @@ function Register() {
             resetForm();
             setTimeAlert(true);
             setTimeout(() => setTimeAlert(false), 5000);
-            sessionStorage.setItem("token", res)
+            window.localStorage.setItem("token", res)
             console.log(res.data);
           } catch (error) {
             console.log(error);
