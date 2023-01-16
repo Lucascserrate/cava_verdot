@@ -1,6 +1,7 @@
 .btn {
     display: inline-block;
     transition: all 0.2s ease-in;
+    position: relative;
     overflow: hidden;
     z-index: 1;
     color: #fff;
@@ -12,9 +13,13 @@
     cursor: pointer;
 }
 
-
-
-
 .btn:hover {
-    opacity: .9;
+    opacity: .95;
+
+}
+
+.btn:active {
+    color: var(--colorBone);
+    scale: .98;
+    transition: 50ms;
 }

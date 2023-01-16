@@ -3263,9 +3263,12 @@ const roles = [
   {
     id: 2,
     role: "admin",
-  }
+  },
+  {
+    id: 3,
+    role: "temp",
+  },
 ];
-
 
 exports.drinks = drinks;
 exports.sub_category = sub_category;

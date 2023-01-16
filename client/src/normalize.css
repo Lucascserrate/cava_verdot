@@ -8,15 +8,6 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
-/* COLORS */
-:root {
-  --colorPrimary: #592D4A;
-  --colorWhite: #e8e8e8;
-  --colorBone: #F1EEE5;
-  --color2: #464A8C;
-  --colorDark: #051937;
-  --borderRadiusButtons: 3px;
-}
 
 
 *,
