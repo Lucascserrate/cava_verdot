@@ -3,16 +3,19 @@ import {Formik, Form, ErrorMessage, Field} from 'formik';
 import {Link} from 'react-router-dom'
 import s from './Login.module.css';
 import Alert from '../Alert/Alert';
-import Button3 from '../Button3/Button3'
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [timeAlert, setTimeAlert] = useState(false);
 
+  const navigate = useNavigate();
+
+  const handleOnClose = () => {
+    navigate("/")
+  }
+
   return (
     <div className={s.login}>
-      <a href="#modal" className={s.cta}>
-        <Button3 value='Sign In'/>
-      </a>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
@@ -96,9 +99,9 @@ function Login() {
                 
               </div>
 
-              <a href="#" className={s.login__close}>
+              <label onClick={handleOnClose} className={s.login__close}>
                 X
-              </a>
+              </label>
               <div className={s.login__alert}>
                 {timeAlert && (
                   <Alert type="ok" message="Registro creado exitosamente." />
