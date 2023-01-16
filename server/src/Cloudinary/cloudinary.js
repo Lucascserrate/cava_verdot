@@ -1,12 +1,13 @@
-require('dotenv').config();
-const cloudinary = require('cloudinary').v2;
-const { CLOUDINARY_KEY, CLOUDINARY_NAME, CLOUDINARY_SECRET } = require('../../config') 
+//require('dotenv').config();
+const cloudinary = require("cloudinary").v2;
+const { CLOUDINARY_KEY, CLOUDINARY_NAME, CLOUDINARY_SECRET } = process.env;
 // configuracion de cloudinary
+
 cloudinary.config({
-    cloud_name: CLOUDINARY_NAME,
-    api_key: CLOUDINARY_KEY,
-    api_secret: CLOUDINARY_SECRET,
-    secure: true
+  cloud_name: CLOUDINARY_NAME,
+  api_key: CLOUDINARY_KEY,
+  api_secret: CLOUDINARY_SECRET,
+  secure: true,
 });
 
 //funcion para subir imagenes
