@@ -5,22 +5,17 @@ import { Link } from 'react-router-dom'
 import s from './PostProduct.module.css'
 import axios from 'axios';
 
-const initialForm = {
-    name: "",
-    description: "",
-    stock: "",
-    price: "",
-    rating: "5",
-    image: "",
-    country: "",
-    category: "",
-    subCategory:""
-}
 
-export default function PostProductForm ({products, setProducts}) {
+
+export default function PostProductForm () {
  
     function Validate(currentInput){
         let currentErrors = {}
+
+        
+        let RegExInputUsersressionText = /^[a-zA-Z\s]*$/;
+        let RegExInputUsersressionNum = /^[0-9,$]*$/;
+
 
         //Validación nombres
         if (!currentInput.name) {
@@ -32,16 +27,13 @@ export default function PostProductForm ({products, setProducts}) {
           // Validación Description
 
           if (!currentInput.description) {
-            currentErrors.description = "Por favor ingresa una descripción";
+            currentErrors.description = "Description is required";
           }
 
           // Validación Stock
 
-          if (!currentInput.stock) {
-            currentErrors.stock = "Por favor ingresa un número de Stock";
-          } else if (currentInput.stock < 1) {
-            currentErrors.stock = "El número mínimo de Stock es 1";
-          }
+          if (!RegExInputUsersressionNum.test(currentInput.stock)) currentErrors.stock = "Only numbers are allowed";
+          if (!currentInput.stock) currentErrors.stock = "Stock is required";
 
           //Validación Precio
 
@@ -51,23 +43,23 @@ export default function PostProductForm ({products, setProducts}) {
             currentErrors.price = "El precio mínimo es $1";
           }
 
-          //Validación image
+        //   //Validación image
 
-          if (!currentInput.image) {
-            currentErrors.image = "Por favor ingresa una imagen";
-          }
+        //   if (!currentInput.image) {
+        //     currentErrors.image = "Por favor ingresa una imagen";
+        //   }
 
           //Validacion Country
 
-          if (!currentInput.country) {
-            currentErrors.country = "Por favor ingresa un país";
-          }
+        //   if (!currentInput.country) {
+        //     currentErrors.country = "Por favor ingresa un país";
+        //   }
 
           // Validación Categories
 
-          if (!currentInput.category) {
-            currentErrors.category = "Por favor ingresa una categoría";
-          }
+        //   if (currentInput.category.length === 0) {
+        //     currentErrors.category = "Por favor ingresa una categoría";
+        //   }
           
           return currentErrors;
     }
@@ -75,7 +67,6 @@ export default function PostProductForm ({products, setProducts}) {
 
     //Guarda todas las categorias
      const [categories, setCategories] = useState("")
-
     //Guarda todos los Paises
      const [countries, setCountries] = useState("")
 
@@ -83,7 +74,19 @@ export default function PostProductForm ({products, setProducts}) {
     // const [users, setUsers] = useState("")
 
     //Guarda los datos de los inputs
-    const [data, setData] = useState(initialForm)
+    const [data, setData] = useState( {
+        name: "",
+        description: "",
+        stock: "",
+        price: "",
+        rating: "5",
+        image: "",
+        country: "",
+        category: "",
+        subCategory:""
+    })
+
+   
 
     //Captura los errores del axios
     const [error, setError] = useState("")
@@ -93,15 +96,17 @@ export default function PostProductForm ({products, setProducts}) {
 
     //trae todas las Categorias
     const getCategory = async () => {
-        const url = 'http://localhost:3001/categories'
-        const res = await axios.get(url, data);
+        // const url = 'http://localhost:3001/categories'
+        const res = await axios.get(`/categories`, data);
         console.log(categories);
         setCategories(...categories, res.data);
         
     }
 
+console.log(data)
+
     const getCountries = async () => {
-        const url = 'http://localhost:3001/countries'
+        const url = '/countries'
         const res = await axios.get(url, data)
         setCountries(...countries, res.data)
     }
@@ -131,13 +136,26 @@ const handleSubmit = async (ev) => {
     ev.preventDefault();
 
     try{
-        const url = 'http://localhost:3001/products'
-        const res = await axios.post(url, data)
-        setProducts(products.concat(res.data))
-        setData(initialForm)
-        alert('Producto creado con exito!')
-    } catch (err) {
-        setError(error.response)
+        // const url = 'https://cavaverdot-production.up.railway.app/products/'
+        const res = await axios.post(`/products`, data)
+       
+        console.log('estas dandole a submit')
+        alert('Producto creado con éxito')
+        setData( {
+            name: "",
+            description: "",
+            stock: "",
+            price: "",
+            rating: "5",
+            image: "",
+            country: "",
+            category: "",
+            subCategory:""
+        })
+        
+    } catch (error) {
+       if(error){ console.log(data)}
+        // setError(error.response.data.message)
     }
 }
 
@@ -276,7 +294,7 @@ const handleImage = (e) => {
 
                 <div className={s.form__message}>
                 {
-                        currentErrors.stock && (<p className={s.error}>{currentErrors.stock}</p>)
+                        currentErrors.price && (<p className={s.error}>{currentErrors.price}</p>)
                     }
                 </div>
               </div>
@@ -298,27 +316,26 @@ const handleImage = (e) => {
                 <span className={s.form__bar}></span>
               </div>
               <div className={s.form__message}>
-              {
+              {/* {
                         currentErrors.image && (<p className={s.error}>{currentErrors.image}</p>)
-                    }
+                    } */}
               </div>
 
               <div className={s.form__group}>
-              <label htmlFor="category" className={s.form__lbl}>Categoria:</label>
                { <select
                   className={s.form__input}
-                  placeholder=" "
-                  
                   onChange = {handleSelectCategories}
-                >
+                  placeholder= ""
+                  >
                 
                 {categories && (categories.map(item => {
- 
-                   return (<option key={item.id} value={item.category}>{item.category}</option>)
-
+                    
+                    return (<option key={item.id} value={item.category}>{item.category}</option>)
+                    
                 }))}
                 </select>
             }
+            <label htmlFor="category" className={s.form__lbl}>Categoria:</label>
                 <span className={s.form__bar}></span>
 
                 <div className={s.form__message}>
@@ -331,8 +348,35 @@ const handleImage = (e) => {
                 
               </div>
 
-              
+              <div className={s.form__group}>
+               { <select
+                  className={s.form__input}
+                  onChange = {handleSelectCountries}
+                  placeholder= ""
+                  >
+                
+                {countries && (countries.map(item => {
+                    
+                    return (<option key={item.id} value={item.country}>{item.country}</option>)
+                    
+                }))}
+                </select>
+            }
+            <label htmlFor="country" className={s.form__lbl}>Pais:</label>
+                <span className={s.form__bar}></span>
 
+                {/* <div className={s.form__message}>
+                {
+                        currentErrors.category && (<p className={s.error}>{currentErrors.category}</p>)
+                    }
+                </div> */}
+
+
+                
+              </div>
+
+              
+              <div className='imgSide'>{<img src={data.image} alt="imagen" width="250px" height="250px" />}</div>
               <button type='submit' className={s.form__submit} >Publicar</button> 
                 
 
