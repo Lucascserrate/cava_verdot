@@ -33,7 +33,7 @@ const Cart = () => {
                     <div className={s.cartList}>
                         <h2 className={s.title}>Shopping Cart</h2>
                         {
-                            cart?.map(e => <div key={e.id} className={s.cartItem}>
+                            cart.length ? cart.map(e => <div key={e.id} className={s.cartItem}>
                                 <Link to={`/store/${e.id}`}> <img className={s.img} src={e.image} alt={e.name} /></Link>
                                 <div className={s.gridd}>
                                     <div className={s.between}>
@@ -47,6 +47,7 @@ const Cart = () => {
                                 </div>
                             </div>
                             )
+                                : <div className={s.empty}>Shopping Cart is empty</div>
                         }
                         <div>
                             <hr className={s.hr} />
@@ -57,7 +58,7 @@ const Cart = () => {
                                 }, 0) : undefined}</p>
                             </div>
                         </div>
-                        <p></p>
+                        <p className={s.info}>¿Falta un producto? <Link to='/store'> <span className={s.link}> Seguir Comprando</span></Link></p>
                     </div>
                     <div className={s.pay}>
                         <h2 className={s.title}>Payment Methods</h2>
