@@ -60,6 +60,10 @@
     background-color: inherit;
 }
 
+.close:hover {
+    color: red;
+}
+
 .amount {
     color: #191919;
     font-size: 15px;

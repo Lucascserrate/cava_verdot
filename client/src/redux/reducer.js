@@ -8,14 +8,15 @@ import {
   GET_DRINK_BY_NAME,
   POST_PRODUCT,
   GET_COUNTRIES,
+  GET_CART,
 } from "./actions";
 
 const initialState = {
   drinks: [],
   drink: [],
   categories: [],
-  bubbleCart: 0,
   countries: [],
+  bubbleCart: 0,
   cart: []
 };
 
@@ -65,6 +66,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         countries: action.payload,
       }
+    case GET_CART:
+      return {
+        ...state,
+        cart: action.payload
+      }
+
     default:
       return state;
   }

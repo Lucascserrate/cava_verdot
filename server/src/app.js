@@ -3,9 +3,12 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
+
 const passport = require("passport");
-//const session = require("express-session");
 require("./routes/auth/midlewares/passport.js");
+const cors = require("cors");
+
+require("./db.js");
 
 const server = express();
 server.use(
@@ -21,6 +24,7 @@ server.use(
 //server.use(session({ secret: "keyboard cat", cookie: { maxAge: 60000 } }));
 server.use(passport.initialize());
 server.name = "API";
+server.use(cors({ origin: "http://localhost:3000" }));
 server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
@@ -47,4 +51,4 @@ server.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
-module.exports = server;
+module.exports = { server };
