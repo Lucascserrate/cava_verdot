@@ -15,7 +15,7 @@ const Cart = () => {
     let user = window.localStorage.getItem('userId')
     useEffect(() => {
         dispatch(getCart(user))
-    }, [dispatch, user, /* cart */])
+    }, [dispatch, user, cart])
 
 
     const handleDelete = async (id) => {

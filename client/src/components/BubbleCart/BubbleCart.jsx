@@ -8,12 +8,16 @@ const BubbleCart = () => {
     const bubbleCart = useSelector(state => state.bubbleCart)
     return (
         <>
-            <Link to='/cart'>
-                <div className={s.container}>
-                    <img className={s.img} src={img} alt="Shopping Cart" />
-                    <div className={s.amount}>{bubbleCart}</div>
-                </div>
-            </Link>
+            {
+                bubbleCart
+                    ? <Link to='/cart'>
+                        <div className={s.container}>
+                            <img className={s.img} src={img} alt="Shopping Cart" />
+                            <div className={s.amount}>{bubbleCart}</div>
+                        </div>
+                    </Link>
+                    : undefined
+            }
         </>
     )
 }
