@@ -21,8 +21,9 @@ export const getDrinks = () => {
 }
 
 // Action Creators Para modificar la cantidad del carrito
-export const modifyBubbleCart = payload => dispatch => {
-  return dispatch({ type: MODIFY_BUBBLE_CART, payload })
+export const modifyBubbleCart = id => async dispatch => {
+  let json = await axios.get(`/shopingCart/totalAmount?userId=${id}`)
+  return dispatch({ type: MODIFY_BUBBLE_CART, payload: json.data })
 }
 
 // Actions Creators get product id

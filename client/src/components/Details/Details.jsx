@@ -32,8 +32,8 @@ const Details = () => {
 
 
     const handlerAdd = async () => {
-        dispatch(modifyBubbleCart(cartAmount.value))
         let user = window.localStorage.getItem('userId')
+        dispatch(modifyBubbleCart(user))
         if (user) {
             let post = await axios.post('/shopingCart?add=true', {
                 userId: user,
@@ -49,15 +49,13 @@ const Details = () => {
             window.localStorage.setItem('userId', post.data.userId)
         }
         cartAmount.value = 1
-
     }
-
 
 
     return (
         <>
             <NavBar />
-            <BubbleCart />
+            {bubbleCart ? <BubbleCart /> : undefined}
             {
                 Object.keys(detail).length
                     ? <div className={s.container}>

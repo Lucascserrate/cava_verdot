@@ -23,11 +23,6 @@ const Cart = () => {
         return del
     }
 
-    console.log(cart.length ? cart.reduce((acc, e) => {
-        return acc + e.subtotal
-    }, 0) : undefined);
-
-
     return (
         <>
             <NavBar />
