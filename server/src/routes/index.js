@@ -10,6 +10,7 @@ const users = require("./users.routes.js");
 const checkOut = require("./controllers/checkOut.js");
 
 const shopingCart = require("./shopingCart.routes.js");
+const authRouter = require('./auth/index')
 
 router.use("/categories", category);
 router.use("/products", productMiddleware);
@@ -22,4 +23,5 @@ router.use("/users", users);
 
 router.use("/shopingCart", shopingCart);
 
+router.use('/auth', authRouter)
 module.exports = router;
