@@ -85,7 +85,6 @@ function AlertAge() {
               onChange={handleOnChange}
             />
           </div>
-          {/* <input type="submit" value={"Continuar"} onClick={handleOnClick} /> */}
           <Button3 value={"Continuar"} handler={handleOnClick}/>
           <label className={s.alertage__error}>{messageError}</label>
         </form>
