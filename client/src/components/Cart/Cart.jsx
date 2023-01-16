@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import { getCart } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import PasarelaStripe from '../Pasarela/PasarelaStripe';
+
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -59,6 +61,7 @@ const Cart = () => {
                     </div>
                     <div className={s.pay}>
                         <h2 className={s.title}>Payment Methods</h2>
+                        <PasarelaStripe />
                     </div>
                 </div>
 
