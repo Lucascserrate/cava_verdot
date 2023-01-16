@@ -7,24 +7,32 @@ import BubbleCart from "../BubbleCart/BubbleCart";
 import Footer from "../Footer/Footer";
 import Notification from '../Notification/Notification';
 import AlertAge from "../AlertAge/AlertAge";
+import { modifyBubbleCart } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 const Home = () => {
+  const dispatch = useDispatch()
   const [notification, setNotification] = useState(true)
   const [viewAlert, setViewAlert] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     let dia = sessionStorage.getItem("dia");
     let mes = sessionStorage.getItem("mes");
     let anio = sessionStorage.getItem("anio");
+    let user = window.localStorage.getItem('userId')
 
-    if(!dia && !mes && !anio){
-      setTimeout(()=>{
+
+    dispatch(modifyBubbleCart(user))
+
+
+    if (!dia && !mes && !anio) {
+      setTimeout(() => {
         setViewAlert(
-          <AlertAge/>
+          <AlertAge />
         )
       }, 2000)
     }
-  },[]);
+  }, []);
   return (
     <div className={s.container}>
       <div className={s.alertage__component}>
@@ -34,6 +42,7 @@ const Home = () => {
       <div className={s.home__content}>
         <CarouselSlide />
       </div>
+
       <BubbleCart />
       <BubbleWpp />
       {
