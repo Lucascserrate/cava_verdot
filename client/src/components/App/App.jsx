@@ -8,14 +8,17 @@ import Details from '../Details/Details'
 import PostProductForm from '../FormularioPostProduct/PostProductForm'
 import About from '../About/About'
 import Login from '../Login/Login'
+import PasarelaStripe from '../Pasarela/PasarelaStripe'
 import FinalRegister from '../FinalRegister/FinalRegister'
 import Cart from '../Cart/Cart'
+
 
 
 function App() {
   return (
     <div>
       <Routes>
+        <Route path='/pasarela' element={<PasarelaStripe/>}/>
         <Route path='/' element={<Home />} />
         <Route path='/store' element={<Store />} />
         <Route path='/store/:id' element={<Details />} />
