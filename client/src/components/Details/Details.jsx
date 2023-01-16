@@ -25,28 +25,37 @@ const Details = () => {
         setDetail(res?.data[0])
     }
 
+    let user = window.localStorage.getItem('userId')
 
     useEffect(() => {
         getDetail()
-    }, [])
+        dispatch(modifyBubbleCart(user))
+    }, [dispatch])
 
 
     const handlerAdd = async () => {
         let user = window.localStorage.getItem('userId')
-        dispatch(modifyBubbleCart(user))
         if (user) {
             let post = await axios.post('/shopingCart?add=true', {
                 userId: user,
                 drinkId: id,
                 amount: parseInt(cartAmount.value)
             })
-            return post
+            if (Object.keys(post).length) {
+                dispatch(modifyBubbleCart(user))
+            }
+            console.log(post.data);
+            return post.data
         } else {
             let post = await axios.post('/shopingCart?add=true', {
                 drinkId: id,
                 amount: parseInt(cartAmount.value)
             })
             window.localStorage.setItem('userId', post.data.userId)
+            let user = window.localStorage.getItem('userId')
+            if (Object.keys(post).length) {
+                dispatch(modifyBubbleCart(user))
+            }
         }
         cartAmount.value = 1
     }
@@ -55,7 +64,7 @@ const Details = () => {
     return (
         <>
             <NavBar />
-            {bubbleCart ? <BubbleCart /> : undefined}
+            <BubbleCart />
             {
                 Object.keys(detail).length
                     ? <div className={s.container}>
