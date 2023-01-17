@@ -83,6 +83,7 @@ const postUser = async (req, res) => {
       .status(200)
       .send(`The user "${newUser.name}" has been created successfully`); */
   } catch (error) {
+    console.log(error)
     res.status(500).send({ error: error.message });
   }
 };

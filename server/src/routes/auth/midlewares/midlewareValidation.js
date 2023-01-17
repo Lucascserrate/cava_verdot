@@ -5,6 +5,7 @@ const { JWT_SECRET } = process.env;
 
 const midlewareValidation = async (req, res, next) => {
   const barerToken = req.headers.authorization?.split(" ");
+  console.log(barerToken);
   try {
     const token =
       barerToken && barerToken[0] === "Bearer" ? barerToken[1] : null;
