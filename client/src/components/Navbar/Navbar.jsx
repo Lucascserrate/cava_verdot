@@ -9,6 +9,31 @@ import Button3 from "../Button3/Button3";
 import { getDrinks } from "../../redux/actions";
 
 export default function NavBar({ searchbar }) {
+  const getToken = window.localStorage.getItem("token");
+
+  const navigate = useNavigate()
+
+  const cerrarSesion = () => {
+    window.localStorage.removeItem("token");
+    navigate('/login')
+  };
+
+  const [vistaBtnLogin, setVistaBtnLogin] = useState();
+
+  useEffect(() => {
+    setVistaBtnLogin(
+      getToken ? (
+        <Button3 value="Sign Out" handler={cerrarSesion} />
+      ) : (
+        <Link to="/login">
+          <Button3 value="Sign In" />
+        </Link>
+      )
+    );
+  }, [getToken]);
+
+  console.log(getToken);
+
   return (
     <div className={s.bg}>
       <div className={s.container}>
@@ -28,9 +53,7 @@ export default function NavBar({ searchbar }) {
         </div>
         {searchbar && <SearchBar />}
         <div className={s.right}>
-          <Link to="/login">
-            <Button3 value="Sign In" />
-          </Link>
+          {vistaBtnLogin}
         </div>
       </div>
     </div>
