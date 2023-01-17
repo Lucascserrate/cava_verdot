@@ -32,8 +32,6 @@ export default function NavBar({ searchbar }) {
     );
   }, [getToken]);
 
-  console.log(getToken);
-
   return (
     <div className={s.bg}>
       <div className={s.container}>
