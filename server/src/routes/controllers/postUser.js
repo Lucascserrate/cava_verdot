@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { generateHash } = require("../../utils/password.js");
 const { JWT_SECRET } = process.env;
+const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 //const generateHash = require("../../utils/password.js");
 
 const postUser = async (req, res) => {
@@ -59,6 +60,8 @@ const postUser = async (req, res) => {
     if (!allRoles.length) {
       allRoles = await Role.bulkCreate(roles);
     }
+    //Subiendo imagen a Cloudinary
+    const result = await uploadImage(image);
     //encriptando password
     const pws = await generateHash(password);
     //creando nuevo usuario
@@ -69,7 +72,7 @@ const postUser = async (req, res) => {
       email,
       password: pws,
       address,
-      image,
+      image: result.url,
       roleId: 2,
     });
     const token = jwt.sign(
