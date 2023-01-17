@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import s from './Login.module.css';
 import Alert from '../Alert/Alert';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Login() {
   const [timeAlert, setTimeAlert] = useState(false);
@@ -38,10 +39,16 @@ function Login() {
 
           return errores;
         }}
-        onSubmit={(values, { resetForm }) => {
-          resetForm();
-          setTimeAlert(true);
-          setTimeout(() => setTimeAlert(false), 5000);
+        onSubmit={ async (values, { resetForm }) => {
+          try {
+            const res = await axios.post('/auth/login', values)
+            resetForm();
+            setTimeAlert(true);
+            setTimeout(() => setTimeAlert(false), 5000);
+            window.localStorage.setItem("token", res.data);
+          } catch (error) {
+            console.log(error.response.data);
+          }
         }}
       >
         {({ errors }) => (

@@ -10,7 +10,13 @@ import axios from 'axios'
 
 // en caso de trabajar con el back en local, descomentar esta linea y comentar la otra
 // axios.defaults.baseURL = 'http://localhost:3001';
+// axios.defaults.baseURL = 'https://cavaverdot-production.up.railway.app';
+
+const token = window.localStorage.getItem("token")
+
 axios.defaults.baseURL = 'https://cavaverdot-production.up.railway.app';
+axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
+export default axios;
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

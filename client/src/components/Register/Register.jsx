@@ -6,8 +6,23 @@ import axios from "axios"
 
 function Register() {
   const [timeAlert, setTimeAlert] = useState(false);
-
+  const [image, setImage] = useState("")
   let getAge = sessionStorage.getItem("age");
+
+  //Este handler convierte la imagen en base64
+  const handleImage = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    setFileToBase(file);
+  };
+
+  const setFileToBase = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImage(reader.result)
+    };
+  };
 
   return (
     <div className={s.form}>
@@ -72,6 +87,7 @@ function Register() {
         onSubmit={async (values, { resetForm }) => {
           try {
             const res = await axios.post("/users", values);
+            handleImage()
             resetForm();
             setTimeAlert(true);
             setTimeout(() => setTimeAlert(false), 5000);
@@ -179,10 +195,11 @@ function Register() {
                 <div className={s.form__group}>
                   <Field
                     id="image"
-                    type="url"
+                    type="file"
                     placeholder=" "
                     className={s.form__input}
                     name="image"
+                    
                   />
                   <label htmlFor="image" className={s.form__lbl}>
                     Image:
