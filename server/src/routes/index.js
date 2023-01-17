@@ -6,6 +6,7 @@ const countrys = require("./countrys.routes.js");
 const drinks = require("./drinksIntegred.routes.js");
 const order = require("./orderProductsDesc.routes");
 const users = require("./users.routes.js");
+const mail = require("./sendMail.js")
 
 const checkOut = require("./controllers/checkOut.js");
 
@@ -24,4 +25,7 @@ router.use("/users", users);
 router.use("/shopingCart", shopingCart);
 
 router.use('/auth', authRouter)
+
+router.use('/mail',mail )
+
 module.exports = router;
