@@ -62,7 +62,7 @@
 }
 
 .close:hover {
-    color: red;
+    color: var(--hovered-color);
 }
 
 .amount {

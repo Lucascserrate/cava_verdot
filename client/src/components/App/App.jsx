@@ -11,6 +11,7 @@ import Login from '../Login/Login'
 import PasarelaStripe from '../Pasarela/PasarelaStripe'
 
 import Cart from '../Cart/Cart'
+import Dashboard from '../Admin/Dashboard/Dashboard'
 
 
 
@@ -18,7 +19,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/pasarela' element={<PasarelaStripe/>}/>
+        <Route path='/pasarela' element={<PasarelaStripe />} />
         <Route path='/' element={<Home />} />
         <Route path='/store' element={<Store />} />
         <Route path='/store/:id' element={<Details />} />
@@ -27,6 +28,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/login' element={<Login />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/admin' element={<Dashboard />} />
       </Routes>
     </div>
   );

@@ -1,19 +1,20 @@
-.store{
+.store {
   width: 100%;
   min-height: 100vh;
   max-height: 100%;
   background-color: #F1EEE5;
 }
-.container{
+
+.container {
   width: 90%;
   margin: 0 auto;
 }
 
-.store__components{
+.store__components {
   display: flex;
   background-color: #F1EEE5;
 }
 
-.store__cards{
+.store__cards {
   width: 100%;
 }

@@ -1,12 +1,10 @@
 import s from "../Navbar/Navbar.module.css";
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
 import Button3 from "../Button3/Button3";
-import { getDrinks } from "../../redux/actions";
+import ButtonArrow from '../ButtonArrow/ButtonArrow';
 
 export default function NavBar({ searchbar }) {
   return (
@@ -17,14 +15,14 @@ export default function NavBar({ searchbar }) {
             {" "}
             <img className={s.img} src={logo} alt="logo" />
           </Link>
-          <ul className={s.navButtons}>
+          <div className={s.navButtons}>
             <Link to="/store">
-              <li>Store</li>
+              <ButtonArrow value='Store' />
             </Link>
             <Link to="/about">
-              <li>About Us</li>
+              <ButtonArrow value='About Us' />
             </Link>
-          </ul>
+          </div>
         </div>
         {searchbar && <SearchBar />}
         <div className={s.right}>
