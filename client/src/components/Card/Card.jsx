@@ -5,7 +5,9 @@ function Card({ id, img, name, price }) {
   return (
     <div className={s.card}>
       <img src={img} alt={`Image ${name}`} className={s.card__picture} />
-      <h3 className={s.card__name}>{name}</h3>
+      <div className={s.card__item}>
+        <h3 className={s.card__name}>{name}</h3>
+      </div>
     </div>
   );
 }

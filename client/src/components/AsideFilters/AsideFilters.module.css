@@ -2,6 +2,10 @@
   margin: 20px;
   min-width: 200px;
   max-width: 400px;
+  font-size: 14px;
+  line-height: 2;
+  letter-spacing: 1px;
+  color: #363636;
 }
 
 li {
@@ -60,7 +64,7 @@ li {
 }
 
 /* estilos del acordeon */
-.aside__section .radioBox {
+/* .aside__section .radioBox {
   overflow: hidden;
   max-height: 0;
   text-align: justify;
@@ -80,5 +84,5 @@ li {
     max-height: 100%;
     padding: 10px;
     transition: .2s ease-in-out;
-}
+} */
 

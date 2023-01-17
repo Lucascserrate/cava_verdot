@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './ButtonPrimary.module.css'
 
-const ButtonPrimary = ({ value, handlerAdd }) => {
+const ButtonPrimary = ({ value, handler }) => {
     return (
         <>
-            <button onClick={() => handlerAdd()} className={s.btn} >
+            <button onClick={handler} className={s.btn} >
                 {value}
             </button>
         </>

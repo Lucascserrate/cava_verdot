@@ -9,6 +9,7 @@ export const GET_SORT = 'GET_SORT';
 export const GET_DRINK_BY_NAME = 'GET_DRINK_BY_NAME';
 export const POST_PRODUCT = 'POST_PRODUCT'
 export const GET_COUNTRIES = 'GET_COUNTRIES';
+export const GET_CART = 'GET_CART';
 
 
 // Actions Creators get all products
@@ -20,8 +21,9 @@ export const getDrinks = () => {
 }
 
 // Action Creators Para modificar la cantidad del carrito
-export const modifyBubbleCart = payload => dispatch => {
-  return dispatch({ type: MODIFY_BUBBLE_CART, payload })
+export const modifyBubbleCart = id => async dispatch => {
+  let json = await axios.get(`/shopingCart/totalAmount?userId=${id}`)
+  return dispatch({ type: MODIFY_BUBBLE_CART, payload: json.data })
 }
 
 // Actions Creators get product id
@@ -69,7 +71,7 @@ export const getDrinkName = (name) => {
 
 export const PostProduct = (payload) => {
   return async function (dipatch) {
-    const dataPost = await axios.post('/', payload)
+    const dataPost = await axios.post('/products', payload)
 
     return dataPost
   }
@@ -81,4 +83,9 @@ export const getCountries = () => {
     const dataApi = await axios.get('/countries');
     dispatch({ type: GET_COUNTRIES, payload: dataApi.data })
   }
+}
+
+export const getCart = id => async dispatch => {
+  let json = await axios.get(`/shopingCart?userId=${id}`)
+  return dispatch({ type: GET_CART, payload: json.data })
 }

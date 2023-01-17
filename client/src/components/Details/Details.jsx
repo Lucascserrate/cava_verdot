@@ -24,15 +24,42 @@ const Details = () => {
         let res = await axios.get(`/products/${id}`)
         setDetail(res?.data[0])
     }
+
+    let user = window.localStorage.getItem('userId')
+
     useEffect(() => {
         getDetail()
-    }, [])
+        dispatch(modifyBubbleCart(user))
+    }, [dispatch])
 
 
-    const handlerAdd = () => {
-        dispatch(modifyBubbleCart(cartAmount.value))
+    const handlerAdd = async () => {
+        let user = window.localStorage.getItem('userId')
+        if (user) {
+            let post = await axios.post('/shopingCart?add=true', {
+                userId: user,
+                drinkId: id,
+                amount: parseInt(cartAmount.value)
+            })
+            if (Object.keys(post).length) {
+                dispatch(modifyBubbleCart(user))
+            }
+            console.log(post.data);
+            return post.data
+        } else {
+            let post = await axios.post('/shopingCart?add=true', {
+                drinkId: id,
+                amount: parseInt(cartAmount.value)
+            })
+            window.localStorage.setItem('userId', post.data.userId)
+            let user = window.localStorage.getItem('userId')
+            if (Object.keys(post).length) {
+                dispatch(modifyBubbleCart(user))
+            }
+        }
         cartAmount.value = 1
     }
+
 
     return (
         <>
@@ -66,10 +93,10 @@ const Details = () => {
                                 {
                                     bubbleCart
                                         ? <div className={s.buttons}>
-                                            <ButtonPrimary handlerAdd={handlerAdd} value='Add more' />
+                                            <ButtonPrimary handler={() => handlerAdd()} value='Add more' />
                                             <Link className={s.buttons} to='/cart'> <Button3 value='Pay Now' /></Link>
                                         </div>
-                                        : <div className={s.buttons}> <Button3 handlerAdd={handlerAdd} value='Add' /> </div>
+                                        : <div className={s.buttons}> <Button3 handler={() => handlerAdd()} value='Add' /> </div>
                                 }
 
                                 <p className={s.country}><span className={s.bold}>Country:</span> {detail.country?.country}</p>
