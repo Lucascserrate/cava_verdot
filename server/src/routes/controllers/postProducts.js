@@ -25,9 +25,9 @@ const postProduct = async (req, res) => {
     !image ? (errors.image = "image is required") : null;
     !country ? (errors.country = "country is required") : null;
     !rating ? (errors.rating = "rating  is required") : null;
-
+    let validateCategory;
     if (category) {
-      const validateCategory = await Category.findOne({
+      validateCategory = await Category.findOne({
         where: {
           category: category,
         },
@@ -36,14 +36,14 @@ const postProduct = async (req, res) => {
         ? (errors.categoryExist = `category '${category}' does not exist`)
         : null;
     }
-
+    let validateCountry;
     if (country) {
-      const validateCountry = await Country.findOne({
+      validateCountry = await Country.findOne({
         where: {
           country: country,
         },
       });
-      validateCountry
+      !Object.keys(validateCountry).length
         ? (errors.countryExist = `country '${country}' does not exist`)
         : null;
     }
@@ -77,6 +77,7 @@ const postProduct = async (req, res) => {
     //res.status(200).send(`Success '${newProduct.name}' has been created`);
     res.status(200).send(`Success has been created`);
   } catch (error) {
+    console.log(error);
     res.status(500).send(console.log(error), { error: error.message });
   }
 };
