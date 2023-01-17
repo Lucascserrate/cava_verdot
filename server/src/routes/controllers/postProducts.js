@@ -77,6 +77,7 @@ const postProduct = async (req, res) => {
     //res.status(200).send(`Success '${newProduct.name}' has been created`);
     res.status(200).send(`Success has been created`);
   } catch (error) {
+    console.log(error);
     res.status(500).send(console.log(error), { error: error.message });
   }
 };
