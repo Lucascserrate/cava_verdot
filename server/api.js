@@ -3268,10 +3268,6 @@ const roles = [
     id: 3,
     role: "admin",
   },
-  {
-    id: 4,
-    role: "superAdmin",
-  },
 ];
 
 exports.drinks = drinks;

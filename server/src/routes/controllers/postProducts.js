@@ -1,5 +1,5 @@
 const { Drink, Category, Country, SubCategory } = require("../../db");
-const {uploadImage} = require("../../Cloudinary/cloudinary.js");
+const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 
 const postProduct = async (req, res) => {
   const {
@@ -15,8 +15,7 @@ const postProduct = async (req, res) => {
   } = req.body;
   const role = req.role;
   try {
-
-    if (role !== 2) return res.status(400).send({ message: "Not authorized" });
+    if (role !== 3) return res.status(400).send({ message: "Not authorized" });
     let errors = {};
     !category ? (errors.category = `category is required`) : null;
     !name ? (errors.name = `name is required`) : null;
@@ -35,10 +34,9 @@ const postProduct = async (req, res) => {
       });
       !validateCategory
         ? (errors.categoryExist = `category '${category}' does not exist`)
-        : null;  
-
+        : null;
     }
-    
+
     if (country) {
       const validateCountry = await Country.findOne({
         where: {
@@ -49,7 +47,6 @@ const postProduct = async (req, res) => {
         ? (errors.countryExist = `country '${country}' does not exist`)
         : null;
     }
-    
 
     if (Object.keys(errors).length) return res.status(400).send(errors);
 
@@ -63,10 +60,8 @@ const postProduct = async (req, res) => {
         .status(404)
         .send(`subCategory '${subCategory}' does not exist`); */
 
-     //si llega la img en base64 guardala en cloudinary
+    //si llega la img en base64 guardala en cloudinary
     const result = await uploadImage(image);
-
-        
 
     const newProduct = await Drink.create({
       name,
