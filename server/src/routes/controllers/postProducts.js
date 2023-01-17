@@ -25,9 +25,9 @@ const postProduct = async (req, res) => {
     !image ? (errors.image = "image is required") : null;
     !country ? (errors.country = "country is required") : null;
     !rating ? (errors.rating = "rating  is required") : null;
-
+    let validateCategory;
     if (category) {
-      const validateCategory = await Category.findOne({
+      validateCategory = await Category.findOne({
         where: {
           category: category,
         },
@@ -36,14 +36,14 @@ const postProduct = async (req, res) => {
         ? (errors.categoryExist = `category '${category}' does not exist`)
         : null;
     }
-
+    let validateCountry;
     if (country) {
-      const validateCountry = await Country.findOne({
+      validateCountry = await Country.findOne({
         where: {
           country: country,
         },
       });
-      Objet.keys(validateCountry).length
+      !Object.keys(validateCountry).length
         ? (errors.countryExist = `country '${country}' does not exist`)
         : null;
     }
