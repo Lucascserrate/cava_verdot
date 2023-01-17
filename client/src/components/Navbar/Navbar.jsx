@@ -1,6 +1,6 @@
 import s from "../Navbar/Navbar.module.css";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
 import Button3 from "../Button3/Button3";
