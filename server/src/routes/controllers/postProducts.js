@@ -43,7 +43,7 @@ const postProduct = async (req, res) => {
           country: country,
         },
       });
-      validateCountry
+      Objet.keys(validateCountry).length
         ? (errors.countryExist = `country '${country}' does not exist`)
         : null;
     }
