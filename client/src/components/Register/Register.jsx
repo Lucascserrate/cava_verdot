@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "./Register.module.css";
 import Alert from "../Alert/Alert";
 import axios from "axios";
@@ -18,6 +17,24 @@ function Register() {
   });
 
   const [timeAlert, setTimeAlert] = useState(false);
+
+  //Este handler convierte la imagen en base64
+  const handleImage = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    setFileToBase(file);
+  };
+
+  const setFileToBase = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setDatosInputs({
+        ...datosInputs,
+        image: reader.result
+      })
+    };
+  };
 
   const handleOnChangeInputs = (e) => {
     setDatosInputs({ ...datosInputs, [e.target.name]: e.target.value });
@@ -116,14 +133,13 @@ function Register() {
 
           <div>
             <div className={s.form__group}>
-              <input
-                id="image"
-                type="url"
+            <input
+                type="file"
                 placeholder=" "
-                className={s.form__input}
                 name="image"
-                value={datosInputs.image}
-                onChange={handleOnChangeInputs}
+                onChange={handleImage}
+                required
+                className={s.form__input}
               />
               <label htmlFor="image" className={s.form__lbl}>
                 Image:

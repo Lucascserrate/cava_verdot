@@ -52,7 +52,14 @@ function Cards() {
   // console.log(datos);
 
   return (
+    
+    
     <div className={s.cards}>
+      <div className={s.cards__paginado}>
+        <button onClick={prev} className={s.cards__btn} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>
+        <label className={s.cards__currentpage}>Page: {currentPage + 1}</label>
+        <button onClick={next} className={s.cards__btn} ><img src={arrowRight} alt="icon" className={s.cards__arrow} /></button>
+      </div>
       <div className={s.cards__content}>
         {datos.length
           ? datos.map((e) => (
