@@ -9,11 +9,11 @@ function Register() {
   return (
     <div className={s.form}>
       <Formik
-        initialValues={{ 
+        initialValues={{
           email: "",
-         password: "",
+          password: "",
 
-         }}
+        }}
         validate={(values) => {
           let errores = {};
 
@@ -35,7 +35,7 @@ function Register() {
           return errores;
         }}
         onSubmit={(values, { resetForm }) => {
-          
+
           resetForm();
           setTimeAlert(true);
           setTimeout(() => setTimeAlert(false), 5000);
@@ -90,7 +90,12 @@ function Register() {
                   )}
                 />
               </div>
-
+            
+              <input
+                type="submit"
+                className={s.form__submit__google}
+                value="Register with Google"
+              />
               <input
                 type="submit"
                 className={s.form__submit}
@@ -98,7 +103,7 @@ function Register() {
               />
             </div>
 
-            <div className={s.form__alert}>{timeAlert && (<Alert type="ok" message="Registro creado exitosamente."/>)}</div>
+            <div className={s.form__alert}>{timeAlert && (<Alert type="ok" message="Registro creado exitosamente." />)}</div>
           </Form>
         )}
       </Formik>

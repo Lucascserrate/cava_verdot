@@ -11,7 +11,7 @@ import Login from '../Login/Login'
 import PasarelaStripe from '../Pasarela/PasarelaStripe'
 import FinalRegister from '../FinalRegister/FinalRegister'
 import Cart from '../Cart/Cart'
-import Registro from '../GoogleRegister/registro'
+import Registro from '../RegistroConTerceros/registro'
 
 
 function App() {
