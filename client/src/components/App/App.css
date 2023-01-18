@@ -1,0 +1,21 @@
+/* COLORS */
+:root {
+    --colorPrimary: #592D4A;
+    --colorWhite: #e8e8e8;
+    --colorBone: #F1EEE5;
+    --color2: #464A8C;
+    --colorDark: #030f22;
+
+    --borderRadiusButtons: 3px;
+}
+
+/* body::-webkit-scrollbar {
+    opacity: 0;
+    width: 10px;
+} */
+
+/* 
+body::-webkit-scrollbar-thumb {
+    background-color: #030f22;
+    border-radius: 3px;
+} */
