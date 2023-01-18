@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Store.module.css";
 import AsideFilters from "../AsideFilters/AsideFilters";
 import Cards from "../Cards/Cards";
@@ -13,6 +13,10 @@ function Store() {
   const dispatch = useDispatch()
   let user = window.localStorage.getItem('userId')
 
+  const [category, setCategory] = useState("");
+  const [country, setCountry] = useState("");
+  const [price, setPrice] = useState("");
+
   useEffect(() => {
     dispatch(modifyBubbleCart(user))
   }, [dispatch])
@@ -21,8 +25,8 @@ function Store() {
     <div className={s.store}>
       <NavBar searchbar="true" />
       <div className={`${s.container} ${s.store__components}`}>
-        <AsideFilters />
-        <Cards />
+        <AsideFilters setCategory={setCategory} setCountry={setCountry} setPrice={setPrice} />
+        <Cards category={category} country={country} price={price} />
       </div>
       <Footer />
       <BubbleCart />
