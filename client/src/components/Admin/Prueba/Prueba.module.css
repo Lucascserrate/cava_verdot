@@ -9,28 +9,10 @@
 
     z-index: 10;
     position: relative;
-
-}
-
-.title {
-    margin: 20px 0 0 20px;
 }
 
 .stockContainer {
-    margin: 0 0 0 180px;
-    overflow-y: scroll;
-    height: 380px;
-}
-
-.stockTitles {
-    margin: 0 0 5px 180px;
-    height: 30px;
-    width: 64%;
-    cursor: pointer;
-    padding: 0 10px;
-
-    display: grid;
-    grid-template-columns: 1fr 6fr 2fr 1fr;
+    margin: 20px 0 0 180px;
 }
 
 .stockItems {
@@ -41,7 +23,7 @@
     padding: 0 10px;
 
     display: grid;
-    grid-template-columns: 1fr 6fr 2fr 1fr;
+    grid-template-columns: 1fr 5fr 4fr 1fr;
 }
 
 .stockItems:hover {
@@ -51,15 +33,4 @@
 .bold {
     align-self: center;
     font-weight: bold;
-}
-
-.text {
-    align-self: center;
-    font-size: 13px;
-}
-
-.buttons {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
 }

@@ -51,7 +51,7 @@ const Details = () => {
                 drinkId: id,
                 amount: parseInt(cartAmount?.value)
             })
-            window.localStorage.setItem('userId', post.data.userId)
+            window.localStorage.setItem('userId', post?.data.userId)
             let user = window.localStorage.getItem('userId')
             if (Object.keys(post).length) {
                 dispatch(modifyBubbleCart(user))

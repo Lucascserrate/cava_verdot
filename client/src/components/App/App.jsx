@@ -10,7 +10,7 @@ import About from '../About/About'
 import Login from '../Login/Login'
 import PasarelaStripe from '../Pasarela/PasarelaStripe'
 import Cart from '../Cart/Cart'
-import Registro from '../GoogleRegister/registro'
+import Registro from '../RegistroConTerceros/registro'
 import Dashboard from '../Admin/Dashboard/Dashboard'
 
 
@@ -20,8 +20,8 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/test' element={<Registro/>}></Route>
-        <Route path='/pasarela' element={<PasarelaStripe/>}/>
+        <Route path='/test' element={<Registro />}></Route>
+        <Route path='/pasarela' element={<PasarelaStripe />} />
         <Route path='/' element={<Home />} />
         <Route path='/store' element={<Store />} />
         <Route path='/store/:id' element={<Details />} />
