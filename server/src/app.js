@@ -24,7 +24,7 @@ server.use(
 //server.use(session({ secret: "keyboard cat", cookie: { maxAge: 60000 } }));
 server.use(passport.initialize());
 server.name = "API";
-server.use(cors({ origin: "http://localhost:3000" }));
+server.use(cors({ origin: "*" }));
 server.use(express.json());
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));

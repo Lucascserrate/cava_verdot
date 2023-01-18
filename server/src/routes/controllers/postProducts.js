@@ -1,5 +1,5 @@
 const { Drink, Category, Country, SubCategory } = require("../../db");
-const {uploadImage} = require("../../Cloudinary/cloudinary.js");
+const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 
 const postProduct = async (req, res) => {
   const {
@@ -15,7 +15,6 @@ const postProduct = async (req, res) => {
   } = req.body;
   const role = req.role;
   try {
-
     if (role !== 3) return res.status(400).send({ message: "Not authorized" });
     let errors = {};
     !category ? (errors.category = `category is required`) : null;
@@ -26,30 +25,28 @@ const postProduct = async (req, res) => {
     !image ? (errors.image = "image is required") : null;
     !country ? (errors.country = "country is required") : null;
     !rating ? (errors.rating = "rating  is required") : null;
-
+    let validateCategory;
     if (category) {
-      const validateCategory = await Category.findOne({
+      validateCategory = await Category.findOne({
         where: {
           category: category,
         },
       });
       !validateCategory
         ? (errors.categoryExist = `category '${category}' does not exist`)
-        : null;  
-
+        : null;
     }
-    
+    let validateCountry;
     if (country) {
-      const validateCountry = await Country.findOne({
+      validateCountry = await Country.findOne({
         where: {
           country: country,
         },
       });
-      validateCountry
+      !Object.keys(validateCountry).length
         ? (errors.countryExist = `country '${country}' does not exist`)
         : null;
     }
-    
 
     if (Object.keys(errors).length) return res.status(400).send(errors);
 
@@ -63,10 +60,8 @@ const postProduct = async (req, res) => {
         .status(404)
         .send(`subCategory '${subCategory}' does not exist`); */
 
-     //si llega la img en base64 guardala en cloudinary
+    //si llega la img en base64 guardala en cloudinary
     const result = await uploadImage(image);
-
-        
 
     const newProduct = await Drink.create({
       name,
@@ -82,6 +77,7 @@ const postProduct = async (req, res) => {
     //res.status(200).send(`Success '${newProduct.name}' has been created`);
     res.status(200).send(`Success has been created`);
   } catch (error) {
+    console.log(error);
     res.status(500).send(console.log(error), { error: error.message });
   }
 };
