@@ -2,21 +2,25 @@ import React, { useState } from "react";
 import s from "./Register.module.css";
 import Alert from "../Alert/Alert";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
+
   let getAge = sessionStorage.getItem("age");
+
+  const [viewAlert, setViewAlert] = useState();
 
   const [datosInputs, setDatosInputs] = useState({
     email: "",
     password: "",
     name: "",
     surname: "",
-    age: sessionStorage.getItem("age"),
+    age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
     address: "",
     image: "",
   });
 
-  const [timeAlert, setTimeAlert] = useState(false);
 
   //Este handler convierte la imagen en base64
   const handleImage = (e) => {
@@ -31,8 +35,8 @@ function Register() {
     reader.onloadend = () => {
       setDatosInputs({
         ...datosInputs,
-        image: reader.result
-      })
+        image: reader.result,
+      });
     };
   };
 
@@ -40,17 +44,32 @@ function Register() {
     setDatosInputs({ ...datosInputs, [e.target.name]: e.target.value });
   };
 
-  console.log(datosInputs);
+  const onSubmit = async (e) => {
+    const {name, surname, password, image, email, address } = datosInputs
+    e.preventDefault();
 
-  const onSubmit = async () => {
-    try {
+    if (!name || !surname || !password || !image || !email || !address) {
+      setViewAlert(<Alert type="error" message="Campos vacios" />);
+    } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
+      setViewAlert(<Alert type="error" message="El correo solo puede tener letras, numeros, puntos y guion bajo." />);
+    } else{
       const res = await axios.post("/users", datosInputs);
-      setTimeAlert(true);
-      setTimeout(() => setTimeAlert(false), 5000);
-      window.localStorage.setItem("token", res);
-    } catch (error) {
-      console.log(error);
+      setViewAlert(<Alert type="ok" message="Registro creado." />);
+      window.localStorage.setItem("token", res.data);
+      setDatosInputs({
+        email: "",
+        password: "",
+        name: "",
+        surname: "",
+        age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
+        address: "",
+        image: "",
+      });
+      setTimeout(()=>{
+        navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
+      },2000)
     }
+
   };
 
   return (
@@ -133,7 +152,7 @@ function Register() {
 
           <div>
             <div className={s.form__group}>
-            <input
+              <input
                 type="file"
                 placeholder=" "
                 name="image"
@@ -184,14 +203,15 @@ function Register() {
             </div>
           </div>
 
-          <input type="submit" className={s.form__submit} value="Register" onClick={onSubmit} />
+          <input
+            type="submit"
+            className={s.form__submit}
+            value="Register"
+            onClick={onSubmit}
+          />
         </div>
 
-        <div className={s.form__alert}>
-          {timeAlert && (
-            <Alert type="ok" message="Registro creado exitosamente." />
-          )}
-        </div>
+        <div className={s.form__alert}>{viewAlert}</div>
       </form>
     </div>
   );
