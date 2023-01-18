@@ -5,6 +5,7 @@ import s from './Login.module.css';
 import Alert from '../Alert/Alert';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {parseJwt} from '../../functions/parseTokenJwt'
 
 function Login() {
   const [timeAlert, setTimeAlert] = useState(false);
@@ -42,6 +43,7 @@ function Login() {
         onSubmit={ async (values, { resetForm }) => {
           try {
             const res = await axios.post('/auth/login', values)
+            parseJwt(res.data);
             resetForm();
             setTimeAlert(true);
             setTimeout(() => setTimeAlert(false), 5000);
