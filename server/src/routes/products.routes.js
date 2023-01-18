@@ -21,6 +21,4 @@ router.get("/?rating", Rating);
 router.get("/?price", Rating);
 
 
-
-
 module.exports = router;
