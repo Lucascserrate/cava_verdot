@@ -1,0 +1,10 @@
+.container {
+    background-color: #fff;
+    height: 90vh;
+    width: 220px;
+    margin: 80px 0 0 0;
+    border-radius: 0 15px 15px 0;
+    box-shadow: var(--boxShadow);
+    border: var(--border);
+
+}

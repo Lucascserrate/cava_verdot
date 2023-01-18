@@ -20,14 +20,22 @@
   color: #000;
 }
 
+
 .cards__paginado {
   width: 98%;
   height: 40px;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
   margin: 0 0 20px 0;
+  padding: 0 20px;
+}
+
+.arrows {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
 }
 
 .btnLeft {
