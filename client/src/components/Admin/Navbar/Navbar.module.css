@@ -1,0 +1,27 @@
+.bg {
+    background-color: var(--colorDark);
+    height: 350px;
+    width: 100%;
+    border-radius: 0 0 100px 280px;
+    z-index: -1;
+
+    position: absolute;
+    top: 0;
+}
+
+
+.container {
+    height: 70px;
+    width: 95%;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.img {
+    height: 65px;
+    position: absolute;
+    top: 10px;
+}
