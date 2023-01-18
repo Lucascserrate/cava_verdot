@@ -16,7 +16,7 @@ export default function CarouselSlide() {
   }, [dispatch]);
 
 
-useEffect(() => {
+  useEffect(() => {
     if (state) {
       setCarousel([...state].splice(0, 15));
     }
@@ -43,24 +43,26 @@ useEffect(() => {
     }
   };
 
-const product = carousel.map((e) => (
- 
+  const product = carousel.map((e) => (
+
     <div key={e.id} className={`${s.card__content} card`}>
-      <img src={e.image} alt='product_image' className={`${s.card__img} product--img`}/>
+      <img src={e.image} alt='product_image' className={`${s.card__img} product--img`} />
       <div className={s.card__items}>
         <h2 className={s.name}>{e.name}</h2>
         <p className={s.price}>$ {e.price}</p>
       </div>
     </div>
-  
-))
+
+  ))
 
   return (
     <div className={`${carousel} Slide`}>
       <h1 className={s.carousel__title}>Algunos de nuestros productos</h1>
-      <Carousel showDots={true} responsive={responsive} className={s.carousel__cards} removeArrowOnDeviceType={["tablet", "mobile"]}>
-        {product}
-      </Carousel>
+      <div className={s.center}>
+        <Carousel showDots={true} responsive={responsive} className={s.carousel__cards} removeArrowOnDeviceType={["tablet", "mobile"]}>
+          {product}
+        </Carousel>
+      </div>
     </div>
   )
 }

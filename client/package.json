@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.2",
     "cloudinary": "^1.33.0",
+    "crypto-js": "^4.1.1",
     "firebase": "^9.15.0",
     "formik": "^2.2.9",
     "nodemon": "^2.0.20",

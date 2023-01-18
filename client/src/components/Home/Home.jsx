@@ -8,13 +8,13 @@ import Footer from "../Footer/Footer";
 import Notification from '../Notification/Notification';
 import AlertAge from "../AlertAge/AlertAge";
 import { modifyBubbleCart } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Home = () => {
   const dispatch = useDispatch()
   const [notification, setNotification] = useState(true)
   const [viewAlert, setViewAlert] = useState();
-
+  const bubbleCart = useSelector(state=>state.bubbleCart);
   useEffect(() => {
     let dia = sessionStorage.getItem("dia");
     let mes = sessionStorage.getItem("mes");
@@ -22,7 +22,7 @@ const Home = () => {
     let user = window.localStorage.getItem('userId')
 
 
-    dispatch(modifyBubbleCart(user))
+    if (bubbleCart) dispatch(modifyBubbleCart(user))
 
 
     if (!dia && !mes && !anio) {
@@ -38,7 +38,7 @@ const Home = () => {
       <div className={s.alertage__component}>
         {viewAlert}
       </div>
-      <Navbar searchbar="true" />
+      <Navbar />
       <div className={s.home__content}>
         <CarouselSlide />
       </div>
