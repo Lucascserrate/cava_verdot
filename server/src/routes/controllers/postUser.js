@@ -1,17 +1,18 @@
 const { User, Role } = require("../../db");
 const { roles } = require("../../../api.js");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { generateHash } = require("../../utils/password.js");
 const { JWT_SECRET } = process.env;
 const { uploadImage } = require("../../Cloudinary/cloudinary.js");
-//const generateHash = require("../../utils/password.js");
+const { desEncriptar } = require("../../utils/password.js");
 
 const postUser = async (req, res) => {
   const { name, surname, age, email, password, address, image } = req.body;
   try {
-    //validando datos recibidos
     let errors = {};
+    //Subiendo imagen a Cloudinary
+    const result = await uploadImage(image);
+    //validando datos recibidos
     !name ? (errors.name = "name is required") : null;
     !/^[a-záéíóúäëïöü]*$/i.test(name)
       ? (errors.nameAlpha =
@@ -46,9 +47,9 @@ const postUser = async (req, res) => {
       : null;
     !password ? (errors.password = "password is requiered") : null;
     !address ? (errors.address = "address is requiered") : null;
-    image
+    result.url
       ? !/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/.test(
-          image
+          result.url
         )
         ? (errors.image = "URL invalid")
         : null
@@ -60,10 +61,9 @@ const postUser = async (req, res) => {
     if (!allRoles.length) {
       allRoles = await Role.bulkCreate(roles);
     }
-    //Subiendo imagen a Cloudinary
-    const result = await uploadImage(image);
     //encriptando password
-    const pws = await generateHash(password);
+    console.log(desEncriptar(password));
+    const pws = await generateHash(desEncriptar(password));
     //creando nuevo usuario
     const newUser = await User.create({
       name,
@@ -82,10 +82,8 @@ const postUser = async (req, res) => {
     );
 
     return res.status(200).send(token);
-    /* return res
-      .status(200)
-      .send(`The user "${newUser.name}" has been created successfully`); */
   } catch (error) {
+    console.log(error);
     res.status(500).send({ error: error.message });
   }
 };

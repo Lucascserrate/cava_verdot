@@ -1,4 +1,6 @@
 const bcrypt = require("bcrypt");
+const criptoJS = require("crypto-js");
+const { PASSWORD_SECRET } = process.env;
 
 async function generateHash(password) {
   const hash = await bcrypt.hash(password, 12);
@@ -10,4 +12,10 @@ async function compareHash(password, passwordHashed) {
   return validate;
 }
 
-module.exports = { generateHash, compareHash };
+const desEncriptar = (password) => {
+  let bytes = criptoJS.AES.decrypt(password, PASSWORD_SECRET);
+  let originalText = bytes.toString(criptoJS.enc.Utf8);
+  return originalText;
+};
+
+module.exports = { generateHash, compareHash, desEncriptar };
