@@ -1,5 +1,5 @@
 .container {
-    background-color: #e8e8e8;
+    background-color: var(--colorWhite);
     border-radius: 3px;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .btn {
-    margin: 8px;
+    margin: 10px 0 10px 10px;
     padding: 6px 12px;
     border: none;
     border-radius: 3px;

@@ -23,5 +23,5 @@ const Notification = ({ setNotification }) => {
         </div>
     )
 }
-
+// dispara la accion al precionar el boton,  que el mail que le llegue(nodemailer) le ofresca promoción y link a register 
 export default Notification

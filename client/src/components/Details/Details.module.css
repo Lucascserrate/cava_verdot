@@ -20,7 +20,7 @@
 
 .name {
     font-size: 26px;
-    color: #191919;
+    color: var(--fontColor);
 }
 
 .tags {
@@ -29,7 +29,7 @@
     padding: 6px 10px;
     border-radius: 3px;
 
-    background-color: var(--colorPrimary);
+    background-color: var(--colorWine);
     color: #fff;
     font-weight: bold;
     font-size: 14px;
@@ -40,12 +40,12 @@
 .price {
     margin: 10px 0;
     font-size: 26px;
-    color: #191919;
+    color: var(--fontColor);
     line-height: 2;
 }
 
 .bold {
-    color: #191919;
+    color: var(--fontColor);
     font-weight: bold;
     font-size: 15px;
 }
@@ -62,7 +62,7 @@
 .inputAmount {
     display: inline-block;
     border-radius: 3px;
-    color: #191919;
+    color: var(--fontColor);
     padding: 5px 10px;
     margin: 0 10px;
     max-width: 60px;

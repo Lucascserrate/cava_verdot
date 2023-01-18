@@ -35,7 +35,7 @@
     right: -4px;
     top: -2px;
 
-    background-color: #051937;
+    background-color: var(--colorWine);
     border-radius: 40px;
     height: 25px;
     width: 25px;

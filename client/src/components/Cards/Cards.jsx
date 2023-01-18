@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import s from "./Cards.module.css";
-import { getDrinks } from "../../redux/actions";
+import { getDrinks, getProductFilter } from "../../redux/actions";
 import arrowLeft from '../../assets/bxs-left-arrow.svg'
 import arrowRight from '../../assets/bxs-right-arrow.svg'
 import Loader from '../Loader/Loader';
+import Button3 from '../Button3/Button3';
 
-function Cards() {
+function Cards({ category, price, country }) {
   // estados del paginado
   const [datos, setDatos] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -21,12 +22,12 @@ function Cards() {
   }, [dispatch]);
 
   // creamos el paginado
-  let itemsPage = 15;
+  let itemsPage = 12;
 
   // cuando se carguen los datos del state, llenamos datos
   useEffect(() => {
     if (state) {
-      setDatos([...state].splice(0, 15));
+      setDatos([...state].splice(0, 12));
     }
   }, [state]);
 
@@ -49,16 +50,26 @@ function Cards() {
     setCurrentPage(prevPage);
   };
 
+  // despachamos la accion al dar clic al btn aplicar filtros
+  const handleApplyFilter = () => {
+    dispatch(getProductFilter(category, price, country));
+    // si surge error, descomentar este codigo
+    // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);
+  };
+
   // console.log(datos);
 
   return (
-    
-    
+
+
     <div className={s.cards}>
       <div className={s.cards__paginado}>
-        <button onClick={prev} className={s.cards__btn} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>
-        <label className={s.cards__currentpage}>Page: {currentPage + 1}</label>
-        <button onClick={next} className={s.cards__btn} ><img src={arrowRight} alt="icon" className={s.cards__arrow} /></button>
+        <Button3 value={"Aplicar Filtros"} handler={() => handleApplyFilter()} />
+        <div className={s.arrows}>
+          <button onClick={prev} className={s.btnLeft} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>
+          <label className={s.cards__currentpage}> {currentPage + 1}</label>
+          <button onClick={next} className={s.btnRight} ><img src={arrowRight} alt="icon" className={s.cards__arrow} /></button>
+        </div>
       </div>
       <div className={s.cards__content}>
         {datos.length
@@ -68,11 +79,6 @@ function Cards() {
             </Link>
           ))
           : <Loader />}
-      </div>
-      <div className={s.cards__paginado}>
-        <button onClick={prev} className={s.cards__btn} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>
-        <label className={s.cards__currentpage}>Page: {currentPage + 1}</label>
-        <button onClick={next} className={s.cards__btn} ><img src={arrowRight} alt="icon" className={s.cards__arrow} /></button>
       </div>
     </div>
   );

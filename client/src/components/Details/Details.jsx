@@ -49,7 +49,7 @@ const Details = () => {
         } else {
             let post = await axios.post('/shopingCart?add=true', {
                 drinkId: id,
-                amount: parseInt(cartAmount.value)
+                amount: parseInt(cartAmount?.value)
             })
             window.localStorage.setItem('userId', post.data.userId)
             let user = window.localStorage.getItem('userId')

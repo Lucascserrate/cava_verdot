@@ -4,9 +4,6 @@
     display: flex;
 }
 
-li {
-    list-style: none;
-}
 
 .container {
     height: 70px;
@@ -29,13 +26,4 @@ li {
 .navButtons {
     display: flex;
     align-items: center;
-}
-
-.navButtons li {
-    margin-left: 30px;
-    color: var(--colorWhite);
-}
-
-.navButtons li:hover {
-    opacity: 0.8;
 }

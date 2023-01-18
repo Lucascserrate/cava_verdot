@@ -38,7 +38,7 @@ const Home = () => {
       <div className={s.alertage__component}>
         {viewAlert}
       </div>
-      <Navbar searchbar="true" />
+      <Navbar />
       <div className={s.home__content}>
         <CarouselSlide />
       </div>
