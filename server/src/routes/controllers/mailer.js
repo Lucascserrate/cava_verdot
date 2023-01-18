@@ -50,12 +50,10 @@ const mailActivateAccount = async (name, email) => {
             </div>        
          `
     });
-
   }
 
 
   const datos = async(name, email) => {
-
     await transport.sendMail({
       from: "Cava Verdot <cava.verdot@gmail.com>",
       to: email,
@@ -73,7 +71,6 @@ const mailActivateAccount = async (name, email) => {
 
   }
   const baja = async(name, email) => {
-
     await transport.sendMail({
       from: "Cava Verdot <cava.verdot@gmail.com>",
       to: email,
@@ -92,7 +89,6 @@ const mailActivateAccount = async (name, email) => {
   }
 
   const news = async(name, email, mensaje) => {
-
     await transport.sendMail({
       from: "Cava Verdot <cava.verdot@gmail.com>",
       to: email,
@@ -110,6 +106,25 @@ const mailActivateAccount = async (name, email) => {
 
   }
 
+  const welcome = async(name, email) => {
+    await transport.sendMail({
+      from: "Cava Verdot <cava.verdot@gmail.com>",
+      to: email,
+      subject: "Bienvenido",
+      html: `
+            <h2>Hola ${name}</h2>            
+            <hr />            
+            <h4> Gracias por validarte, para terminar de registrarte ingresa al siguiente enlace: </h4>
+            <Link> https://cava-verdot.vercel.app/register </Link>
+            <div>                        
+              <p>Atentamente</p>
+              <p>Tus amigos de cava</p>
+            </div>        
+         `
+    });
+
+  }
+
 // ruta put con query confirmación alta (ok), confimación baja, get confirmación y detalle de compra,  post newsletters/ofertas/noticias. 
 
-  module.exports = {mailActivateAccount, pago, datos, baja, news}
+  module.exports = {mailActivateAccount, pago, datos, baja, news, welcome}

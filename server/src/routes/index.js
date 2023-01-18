@@ -11,6 +11,7 @@ const pago = require("./routesMails/pago.route.js")
 const dato = require("./routesMails/datos.route.js")
 const baja  = require("./routesMails/baja.routes.js");
 const news  = require("./routesMails/news.route.js");
+const welcome  = require("./routesMails/welcome.route.js");
 
 const checkOut = require("./controllers/checkOut.js");
 
@@ -36,5 +37,6 @@ router.use('/pago',pago )
 router.use('/dato',dato )
 router.use('/baja',baja )
 router.use('/news', news)
+router.use('/welcome', welcome)
 
 module.exports = router;
