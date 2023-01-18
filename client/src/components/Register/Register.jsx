@@ -3,6 +3,7 @@ import s from "./Register.module.css";
 import Alert from "../Alert/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import criptoJS from "crypto-js";
 
 function Register() {
   const navigate = useNavigate();
@@ -40,6 +41,11 @@ function Register() {
     };
   };
 
+  const encriptar = (password) => {
+  let textoCifrado = criptoJS.AES.encrypt(password, process.env.REACT_APP_PASSWORD_SECRET ).toString();
+  return textoCifrado;
+  };
+
   const handleOnChangeInputs = (e) => {
     setDatosInputs({ ...datosInputs, [e.target.name]: e.target.value });
   };
@@ -47,18 +53,19 @@ function Register() {
   const onSubmit = async (e) => {
     const {name, surname, password, image, email, address } = datosInputs
     e.preventDefault();
-
     if (!name || !surname || !password || !image || !email || !address) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
     } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
       setViewAlert(<Alert type="error" message="El correo solo puede tener letras, numeros, puntos y guion bajo." />);
     } else{
+      const encriptado = encriptar(datosInputs.password);
+      datosInputs.password = encriptado;
       const res = await axios.post("/users", datosInputs);
       setViewAlert(<Alert type="ok" message="Registro creado." />);
       window.localStorage.setItem("token", res.data);
       setDatosInputs({
         email: "",
-        password: "",
+        password: encriptado,
         name: "",
         surname: "",
         age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
