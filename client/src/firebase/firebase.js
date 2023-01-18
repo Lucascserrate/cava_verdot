@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
-const { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword } = require("firebase/auth");
+const { getAuth, GoogleAuthProvider, FacebookAuthProvider } = require("firebase/auth");
 const { getFirestore, collection, addDoc, getDocs, doc, getDoc, query, where, setDoc, deleteDoc } = require("firebase/firestore")
 
 const firebaseConfig = {
@@ -18,6 +18,7 @@ initializeApp(firebaseConfig);
 const auth = getAuth()
 const db = getFirestore()
 const provider = new GoogleAuthProvider();
-
+const faceProvider = new FacebookAuthProvider();
 exports.auth = auth
 exports.provider = provider
+exports.faceProvider = faceProvider
