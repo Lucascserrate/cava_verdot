@@ -1,0 +1,9 @@
+.container {
+    background-color: #fff;
+    height: 250px;
+    width: 600px;
+    margin: 50px;
+    border-radius: 5px;
+    border: var(--border);
+    box-shadow: var(--boxShadow);
+}

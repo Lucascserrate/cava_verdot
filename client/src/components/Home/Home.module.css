@@ -1,9 +1,18 @@
-.container{
+.container {
   width: 100%;
   min-height: 100vh;
   max-height: 100%;
-  background-color: #F1EEE5;
+  background-color: #fff;
+  position: relative;
 }
-.home__content{
+
+.home__content {
   height: 100vh;
+}
+
+.alertage__component {
+  width: 100%;
+  max-height: 100%;
+  z-index: 1000;
+  position: fixed;
 }

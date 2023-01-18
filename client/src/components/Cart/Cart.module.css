@@ -51,6 +51,7 @@
 .itemTitle {
     color: #191919;
     font-size: 15px;
+    font-weight: bold;
 }
 
 .close {
@@ -61,12 +62,20 @@
 }
 
 .close:hover {
-    color: red;
+    color: var(--hovered-color);
 }
 
 .amount {
     color: #191919;
     font-size: 15px;
+}
+
+.empty {
+    background-color: #e8e8e8;
+    border-radius: 3px;
+    padding: 8px;
+    color: #595959;
+
 }
 
 .hr {
@@ -86,7 +95,16 @@
     font-weight: bold;
 }
 
+.info {
+    margin: 30px 0 300px 8px;
+    font-size: 15px;
+}
 
+.link {
+    color: #1ba8e0;
+    font-weight: bold;
+    font-size: 14px;
+}
 
 .pay {
     margin-left: 20px;

@@ -9,9 +9,11 @@ import PostProductForm from '../FormularioPostProduct/PostProductForm'
 import About from '../About/About'
 import Login from '../Login/Login'
 import PasarelaStripe from '../Pasarela/PasarelaStripe'
-import FinalRegister from '../FinalRegister/FinalRegister'
 import Cart from '../Cart/Cart'
 import Registro from '../GoogleRegister/registro'
+import Dashboard from '../Admin/Dashboard/Dashboard'
+
+
 
 
 function App() {
@@ -27,8 +29,8 @@ function App() {
         <Route path='/postproduct' element={<PostProductForm />} />
         <Route path='/about' element={<About />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/finalregister' element={<FinalRegister />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/admin' element={<Dashboard />} />
       </Routes>
     </div>
   );

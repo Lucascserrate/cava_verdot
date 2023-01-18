@@ -1,71 +1,69 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "./FinalRegister.module.css";
 import Alert from "../Alert/Alert";
 
 function FinalRegister() {
-  const [timeAlert, setTimeAlert] = useState(false)
+  const [timeAlert, setTimeAlert] = useState(false);
 
   return (
     <div className={s.form}>
       <Formik
-        initialValues={{ 
-          name:"",
-          surname:"",
-          age:"",
+        initialValues={{
+          name: "",
+          surname: "",
+          age: "",
           adress: "",
-          image:""
-
-         }}
-
+          image: "",
+        }}
         validate={(values) => {
           let errores = {};
 
           //Validaciones NOMBRE
           if (!values.name) {
             errores.name = "Por favor ingresa un nombre.";
-          } else if(/^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$/.test(values.name)){
-           errores.name = "El nombre solo puede contener letras mayúsculas y minúsculas."
+          } else if (/^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$/.test(values.name)) {
+            errores.name =
+              "El nombre solo puede contener letras mayúsculas y minúsculas.";
           }
-          
+
           //Validaciones APELLIDO
           if (!values.surname) {
             errores.surname = "Por favor ingresa un apellido.";
-          } else if(/^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$/.test(values.surname)){
-            errores.surname = "El apellido solo puede contener letras mayúsculas y minúsculas."
-           }
+          } else if (/^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$/.test(values.surname)) {
+            errores.surname =
+              "El apellido solo puede contener letras mayúsculas y minúsculas.";
+          }
 
-           //Validaciones EDAD
-          if(!values.age){
-            errores.age = "Por favor ingresa tu edad."
+          //Validaciones EDAD
+          if (!values.age) {
+            errores.age = "Por favor ingresa tu edad.";
           }
           if (values.age < 18) {
-            errores.age = "Debes ser mayor de 18 años para registrarte."
-          } else if(/^[0-9]+$/.test(values.age)){
-            errores.age = "Este campo solo puede contener números."
+            errores.age = "Debes ser mayor de 18 años para registrarte.";
+          } else if (/^[0-9]+$/.test(values.age)) {
+            errores.age = "Este campo solo puede contener números.";
           }
 
           //Validaciones ADRESS
-          if (!values.adress){
-            errores.adress = "Por favor ingresa una dirección."
+          if (!values.adress) {
+            errores.adress = "Por favor ingresa una dirección.";
           }
 
           //Validaciones IMAGE
-          if(!values.image){
-            errores.img = "Por favor ingresa la URL de una imagen."
+          if (!values.image) {
+            errores.img = "Por favor ingresa la URL de una imagen.";
           }
 
           return errores;
         }}
-
         onSubmit={(values, { resetForm }) => {
-         // axios.post('localhost:3001/users', values)
+          // axios.post('localhost:3001/users', values)
           resetForm();
           setTimeAlert(true);
           setTimeout(() => setTimeAlert(false), 5000);
         }}
-
       >
         {({ errors }) => (
           <Form className={`${s.form__content} ${s.container}`}>
@@ -107,7 +105,6 @@ function FinalRegister() {
                 </label>
                 <span className={s.form__bar}></span>
               </div>
-
               <div className={s.form__message}>
                 <ErrorMessage
                   name="surname"
@@ -190,7 +187,11 @@ function FinalRegister() {
               />
             </div>
 
-            <div className={s.form__alert}>{timeAlert && (<Alert type="ok" message="Registro creado exitosamente."/>)}</div>
+            <div className={s.form__alert}>
+              {timeAlert && (
+                <Alert type="ok" message="Registro creado exitosamente." />
+              )}
+            </div>
           </Form>
         )}
       </Formik>

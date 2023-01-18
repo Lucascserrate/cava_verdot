@@ -30,7 +30,7 @@ const rootReducer = (state = initialState, action) => {
     case MODIFY_BUBBLE_CART:
       return {
         ...state,
-        bubbleCart: parseInt(state.bubbleCart) + parseInt(action.payload),
+        bubbleCart: action.payload.totalAmount,
       };
     case GET_DRINK:
       return {

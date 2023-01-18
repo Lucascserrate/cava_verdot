@@ -8,8 +8,8 @@
     padding: 0.6em 1.6em;
     font-size: 16px;
     border-radius: var(--borderRadiusButtons);
-    background: var(--colorPrimary);
-    border: 1px solid var(--colorPrimary);
+    background: var(--colorWine);
+    border: 1px solid var(--colorWine);
     cursor: pointer;
 }
 

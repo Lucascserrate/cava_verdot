@@ -6,12 +6,11 @@ import { Link } from 'react-router-dom';
 
 const BubbleCart = () => {
     const bubbleCart = useSelector(state => state.bubbleCart)
-    /* const bubbleCart = JSON.parse(localStorage.getItem('amount')) */
     return (
         <>
             {
-                bubbleCart ?
-                    <Link to='/cart'>
+                bubbleCart
+                    ? <Link to='/cart'>
                         <div className={s.container}>
                             <img className={s.img} src={img} alt="Shopping Cart" />
                             <div className={s.amount}>{bubbleCart}</div>
@@ -19,7 +18,6 @@ const BubbleCart = () => {
                     </Link>
                     : undefined
             }
-
         </>
     )
 }

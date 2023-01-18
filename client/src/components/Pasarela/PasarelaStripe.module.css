@@ -1,0 +1,28 @@
+.container {
+    background-color: var(--colorWhite);
+    border-radius: 3px;
+}
+
+.label {
+    padding: 10px 10px 0 10px;
+    font-size: 16px;
+    color: #595959;
+}
+
+.input {
+    padding: 10px 45px 10px 45px;
+    scale: 1.11;
+}
+
+.btn {
+    margin: 10px 0 10px 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--colorPrimary);
+    color: #e8e8e8;
+}
