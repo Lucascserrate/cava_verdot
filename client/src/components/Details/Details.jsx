@@ -44,7 +44,6 @@ const Details = () => {
             if (Object.keys(post).length) {
                 dispatch(modifyBubbleCart(user))
             }
-            console.log(post.data);
             return post.data
         } else {
             let post = await axios.post('/shopingCart?add=true', {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import { PostProduct, getAllCategories, getCountries } from '../../redux/actions';
 // import { useDispatch, useSelector } from 'react-redux'
-import { Link } from "react-router-dom";
 import s from "./PostProduct.module.css";
 import axios from "axios";
 
@@ -80,9 +79,9 @@ export default function PostProductForm({ setDisplay }) {
     category: "",
     subCategory: "",
   });
-
-  //Captura los errores del axios
-  const [error, setError] = useState("");
+  /* 
+    //Captura los errores del axios
+    const [error, setError] = useState(""); */
 
   //Captura errores de validación
   const [currentErrors, setCurrentErrors] = useState({});

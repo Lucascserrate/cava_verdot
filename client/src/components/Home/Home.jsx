@@ -14,7 +14,7 @@ const Home = () => {
   const dispatch = useDispatch()
   const [notification, setNotification] = useState(true)
   const [viewAlert, setViewAlert] = useState();
-  const bubbleCart = useSelector(state=>state.bubbleCart);
+  const bubbleCart = useSelector(state => state.bubbleCart);
   useEffect(() => {
     let dia = sessionStorage.getItem("dia");
     let mes = sessionStorage.getItem("mes");
