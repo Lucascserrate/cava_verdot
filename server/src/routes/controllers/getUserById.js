@@ -3,11 +3,15 @@ const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 
 const getUserById = async (req, res) => {
   const { userId } = req.params;
-  const { role, verifyId } = req.query;
+  const role = req.role;
+  const verifyId = req.verifyId;
   try {
-    console.log();
+    console.log(role);
+    console.log(verifyId);
+    console.log(userId);
     if (role < 3) {
-      if (userId !== verifyId) return res.status(400).send("Not authorized");
+      if (parseInt(userId) !== verifyId)
+        return res.status(400).send("Not authorized");
     }
     //cargando roles a la base de datos solo si aún no han sido cargadas
     const userInfo = await User.findByPk(userId, {

@@ -12,6 +12,8 @@ const midlewareValidation = async (req, res, next) => {
       const payload = jwt.verify(token, JWT_SECRET);
       req.verifyId = payload.id;
       req.role = payload.role;
+      console.log(payload.id);
+      console.log(payload);
       next();
     }
   } catch (error) {
