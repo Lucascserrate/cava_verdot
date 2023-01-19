@@ -116,7 +116,7 @@ function Login() {
               </label>
               <div className={s.login__alert}>
                 {timeAlert && (
-                  <Alert type="ok" message="Registro creado exitosamente." />
+                  <Alert type="ok" message="Inicio de sesion exitoso" />
                 )}
               </div>
             </div>
