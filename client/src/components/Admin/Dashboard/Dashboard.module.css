@@ -30,3 +30,15 @@
     margin: 20px;
 
 }
+
+.card {
+    height: 160px;
+    width: 330px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: var(--border);
+    box-shadow: var(--boxShadow);
+
+    z-index: 10;
+    position: relative;
+}

@@ -21,6 +21,9 @@ const Dashboard = () => {
                 <h3 className={s.h3}>An admin table</h3>
                 <Stock setDisplay={setDisplay} />
             </div>
+            <div className={s.card}>
+
+            </div>
             {display && <PostProductForm setDisplay={setDisplay} />}
         </div>
     )
