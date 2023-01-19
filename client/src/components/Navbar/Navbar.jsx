@@ -32,23 +32,22 @@ export default function NavBar({ searchbar }) {
     );
   }, [getToken]);
 
-  const decodingToken = parseJwt(getToken)
-
-  console.log(decodingToken.role);
-
   useEffect(()=>{
-    if(decodingToken.role === 3){
-      setViewDashboard(
-        <Link to={'/admin'}>
-          <Button3 value="Dashboard admin"/>
-        </Link>
-      )
-    }else if(decodingToken.role === 2){
-      setViewDashboard(
-        <Link>
-          <Button3 value="Dashboard"/>
-        </Link>
-      )
+    if(getToken){
+      const decodingToken = parseJwt(getToken)
+      if(decodingToken?.role === 3){
+        setViewDashboard(
+          <Link to={'/admin'}>
+            <Button3 value="Dashboard admin"/>
+          </Link>
+        )
+      }else if(decodingToken?.role === 2){
+        setViewDashboard(
+          <Link>
+            <Button3 value="Dashboard"/>
+          </Link>
+        )
+      }
     }
   },[getToken])
 
