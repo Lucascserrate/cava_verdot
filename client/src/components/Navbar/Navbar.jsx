@@ -20,37 +20,41 @@ export default function NavBar({ searchbar }) {
   const [vistaBtnLogin, setVistaBtnLogin] = useState();
   const [viewDashboard, setViewDashboard] = useState();
 
-  useEffect(() => {
-    setVistaBtnLogin(
-      getToken ? (
-        <Button3 value="Sign Out" handler={cerrarSesion} />
-      ) : (
-        <Link to="/login">
-          <Button3 value="Sign In" />
-        </Link>
-      )
-    );
-  }, [getToken]);
+  /*
+    useEffect(() => {
+      setVistaBtnLogin(
+        getToken ? (
+          <Button3 value="Sign Out" handler={cerrarSesion} />
+        ) : (
+          <Link to="/login">
+            <Button3 value="Sign In" />
+          </Link>
+        )
+      );
+    }, [getToken]);
+  */
 
-  const decodingToken = parseJwt(getToken)
+  //const decodingToken = parseJwt(getToken)
 
-  console.log(decodingToken.role);
+ // console.log(decodingToken.role);
 
-  useEffect(()=>{
-    if(decodingToken.role === 3){
-      setViewDashboard(
-        <Link to={'/admin'}>
-          <Button3 value="Dashboard admin"/>
-        </Link>
-      )
-    }else if(decodingToken.role === 2){
-      setViewDashboard(
-        <Link>
-          <Button3 value="Dashboard"/>
-        </Link>
-      )
-    }
-  },[getToken])
+  /*
+   useEffect(()=>{
+     if(decodingToken.role === 3){
+       setViewDashboard(
+         <Link to={'/admin'}>
+           <Button3 value="Dashboard admin"/>
+         </Link>
+       )
+     }else if(decodingToken.role === 2){
+       setViewDashboard(
+         <Link>
+           <Button3 value="Dashboard"/>
+         </Link>
+       )
+     }
+   },[getToken])
+  */
 
   return (
     <div className={s.bg}>
