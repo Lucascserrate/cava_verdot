@@ -83,7 +83,7 @@ const postUser = async (req, res) => {
       roleId: 2,
     });
     const token = jwt.sign(
-      { email: newUser.email, role: newUser.roleId },
+      { id: newUser.id, role: newUser.roleId, image: newUser.image },
       JWT_SECRET,
       { expiresIn: "3h" }
     );
