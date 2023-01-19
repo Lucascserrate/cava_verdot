@@ -67,8 +67,8 @@ const postUser = async (req, res) => {
     }
     //encriptando password
     //para pruebas en postmam
-    const pws = await generateHash(password);
-    // const pws = await generateHash(desEncriptar(password));
+    //const pws = await generateHash(password);
+    const pws = await generateHash(desEncriptar(password));
     //creando nuevo usuario
     const newUser = await User.create({
       name,
