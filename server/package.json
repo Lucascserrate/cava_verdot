@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "nodemon": "nodemon ./index.js",
+    "nodemon": "nodemon ./index.js",
     "start": "node ./index.js"
   },
   "keywords": [],
@@ -30,8 +31,8 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0",
-    "strapi-provider-upload-cloudinary": "^3.6.11",
-    "stripe": "^11.6.0"
+    "stripe": "^11.6.0",
+    "strapi-provider-upload-cloudinary": "^3.6.11"
   },
   "devDependencies": {
     "eslint": "^8.31.0",
