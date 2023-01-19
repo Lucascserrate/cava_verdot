@@ -1,0 +1,58 @@
+.btn {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.btn {
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    font-size: 20px;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.btn p {
+    margin: 0;
+    position: relative;
+    font-size: 16px;
+    color: var(--colorWhite);
+}
+
+
+.btn::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+}
+
+
+
+.btn:hover::after {
+    width: 100%;
+}
+
+.btn:hover p::before {
+    width: 100%;
+}
+
+.btn:hover svg {
+    transform: translateX(4px);
+    color: var(--hovered-color)
+}
+
+.btn svg {
+    color: var(--colorWhite);
+    transition: 0.2s;
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+}

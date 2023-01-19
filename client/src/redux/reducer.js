@@ -9,6 +9,7 @@ import {
   POST_PRODUCT,
   GET_COUNTRIES,
   GET_CART,
+  GET_DRINKS_BY_RATING
 } from "./actions";
 
 const initialState = {
@@ -17,7 +18,8 @@ const initialState = {
   categories: [],
   countries: [],
   bubbleCart: 0,
-  cart: []
+  cart: [],
+  drinksRating: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -30,7 +32,7 @@ const rootReducer = (state = initialState, action) => {
     case MODIFY_BUBBLE_CART:
       return {
         ...state,
-        bubbleCart: parseInt(state.bubbleCart) + parseInt(action.payload),
+        bubbleCart: action.payload.totalAmount,
       };
     case GET_DRINK:
       return {
@@ -71,7 +73,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: action.payload
       }
-
+    case GET_DRINKS_BY_RATING:
+      return{
+        ...state,
+        drinksRating: action.payload
+      }
     default:
       return state;
   }

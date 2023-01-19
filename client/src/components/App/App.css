@@ -1,12 +1,18 @@
 /* COLORS */
 :root {
-    --colorPrimary: #592D4A;
+    --colorPrimary: #191919;
+    --fontColor: #191919;
+    --fontColor2: #595959;
+    --colorWine: #550f22;
+    --hovered-color: #861432;
     --colorWhite: #e8e8e8;
     --colorBone: #F1EEE5;
-    --color2: #464A8C;
     --colorDark: #030f22;
+    --bgColor: #edf1f6;
 
     --borderRadiusButtons: 3px;
+    --boxShadow: #a9a9a9a0 0 .1px 10px 0;
+    --border: 1px solid #e6e6e6;
 }
 
 /* body::-webkit-scrollbar {

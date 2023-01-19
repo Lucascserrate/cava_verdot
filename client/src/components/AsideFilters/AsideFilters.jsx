@@ -10,16 +10,14 @@ import Button3 from "../Button3/Button3";
 import s from "./AsideFilters.module.css";
 import "./aside.css";
 
-const AsideFilters = () => {
+const AsideFilters = ({ setPrice, setCountry, setCategory }) => {
   // estados para las vistas
   const [viewCat, setViewCat] = useState("aside__menu--hiden");
   const [viewPrice, setViewPrice] = useState("aside__menu--hiden");
   const [viewCountry, setViewCountry] = useState("aside__menu--hiden");
   const [viewSort, setViewSort] = useState("aside__menu--hiden");
 
-  const [category, setCategory] = useState("");
-  const [country, setCountry] = useState("");
-  const [price, setPrice] = useState("");
+
 
   const state = useSelector((state) => state.categories);
   const stateCountries = useSelector((state) => state.countries);
@@ -49,12 +47,7 @@ const AsideFilters = () => {
     setPrice(e.target.value);
   };
 
-  // despachamos la accion al dar clic al btn aplicar filtros
-  const handleApplyFilter = () => {
-    dispatch(getProductFilter(category, price, country));
-    // si surge error, descomentar este codigo
-    // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);
-  };
+
 
   const handleOnClick = (e) => {
     if (e.target.name === "categories") {
@@ -249,9 +242,7 @@ const AsideFilters = () => {
         </div>
       </section>
 
-      <div>
-        <Button3 value={"Aplicar Filtros"} handler={() => handleApplyFilter()} />
-      </div>
+
     </aside>
   );
 };

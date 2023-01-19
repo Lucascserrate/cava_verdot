@@ -1,16 +1,18 @@
-.aside__menu--hiden{
+.aside__menu--hiden {
   font-size: 14px;
   line-height: 2;
   letter-spacing: 1px;
   color: #363636;
 }
-.aside__menu--hiden ~ .aside__elements{
+
+.aside__menu--hiden~.aside__elements {
   display: none;
   color: #363636;
 }
-.aside__section > a{
+
+.aside__section>a {
   color: #fff;
-  background-color: #592D4A;
+  background-color: var(--colorPrimary);
   width: 100%;
   height: 40px;
   display: flex;
@@ -20,6 +22,6 @@
   border-bottom: 2px solid #fff;
 }
 
-.aside__section:target .aside__elements{
+.aside__section:target .aside__elements {
   transition: .2s ease-in-out;
 }

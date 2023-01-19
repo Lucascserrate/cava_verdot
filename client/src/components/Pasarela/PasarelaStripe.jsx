@@ -1,4 +1,5 @@
 import React from "react";
+import s from './PasarelaStripe.module.css'
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -28,11 +29,11 @@ const CheckOutForm = () => {
       const { id } = paymentMethod;
 
       const { data } = await axios.post(`http://localhost:3001/checkout`, {
-       // id o nombre del cliente 
-    
+        // id o nombre del cliente 
+
         // email donde se enviara el recibo
         receipt_email: "miguizindex@gmail.com",
-         // el id del metodo de pago que utilizo esto es parte de stripe
+        // el id del metodo de pago que utilizo esto es parte de stripe
         id: id,
         // la cantidad del objeto que cuesta
         amount: 10000,
@@ -42,10 +43,13 @@ const CheckOutForm = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button>Buy</button>
-    </form>
+    <div className={s.container}>
+      <form onSubmit={handleSubmit}>
+        <h2 className={s.label} >Introduce tu metodo de pago</h2>
+        <CardElement className={s.input} />
+        <button className={s.btn}>Buy</button>
+      </form>
+    </div>
   );
 };
 function PasarelaStripe() {
