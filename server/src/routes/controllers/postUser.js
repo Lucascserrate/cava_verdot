@@ -17,11 +17,11 @@ const postUser = async (req, res) => {
     }
     //validando datos recibidos
     !name ? (errors.name = "name is required") : null;
-    !/^[a-záéíóúäëïöü]*$/i.test(name)
+    !/^[a-záéíóúäëïöü ]*$/i.test(name)
       ? (errors.nameAlpha =
           "the name must only contain characters of the alphabet")
       : null;
-    !/^[a-záéíóúäëïöü]*$/i.test(surname)
+    !/^[a-záéíóúäëïöü ]*$/i.test(surname)
       ? (errors.surnameAlpha =
           "the surname must only contain characters of the alphabet")
       : null;
@@ -83,7 +83,7 @@ const postUser = async (req, res) => {
       roleId: 2,
     });
     const token = jwt.sign(
-      { email: newUser.email, role: newUser.roleId },
+      { id: newUser.id, role: newUser.roleId, image: newUser.image },
       JWT_SECRET,
       { expiresIn: "3h" }
     );
