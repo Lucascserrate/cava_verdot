@@ -24,6 +24,7 @@ const mailActivateAccount = async (name, email) => {
       html: `
             <h2>Hola ${name}</h2>
             <h4>Gracias por registrarte en nuestra pagina</h4>
+
             <hr />
             
             <div>                        
@@ -103,7 +104,6 @@ const mailActivateAccount = async (name, email) => {
             </div>        
          `
     });
-
   }
 
   const welcome = async(name, email) => {
@@ -122,7 +122,6 @@ const mailActivateAccount = async (name, email) => {
             </div>        
          `
     });
-
   }
 
 // ruta put con query confirmación alta (ok), confimación baja, get confirmación y detalle de compra,  post newsletters/ofertas/noticias. 
