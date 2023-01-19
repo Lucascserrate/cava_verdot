@@ -1,8 +1,14 @@
 const { Router } = require("express");
 const router = Router();
+const getUserById = require("./controllers/getUserById.js");
 const { postUser } = require("./controllers/postUser.js");
+const {
+  midlewareValidation,
+} = require("./auth/midlewares/midlewareValidation.js");
+const putUser = require("./controllers/putUser.js");
 
+router.get("/:userId", getUserById);
 router.post("/", postUser);
-//TODO:put user
+router.put("/:userId", midlewareValidation, putUser);
 
 module.exports = router;
