@@ -11,7 +11,10 @@ const postUser = async (req, res) => {
   try {
     let errors = {};
     //Subiendo imagen a Cloudinary
-    const result = await uploadImage(image);
+    let result;
+    if (image) {
+      result = await uploadImage(image);
+    }
     //validando datos recibidos
     !name ? (errors.name = "name is required") : null;
     !/^[a-záéíóúäëïöü]*$/i.test(name)
@@ -46,14 +49,15 @@ const postUser = async (req, res) => {
         : null
       : null;
     !password ? (errors.password = "password is requiered") : null;
-    !address ? (errors.address = "address is requiered") : null;
-    result.url
-      ? !/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/.test(
-          result.url
-        )
-        ? (errors.image = "URL invalid")
-        : null
-      : null;
+    if (image) {
+      result.url
+        ? !/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/.test(
+            result.url
+          )
+          ? (errors.image = "URL invalid")
+          : null
+        : null;
+    }
     //respuesta en caso de errores
     if (Object.keys(errors).length) return res.status(400).send(errors);
     //cargando roles a la base de datos solo si aún no han sido cargadas
@@ -62,8 +66,9 @@ const postUser = async (req, res) => {
       allRoles = await Role.bulkCreate(roles);
     }
     //encriptando password
-    console.log(desEncriptar(password));
-    const pws = await generateHash(desEncriptar(password));
+    //para pruebas en postmam
+    const pws = await generateHash(password);
+    // const pws = await generateHash(desEncriptar(password));
     //creando nuevo usuario
     const newUser = await User.create({
       name,
@@ -71,8 +76,10 @@ const postUser = async (req, res) => {
       age,
       email,
       password: pws,
-      address,
-      image: result.url,
+      address: address ? address : null,
+      image: image
+        ? result.url
+        : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg",
       roleId: 2,
     });
     const token = jwt.sign(
