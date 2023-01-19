@@ -32,15 +32,9 @@ export default function NavBar({ searchbar }) {
     );
   }, [getToken]);
 
-  const [decodingToken, setDecodingToken] = useState()
-
-  
-
-  console.log(decodingToken);
-
   useEffect(()=>{
     if(getToken){
-      setDecodingToken(parseJwt(getToken))
+      const decodingToken = parseJwt(getToken)
       if(decodingToken?.role === 3){
         setViewDashboard(
           <Link to={'/admin'}>
@@ -55,7 +49,7 @@ export default function NavBar({ searchbar }) {
         )
       }
     }
-  },[getToken, decodingToken])
+  },[getToken])
 
   return (
     <div className={s.bg}>
