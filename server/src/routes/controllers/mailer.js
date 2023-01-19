@@ -10,10 +10,10 @@ const transport = nodemailer.createTransport({
   },
 });
 
-/*   transport.verify().then(() => {
-        console.log("Lista la configuracion para enviar correos");
-      });
- */
+transport.verify().then(() => {
+  console.log("Lista la configuracion para enviar correos");
+});
+
 const mailActivateAccount = async (name, email) => {
   await transport.sendMail({
     from: "Cava Verdot <cava.verdot@gmail.com>",
