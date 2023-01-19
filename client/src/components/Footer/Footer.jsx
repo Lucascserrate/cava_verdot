@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import fb from '../../assets/bxl-facebook-circle.svg'
 import insta from '../../assets/bxl-instagram-alt.svg'
 import logo from '../../assets/Logo_cava-verdot_blanco.svg'
@@ -25,9 +25,6 @@ function Footer() {
           </Link>
           <Link to={"/about"} className={s.footer__link}>
             About Us
-          </Link>
-          <Link to={"/postproduct"} className={s.footer__link}>
-            Create Product
           </Link>
         </div>
 

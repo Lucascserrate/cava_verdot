@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import s from "./PostProduct.module.css";
 import axios from "axios";
 
-export default function PostProductForm() {
+export default function PostProductForm({ setDisplay }) {
   function Validate(currentInput) {
     let currentErrors = {};
 
@@ -126,6 +126,7 @@ export default function PostProductForm() {
   // Envia los datos del FORM al back, actualiza, resetea estado y captura errores
   const handleSubmit = async (ev) => {
     ev.preventDefault();
+    setDisplay(false)
 
     try {
       // const url = 'https://cavaverdot-production.up.railway.app/products/'
@@ -197,11 +198,9 @@ export default function PostProductForm() {
 
   return (
     <div className={s.form}>
-      <form
-        className={`${s.form__content} ${s.container}`}
-        onSubmit={handleSubmit}
-      >
-        <h1 className={s.form__title}>Publica tu producto</h1>
+      <button onClick={() => setDisplay(false)} className={s.close}>✖</button>
+      <form className={`${s.form__content} ${s.container}`} onSubmit={handleSubmit}>
+        <h1 className={s.form__title}>Add a product</h1>
         <div className={s.form__inputs}>
           <div>
             <div className={s.form__group}>
@@ -215,7 +214,7 @@ export default function PostProductForm() {
                 onChange={handleChange}
               />
               <label disabled htmlFor="name" className={s.form__lbl}>
-                Bebida:
+                Drink:
               </label>
               <span className={s.form__bar}></span>
             </div>
@@ -224,9 +223,6 @@ export default function PostProductForm() {
                 <p className={s.error}>{currentErrors.name}</p>
               )}
             </div>
-          </div>
-
-          <div>
             <div className={s.form__group}>
               <input
                 id="description"
@@ -238,7 +234,7 @@ export default function PostProductForm() {
                 value={data.description}
               />
               <label htmlFor="description" className={s.form__lbl}>
-                Descripción:
+                Description
               </label>
               <span className={s.form__bar}></span>
             </div>
@@ -247,9 +243,6 @@ export default function PostProductForm() {
                 <p className={s.error}>{currentErrors.description}</p>
               )}
             </div>
-          </div>
-
-          <div>
             <div className={s.form__group}>
               <input
                 type="number"
@@ -270,9 +263,6 @@ export default function PostProductForm() {
                 <p className={s.error}>{currentErrors.stock}</p>
               )}
             </div>
-          </div>
-
-          <div>
             <div className={s.form__group}>
               <input
                 type="number"
@@ -284,7 +274,7 @@ export default function PostProductForm() {
                 value={data.price}
               />
               <label htmlFor="price" className={s.form__lbl}>
-                Precio:
+                Price:
               </label>
               <span className={s.form__bar}></span>
             </div>
@@ -307,9 +297,13 @@ export default function PostProductForm() {
               />
 
               <label htmlFor="image" className={s.form__lbl}>
-                Imagen:
+                Image:
               </label>
               <span className={s.form__bar}></span>
+            </div>
+
+            <div className={s.imgSide}>
+              {<img src={data.image} alt="" width="250px" height="250px" />}
             </div>
           </div>
 
@@ -320,8 +314,8 @@ export default function PostProductForm() {
                 onChange={handleSelectCategories}
                 placeholder=" "
               >
-                {categories &&
-                  categories.map((item) => {
+                {categories.length &&
+                  categories?.map((item) => {
                     return (
                       <option key={item.id} value={item.category}>
                         {item.category}
@@ -330,7 +324,7 @@ export default function PostProductForm() {
                   })}
               </select>
               <label htmlFor="category" className={s.form__lbl}>
-                Categoria:
+                Category:
               </label>
               <span className={s.form__bar}></span>
             </div>
@@ -348,8 +342,8 @@ export default function PostProductForm() {
                 onChange={handleSelectCountries}
                 placeholder=" "
               >
-                {countries &&
-                  countries.map((item) => {
+                {countries.length &&
+                  countries?.map((item) => {
                     return (
                       <option key={item.id} value={item.country}>
                         {item.country}
@@ -358,26 +352,16 @@ export default function PostProductForm() {
                   })}
               </select>
               <label htmlFor="country" className={s.form__lbl}>
-                Pais:
+                Country:
               </label>
               <span className={s.form__bar}></span>
             </div>
           </div>
-
-          <div className="imgSide">
-            {<img src={data.image} alt="imagen" width="250px" height="250px" />}
-          </div>
-          <button type="submit" className={s.form__submit}>
-            Publicar
+          <button type="submit" className={s.btn}>
+            Add
           </button>
         </div>
       </form>
-
-      <Link to="/">
-        <button className={s.form__submit} type="button">
-          Back Home
-        </button>
-      </Link>
     </div>
   );
 }

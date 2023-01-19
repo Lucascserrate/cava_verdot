@@ -11,7 +11,6 @@ const Prueba = () => {
                     <div className={s.bold}>Category</div>
                     <div className={s.bold}>Stock</div>
                 </div>
-
             </div>
         </div>
     )

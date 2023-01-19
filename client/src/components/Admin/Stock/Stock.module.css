@@ -1,6 +1,6 @@
 .container {
     background-color: #fff;
-    height: 500px;
+    height: 600px;
     width: 1000px;
     margin: 50px;
     border-radius: 5px;
@@ -13,19 +13,39 @@
 }
 
 .title {
-    margin: 20px 0 0 20px;
+    margin: 25px 0 0 40px;
+}
+
+.subtitle {
+    margin: 0 0 0 40px;
+    font-size: 15px;
+    color: #595959;
+    font-weight: 400;
 }
 
 .stockContainer {
     margin: 0 0 0 180px;
     overflow-y: scroll;
-    height: 380px;
+    height: 390px;
+
+
+}
+
+.stockContainer::-webkit-scrollbar {
+    opacity: 0;
+    width: 10px;
+}
+
+
+.stockContainer::-webkit-scrollbar-thumb {
+    background-color: #030f22;
+    border-radius: 3px;
 }
 
 .stockTitles {
-    margin: 0 0 5px 180px;
+    margin: 20px 0 5px 180px;
     height: 30px;
-    width: 64%;
+    width: 70%;
     cursor: pointer;
     padding: 0 10px;
 
@@ -35,7 +55,7 @@
 
 .stockItems {
     height: 30px;
-    width: 80%;
+    width: 87%;
     border-radius: 3px;
     cursor: pointer;
     padding: 0 10px;
@@ -62,4 +82,12 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
+}
+
+.btn {
+    background-color: var(--colorDark);
+    color: #fff;
+    border-radius: var(--borderRadiusButtons);
+    padding: 6px 12px;
+    cursor: pointer;
 }
