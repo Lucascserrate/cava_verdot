@@ -53,7 +53,7 @@ function Register() {
   const onSubmit = async (e) => {
     const {name, surname, password, image, email, address, age } = datosInputs
     e.preventDefault();
-    if (!name || !password || !email || !address || !age) {
+    if (!name || !password || !email || !age) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
     } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
       setViewAlert(<Alert type="error" message="El correo solo puede tener letras, numeros, puntos y guion bajo." />);
