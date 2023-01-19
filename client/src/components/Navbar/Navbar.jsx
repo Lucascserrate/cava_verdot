@@ -32,25 +32,30 @@ export default function NavBar({ searchbar }) {
     );
   }, [getToken]);
 
-  const decodingToken = parseJwt(getToken)
+  const [decodingToken, setDecodingToken] = useState()
 
-  console.log(decodingToken.role);
+  
+
+  console.log(decodingToken);
 
   useEffect(()=>{
-    if(decodingToken.role === 3){
-      setViewDashboard(
-        <Link to={'/admin'}>
-          <Button3 value="Dashboard admin"/>
-        </Link>
-      )
-    }else if(decodingToken.role === 2){
-      setViewDashboard(
-        <Link>
-          <Button3 value="Dashboard"/>
-        </Link>
-      )
+    if(getToken){
+      setDecodingToken(parseJwt(getToken))
+      if(decodingToken?.role === 3){
+        setViewDashboard(
+          <Link to={'/admin'}>
+            <Button3 value="Dashboard admin"/>
+          </Link>
+        )
+      }else if(decodingToken?.role === 2){
+        setViewDashboard(
+          <Link>
+            <Button3 value="Dashboard"/>
+          </Link>
+        )
+      }
     }
-  },[getToken])
+  },[getToken, decodingToken])
 
   return (
     <div className={s.bg}>
