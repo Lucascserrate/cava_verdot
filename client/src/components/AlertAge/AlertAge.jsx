@@ -46,7 +46,7 @@ function AlertAge() {
 
         <form className={s.alertage__form}>
           <h2>Bienvenido</h2>
-          <p>Por favor ingresa tu edad.</p>
+          <p>Por favor ingresa tu fecha de nacimiento.</p>
           <div className={s.alertage__elements}>
             <input
               className={s.alertage__validate}

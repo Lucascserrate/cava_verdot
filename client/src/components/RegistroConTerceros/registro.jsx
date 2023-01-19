@@ -1,25 +1,34 @@
-import { auth, provider, faceProvider } from "../../firebase/firebase.js"
-import { signInWithRedirect, getRedirectResult, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth"
+import { auth, provider, faceProvider } from "../../firebase/firebase.js";
+import {
+  signInWithRedirect,
+  getRedirectResult,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 function Registro() {
-
+  const handleClickGoogle = (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        console.log(result.user);
+      })
+      .catch((error) => {
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
     const handleClickGoogle = e => {
         e.preventDefault()
-        signInWithPopup(auth, provider)
-        getRedirectResult(auth).then(result => {
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-        }).catch((error) => {
+        signInWithPopup(auth, provider).then(
+            result => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                console.log(result)
+            }
+        ).catch((error) => {
             const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        });
-    }
-
-    const handleClickFacebook = e => {
-        e.preventDefault()
-        signInWithPopup(auth, faceProvider)
-        getRedirectResult(auth).then(result => {
-            const credential = FacebookAuthProvider.credentialFromResult(result);
-        }).catch((error) => {
-            const credential = FacebookAuthProvider.credentialFromError(error);
             // ...
         });
     }
@@ -27,9 +36,9 @@ function Registro() {
     return (
         <div>
             <button onClick={e => handleClickGoogle(e)}>Sign up with Google</button>
-            <button onClick={e => handleClickFacebook(e)}>Sign up with Facebook</button>
         </div>
     )
+
 }
 
-export default Registro
+export default Registro;
