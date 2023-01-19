@@ -43,11 +43,14 @@ function Login() {
         onSubmit={ async (values, { resetForm }) => {
           try {
             const res = await axios.post('/auth/login', values)
+            window.localStorage.setItem("token", res.data);
             parseJwt(res.data);
             resetForm();
             setTimeAlert(true);
-            setTimeout(() => setTimeAlert(false), 5000);
-            window.localStorage.setItem("token", res.data);
+            setTimeout(() => {
+              setTimeAlert(false)
+              window.history.back()
+            }, 2000);
           } catch (error) {
             console.log(error.response.data);
           }
