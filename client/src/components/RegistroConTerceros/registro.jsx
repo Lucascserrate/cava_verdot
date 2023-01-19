@@ -1,7 +1,24 @@
-import { auth, provider, faceProvider } from "../../firebase/firebase.js"
-import { signInWithRedirect, getRedirectResult, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth"
+import { auth, provider, faceProvider } from "../../firebase/firebase.js";
+import {
+  signInWithRedirect,
+  getRedirectResult,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 function Registro() {
-
+  const handleClickGoogle = (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        console.log(result.user);
+      })
+      .catch((error) => {
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
     const handleClickGoogle = e => {
         e.preventDefault()
         signInWithPopup(auth, provider).then(
@@ -21,6 +38,7 @@ function Registro() {
             <button onClick={e => handleClickGoogle(e)}>Sign up with Google</button>
         </div>
     )
+
 }
 
-export default Registro
+export default Registro;
