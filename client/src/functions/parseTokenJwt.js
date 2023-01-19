@@ -7,5 +7,5 @@ export const parseJwt = (token) => {
   }).join(''));
 
   console.log(JSON.parse(jsonPayload));
-  // return JSON.parse(jsonPayload)
+  return JSON.parse(jsonPayload)
 }
