@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getSort,
   getAllCategories,
-  getProductFilter,
+  /*  getProductFilter, */
   getCountries,
 } from "../../redux/actions";
-import Button3 from "../Button3/Button3";
 import s from "./AsideFilters.module.css";
 import "./aside.css";
 

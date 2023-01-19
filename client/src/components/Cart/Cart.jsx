@@ -17,11 +17,12 @@ const Cart = () => {
     let user = window.localStorage.getItem('userId')
     useEffect(() => {
         dispatch(getCart(user))
-    }, [dispatch, user, cart])
+    }, [dispatch])
 
 
     const handleDelete = async (id) => {
         let del = await axios.delete(`/shopingCart?userId=${user}&drinkId=${id}`)
+        dispatch(getCart(user))
         return del
     }
 

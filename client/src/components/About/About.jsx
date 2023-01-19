@@ -1,6 +1,4 @@
 import React from "react";
-import image from "../../assets/PAGINA.jpg";
-import { Link } from "react-router-dom";
 import NavBar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import s from "./About.module.css";
@@ -9,7 +7,7 @@ import aboutImg from '../../assets/about_provisional.svg'
 function About() {
   return (
     <div className={s.about}>
-      <NavBar/>
+      <NavBar />
       <div className={`${s.about__content} ${s.container}`}>
         <div className={s.about__element}>
           <figure className={s.about__picture}>
@@ -54,7 +52,7 @@ function About() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
