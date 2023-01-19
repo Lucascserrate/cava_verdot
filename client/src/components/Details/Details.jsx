@@ -44,14 +44,13 @@ const Details = () => {
             if (Object.keys(post).length) {
                 dispatch(modifyBubbleCart(user))
             }
-            console.log(post.data);
             return post.data
         } else {
             let post = await axios.post('/shopingCart?add=true', {
                 drinkId: id,
                 amount: parseInt(cartAmount?.value)
             })
-            window.localStorage.setItem('userId', post.data.userId)
+            window.localStorage.setItem('userId', post?.data.userId)
             let user = window.localStorage.getItem('userId')
             if (Object.keys(post).length) {
                 dispatch(modifyBubbleCart(user))
