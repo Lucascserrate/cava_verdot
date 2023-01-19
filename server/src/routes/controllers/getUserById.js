@@ -6,9 +6,6 @@ const getUserById = async (req, res) => {
   const role = req.role;
   const verifyId = req.verifyId;
   try {
-    console.log(role);
-    console.log(verifyId);
-    console.log(userId);
     if (role < 3) {
       if (parseInt(userId) !== verifyId)
         return res.status(400).send("Not authorized");
