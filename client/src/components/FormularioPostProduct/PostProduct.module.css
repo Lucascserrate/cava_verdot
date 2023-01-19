@@ -1,20 +1,46 @@
-:root {
-  --color-primary: #f1eee5;
-  --color-btn: #592d4a;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
 .form {
+  background-color: rgba(0, 0, 0, 0.364);
   display: grid;
+  width: 100%;
   height: 100vh;
   max-height: 100%;
-  background-color: var(--color-primary);
+  z-index: 100;
+
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+
+
+.container {
+  width: 50%;
+  height: 60%;
+  border-radius: 5px;
+  background-color: #fff;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+
+
+}
+
+.close {
+  color: #c3c3c3;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  position: absolute;
+  top: 25px;
+  right: 35px;
+}
+
+.close:hover {
+  color: var(--hovered-color);
 }
 
 .form__content {
@@ -25,13 +51,13 @@
 }
 
 .form__title {
-  font-size: 2.3rem;
+  font-size: 2rem;
   margin-bottom: 8px;
 }
 
 .form__group {
   position: relative;
-  width: 400px;
+  width: 300px;
 }
 
 .form__inputs {
@@ -39,8 +65,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 2em;
 }
+
 .form__input {
   position: relative;
   display: block;
@@ -52,18 +78,22 @@
   border: none;
   border-bottom: 1px solid #49454567;
 }
+
 .form__input:focus {
   color: rgb(94, 93, 93);
 }
-.form__input:focus + .form__lbl,
-.form__input:not(:placeholder-shown) + .form__lbl {
+
+.form__input:focus+.form__lbl,
+.form__input:not(:placeholder-shown)+.form__lbl {
   color: #2196f3;
   transform: scale(0.7) translateY(-34px);
   transform-origin: top left;
 }
-.form__input:focus ~ .form__bar {
+
+.form__input:focus~.form__bar {
   transform: scale(1);
 }
+
 .form__bar {
   position: absolute;
   border-bottom: 1px solid #2196f3;
@@ -75,26 +105,23 @@
   transition: 0.3s transform;
   transform-origin: left bottom;
 }
+
 .form__lbl {
   position: absolute;
   color: #49454567;
-  font-size: 1rem;
+  font-size: .9rem;
   left: 5px;
   top: 10px;
   pointer-events: none;
   transition: 0.5s transform, color 0.3s;
 }
 
-.form__submit {
-  background: var(--color-btn);
-  color: black;
-  padding: 0.8em 1.5em;
-  outline: none;
-  border: none;
-  font-size: 1rem;
-  border-radius: 6px;
+.btn {
+  background-color: var(--colorDark);
+  color: #fff;
+  border-radius: var(--borderRadiusButtons);
+  padding: 6px 12px;
   cursor: pointer;
-  color: var(--color-primary);
 }
 
 .form__alert {
@@ -107,10 +134,16 @@
   margin-top: 3em;
   padding: 10px 0;
 }
+
 .form__message {
   width: 400px;
   height: 30px;
 }
+
 .error {
   color: crimson;
+}
+
+.imgSide {
+  padding: 10px 0;
 }

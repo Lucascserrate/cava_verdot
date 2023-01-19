@@ -1,15 +1,13 @@
 import React from 'react'
 import s from './Searchbar.module.css'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getDrinkName } from '../../redux/actions'
-import { Link } from 'react-router-dom'
 
 export default function Searchbar() {
 
     const dispatch = useDispatch()
     const [name, setName] = useState('')
-    // const idDrink = useSelector((state)=>state.drink)
 
     function handleInputChange(e) {
         e.preventDefault()

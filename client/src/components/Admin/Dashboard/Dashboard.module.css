@@ -1,15 +1,32 @@
 .container {
-    border: 1px solid aqua;
     grid-template-columns: repeat(3, 1fr);
+    background-color: var(--bgColor);
+    height: 100vh;
+    z-index: -1;
+
     display: flex;
 
 }
 
-.title h2 {
+.h2 {
     color: #fff;
-    margin: 20px;
+    font-size: 28px;
+    margin: 50px 20px 0 50px;
+
+    z-index: 1;
+    position: relative;
+}
+
+.h3 {
+    color: #b3b3b3;
+    font-size: 16px;
+    margin: 0 20px 0 50px;
+
+    z-index: 1;
+    position: relative;
 }
 
 .title {
     margin: 20px;
+
 }

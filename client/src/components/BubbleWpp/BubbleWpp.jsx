@@ -4,7 +4,7 @@ import img from '../../assets/wppBubble.png'
 
 const BubbleWpp = () => {
     return (
-        <a href="https://wa.link/hh5uqa" target='_blank'>
+        <a href="https://wa.link/hh5uqa" target='_blank' rel="noreferrer">
             <img className={s.img} src={img} alt="WhatsApp" />
         </a>
     )
