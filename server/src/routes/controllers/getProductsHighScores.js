@@ -5,7 +5,7 @@ const getProductsHighSores = async (req, res) => {
     let drinks = await Drink.findAll({
       order: [["rating", "DESC"]],
       limit: 10,
-      attributes: ["name", "image", "price"],
+      attributes: ["name", "image", "price", "id"],
     });
     return res.status(200).send(drinks);
   } catch (error) {

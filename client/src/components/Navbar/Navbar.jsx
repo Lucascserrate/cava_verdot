@@ -5,6 +5,7 @@ import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
 import Button3 from "../Button3/Button3";
 import ButtonArrow from '../ButtonArrow/ButtonArrow';
+import { parseJwt } from '../../functions/parseTokenJwt'
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
@@ -17,6 +18,7 @@ export default function NavBar({ searchbar }) {
   };
 
   const [vistaBtnLogin, setVistaBtnLogin] = useState();
+  const [viewDashboard, setViewDashboard] = useState();
 
   useEffect(() => {
     setVistaBtnLogin(
@@ -29,6 +31,26 @@ export default function NavBar({ searchbar }) {
       )
     );
   }, [getToken]);
+
+  const decodingToken = parseJwt(getToken)
+
+  console.log(decodingToken.role);
+
+  useEffect(()=>{
+    if(decodingToken.role === 3){
+      setViewDashboard(
+        <Link to={'/admin'}>
+          <Button3 value="Dashboard admin"/>
+        </Link>
+      )
+    }else if(decodingToken.role === 2){
+      setViewDashboard(
+        <Link>
+          <Button3 value="Dashboard"/>
+        </Link>
+      )
+    }
+  },[getToken])
 
   return (
     <div className={s.bg}>
@@ -49,6 +71,7 @@ export default function NavBar({ searchbar }) {
         </div>
         {searchbar && <SearchBar />}
         <div className={s.right}>
+          {viewDashboard}
           {vistaBtnLogin}
         </div>
       </div>
