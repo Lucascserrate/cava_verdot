@@ -91,6 +91,7 @@ export const getCart = id => async dispatch => {
   return dispatch({ type: GET_CART, payload: json.data })
 }
 
+
 export const getDrinksByRating = () => {
   return async (dispatch) => {
     const dataApi = await axios.get('/products/highScore')

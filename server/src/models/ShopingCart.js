@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         refereces: {
           model: User,
-          key: "id",
+          key: "name",
         },
       },
       amount: {

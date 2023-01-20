@@ -9,7 +9,8 @@ import {
   POST_PRODUCT,
   GET_COUNTRIES,
   GET_CART,
-  GET_DRINKS_BY_RATING
+  GET_DRINKS_BY_RATING,
+  getAllCategories
 } from "./actions";
 
 const initialState = {
@@ -19,7 +20,12 @@ const initialState = {
   countries: [],
   bubbleCart: 0,
   cart: [],
-  drinksRating: []
+  drinksRating: [],
+  user: {
+    id: 123,
+    name: "javi",
+    email: "eljavi@algo.com"
+  }
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -74,7 +80,7 @@ const rootReducer = (state = initialState, action) => {
         cart: action.payload
       }
     case GET_DRINKS_BY_RATING:
-      return{
+      return {
         ...state,
         drinksRating: action.payload
       }

@@ -12,11 +12,13 @@ const dato = require("./routesMails/datos.route.js")
 const baja  = require("./routesMails/baja.routes.js");
 const news  = require("./routesMails/news.route.js");
 const welcome = require("./routesMails/welcome.route.js")
+const history = require("./historial.js")
 
 const checkOut = require("./controllers/checkOut.js");
 
 const shopingCart = require("./shopingCart.routes.js");
 const authRouter = require('./auth/index');
+const { route } = require("./products.routes.js");
 
 
 router.use("/categories", category);
@@ -38,6 +40,8 @@ router.use('/dato',dato )
 router.use('/baja',baja )
 router.use('/news', news)
 router.use('/welcome', welcome) 
+router.use('/history', history )
+
 
 
 module.exports = router;
