@@ -82,7 +82,7 @@ const CheckOutForm = () => {
           // id o nombre del cliente
           // customer: "padermo",
           // email donde se enviara el recibo
-          receipt_email: "mateo@gmail.com",
+          receipt_email: decodingToken?.email,
           // el id del metodo de pago que utilizo esto es parte de stripe
           id: id,
           // la cantidad del objeto que cuesta
