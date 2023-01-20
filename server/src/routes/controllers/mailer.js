@@ -99,7 +99,7 @@ const news = async (name, email, mensaje) => {
   });
 };
 
-const welcome = async(name, email) => {
+const welcome = async (name, email) => {
   await transport.sendMail({
     from: "Cava Verdot <cava.verdot@gmail.com>",
     to: email,
@@ -113,11 +113,10 @@ const welcome = async(name, email) => {
             <p>Atentamente</p>
             <p>Tus amigos de cava</p>
           </div>        
-       `
+       `,
   });
-} 
+};
 
- 
 // ruta put con query confirmación alta (ok), confimación baja, get confirmación y detalle de compra,  post newsletters/ofertas/noticias.
 
-module.exports = { mailActivateAccount, pago, datos, baja, news, welcome  };
+module.exports = { mailActivateAccount, pago, datos, baja, news, welcome };
