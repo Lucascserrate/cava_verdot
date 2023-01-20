@@ -31,8 +31,8 @@ const CheckOutForm = () => {
     if(getToken){
       setDecodingToken(parseJwt(getToken))
     }
-    // console.log(decodingToken);
   },[getToken])
+  // console.log(decodingToken);
 
   // traemos los datos del carrito
   const stateCart = useSelector(state => state.cart);
@@ -80,15 +80,15 @@ const CheckOutForm = () => {
         console.log(id);
         const { data } = await axios.post(`/checkout`, {
           // id o nombre del cliente
-  
+          // customer: "padermo",
           // email donde se enviara el recibo
-          receipt_email: "miguizindex@gmail.com",
+          receipt_email: "mateo@gmail.com",
           // el id del metodo de pago que utilizo esto es parte de stripe
           id: id,
           // la cantidad del objeto que cuesta
           amount: price * 100,
           // la descripcion del objeto que va a comprar
-          description: "compra realizada exitosa",
+          description: "pago exitoso",
         });
         console.log(data);
       }
