@@ -29,6 +29,13 @@
     height: 390px;
 
 
+
+
+}
+
+.stockItems:nth-child(2n +1) {
+    background-color: var(--bgColor);
+
 }
 
 .stockContainer::-webkit-scrollbar {
@@ -64,9 +71,7 @@
     grid-template-columns: 1fr 6fr 2fr 1fr;
 }
 
-.stockItems:hover {
-    background-color: var(--bgColor);
-}
+
 
 .bold {
     align-self: center;
