@@ -70,27 +70,26 @@ function Register() {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const { email, displayName, uid, photoURL } = result.user;
         const encriptado = encriptar(uid);
-
-        const res = await axios.post("/users", {
+        let res;
+        try {
+          res = await axios.post("/users", {
           email: email,
           name: displayName,
           image: photoURL,
           password: encriptado,
-          age: sessionStorage.getItem("age")
-            ? sessionStorage.getItem("age")
-            : "",
-          address: "Casa #5, Calle #2, Nueva Esperanza, San Cristobal",
+          age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
         });
         setViewAlert(<Alert type="ok" message="Registro creado." />);
         window.localStorage.setItem("token", res.data);
-      })
-      .catch((error) => {
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-  };
-
-  
+        } catch (error) {
+          setViewAlert(<Alert type="error" message={error.response.data.emailExists} />);
+        } 
+      }
+    ).catch((error) => {
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+  }
   const onSubmit = async (e) => {
     const { name, surname, password, image, email, address, age } = datosInputs
     e.preventDefault();
