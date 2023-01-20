@@ -24,13 +24,12 @@ function Register() {
     image: "",
   });
 
-
-
   //Este handler convierte la imagen en base64
   const handleImage = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
     setFileToBase(file);
+    console.log(setFileToBase(file));
   };
 
   const setFileToBase = (file) => {
@@ -42,10 +41,14 @@ function Register() {
         image: reader.result,
       });
     };
+    console.log(reader);
   };
 
   const encriptar = (password) => {
-    let textoCifrado = criptoJS.AES.encrypt(password, process.env.REACT_APP_PASSWORD_SECRET).toString();
+    let textoCifrado = criptoJS.AES.encrypt(
+      password,
+      process.env.REACT_APP_PASSWORD_SECRET
+    ).toString();
     return textoCifrado;
   };
 
@@ -89,8 +92,15 @@ function Register() {
     e.preventDefault();
     if (!name || !password || !email || !age) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
-    } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
-      setViewAlert(<Alert type="error" message="El correo solo puede tener letras, numeros, puntos y guion bajo." />);
+    } else if (
+      !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)
+    ) {
+      setViewAlert(
+        <Alert
+          type="error"
+          message="El correo solo puede tener letras, numeros, puntos y guion bajo."
+        />
+      );
     } else {
       const encriptado = encriptar(datosInputs.password);
       datosInputs.password = encriptado;
@@ -108,9 +118,8 @@ function Register() {
       });
       setTimeout(() => {
         navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
-      }, 2000)
+      }, 2000);
     }
-
   };
 
   return (
@@ -250,9 +259,7 @@ function Register() {
             value="Register"
             onClick={onSubmit}
           />
-          <GoogleButton
-            onClick={e => handleClickGoogle(e)}
-          />
+          <GoogleButton onClick={(e) => handleClickGoogle(e)} />
         </div>
         <div className={s.form__alert}>{viewAlert}</div>
         <div className={s.form__alert}>

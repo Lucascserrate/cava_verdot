@@ -8,6 +8,7 @@ const checkOut = async (req, res) => {
   try {
     const payment = await stripe.paymentIntents.create({
       currency: "USD",
+      // customer: customer,
       amount: amount,
       description: description,
       payment_method: id,

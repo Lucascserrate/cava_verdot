@@ -18,7 +18,7 @@ passport.use(
           where: {
             email,
           },
-          attributes: ["id", "password", "roleId", "image"],
+          attributes: ["id", "password", "roleId", "image", "email"],
         });
         if (userFound && compareHash(password, userFound.password)) {
           done(null, userFound);
