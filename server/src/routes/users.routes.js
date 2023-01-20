@@ -6,8 +6,9 @@ const {
   midlewareValidation,
 } = require("./auth/midlewares/midlewareValidation.js");
 const putUser = require("./controllers/putUser.js");
+const passport = require("passport");
 
-router.get("/:userId", getUserById);
+router.get("/:userId", midlewareValidation, getUserById);
 router.post("/", postUser);
 router.put("/:userId", midlewareValidation, putUser);
 
