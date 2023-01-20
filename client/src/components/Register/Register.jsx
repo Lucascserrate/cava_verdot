@@ -4,9 +4,15 @@ import Alert from "../Alert/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import criptoJS from "crypto-js";
-import GoogleButton from 'react-google-button'
-import { auth, provider, faceProvider } from "../../firebase/firebase.js"
-import { signInWithRedirect, getRedirectResult, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth"
+import GoogleButton from "react-google-button";
+import { auth, provider, faceProvider } from "../../firebase/firebase.js";
+import {
+  signInWithRedirect,
+  getRedirectResult,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 function Register() {
   const navigate = useNavigate();
 
@@ -24,13 +30,12 @@ function Register() {
     image: "",
   });
 
-
-
   //Este handler convierte la imagen en base64
   const handleImage = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
     setFileToBase(file);
+    console.log(setFileToBase(file));
   };
 
   const setFileToBase = (file) => {
@@ -42,37 +47,43 @@ function Register() {
         image: reader.result,
       });
     };
+    console.log(reader);
   };
 
   const encriptar = (password) => {
-    let textoCifrado = criptoJS.AES.encrypt(password, process.env.REACT_APP_PASSWORD_SECRET).toString();
+    let textoCifrado = criptoJS.AES.encrypt(
+      password,
+      process.env.REACT_APP_PASSWORD_SECRET
+    ).toString();
     return textoCifrado;
   };
 
   const handleOnChangeInputs = (e) => {
     setDatosInputs({ ...datosInputs, [e.target.name]: e.target.value });
   };
-  const handleClickGoogle = async (e) => {
-    e.preventDefault()
-    signInWithPopup(auth, provider).then(
-      async (result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const { email, displayName, uid, photoURL } = result.user
-        const encriptado = encriptar(uid);
 
-        const res = await axios.post("/users", {
+  const handleClickGoogle = async (e) => {
+
+    e.preventDefault();
+    signInWithPopup(auth, provider)
+      .then(async (result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const { email, displayName, uid, photoURL } = result.user;
+        const encriptado = encriptar(uid);
+        let res;
+        try {
+          res = await axios.post("/users", {
           email: email,
           name: displayName,
           image: photoURL,
           password: encriptado,
           age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-          address: "Casa #5, Calle #2, Nueva Esperanza, San Cristobal"
         });
         setViewAlert(<Alert type="ok" message="Registro creado." />);
         window.localStorage.setItem("token", res.data);
-        // window.localStorage.setItem("token", res.data);
-
-
+        } catch (error) {
+          setViewAlert(<Alert type="error" message={error.response.data.emailExists} />);
+        } 
       }
     ).catch((error) => {
       const credential = GoogleAuthProvider.credentialFromError(error);
@@ -80,12 +91,19 @@ function Register() {
     });
   }
   const onSubmit = async (e) => {
-    const {name, surname, password, image, email, address, age } = datosInputs
+    const { name, surname, password, image, email, address, age } = datosInputs
     e.preventDefault();
     if (!name || !password || !email || !age) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
-    } else if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
-      setViewAlert(<Alert type="error" message="El correo solo puede tener letras, numeros, puntos y guion bajo." />);
+    } else if (
+      !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)
+    ) {
+      setViewAlert(
+        <Alert
+          type="error"
+          message="El correo solo puede tener letras, numeros, puntos y guion bajo."
+        />
+      );
     } else {
       const encriptado = encriptar(datosInputs.password);
       datosInputs.password = encriptado;
@@ -103,9 +121,8 @@ function Register() {
       });
       setTimeout(() => {
         navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
-      }, 2000)
+      }, 2000);
     }
-
   };
 
   return (
@@ -245,9 +262,7 @@ function Register() {
             value="Register"
             onClick={onSubmit}
           />
-          <GoogleButton
-            onClick={e => handleClickGoogle(e)}
-          />
+          <GoogleButton onClick={(e) => handleClickGoogle(e)} />
         </div>
 
         <div className={s.form__alert}>{viewAlert}</div>
