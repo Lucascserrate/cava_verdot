@@ -23,15 +23,18 @@ function AlertAge() {
   const age = Number(year) - Number(captureInputs.anio);
 
   const handleOnClick = (e) => {
+    const { dia, mes, anio } = captureInputs;
     e.preventDefault();
-    if(captureInputs.dia === "" || captureInputs.mes === "" || captureInputs.anio === ""){
+    if(dia === "" || mes === "" || anio === ""){
       setMessageError("Ingrese los datos de edad");
+    }else if((dia.length < 2 || dia < 1 || dia > 31) || (mes.length < 2 || mes < 1 || mes > 12) || (anio.length < 4 || anio < 1900)){
+      setMessageError("Ingrese una fecha valida");
     }else if(age < 18){
       setMessageError("Eres menor de edad");
     }else{
-      sessionStorage.setItem("dia", captureInputs.dia)
-      sessionStorage.setItem("mes", captureInputs.mes)
-      sessionStorage.setItem("anio", captureInputs.anio)
+      sessionStorage.setItem("dia", dia)
+      sessionStorage.setItem("mes", mes)
+      sessionStorage.setItem("anio", anio)
       sessionStorage.setItem("age", age)
       setView('alertage--view')
     }
@@ -46,7 +49,7 @@ function AlertAge() {
 
         <form className={s.alertage__form}>
           <h2>Bienvenido</h2>
-          <p>Por favor ingresa tu edad.</p>
+          <p>Por favor ingresa tu fecha de nacimiento.</p>
           <div className={s.alertage__elements}>
             <input
               className={s.alertage__validate}

@@ -19,7 +19,7 @@ function Store() {
 
   useEffect(() => {
     dispatch(modifyBubbleCart(user))
-  }, [dispatch])
+  }, [dispatch, user])
 
   return (
     <div className={s.store}>

@@ -1,5 +1,3 @@
-//const { User, Drink, ShopingCart } = require("../../db");
-//const { Op } = require("sequelize");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 
@@ -12,8 +10,8 @@ const midlewareValidation = async (req, res, next) => {
       res.status(401).send({ message: "Not authorized" });
     } else {
       const payload = jwt.verify(token, JWT_SECRET);
+      req.verifyId = payload.id;
       req.role = payload.role;
-      console.log(req.role);
       next();
     }
   } catch (error) {

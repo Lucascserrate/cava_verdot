@@ -1,23 +1,28 @@
-const { User, Role } = require("../../db");
+const { User, Role, ShopingCart } = require("../../db");
 const { roles } = require("../../../api.js");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { generateHash } = require("../../utils/password.js");
 const { JWT_SECRET } = process.env;
 const { uploadImage } = require("../../Cloudinary/cloudinary.js");
-//const generateHash = require("../../utils/password.js");
+const { desEncriptar } = require("../../utils/password.js");
 
 const postUser = async (req, res) => {
-  const { name, surname, age, email, password, address, image } = req.body;
+  const { name, surname, age, email, password, address, image, oldUserId } =
+    req.body;
   try {
-    //validando datos recibidos
     let errors = {};
+    //Subiendo imagen a Cloudinary
+    // let result;
+    // if (image) {
+    //   result = await uploadImage(image);
+    // }
+    //validando datos recibidos
     !name ? (errors.name = "name is required") : null;
-    !/^[a-záéíóúäëïöü]*$/i.test(name)
+    !/^[a-záéíóúäëïöü ]*$/i.test(name)
       ? (errors.nameAlpha =
           "the name must only contain characters of the alphabet")
       : null;
-    !/^[a-záéíóúäëïöü]*$/i.test(surname)
+    !/^[a-záéíóúäëïöü ]*$/i.test(surname)
       ? (errors.surnameAlpha =
           "the surname must only contain characters of the alphabet")
       : null;
@@ -45,7 +50,7 @@ const postUser = async (req, res) => {
         : null
       : null;
     !password ? (errors.password = "password is requiered") : null;
-    !address ? (errors.address = "address is requiered") : null;
+    
     image
       ? !/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/.test(
           image
@@ -53,6 +58,7 @@ const postUser = async (req, res) => {
         ? (errors.image = "URL invalid")
         : null
       : null;
+      
     //respuesta en caso de errores
     if (Object.keys(errors).length) return res.status(400).send(errors);
     //cargando roles a la base de datos solo si aún no han sido cargadas
@@ -60,10 +66,10 @@ const postUser = async (req, res) => {
     if (!allRoles.length) {
       allRoles = await Role.bulkCreate(roles);
     }
-    //Subiendo imagen a Cloudinary
-    const result = await uploadImage(image);
     //encriptando password
-    const pws = await generateHash(password);
+    //para pruebas en postmam
+    //const pws = await generateHash(password);
+    const pws = await generateHash(desEncriptar(password));
     //creando nuevo usuario
     const newUser = await User.create({
       name,
@@ -71,21 +77,47 @@ const postUser = async (req, res) => {
       age,
       email,
       password: pws,
-      address,
-      image: result.url,
+      address: address ? address : null,
+      image: image
+        ? image
+        : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg",
       roleId: 2,
     });
+    if (oldUserId) {
+      const searchCart = await ShopingCart.findAll({
+        where: {
+          userId: oldUserId,
+        },
+      });
+      if (searchCart !== null) {
+        await Promise.all(
+          searchCart.map((product) =>
+            ShopingCart.update(
+              { userId: newUser.id },
+              {
+                where: {
+                  userId: oldUserId,
+                },
+              }
+            )
+          )
+        );
+      }
+      await User.destroy({
+        where: {
+          userId: oldUserId,
+        },
+      });
+    }
     const token = jwt.sign(
-      { email: newUser.email, role: newUser.roleId },
+      { id: newUser.id, role: newUser.roleId, image: newUser.image },
       JWT_SECRET,
       { expiresIn: "3h" }
     );
 
     return res.status(200).send(token);
-    /* return res
-      .status(200)
-      .send(`The user "${newUser.name}" has been created successfully`); */
   } catch (error) {
+    console.log(error);
     res.status(500).send({ error: error.message });
   }
 };

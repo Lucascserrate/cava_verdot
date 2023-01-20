@@ -10,6 +10,7 @@ export const GET_DRINK_BY_NAME = 'GET_DRINK_BY_NAME';
 export const POST_PRODUCT = 'POST_PRODUCT'
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_CART = 'GET_CART';
+export const GET_DRINKS_BY_RATING = 'GET_DRINKS_BY_RATING';
 
 
 // Actions Creators get all products
@@ -88,4 +89,11 @@ export const getCountries = () => {
 export const getCart = id => async dispatch => {
   let json = await axios.get(`/shopingCart?userId=${id}`)
   return dispatch({ type: GET_CART, payload: json.data })
+}
+
+export const getDrinksByRating = () => {
+  return async (dispatch) => {
+    const dataApi = await axios.get('/products/highScore')
+    return dispatch({type: GET_DRINKS_BY_RATING, payload: dataApi.data})
+  }
 }
