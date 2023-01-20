@@ -18,7 +18,7 @@ function Store() {
   const [price, setPrice] = useState("");
 
   useEffect(() => {
-    dispatch(modifyBubbleCart(user))
+    if (user) dispatch(modifyBubbleCart(user))
   }, [dispatch, user])
 
   return (
