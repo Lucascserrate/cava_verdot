@@ -5,8 +5,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import criptoJS from "crypto-js";
 import GoogleButton from 'react-google-button'
-import { auth, provider, faceProvider } from "../../firebase/firebase.js"
-import { signInWithRedirect, getRedirectResult, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth"
+import { auth, provider, } from "../../firebase/firebase.js"
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 function Register() {
   const navigate = useNavigate();
 
@@ -60,7 +60,6 @@ function Register() {
         async (result) => {
           GoogleAuthProvider.credentialFromResult(result);
           const { email, displayName, uid, photoURL } = result.user
-
           const encriptado = encriptar(uid);
           const res = await axios.post("/users", {
             email: email,
@@ -70,7 +69,11 @@ function Register() {
             image: photoURL,
           });
           setViewAlert(<Alert type="ok" message="Registro creado." />);
+          setTimeout(() => {
+            navigate("/login"); // modificar esta ruta para que redirija al dasboard del cliente
+          }, 2000)
         }
+
       ).catch((error) => {
         GoogleAuthProvider.credentialFromError(error);
         // ...
