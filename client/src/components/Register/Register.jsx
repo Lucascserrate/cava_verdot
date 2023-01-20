@@ -24,6 +24,28 @@ function Register() {
     image: "",
   });
 
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    console.log(files);
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "CAVA-verdot");
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/dcxiks4ku/upload',
+      {
+        method: "POST",
+        body: data
+      }
+    );
+    const file = await res.json();
+    setDatosInputs({
+      ...datosInputs,
+      image: file.secure_url
+    });
+    console.log(res);
+  }
+  // console.log(datosInputs);
+
   const encriptar = (password) => {
     let textoCifrado = criptoJS.AES.encrypt(
       password,
@@ -187,7 +209,7 @@ function Register() {
                 type="file"
                 placeholder=" "
                 name="image"
-                onChange={"uploadImage"}
+                onChange={uploadImage}
                 required
                 className={s.form__input}
               />
