@@ -31,14 +31,25 @@
 
 }
 
+.cards {
+    margin-top: 170px;
+}
+
 .card {
     height: 160px;
     width: 330px;
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
-    border: var(--border);
     box-shadow: var(--boxShadow);
+    margin-bottom: 30px;
+    padding: 15px;
+    color: #fff;
 
     z-index: 10;
     position: relative;
+}
+
+.card:first-child {
+    background-color: rgb(42, 169, 254);
+    box-shadow: #00e5ffa0 0 .1px 10px;
 }

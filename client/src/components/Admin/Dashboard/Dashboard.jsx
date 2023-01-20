@@ -3,9 +3,10 @@ import { useState } from 'react';
 import PostProductForm from '../../FormularioPostProduct/PostProductForm';
 import Aside from '../Aside/Aside';
 import NavBar from '../Navbar/Navbar';
-import Prueba from '../Prueba/Prueba';
+// import Prueba from '../Prueba/Prueba';
 import Stock from '../Stock/Stock';
 import s from './Dashboard.module.css'
+import { BarController } from 'chart.js'
 
 const Dashboard = () => {
     const [display, setDisplay] = useState(false)
@@ -21,8 +22,16 @@ const Dashboard = () => {
                 <h3 className={s.h3}>An admin table</h3>
                 <Stock setDisplay={setDisplay} />
             </div>
-            <div className={s.card}>
+            <div className={s.cards}>
+                <div className={s.card}>
 
+                </div>
+                <div className={s.card}>
+
+                </div>
+                <div className={s.card}>
+
+                </div>
             </div>
             {display && <PostProductForm setDisplay={setDisplay} />}
         </div>
