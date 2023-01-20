@@ -11,7 +11,7 @@ function Register() {
   const navigate = useNavigate();
 
   let getAge = sessionStorage.getItem("age");
-
+  const [timeAlertError, setTimeAlertError] = useState(false);
   const [viewAlert, setViewAlert] = useState();
 
   const [datosInputs, setDatosInputs] = useState({
@@ -73,10 +73,12 @@ function Register() {
             navigate("/login"); // modificar esta ruta para que redirija al dasboard del cliente
           }, 2000)
         }
-
       ).catch((error) => {
         GoogleAuthProvider.credentialFromError(error);
-        // ...
+        setTimeAlertError(true)
+        setTimeout(() => {
+          setTimeAlertError(false)
+        }, 7000);
       });
     } catch (err) {
       console.log(err.message);
@@ -252,8 +254,12 @@ function Register() {
             onClick={e => handleClickGoogle(e)}
           />
         </div>
-
         <div className={s.form__alert}>{viewAlert}</div>
+        <div className={s.form__alert}>
+          {timeAlertError && (
+            <Alert type="error" message="Este correo ya esta registrado" />
+          )}
+        </div>
       </form>
     </div>
   );
