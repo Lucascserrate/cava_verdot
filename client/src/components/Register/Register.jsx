@@ -52,35 +52,35 @@ function Register() {
   const handleOnChangeInputs = (e) => {
     setDatosInputs({ ...datosInputs, [e.target.name]: e.target.value });
   };
+
   const handleClickGoogle = async (e) => {
     e.preventDefault()
-    signInWithPopup(auth, provider).then(
-      async (result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const { email, displayName, uid, photoURL } = result.user
-        const encriptado = encriptar(uid);
+    try {
+      signInWithPopup(auth, provider).then(
+        async (result) => {
+          GoogleAuthProvider.credentialFromResult(result);
+          const { email, displayName, uid, photoURL } = result.user
 
-        const res = await axios.post("/users", {
-          email: email,
-          name: displayName,
-          image: photoURL,
-          password: encriptado,
-          age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-          address: "Casa #5, Calle #2, Nueva Esperanza, San Cristobal"
-        });
-        setViewAlert(<Alert type="ok" message="Registro creado." />);
-        window.localStorage.setItem("token", res.data);
-        // window.localStorage.setItem("token", res.data);
-
-
-      }
-    ).catch((error) => {
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
+          const encriptado = encriptar(uid);
+          const res = await axios.post("/users", {
+            email: email,
+            password: encriptado,
+            name: displayName,
+            age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
+            image: photoURL,
+          });
+          setViewAlert(<Alert type="ok" message="Registro creado." />);
+        }
+      ).catch((error) => {
+        GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
   }
   const onSubmit = async (e) => {
-    const {name, surname, password, image, email, address, age } = datosInputs
+    const { name, surname, password, image, email, address, age } = datosInputs
     e.preventDefault();
     if (!name || !password || !email || !age) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
