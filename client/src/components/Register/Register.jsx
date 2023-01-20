@@ -4,20 +4,14 @@ import Alert from "../Alert/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import criptoJS from "crypto-js";
-import GoogleButton from "react-google-button";
-import { auth, provider, faceProvider } from "../../firebase/firebase.js";
-import {
-  signInWithRedirect,
-  getRedirectResult,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
+import GoogleButton from 'react-google-button'
+import { auth, provider, } from "../../firebase/firebase.js"
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 function Register() {
   const navigate = useNavigate();
 
   let getAge = sessionStorage.getItem("age");
-
+  const [timeAlertError, setTimeAlertError] = useState(false);
   const [viewAlert, setViewAlert] = useState();
 
   const [datosInputs, setDatosInputs] = useState({
@@ -43,32 +37,35 @@ function Register() {
   };
 
   const handleClickGoogle = async (e) => {
-
-    e.preventDefault();
-    signInWithPopup(auth, provider)
-      .then(async (result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const { email, displayName, uid, photoURL } = result.user;
-        const encriptado = encriptar(uid);
-        let res;
-        try {
-          res = await axios.post("/users", {
-          email: email,
-          name: displayName,
-          image: photoURL,
-          password: encriptado,
-          age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-        });
-        setViewAlert(<Alert type="ok" message="Registro creado." />);
-        window.localStorage.setItem("token", res.data);
-        } catch (error) {
-          setViewAlert(<Alert type="error" message={error.response.data.emailExists} />);
-        } 
-      }
-    ).catch((error) => {
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
+    e.preventDefault()
+    try {
+      signInWithPopup(auth, provider).then(
+        async (result) => {
+          GoogleAuthProvider.credentialFromResult(result);
+          const { email, displayName, uid, photoURL } = result.user
+          const encriptado = encriptar(uid);
+          const res = await axios.post("/users", {
+            email: email,
+            password: encriptado,
+            name: displayName,
+            age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
+            image: photoURL,
+          });
+          setViewAlert(<Alert type="ok" message="Registro creado." />);
+          setTimeout(() => {
+            navigate("/login"); // modificar esta ruta para que redirija al dasboard del cliente
+          }, 2000)
+        }
+      ).catch((error) => {
+        GoogleAuthProvider.credentialFromError(error);
+        setTimeAlertError(true)
+        setTimeout(() => {
+          setTimeAlertError(false)
+        }, 7000);
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
   }
   const onSubmit = async (e) => {
     const { name, surname, password, image, email, address, age } = datosInputs
@@ -245,8 +242,12 @@ function Register() {
           />
           <GoogleButton onClick={(e) => handleClickGoogle(e)} />
         </div>
-
         <div className={s.form__alert}>{viewAlert}</div>
+        <div className={s.form__alert}>
+          {timeAlertError && (
+            <Alert type="error" message="Este correo ya esta registrado" />
+          )}
+        </div>
       </form>
     </div>
   );
