@@ -75,7 +75,7 @@ function Register() {
           setViewAlert(<Alert type="ok" message="Registro creado." />);
           setTimeout(() => {
             navigate("/login"); // modificar esta ruta para que redirija al dasboard del cliente
-          }, 2000)
+          }, 1000)
         }
       ).catch((error) => {
         GoogleAuthProvider.credentialFromError(error);
@@ -117,8 +117,8 @@ function Register() {
         image: "",
       });
       setTimeout(() => {
-        navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
-      }, 2000);
+        navigate("/"); 
+      }, 1000);
       console.log("res post",res);
     }
   };
