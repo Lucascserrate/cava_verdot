@@ -51,6 +51,7 @@ const CheckOutForm = () => {
 
       setDescription(stateCart.map(ele => {
         const obj = {
+          email: decodingToken.email,
           name: ele.name,
           amount: ele.amount,
           subtotal: ele.subtotal
