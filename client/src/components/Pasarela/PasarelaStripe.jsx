@@ -32,7 +32,7 @@ const CheckOutForm = () => {
       setDecodingToken(parseJwt(getToken))
     }
   },[getToken])
-  // console.log(decodingToken);
+  console.log(decodingToken);
 
   // traemos los datos del carrito
   const stateCart = useSelector(state => state.cart);
