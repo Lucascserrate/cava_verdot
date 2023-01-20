@@ -30,26 +30,6 @@ function Register() {
     image: "",
   });
 
-  //Este handler convierte la imagen en base64
-  const handleImage = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-    setFileToBase(file);
-    console.log(setFileToBase(file));
-  };
-
-  const setFileToBase = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setDatosInputs({
-        ...datosInputs,
-        image: reader.result,
-      });
-    };
-    console.log(reader);
-  };
-
   const encriptar = (password) => {
     let textoCifrado = criptoJS.AES.encrypt(
       password,
@@ -122,6 +102,7 @@ function Register() {
       setTimeout(() => {
         navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
       }, 2000);
+      console.log("res post",res);
     }
   };
 
@@ -209,7 +190,7 @@ function Register() {
                 type="file"
                 placeholder=" "
                 name="image"
-                onChange={handleImage}
+                onChange={"uploadImage"}
                 required
                 className={s.form__input}
               />

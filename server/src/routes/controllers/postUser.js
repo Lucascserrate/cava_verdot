@@ -11,10 +11,10 @@ const postUser = async (req, res) => {
   try {
     let errors = {};
     //Subiendo imagen a Cloudinary
-    let result;
-    if (image) {
-      result = await uploadImage(image);
-    }
+    // let result;
+    // if (image) {
+    //   result = await uploadImage(image);
+    // }
     //validando datos recibidos
     !name ? (errors.name = "name is required") : null;
     !/^[a-záéíóúäëïöü ]*$/i.test(name)
@@ -78,7 +78,7 @@ const postUser = async (req, res) => {
       password: pws,
       address: address ? address : null,
       image: image
-        ? result.url
+        ? image
         : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg",
       roleId: 2,
     });
