@@ -48,7 +48,7 @@ function Login() {
   return (
     <div className={s.login}>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: "", password: "", oldId: window.localStorage.getItem("userId")? window.localStorage.getItem("userId"):null }}
         validate={(values) => {
           let errores = {};
 
@@ -73,7 +73,8 @@ function Login() {
           try {
             const res = await axios.post('/auth/login', values)
             window.localStorage.setItem("token", res.data);
-            parseJwt(res.data);
+            const decript = parseJwt(res.data);
+            window.localStorage.setItem("userId", decript.id);
             resetForm();
             setTimeAlert(true);
             setTimeout(() => {

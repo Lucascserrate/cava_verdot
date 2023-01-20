@@ -54,7 +54,7 @@ const postAddToShopingCart = async (req, res) => {
         email: `def${newUserPosition.count + 1}@def.def`,
         password: "def",
         address: "def",
-        roleId: 3,
+        roleId: 1,
       });
     } else {
       //buscando bebida en el carrito de usuario en caso de previa existencia de usuario

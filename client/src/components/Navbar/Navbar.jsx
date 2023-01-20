@@ -9,11 +9,15 @@ import { parseJwt } from '../../functions/parseTokenJwt'
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
+  const getUserId = window.localStorage.getItem("userId");
 
   const navigate = useNavigate()
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
+    if(getUserId){
+      window.localStorage.removeItem("userId");
+    }
     navigate('/login')
   };
 

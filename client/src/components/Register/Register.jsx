@@ -24,25 +24,27 @@ function Register() {
     image: "",
   });
 
-  //Este handler convierte la imagen en base64
-  const handleImage = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-    setFileToBase(file);
-    console.log(setFileToBase(file));
-  };
-
-  const setFileToBase = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setDatosInputs({
-        ...datosInputs,
-        image: reader.result,
-      });
-    };
-    console.log(reader);
-  };
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    console.log(files);
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "CAVA-verdot");
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/dcxiks4ku/upload',
+      {
+        method: "POST",
+        body: data
+      }
+    );
+    const file = await res.json();
+    setDatosInputs({
+      ...datosInputs,
+      image: file.secure_url
+    });
+    console.log(res);
+  }
+  // console.log(datosInputs);
 
   const encriptar = (password) => {
     let textoCifrado = criptoJS.AES.encrypt(
@@ -119,6 +121,7 @@ function Register() {
       setTimeout(() => {
         navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
       }, 2000);
+      console.log("res post",res);
     }
   };
 
@@ -206,7 +209,7 @@ function Register() {
                 type="file"
                 placeholder=" "
                 name="image"
-                onChange={handleImage}
+                onChange={uploadImage}
                 required
                 className={s.form__input}
               />

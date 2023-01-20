@@ -29,7 +29,9 @@ const Details = () => {
 
     useEffect(() => {
         getDetail()
-        dispatch(modifyBubbleCart(user))
+        if(user){
+            dispatch(modifyBubbleCart(user))
+        }
     }, [dispatch])
 
 
@@ -39,7 +41,7 @@ const Details = () => {
             let post = await axios.post('/shopingCart?add=true', {
                 userId: user,
                 drinkId: id,
-                amount: parseInt(cartAmount.value)
+                amount: parseInt(cartAmount?.value)
             })
             if (Object.keys(post).length) {
                 dispatch(modifyBubbleCart(user))
