@@ -61,7 +61,9 @@ function Register() {
   const handleOnChangeInputs = (e) => {
     setDatosInputs({ ...datosInputs, [e.target.name]: e.target.value });
   };
+
   const handleClickGoogle = async (e) => {
+
     e.preventDefault();
     signInWithPopup(auth, provider)
       .then(async (result) => {
@@ -88,8 +90,9 @@ function Register() {
       });
   };
 
+  
   const onSubmit = async (e) => {
-    const { name, surname, password, image, email, address, age } = datosInputs;
+    const { name, surname, password, image, email, address, age } = datosInputs
     e.preventDefault();
     if (!name || !password || !email || !age) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
