@@ -60,11 +60,19 @@ function Register() {
         async (result) => {
           GoogleAuthProvider.credentialFromResult(result);
           const { email, displayName, uid, photoURL } = result.user
+
           const encriptado = encriptar(uid);
-          console.log(encriptado)
+          const res = await axios.post("/users", {
+            email: email,
+            password: encriptado,
+            name: displayName,
+            age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
+            image: photoURL,
+          });
+          setViewAlert(<Alert type="ok" message="Registro creado." />);
         }
       ).catch((error) => {
-      GoogleAuthProvider.credentialFromError(error);
+        GoogleAuthProvider.credentialFromError(error);
         // ...
       });
     } catch (err) {

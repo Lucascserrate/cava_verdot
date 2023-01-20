@@ -1,9 +1,6 @@
-import { auth, provider, faceProvider } from "../../firebase/firebase.js";
+import { auth, provider } from "../../firebase/firebase.js";
 import {
-  signInWithRedirect,
-  getRedirectResult,
   GoogleAuthProvider,
-  FacebookAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
 function Registro() {
@@ -12,7 +9,6 @@ function Registro() {
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
         console.log(result);
       })
       .catch((error) => {
