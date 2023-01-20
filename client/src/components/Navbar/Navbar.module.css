@@ -27,3 +27,14 @@
     display: flex;
     align-items: center;
 }
+.right{
+    display: flex;
+    gap: 20px;
+}
+.image__profile{
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
