@@ -24,6 +24,10 @@ const Notification = ({ setNotification }) => {
   const handleSubmit = async () => {
     console.log(state);
     await axios.post("/welcome", state);
+    setState({
+      name: "",
+      email: "",
+    })
   };
 
   return (
@@ -38,6 +42,7 @@ const Notification = ({ setNotification }) => {
           type="email"
           placeholder="Email..."
           name="email"
+          value={state.email}
           onChange={handleChange}
         />
         <input
@@ -45,6 +50,7 @@ const Notification = ({ setNotification }) => {
           type="name"
           placeholder="Name..."
           name="name"
+          value={state.name}
           onChange={handleChange}
         />
         <div className={s.submit}>
