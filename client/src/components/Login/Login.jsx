@@ -1,21 +1,50 @@
-import React, {useState} from 'react';
-import {Formik, Form, ErrorMessage, Field} from 'formik';
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react';
+import { Formik, Form, ErrorMessage, Field } from 'formik';
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { auth, provider, } from "../../firebase/firebase.js"
+import { Link } from 'react-router-dom'
 import s from './Login.module.css';
 import Alert from '../Alert/Alert';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {parseJwt} from '../../functions/parseTokenJwt'
-
+import { parseJwt } from '../../functions/parseTokenJwt'
+import GoogleButton from 'react-google-button'
 function Login() {
   const [timeAlert, setTimeAlert] = useState(false);
-
+  const [timeAlertError, setTimeAlertError] = useState(false);
   const navigate = useNavigate();
 
   const handleOnClose = () => {
     navigate("/")
   }
-
+  const handleClickGoogle = async (e) => {
+    e.preventDefault()
+    try {
+      signInWithPopup(auth, provider).then(
+        async (result) => {
+          GoogleAuthProvider.credentialFromResult(result);
+          const { email, uid } = result.user
+          const res = await axios.post("auth/login", {
+            email: email,
+            password: uid,
+          });
+          window.localStorage.setItem("token", res.data);
+          parseJwt(res.data);
+          setTimeAlert(true)
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        }
+      ).catch((error) => {
+        setTimeAlertError(true)
+        setTimeout(() => {
+          setTimeAlertError(false)
+        }, 7000);
+      });
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
   return (
     <div className={s.login}>
       <Formik
@@ -40,7 +69,7 @@ function Login() {
 
           return errores;
         }}
-        onSubmit={ async (values, { resetForm }) => {
+        onSubmit={async (values, { resetForm }) => {
           try {
             const res = await axios.post('/auth/login', values)
             window.localStorage.setItem("token", res.data);
@@ -49,7 +78,7 @@ function Login() {
             setTimeAlert(true);
             setTimeout(() => {
               setTimeAlert(false)
-              window.history.back()
+              navigate("/");
             }, 2000);
           } catch (error) {
             console.log(error.response.data);
@@ -107,8 +136,11 @@ function Login() {
                   className={s.login__submit}
                   value="Iniciar Sesion"
                 />
+                <GoogleButton
+                  onClick={e => handleClickGoogle(e)}
+                />
                 <p>¿No tiene cuenta?<Link to='/register'> Registrate.</Link></p>
-                
+
               </div>
 
               <label onClick={handleOnClose} className={s.login__close}>
@@ -117,6 +149,9 @@ function Login() {
               <div className={s.login__alert}>
                 {timeAlert && (
                   <Alert type="ok" message="Inicio de sesion exitoso" />
+                )}
+                {timeAlertError && (
+                  <Alert type="error" message="Este correo no esta registrado" />
                 )}
               </div>
             </div>
