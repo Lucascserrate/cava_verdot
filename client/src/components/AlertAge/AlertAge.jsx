@@ -1,12 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import s from "./AlertAge.module.css";
 import logo from "../../assets/Logo_cava-verdot.svg";
 import Button3 from "../Button3/Button3";
-import './AlertAge.css'
+import "./AlertAge.css";
 
 function AlertAge() {
-
-  const [view, setView] = useState(null)
+  const [view, setView] = useState(null);
   const [messageError, setMessageError] = useState("");
   const [captureInputs, setCaptureInput] = useState({
     dia: "",
@@ -15,8 +14,8 @@ function AlertAge() {
   });
 
   const handleOnChange = (e) => {
-    setCaptureInput({...captureInputs, [e.target.name]: e.target.value});
-  }
+    setCaptureInput({ ...captureInputs, [e.target.name]: e.target.value });
+  };
 
   const date = new Date();
   const year = date.getFullYear();
@@ -25,20 +24,29 @@ function AlertAge() {
   const handleOnClick = (e) => {
     const { dia, mes, anio } = captureInputs;
     e.preventDefault();
-    if(dia === "" || mes === "" || anio === ""){
+    if (dia === "" || mes === "" || anio === "") {
       setMessageError("Ingrese los datos de edad");
-    }else if((dia.length < 2 || dia < 1 || dia > 31) || (mes.length < 2 || mes < 1 || mes > 12) || (anio.length < 4 || anio < 1900)){
+    } else if (
+      dia.length < 2 ||
+      dia < 1 ||
+      dia > 31 ||
+      mes.length < 2 ||
+      mes < 1 ||
+      mes > 12 ||
+      anio.length < 4 ||
+      anio < 1900
+    ) {
       setMessageError("Ingrese una fecha valida");
-    }else if(age < 18){
+    } else if (age < 18) {
       setMessageError("Eres menor de edad");
-    }else{
-      sessionStorage.setItem("dia", dia)
-      sessionStorage.setItem("mes", mes)
-      sessionStorage.setItem("anio", anio)
-      sessionStorage.setItem("age", age)
-      setView('alertage--view')
+    } else {
+      sessionStorage.setItem("dia", dia);
+      sessionStorage.setItem("mes", mes);
+      sessionStorage.setItem("anio", anio);
+      sessionStorage.setItem("age", age);
+      setView("alertage--view");
     }
-  }
+  };
 
   return (
     <div className={`${s.alertage} ${view}`}>
@@ -88,7 +96,7 @@ function AlertAge() {
               onChange={handleOnChange}
             />
           </div>
-          <Button3 value={"Continuar"} handler={handleOnClick}/>
+          <Button3 value={"Continuar"} handler={handleOnClick} />
           <label className={s.alertage__error}>{messageError}</label>
         </form>
       </div>
