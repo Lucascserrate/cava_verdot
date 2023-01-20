@@ -24,10 +24,14 @@ function Cards({ category, price, country }) {
   // creamos el paginado
   let itemsPage = 12;
 
+  let totalElements = state?.length;
+  const [totalPage, setTotalPage] = useState()
+
   // cuando se carguen los datos del state, llenamos datos
   useEffect(() => {
     if (state) {
       setDatos([...state].splice(0, 12));
+      setTotalPage(parseInt(totalElements/itemsPage) + 1)
     }
   }, [state]);
 
@@ -67,7 +71,7 @@ function Cards({ category, price, country }) {
         <Button3 value={"Aplicar Filtros"} handler={() => handleApplyFilter()} />
         <div className={s.arrows}>
           <button onClick={prev} className={s.btnLeft} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>
-          <label className={s.cards__currentpage}> {currentPage + 1}</label>
+          <label className={s.cards__currentpage}> {currentPage + 1} de {totalPage}</label>
           <button onClick={next} className={s.btnRight} ><img src={arrowRight} alt="icon" className={s.cards__arrow} /></button>
         </div>
       </div>
