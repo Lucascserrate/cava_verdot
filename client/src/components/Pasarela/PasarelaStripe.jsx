@@ -38,7 +38,7 @@ const CheckOutForm = () => {
   // traemos los datos del carrito
   const stateCart = useSelector(state => state.cart);
 
-  const user = useSelector(state => state.user)
+  // const user = useSelector(state => state.user) este esta harcodeado
 
   // console.log( "soy el USer ",user);
 
@@ -57,7 +57,7 @@ const CheckOutForm = () => {
 
       setDescription(stateCart.map(ele => {
         const obj = { 
-          userId: user.id,
+          userId: decodingToken.id,
           id: ele.id,          
           amount: ele.amount,
           subtotal: ele.subtotal

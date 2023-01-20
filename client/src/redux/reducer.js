@@ -20,12 +20,7 @@ const initialState = {
   countries: [],
   bubbleCart: 0,
   cart: [],
-  drinksRating: [],
-  user: {
-    id: 123,
-    name: "javi",
-    email: "eljavi@algo.com"
-  }
+  drinksRating: [], 
 };
 
 const rootReducer = (state = initialState, action) => {
