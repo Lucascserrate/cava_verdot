@@ -20,7 +20,6 @@ function Register() {
     name: "",
     surname: "",
     age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-    address: "",
     image: "",
   });
 
@@ -76,7 +75,7 @@ function Register() {
           setViewAlert(<Alert type="ok" message="Registro creado." />);
           setTimeout(() => {
             navigate("/login"); // modificar esta ruta para que redirija al dasboard del cliente
-          }, 2000)
+          }, 1000)
         }
       ).catch((error) => {
         GoogleAuthProvider.credentialFromError(error);
@@ -90,7 +89,7 @@ function Register() {
     }
   }
   const onSubmit = async (e) => {
-    const { name, surname, password, image, email, address, age } = datosInputs
+    const { name, surname, password, image, email, age } = datosInputs
     e.preventDefault();
     if (!name || !password || !email || !age) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
@@ -115,12 +114,11 @@ function Register() {
         name: "",
         surname: "",
         age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-        address: "",
         image: "",
       });
       setTimeout(() => {
-        navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
-      }, 2000);
+        navigate("/"); 
+      }, 1000);
       console.log("res post",res);
     }
   };
@@ -180,24 +178,6 @@ function Register() {
               />
               <label htmlFor="age" className={s.form__lbl}>
                 Age: {getAge}
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="address"
-                type="text"
-                placeholder=" "
-                className={s.form__input}
-                name="address"
-                value={datosInputs.address}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="address" className={s.form__lbl}>
-                Address:
               </label>
               <span className={s.form__bar}></span>
             </div>

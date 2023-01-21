@@ -19,18 +19,21 @@ const Home = () => {
     let dia = sessionStorage.getItem("dia");
     let mes = sessionStorage.getItem("mes");
     let anio = sessionStorage.getItem("anio");
+    let getToken = window.localStorage.getItem("token")
     let user = window.localStorage.getItem('userId')
 
 
     if (bubbleCart) dispatch(modifyBubbleCart(user))
 
-
-    if (!dia && !mes && !anio) {
-      setTimeout(() => {
-        setViewAlert(
-          <AlertAge />
-        )
-      }, 2000)
+    // si no existe un usuario logueado le muestra la alerta de edad
+    if(!getToken){
+      if (!dia && !mes && !anio) {
+        setTimeout(() => {
+          setViewAlert(
+            <AlertAge />
+          )
+        }, 2000)
+      }
     }
   }, []);
   return (

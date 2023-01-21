@@ -101,14 +101,13 @@ const AsideFilters = ({ setPrice, setCountry, setCategory }) => {
   return (
     <aside className={s.container}>
       <section className='aside__section'>
-        <a
-          href="#"
+        <button
           name="categories"
           className={viewCat}
           onClick={handleOnClick}
         >
           CATEGORIES
-        </a>
+        </button>
         {state?.map((e) => (
           <div className={`${s.radioBox} aside__elements`} key={e.id}>
             <label>
@@ -129,9 +128,9 @@ const AsideFilters = ({ setPrice, setCountry, setCategory }) => {
 
 
       <section className='aside__section'>
-        <a href="#" name="price" className={viewPrice} onClick={handleOnClick}>
+        <button name="price" className={viewPrice} onClick={handleOnClick}>
           PRICE
-        </a>
+        </button>
         <div className="aside__elements">
           <div className={s.radioBox}>
             <label>
@@ -179,14 +178,13 @@ const AsideFilters = ({ setPrice, setCountry, setCategory }) => {
       </section>
 
       <section className='aside__section'>
-        <a
-          href="#"
+        <button
           name="country"
           className={viewCountry}
           onClick={handleOnClick}
         >
           COUNTRIES
-        </a>
+        </button>
         {stateCountries?.map((e) => (
           <div className={`${s.radioBox} aside__elements`} key={e.id}>
             <label>
@@ -206,9 +204,9 @@ const AsideFilters = ({ setPrice, setCountry, setCategory }) => {
       </section>
 
       <section className='aside__section'>
-        <a href="#" name="sort" className={viewSort} onClick={handleOnClick}>
+        <button name="sort" className={viewSort} onClick={handleOnClick}>
           SORT
-        </a>
+        </button>
         <div className="aside__elements">
           <div className={s.radioBox}>
             <label>

@@ -31,8 +31,8 @@ function Footer() {
         <div className={s.footer__group}>
           <h3 className={s.footer__subtitle}>Social Networks</h3>
           <div className={s.footer__social}>
-            <a href="https://www.facebook.com/" className={s.footer__slink}><img src={fb} alt="icon facebook" className={s.footer__icon} /></a>
-            <a href="https://www.instagram.com/" className={s.footer__slink}><img src={insta} alt="icon instagram" className={s.footer__icon} /></a>
+            <a href="https://www.facebook.com/" target={'_blank'} className={s.footer__slink}><img src={fb} alt="icon facebook" className={s.footer__icon} /></a>
+            <a href="https://www.instagram.com/" target={'_blank'} className={s.footer__slink}><img src={insta} alt="icon instagram" className={s.footer__icon} /></a>
           </div>
         </div>
       </section>
