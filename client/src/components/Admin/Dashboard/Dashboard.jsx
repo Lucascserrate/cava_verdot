@@ -60,15 +60,20 @@ const Dashboard = () => {
             </div>
             <div className={s.cards}>
                 <div className={s.card}>
+                    <p className={s.cardTitle}>Sale of the day</p>
+                    <p className={s.cardInfo} >$650</p>
                 </div>
                 <div className={s.card}>
-
+                    <p className={s.cardTitle}>Best Seller (ID)</p>
+                    <p className={s.cardInfo} >33</p>
                 </div>
                 <div className={s.card}>
-
+                    <p className={s.cardTitle}>Best Selling Category </p>
+                    <p className={s.cardInfo} >Wine</p>
                 </div>
                 <div className={s.card}>
-
+                    <p className={s.cardTitle}>Worst Seller (ID)</p>
+                    <p className={s.cardInfo} >13</p>
                 </div>
             </div>
             <div className={s.dona}>

@@ -33,7 +33,7 @@
 
 .cards {
     margin-top: 170px;
-    width: 460px;
+    width: 530px;
     height: 380px;
 
     display: grid;
@@ -42,16 +42,20 @@
 }
 
 .card {
-    width: 200px;
+    width: 240px;
     height: 160px;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
     margin-bottom: 30px;
-    padding: 15px;
+    padding: 16px;
     color: #fff;
 
     z-index: 10;
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card:first-child {
@@ -68,6 +72,17 @@
 
 .card:nth-child(4) {
     background-color: #37474f;
+}
+
+
+.cardTitle {
+    color: #e8e8e8;
+    font-size: 18px;
+}
+
+.cardInfo {
+    font-size: 35px;
+    font-weight: bold;
 }
 
 .dona {
