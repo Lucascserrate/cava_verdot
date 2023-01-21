@@ -8,7 +8,14 @@ router.post("/", passport.authenticate("local"), async (req, res) => {
   try {
     const { oldUserId } = req.body;
     const token = jwt.sign(
-      { id: req.user.id, role: req.user.roleId, image: req.user.image },
+      {
+        id: req.user.id,
+        role: req.user.roleId,
+        image: req.user.image,
+        name: req.user.name,
+        surname: req.user.surname,
+        email: req.user.email,
+      },
       JWT_SECRET,
       { expiresIn: "3h" }
     );

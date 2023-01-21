@@ -50,7 +50,7 @@ const postUser = async (req, res) => {
         : null
       : null;
     !password ? (errors.password = "password is requiered") : null;
-    
+
     image
       ? !/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/.test(
           image
@@ -58,7 +58,7 @@ const postUser = async (req, res) => {
         ? (errors.image = "URL invalid")
         : null
       : null;
-      
+
     //respuesta en caso de errores
     if (Object.keys(errors).length) return res.status(400).send(errors);
     //cargando roles a la base de datos solo si aún no han sido cargadas
@@ -110,7 +110,14 @@ const postUser = async (req, res) => {
       });
     }
     const token = jwt.sign(
-      { id: newUser.id, role: newUser.roleId, image: newUser.image },
+      {
+        id: newUser.id,
+        role: newUser.roleId,
+        image: newUser.image,
+        name: newUser.name,
+        surname: newUser.surname,
+        email: newUser.email,
+      },
       JWT_SECRET,
       { expiresIn: "3h" }
     );
