@@ -9,7 +9,7 @@ import arrowRight from '../../assets/bxs-right-arrow.svg'
 import Loader from '../Loader/Loader';
 import Button3 from '../Button3/Button3';
 
-function Cards({ category, price, country }) {
+function Cards({ category, price, country, setPrice }) {
   // estados del paginado
   const [datos, setDatos] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -56,6 +56,7 @@ function Cards({ category, price, country }) {
 
   // despachamos la accion al dar clic al btn aplicar filtros
   const handleApplyFilter = () => {
+    console.log(price);
     dispatch(getProductFilter(category, price, country));
     // si surge error, descomentar este codigo
     // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);

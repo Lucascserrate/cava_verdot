@@ -26,7 +26,7 @@ function Store() {
       <NavBar searchbar="true" />
       <div className={`${s.container} ${s.store__components}`}>
         <AsideFilters setCategory={setCategory} setCountry={setCountry} setPrice={setPrice} />
-        <Cards category={category} country={country} price={price} />
+        <Cards category={category} country={country} price={price} setPrice={setPrice} />
       </div>
       <Footer />
       <BubbleCart />
