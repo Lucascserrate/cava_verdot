@@ -8,6 +8,7 @@ import arrowLeft from '../../assets/bxs-left-arrow.svg'
 import arrowRight from '../../assets/bxs-right-arrow.svg'
 import Loader from '../Loader/Loader';
 import Button3 from '../Button3/Button3';
+import Errors from '../Error/Error';
 
 function Cards({ category, price, country, setPrice }) {
   // estados del paginado
@@ -31,7 +32,7 @@ function Cards({ category, price, country, setPrice }) {
   useEffect(() => {
     if (state) {
       setDatos([...state].splice(0, 12));
-      setTotalPage(parseInt(totalElements/itemsPage) + 1)
+      setTotalPage(parseInt(totalElements / itemsPage) + 1)
     }
   }, [state]);
 
@@ -62,7 +63,7 @@ function Cards({ category, price, country, setPrice }) {
     // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);
   };
 
-  // console.log(datos);
+  /* console.log(datos); */
 
   return (
 
@@ -77,13 +78,14 @@ function Cards({ category, price, country, setPrice }) {
         </div>
       </div>
       <div className={s.cards__content}>
-        {datos.length
+        {typeof datos[0] == 'object'
           ? datos.map((e) => (
             <Link to={`/store/${e.id}`} key={e.id} className={s.cards__link}>
               <Card id={e.id} img={e.image} name={e.name} />
             </Link>
-          ))
-          : <Loader />}
+          )) : typeof datos[0] == 'string'
+            ? <Errors />
+            : <Loader />}
       </div>
     </div>
   );
