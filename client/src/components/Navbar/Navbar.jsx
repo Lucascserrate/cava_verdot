@@ -34,12 +34,8 @@ export default function NavBar({ searchbar }) {
         </Link>
       )
     );
-  }, [getToken]);
-
-  useEffect(()=>{
+    
     if(getToken){
-      const decodingToken = parseJwt(getToken)
-
       if(decodingToken?.role === 3){
         setViewDashboard(
           <Link to={'/admin'}>
@@ -54,6 +50,11 @@ export default function NavBar({ searchbar }) {
         )
       }
     }
+  }, [getToken]);
+
+  const decodingToken = parseJwt(getToken)
+
+  useEffect(()=>{
   },[getToken])
 
   return (

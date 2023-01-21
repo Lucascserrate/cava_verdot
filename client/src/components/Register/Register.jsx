@@ -73,8 +73,9 @@ function Register() {
             image: photoURL,
           });
           setViewAlert(<Alert type="ok" message="Registro creado." />);
+          window.localStorage.setItem("token", res.data)
           setTimeout(() => {
-            navigate("/login"); // modificar esta ruta para que redirija al dasboard del cliente
+            navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
           }, 1000)
         }
       ).catch((error) => {
