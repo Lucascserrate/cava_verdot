@@ -1,0 +1,55 @@
+.container {
+    margin: 150px 0 250px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    z-index: 200;
+}
+
+.card {
+    border-radius: 5px;
+    width: 600px;
+    height: 350px;
+    padding: 10px 25px 20px 25px;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.h1 {
+    color: #191919;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+}
+
+
+.status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+}
+
+.h2 {
+    color: var(--colorWine);
+    font-size: 250px;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 0;
+    position: relative;
+    top: -60px;
+    animation: blink .5s infinite step-end alternate;
+
+}
+
+
+@keyframes blink {
+    50% {
+        filter: drop-shadow(0 0 5px var(--hovered-color));
+    }
+
+    100% {}
+}

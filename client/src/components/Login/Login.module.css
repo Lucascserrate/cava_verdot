@@ -20,13 +20,14 @@
 }
 
 .login__contain{
-  background-color: #fff;
+  background-color: var(--bgColor);
   margin: auto;
   width: 90%;
   display: grid;
   padding: 40px 10px;
   border-radius: 16px;
-  max-width: 1200px;
+  max-width: 800px;
+  height: 600px;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -37,8 +38,9 @@
   display: block;
   width: 30px;
   height: 30px;
-  color: #fff;
-  background-color: crimson;
+  color: crimson;
+  font-weight: bold;
+  font-size: 1.2rem;
   text-align: center;
   line-height: 30px;
   font-weight: 700;
@@ -47,6 +49,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  padding: 6px 10px 0 0;
   cursor: pointer;
 }
 
@@ -59,7 +62,9 @@
   display: grid;
   gap: 2em;
   width: 400px;
+  height: 100%;
   margin: 0 auto;
+  padding: 20px 0;
 }
 
 .login__group{
@@ -124,10 +129,6 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  min-height: 100px;
-  max-height: 100%;
-  margin-top: 3em;
   padding: 10px 0;
 }
 .login__message{

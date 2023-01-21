@@ -9,4 +9,37 @@
 
     position: relative;
     z-index: 100;
+
+    display: flex;
+    justify-content: center;
+}
+
+.picContainer {
+    padding: 20px;
+}
+
+.picture {
+    background-color: var(--bgColor);
+    border-radius: 60px;
+    height: 90px;
+    width: 90px;
+    margin: 0 0 10px 10px;
+}
+
+.img {
+    object-fit: cover;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.name {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.admin {
+    font-size: 10.5px;
+    text-align: center;
+
 }
