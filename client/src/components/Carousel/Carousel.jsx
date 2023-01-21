@@ -35,8 +35,8 @@ export default function CarouselSlide() {
   };
 
   const product = state.map((e) => (
-    <Link key={e.id} to={`/store/${e.id}`}>
-      <div className={`${s.card__content} card`}>
+    <div key={e.id} className={`card`}>
+      <Link to={`/store/${e.id}`} className={s.card__content}>
         <img
           src={e.image}
           alt="product_image"
@@ -46,8 +46,8 @@ export default function CarouselSlide() {
           <h2 className={s.name}>{e.name}</h2>
           <p className={s.price}>$ {e.price}</p>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   ));
 
   return (
