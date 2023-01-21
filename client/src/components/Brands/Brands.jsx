@@ -46,7 +46,6 @@ const Brands = (props) => {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           autoPlay={props.deviceType !== "mobile" ? true : false}
           autoPlaySpeed={8000}
-          keyBoardControl={true}
         >
           <img className={s.img} src={img9} alt="img" />
           <img className={s.img} src={img8} alt="img" />

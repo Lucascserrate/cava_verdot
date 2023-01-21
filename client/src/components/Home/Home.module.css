@@ -44,7 +44,7 @@
 }
 
 .featured {
-  margin-top: 50px;
+  padding: 50px 0;
   width: 100%;
   display: flex;
 
