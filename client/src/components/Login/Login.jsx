@@ -157,7 +157,7 @@ function Login() {
               <div className={s.login__alert}>{timeAlert && viewAlert}</div>
 
               <label onClick={handleOnClose} className={s.login__close}>
-                X
+              ✖
               </label>
             </div>
           </Form>
