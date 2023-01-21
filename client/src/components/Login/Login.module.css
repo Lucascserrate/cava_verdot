@@ -74,12 +74,13 @@
 .login__input{
   display: block;
   width: 100%;
-  background: none;
+  background: #fff;
   color: #49454567;
   outline: none;
   padding: 10px 15px;
   border: 1px solid #49454567;
   border-radius: 10px;
+  margin-top: 10px;
 }
 .login__input:focus{
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);

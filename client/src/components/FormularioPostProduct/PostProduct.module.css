@@ -71,7 +71,7 @@
 .form__input {
   display: block;
   width: 100%;
-  background: none;
+  background: #fff;
   color: #49454567;
   outline: none;
   padding: 10px 15px;
