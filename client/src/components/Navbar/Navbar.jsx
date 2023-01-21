@@ -53,7 +53,7 @@ export default function NavBar({ searchbar }) {
         );
       } else if (decodingToken?.role === 2) {
         setViewDashboard(
-          <Link>
+          <Link to={"/dashboard"}>
             <img
               src={decodingToken?.image}
               alt="image profile"
