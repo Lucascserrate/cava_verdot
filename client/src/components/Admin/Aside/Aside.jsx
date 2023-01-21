@@ -1,19 +1,33 @@
-import React from 'react';
-import s from './Aside.module.css'
-import img from '../../../assets/perfil.png'
+import React, { useState, useEffect } from "react";
+import s from "./Aside.module.css";
+import img from "../../../assets/perfil.png";
+import { parseJwt } from "../../../functions/parseTokenJwt";
 
 const Aside = () => {
-    return (
-        <div className={s.container}>
-            <div className={s.picContainer}>
-                <div className={s.picture}>
-                    <img className={s.img} src={img} alt="" />
-                </div>
-                <p className={s.name}>Nombre de usuario</p>
-                <p className={s.admin}>Administrator</p>
-            </div>
-        </div>
-    )
-}
 
-export default Aside
+  const [decodingToken, setDecodingToken] = useState()
+
+  const getToken = window.localStorage.getItem("token");
+
+  useEffect(()=>{
+    if(getToken){
+      setDecodingToken(parseJwt(getToken))
+    }
+  },[])
+
+  console.log(decodingToken);
+
+  return (
+    <div className={s.container}>
+      <div className={s.picContainer}>
+        <div className={s.picture}>
+          <img className={s.img} src={decodingToken?.image} alt="imagen perfil" />
+        </div>
+        <p className={s.name}>Nombre de usuario</p>
+        <p className={s.admin}>Administrator</p>
+      </div>
+    </div>
+  );
+};
+
+export default Aside;

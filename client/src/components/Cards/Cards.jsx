@@ -25,16 +25,16 @@ function Cards({ category, price, country, setPrice }) {
   // creamos el paginado
   let itemsPage = 12;
 
-  let totalElements = state?.length;
+  let totalElementsState = state?.length;
   const [totalPage, setTotalPage] = useState()
 
   // cuando se carguen los datos del state, llenamos datos
   useEffect(() => {
     if (state) {
       setDatos([...state].splice(0, 12));
-      setTotalPage(parseInt(totalElements / itemsPage) + 1)
+      setTotalPage(parseInt(totalElementsState / itemsPage) + 1)
     }
-  }, [state]);
+  }, [state, currentPage]);
 
   // next
   const next = () => {
