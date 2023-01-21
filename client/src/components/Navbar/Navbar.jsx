@@ -23,6 +23,7 @@ export default function NavBar({ searchbar }) {
 
   const [vistaBtnLogin, setVistaBtnLogin] = useState();
   const [viewDashboard, setViewDashboard] = useState();
+  const [decodingToken, setDecodingToken] = useState();
 
   useEffect(() => {
     setVistaBtnLogin(
@@ -34,8 +35,10 @@ export default function NavBar({ searchbar }) {
         </Link>
       )
     );
-    
+
     if(getToken){
+      setDecodingToken(parseJwt(getToken))
+
       if(decodingToken?.role === 3){
         setViewDashboard(
           <Link to={'/admin'}>
@@ -50,12 +53,8 @@ export default function NavBar({ searchbar }) {
         )
       }
     }
-  }, [getToken]);
-
-  const decodingToken = parseJwt(getToken)
-
-  useEffect(()=>{
-  },[getToken])
+  }, [getToken, decodingToken]);
+  
 
   return (
     <div className={s.bg}>
