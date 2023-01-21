@@ -35,7 +35,7 @@ const Stock = ({ setDisplay }) => {
                 }
             </div>
             <div className={s.buttons}>
-                <button onClick={() => setDisplay(true)} className={s.btn}  >Add</button>
+                <button onClick={() => setDisplay(true)} className={s.btn}>Add</button>
             </div>
         </div>
     )

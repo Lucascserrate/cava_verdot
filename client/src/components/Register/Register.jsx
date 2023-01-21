@@ -4,9 +4,9 @@ import Alert from "../Alert/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import criptoJS from "crypto-js";
-import GoogleButton from 'react-google-button'
-import { auth, provider, } from "../../firebase/firebase.js"
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import GoogleButton from "react-google-button";
+import { auth, provider } from "../../firebase/firebase.js";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 function Register() {
   const navigate = useNavigate();
 
@@ -20,29 +20,30 @@ function Register() {
     name: "",
     surname: "",
     age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-    address: "",
     image: "",
   });
 
-  //Este handler convierte la imagen en base64
-  const handleImage = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-    setFileToBase(file);
-    console.log(setFileToBase(file));
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    console.log(files);
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "CAVA-verdot");
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dcxiks4ku/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    setDatosInputs({
+      ...datosInputs,
+      image: file.secure_url,
+    });
+    console.log(res);
   };
-
-  const setFileToBase = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setDatosInputs({
-        ...datosInputs,
-        image: reader.result,
-      });
-    };
-    console.log(reader);
-  };
+  // console.log(datosInputs);
 
   const encriptar = (password) => {
     let textoCifrado = criptoJS.AES.encrypt(
@@ -57,41 +58,55 @@ function Register() {
   };
 
   const handleClickGoogle = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      signInWithPopup(auth, provider).then(
-        async (result) => {
+      signInWithPopup(auth, provider)
+        .then(async (result) => {
           GoogleAuthProvider.credentialFromResult(result);
-          const { email, displayName, uid, photoURL } = result.user
+          const { email, displayName, uid, photoURL } = result.user;
           const encriptado = encriptar(uid);
           const res = await axios.post("/users", {
             email: email,
             password: encriptado,
             name: displayName,
-            age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
+            age: sessionStorage.getItem("age")
+              ? sessionStorage.getItem("age")
+              : "",
             image: photoURL,
           });
           setViewAlert(<Alert type="ok" message="Registro creado." />);
+          setTimeAlertError(true);
           setTimeout(() => {
-            navigate("/login"); // modificar esta ruta para que redirija al dasboard del cliente
-          }, 2000)
-        }
-      ).catch((error) => {
-        GoogleAuthProvider.credentialFromError(error);
-        setTimeAlertError(true)
-        setTimeout(() => {
-          setTimeAlertError(false)
-        }, 7000);
-      });
+            setTimeAlertError(false);
+          }, 4000);
+          window.localStorage.setItem("token", res.data);
+          setTimeout(() => {
+            navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
+          }, 1000);
+        })
+        .catch((error) => {
+          GoogleAuthProvider.credentialFromError(error);
+          setViewAlert(
+            <Alert type="error" message="Este correo ya esta registrado" />
+          );
+          setTimeAlertError(true);
+          setTimeout(() => {
+            setTimeAlertError(false);
+          }, 4000);
+        });
     } catch (err) {
       console.log(err.message);
     }
-  }
+  };
   const onSubmit = async (e) => {
-    const { name, surname, password, image, email, address, age } = datosInputs
+    const { name, surname, password, image, email, age } = datosInputs;
     e.preventDefault();
     if (!name || !password || !email || !age) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
+      setTimeAlertError(true);
+      setTimeout(() => {
+        setTimeAlertError(false);
+      }, 4000);
     } else if (
       !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)
     ) {
@@ -101,11 +116,19 @@ function Register() {
           message="El correo solo puede tener letras, numeros, puntos y guion bajo."
         />
       );
+      setTimeAlertError(true);
+      setTimeout(() => {
+        setTimeAlertError(false);
+      }, 4000);
     } else {
       const encriptado = encriptar(datosInputs.password);
       datosInputs.password = encriptado;
       const res = await axios.post("/users", datosInputs);
       setViewAlert(<Alert type="ok" message="Registro creado." />);
+      setTimeAlertError(true);
+      setTimeout(() => {
+        setTimeAlertError(false);
+      }, 4000);
       window.localStorage.setItem("token", res.data);
       setDatosInputs({
         email: "",
@@ -113,12 +136,12 @@ function Register() {
         name: "",
         surname: "",
         age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-        address: "",
         image: "",
       });
       setTimeout(() => {
-        navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
-      }, 2000);
+        navigate("/");
+      }, 1000);
+      console.log("res post", res);
     }
   };
 
@@ -185,28 +208,10 @@ function Register() {
           <div>
             <div className={s.form__group}>
               <input
-                id="address"
-                type="text"
-                placeholder=" "
-                className={s.form__input}
-                name="address"
-                value={datosInputs.address}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="address" className={s.form__lbl}>
-                Address:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
                 type="file"
                 placeholder=" "
                 name="image"
-                onChange={handleImage}
+                onChange={uploadImage}
                 required
                 className={s.form__input}
               />
@@ -261,11 +266,9 @@ function Register() {
           />
           <GoogleButton type="light" label="Sign Up with Google" onClick= {(e) => handleClickGoogle(e)} />
         </div>
-        <div className={s.form__alert}>{viewAlert}</div>
+        {/* <div className={s.form__alert}>{viewAlert}</div> */}
         <div className={s.form__alert}>
-          {timeAlertError && (
-            <Alert type="error" message="Este correo ya esta registrado" />
-          )}
+          {timeAlertError && viewAlert}
         </div>
       </form>
     </div>

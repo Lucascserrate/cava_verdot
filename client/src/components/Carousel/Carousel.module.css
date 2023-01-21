@@ -1,9 +1,10 @@
+.carousel{
+  width: 100%;
+  text-align: center;
+}
 .carousel__title {
-  text-align: start;
   padding: 20px 0 0 60px;
-  position: absolute;
-
-  font-size: 20px;
+  font-size: 2rem;
   color: var(--fontColor2);
   z-index: 10;
 }
@@ -39,14 +40,14 @@
   background-size: cover;
 }
 
+/* manipula el content del carousel */
 .carousel__cards {
-  width: 95%;
+  width: 100%;
   height: 100%;
   border-radius: 5px;
-
   display: flex;
   padding: 50px 0 30px 0;
-  background: var(--colorWhite);
+  background: rgba(0, 0, 0, .3);
 }
 
 .center {

@@ -197,8 +197,8 @@ export default function PostProductForm({ setDisplay }) {
 
   return (
     <div className={s.form}>
-      <button onClick={() => setDisplay(false)} className={s.close}>✖</button>
       <form className={`${s.form__content} ${s.container}`} onSubmit={handleSubmit}>
+        <p onClick={() => setDisplay(false)} className={s.close}>✖</p>
         <h1 className={s.form__title}>Add a product</h1>
         <div className={s.form__inputs}>
           <div>

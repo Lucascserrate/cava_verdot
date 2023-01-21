@@ -32,7 +32,6 @@ const CheckOutForm = () => {
       setDecodingToken(parseJwt(getToken))
     }
   },[getToken])
-  console.log(decodingToken);
 
   // traemos los datos del carrito
   const stateCart = useSelector(state => state.cart);
@@ -51,6 +50,7 @@ const CheckOutForm = () => {
 
       setDescription(stateCart.map(ele => {
         const obj = {
+          email: decodingToken?.email,
           name: ele.name,
           amount: ele.amount,
           subtotal: ele.subtotal

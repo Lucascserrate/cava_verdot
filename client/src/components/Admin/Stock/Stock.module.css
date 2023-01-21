@@ -2,7 +2,7 @@
     background-color: #fff;
     height: 600px;
     width: 1000px;
-    margin: 50px;
+    margin: 40px;
     border-radius: 5px;
     border: var(--border);
     box-shadow: var(--boxShadow);
@@ -46,6 +46,13 @@
     height: 390px;
 
 
+
+
+}
+
+.stockItems:nth-child(2n +1) {
+    background-color: var(--bgColor);
+
 }
 
 .stockContainer::-webkit-scrollbar {
@@ -81,9 +88,7 @@
     grid-template-columns: 1fr 6fr 2fr 1fr;
 }
 
-.stockItems:hover {
-    background-color: var(--bgColor);
-}
+
 
 .bold {
     align-self: center;
@@ -107,4 +112,32 @@
     border-radius: var(--borderRadiusButtons);
     padding: 6px 12px;
     cursor: pointer;
+}
+
+.name {
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    width: 95%;
+}
+
+.name:focus {
+    border: 1px solid black;
+}
+
+.stockInput {
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    width: 90%;
+}
+
+.stockInput:focus {
+    border: 1px solid black;
+}
+
+.btnEdit {
+    width: 15px;
+    border: none;
+    background-color: transparent;
 }

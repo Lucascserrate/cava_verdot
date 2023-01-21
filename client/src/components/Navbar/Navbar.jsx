@@ -9,16 +9,21 @@ import { parseJwt } from '../../functions/parseTokenJwt'
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
+  const getUserId = window.localStorage.getItem("userId");
 
   const navigate = useNavigate()
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
+    if(getUserId){
+      window.localStorage.removeItem("userId");
+    }
     navigate('/login')
   };
 
   const [vistaBtnLogin, setVistaBtnLogin] = useState();
   const [viewDashboard, setViewDashboard] = useState();
+  const [decodingToken, setDecodingToken] = useState();
 
   useEffect(() => {
     setVistaBtnLogin(
@@ -30,26 +35,26 @@ export default function NavBar({ searchbar }) {
         </Link>
       )
     );
-  }, [getToken]);
 
-  useEffect(()=>{
     if(getToken){
-      const decodingToken = parseJwt(getToken)
+      setDecodingToken(parseJwt(getToken))
+
       if(decodingToken?.role === 3){
         setViewDashboard(
           <Link to={'/admin'}>
-            <Button3 value="Dashboard admin"/>
+            <img src={decodingToken?.image} alt="image profile" className={s.image__profile} />
           </Link>
         )
       }else if(decodingToken?.role === 2){
         setViewDashboard(
           <Link>
-            <Button3 value="Dashboard"/>
+            <img src={decodingToken?.image} alt="image profile" className={s.image__profile} />
           </Link>
         )
       }
     }
-  },[getToken])
+  }, [getToken, decodingToken]);
+  
 
   return (
     <div className={s.bg}>
