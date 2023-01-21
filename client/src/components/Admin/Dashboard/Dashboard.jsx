@@ -6,39 +6,46 @@ import NavBar from '../Navbar/Navbar';
 // import Prueba from '../Prueba/Prueba';
 import Stock from '../Stock/Stock';
 import s from './Dashboard.module.css'
-import { BarController } from 'chart.js'
+import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 const Dashboard = () => {
     const [display, setDisplay] = useState(false)
-    /* 
-        const labels = ['July', 'August', 'September', 'October', 'November', 'December', 'January'];
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'My First Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(201, 203, 207, 0.2)'
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgb(201, 203, 207)'
-                ],
-                borderWidth: 1
-            }]
-        }; */
+
+    const data = {
+        labels: [
+            'Ron',
+            'Wine',
+            'Tequila',
+            'Mezcal',
+            'Gin',
+            'Whisky',
+            'Beer',
+            'Bourbon',
+            'Brandy'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [30, 50, 60, 10, 20, 40, 70, 15, 25],
+            backgroundColor: [
+                '#212934',
+                '#263238',
+                '#37474f',
+                '#455a64',
+                '#546e7a',
+                '#607d8b',
+                '#78909c',
+                '#90a4ae',
+                '#b0bec5',
+            ],
+            hoverOffset: 4
+        }]
+    };
+    const config = {
+        type: 'doughnut',
+        data: data,
+    };
+
 
     return (
         <div className={s.container}>
@@ -53,7 +60,6 @@ const Dashboard = () => {
             </div>
             <div className={s.cards}>
                 <div className={s.card}>
-                    {/* <BarController data={data} /> */}
                 </div>
                 <div className={s.card}>
 
@@ -61,6 +67,12 @@ const Dashboard = () => {
                 <div className={s.card}>
 
                 </div>
+                <div className={s.card}>
+
+                </div>
+            </div>
+            <div className={s.dona}>
+                <Doughnut data={data} config={config} />
             </div>
             {display && <PostProductForm setDisplay={setDisplay} />}
         </div>

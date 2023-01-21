@@ -33,14 +33,19 @@
 
 .cards {
     margin-top: 170px;
+    width: 460px;
+    height: 380px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 .card {
+    width: 200px;
     height: 160px;
-    width: 330px;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
-    box-shadow: var(--boxShadow);
     margin-bottom: 30px;
     padding: 15px;
     color: #fff;
@@ -50,6 +55,31 @@
 }
 
 .card:first-child {
-    background-color: rgb(42, 169, 254);
-    box-shadow: #00e5ffa0 0 .1px 10px;
+    background-color: #607d8b;
+}
+
+.card:nth-child(2) {
+    background-color: #455a64;
+}
+
+.card:nth-child(3) {
+    background-color: #546e7a;
+}
+
+.card:nth-child(4) {
+    background-color: #37474f;
+}
+
+.dona {
+    height: 400px;
+    width: 600px;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+
+    z-index: 10;
+    position: absolute;
+    top: 550px;
+    right: 10px;
 }
