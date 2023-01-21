@@ -8,7 +8,7 @@ import arrowLeft from '../../assets/bxs-left-arrow.svg'
 import arrowRight from '../../assets/bxs-right-arrow.svg'
 import Loader from '../Loader/Loader';
 import Button3 from '../Button3/Button3';
-import Errors from '../Error/Error';
+import Error from '../Error/Error';
 
 function Cards({ category, price, country, setPrice }) {
   // estados del paginado
@@ -84,7 +84,7 @@ function Cards({ category, price, country, setPrice }) {
               <Card id={e.id} img={e.image} name={e.name} />
             </Link>
           )) : typeof datos[0] == 'string'
-            ? <Errors />
+            ? <Error />
             : <Loader />}
       </div>
     </div>
