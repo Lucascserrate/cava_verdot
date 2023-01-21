@@ -34,7 +34,7 @@ function Cards({ category, price, country, setPrice }) {
       setDatos([...state].splice(0, 12));
       setTotalPage(parseInt(totalElementsState / itemsPage) + 1)
     }
-  }, [state, currentPage]);
+  }, [state]);
 
   // next
   const next = () => {
