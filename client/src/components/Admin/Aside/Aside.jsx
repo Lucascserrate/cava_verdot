@@ -23,7 +23,7 @@ const Aside = () => {
         <div className={s.picture}>
           <img className={s.img} src={decodingToken?.image} alt="imagen perfil" />
         </div>
-        <p className={s.name}>Nombre de usuario</p>
+        <p className={s.name}>{decodingToken?.surname ? decodingToken.name + ' ' + decodingToken.surname : decodingToken?.name}</p>
         <p className={s.admin}>Administrator</p>
       </div>
     </div>
