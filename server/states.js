@@ -9995,3 +9995,5 @@
     name: "Boyacá",
   },
 ];
+
+exports.states = states;
