@@ -53,7 +53,6 @@ export default function PostProductForm({ setDisplay }) {
   //Registra los cambios en los inputs en el FORM
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-  };
 
   //Registra los values de los selects
   const handleSelectCategories = (e) => {
