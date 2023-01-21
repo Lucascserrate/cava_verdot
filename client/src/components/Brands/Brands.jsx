@@ -43,9 +43,10 @@ const Brands = (props) => {
         <Carousel
           responsive={responsive}
           className={s.carousel__cards}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
+          removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
           autoPlay={props.deviceType !== "mobile" ? true : false}
-          autoPlaySpeed={8000}
+          autoPlaySpeed={5000}
+          infinite={true}
         >
           <img className={s.img} src={img9} alt="img" />
           <img className={s.img} src={img8} alt="img" />
