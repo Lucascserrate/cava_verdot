@@ -11,7 +11,24 @@
     position: relative;
 
 }
-
+.edit_input{
+    padding: 3px;
+    width: 350px;
+    height: auto;
+    align-self: center;
+    font-size: 13px;
+}
+.ready {
+    background: white;
+    width: 35px;
+    height: 25px;
+    margin-left: 4px;
+}
+.ready:hover{
+    background: #000;
+    color: white;
+    cursor: pointer;
+}
 .title {
     margin: 25px 0 0 40px;
 }

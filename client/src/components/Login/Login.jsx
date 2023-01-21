@@ -136,9 +136,13 @@ function Login() {
                   className={s.login__submit}
                   value="Iniciar Sesion"
                 />
+
                 <GoogleButton
+
+                  type='light'
                   onClick={e => handleClickGoogle(e)}
                 />
+
                 <p>¿No tiene cuenta?<Link to='/register'> Registrate.</Link></p>
 
               </div>
