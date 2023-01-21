@@ -14,8 +14,11 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
 
   let user = window.localStorage.getItem("userId");
+
   useEffect(() => {
-    dispatch(getCart(user));
+    if(user){
+      dispatch(getCart(user));
+    }
   }, [dispatch]);
 
   const handleDelete = async (id) => {
