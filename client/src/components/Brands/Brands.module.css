@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  text-align: center;
+  background-color: aliceblue;
+}
+
+.title {
+  padding: 20px 0 0 60px;
+  font-size: 2rem;
+  color: var(--fontColor2);
+  z-index: 10;
+}
+
+
+
+
+
+.img {
+  height: 80px;
+}
+
+/* manipula el content del carousel */
+.carousel__cards {
+  width: 90%;
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  padding: 50px 0 30px 0;
+}
+
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  z-index: 1;
+}
+
+.name {
+  width: 240px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.name,
+.price {
+  color: #fff;
+}

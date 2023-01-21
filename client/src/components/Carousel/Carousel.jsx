@@ -52,7 +52,6 @@ export default function CarouselSlide() {
 
   return (
     <div className={`${s.carousel} Slide`}>
-      <h1 className={s.carousel__title}>Nuestros productos detacados</h1>
       <div className={s.center}>
         <Carousel
           showDots={true}
