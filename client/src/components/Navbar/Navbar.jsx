@@ -9,11 +9,15 @@ import { parseJwt } from '../../functions/parseTokenJwt'
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
+  const getUserId = window.localStorage.getItem("userId");
 
   const navigate = useNavigate()
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
+    if(getUserId){
+      window.localStorage.removeItem("userId");
+    }
     navigate('/login')
   };
 
@@ -35,16 +39,17 @@ export default function NavBar({ searchbar }) {
   useEffect(()=>{
     if(getToken){
       const decodingToken = parseJwt(getToken)
+
       if(decodingToken?.role === 3){
         setViewDashboard(
           <Link to={'/admin'}>
-            <Button3 value="Dashboard admin"/>
+            <img src={decodingToken?.image} alt="image profile" className={s.image__profile} />
           </Link>
         )
       }else if(decodingToken?.role === 2){
         setViewDashboard(
           <Link>
-            <Button3 value="Dashboard"/>
+            <img src={decodingToken?.image} alt="image profile" className={s.image__profile} />
           </Link>
         )
       }

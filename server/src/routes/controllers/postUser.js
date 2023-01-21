@@ -12,10 +12,10 @@ const postUser = async (req, res) => {
   try {
     let errors = {};
     //Subiendo imagen a Cloudinary
-    let result;
-    if (image) {
-      result = await uploadImage(image);
-    }
+    // let result;
+    // if (image) {
+    //   result = await uploadImage(image);
+    // }
     //validando datos recibidos
     !name ? (errors.name = "name is required") : null;
     !/^[a-záéíóúäëïöü ]*$/i.test(name)
@@ -50,15 +50,15 @@ const postUser = async (req, res) => {
         : null
       : null;
     !password ? (errors.password = "password is requiered") : null;
-    if (image) {
-      result.url
-        ? !/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/.test(
-            result.url
-          )
-          ? (errors.image = "URL invalid")
-          : null
-        : null;
-    }
+    
+    image
+      ? !/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/.test(
+          image
+        )
+        ? (errors.image = "URL invalid")
+        : null
+      : null;
+      
     //respuesta en caso de errores
     if (Object.keys(errors).length) return res.status(400).send(errors);
     //cargando roles a la base de datos solo si aún no han sido cargadas
@@ -79,7 +79,7 @@ const postUser = async (req, res) => {
       password: pws,
       address: address ? address : null,
       image: image
-        ? result.url
+        ? image
         : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg",
       roleId: 2,
     });

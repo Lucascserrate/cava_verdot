@@ -20,29 +20,30 @@ function Register() {
     name: "",
     surname: "",
     age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-    address: "",
     image: "",
   });
 
-  //Este handler convierte la imagen en base64
-  const handleImage = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-    setFileToBase(file);
-    console.log(setFileToBase(file));
-  };
-
-  const setFileToBase = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setDatosInputs({
-        ...datosInputs,
-        image: reader.result,
-      });
-    };
-    console.log(reader);
-  };
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    console.log(files);
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "CAVA-verdot");
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/dcxiks4ku/upload',
+      {
+        method: "POST",
+        body: data
+      }
+    );
+    const file = await res.json();
+    setDatosInputs({
+      ...datosInputs,
+      image: file.secure_url
+    });
+    console.log(res);
+  }
+  // console.log(datosInputs);
 
   const encriptar = (password) => {
     let textoCifrado = criptoJS.AES.encrypt(
@@ -74,7 +75,7 @@ function Register() {
           setViewAlert(<Alert type="ok" message="Registro creado." />);
           setTimeout(() => {
             navigate("/login"); // modificar esta ruta para que redirija al dasboard del cliente
-          }, 2000)
+          }, 1000)
         }
       ).catch((error) => {
         GoogleAuthProvider.credentialFromError(error);
@@ -88,7 +89,7 @@ function Register() {
     }
   }
   const onSubmit = async (e) => {
-    const { name, surname, password, image, email, address, age } = datosInputs
+    const { name, surname, password, image, email, age } = datosInputs
     e.preventDefault();
     if (!name || !password || !email || !age) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
@@ -113,12 +114,12 @@ function Register() {
         name: "",
         surname: "",
         age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-        address: "",
         image: "",
       });
       setTimeout(() => {
-        navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
-      }, 2000);
+        navigate("/"); 
+      }, 1000);
+      console.log("res post",res);
     }
   };
 
@@ -185,28 +186,10 @@ function Register() {
           <div>
             <div className={s.form__group}>
               <input
-                id="address"
-                type="text"
-                placeholder=" "
-                className={s.form__input}
-                name="address"
-                value={datosInputs.address}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="address" className={s.form__lbl}>
-                Address:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
                 type="file"
                 placeholder=" "
                 name="image"
-                onChange={handleImage}
+                onChange={uploadImage}
                 required
                 className={s.form__input}
               />

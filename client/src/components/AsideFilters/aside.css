@@ -3,6 +3,7 @@
   line-height: 2;
   letter-spacing: 1px;
   color: #363636;
+  cursor: pointer;
 }
 
 .aside__menu--hiden~.aside__elements {
@@ -10,16 +11,19 @@
   color: #363636;
 }
 
-.aside__section>a {
+.aside__section>button {
   color: #fff;
   background-color: var(--colorPrimary);
   width: 100%;
   height: 40px;
   display: flex;
+  letter-spacing: 1px;
+  cursor: pointer;
   align-items: center;
   padding: 0 4px;
+  border: none;
   border-radius: 4px;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #F1EEE5;
 }
 
 .aside__section:target .aside__elements {
