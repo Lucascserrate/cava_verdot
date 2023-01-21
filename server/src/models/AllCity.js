@@ -11,7 +11,6 @@ module.exports = (sequelize) => {
       },
       id_state: {
         type: DataTypes.INTEGER,
-        unique: true,
         allowNull: false,
       },
       name: {
