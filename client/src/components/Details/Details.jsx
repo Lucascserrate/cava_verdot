@@ -29,9 +29,7 @@ const Details = () => {
 
     useEffect(() => {
         getDetail()
-        if(user){
-            dispatch(modifyBubbleCart(user))
-        }
+        if (user) dispatch(modifyBubbleCart(user))
     }, [dispatch])
 
 

@@ -7,5 +7,6 @@ const putCategory = require("./controllers/putCategory.js");
 router.get("/subCategory", getSubCategories);
 router.get("/", getAllCategories);
 router.post("/", postCategory);
-router.put("/", putCategory)
+router.put("/", putCategory);
 module.exports = router;
+//comentario xxxxxxx

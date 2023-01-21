@@ -1,4 +1,4 @@
-const { User, Role } = require("../../db");
+const { User, Role, ShopingCart } = require("../../db");
 const { roles } = require("../../../api.js");
 const jwt = require("jsonwebtoken");
 const { generateHash } = require("../../utils/password.js");
@@ -7,7 +7,8 @@ const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 const { desEncriptar } = require("../../utils/password.js");
 
 const postUser = async (req, res) => {
-  const { name, surname, age, email, password, address, image } = req.body;
+  const { name, surname, age, email, password, address, image, oldUserId } =
+    req.body;
   try {
     let errors = {};
     //Subiendo imagen a Cloudinary
@@ -82,6 +83,32 @@ const postUser = async (req, res) => {
         : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg",
       roleId: 2,
     });
+    if (oldUserId) {
+      const searchCart = await ShopingCart.findAll({
+        where: {
+          userId: oldUserId,
+        },
+      });
+      if (searchCart !== null) {
+        await Promise.all(
+          searchCart.map((product) =>
+            ShopingCart.update(
+              { userId: newUser.id },
+              {
+                where: {
+                  userId: oldUserId,
+                },
+              }
+            )
+          )
+        );
+      }
+      await User.destroy({
+        where: {
+          userId: oldUserId,
+        },
+      });
+    }
     const token = jwt.sign(
       { id: newUser.id, role: newUser.roleId, image: newUser.image },
       JWT_SECRET,
