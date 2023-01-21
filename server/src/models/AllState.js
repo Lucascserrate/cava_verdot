@@ -11,7 +11,6 @@ module.exports = (sequelize) => {
       },
       id_country: {
         type: DataTypes.INTEGER,
-        unique: true,
         allowNull: false,
       },
       name: {
