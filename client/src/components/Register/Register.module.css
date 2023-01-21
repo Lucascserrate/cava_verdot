@@ -3,6 +3,20 @@
   --color-btn: #592D4A;
 }
 
+.form {
+  display: grid;
+  min-height: 100vh;
+  max-height: 100%;
+  background-color: var(--bgColor);
+}
+
+.form__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
 .container {
   width: 90%;
@@ -11,19 +25,7 @@
   overflow: hidden;
 }
 
-.form {
-  display: grid;
-  height: 100vh;
-  max-height: 100%;
-  background-color: var(--color-primary);
-}
 
-.form__content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 .form__title {
   font-size: 2.3rem;
