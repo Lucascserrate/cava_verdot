@@ -9,6 +9,9 @@ import Notification from '../Notification/Notification';
 import AlertAge from "../AlertAge/AlertAge";
 import { modifyBubbleCart } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import Brands from '../Brands/Brands';
+import imgHeader from '../../assets/vinedo.jpg'
+import copa from '../../assets/copaVino.jpg'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -19,18 +22,21 @@ const Home = () => {
     let dia = sessionStorage.getItem("dia");
     let mes = sessionStorage.getItem("mes");
     let anio = sessionStorage.getItem("anio");
+    let getToken = window.localStorage.getItem("token")
     let user = window.localStorage.getItem('userId')
 
 
     if (bubbleCart) dispatch(modifyBubbleCart(user))
 
-
-    if (!dia && !mes && !anio) {
-      setTimeout(() => {
-        setViewAlert(
-          <AlertAge />
-        )
-      }, 2000)
+    // si no existe un usuario logueado le muestra la alerta de edad
+    if (!getToken) {
+      if (!dia && !mes && !anio) {
+        setTimeout(() => {
+          setViewAlert(
+            <AlertAge />
+          )
+        }, 2000)
+      }
     }
   }, []);
   return (
@@ -39,10 +45,20 @@ const Home = () => {
         {viewAlert}
       </div>
       <Navbar />
-      <div className={s.home__content}>
-        <CarouselSlide />
+      <div className={s.headerContainer}>
+        <div className={s.headerBox}>
+          <h2 className={s.header}>Descubri los mejores vinos</h2>
+          <p className={s.subHeader}>En Cava Verdot vas a encontrar los mejores vinos al mejor precio</p>
+        </div>
+        <img className={s.imgHeader} src={imgHeader} alt="vinedo" />
       </div>
-
+      <div className={s.home__content}>
+        <div className={s.featured}>
+          <img className={s.copa} src={copa} alt="" />
+          <CarouselSlide />
+        </div>
+        <Brands />
+      </div>
       <BubbleCart />
       <BubbleWpp />
       {

@@ -3,7 +3,7 @@
 
     border-radius: 8px;
     background-color: #ffffff;
-    box-shadow: #a9a9a9a0 0 .1px 10px 0;
+    box-shadow: #a9a9a9a0 0 0 12px;
     border: 1px solid #e6e6e6;
 
     position: fixed;
@@ -28,7 +28,7 @@
 }
 
 .btn:hover {
-    color: var(--colorPrimary);
+    color: crimson;
 }
 
 .flex {
@@ -36,6 +36,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .title {
@@ -46,11 +47,18 @@
 
 .email {
     width: 250px;
+    height: 40px;
     padding: 5px 8px;
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 1rem;
+    letter-spacing: .8px;
     font-weight: bold;
     font-family: Poppins;
+    outline: none;
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 5px;
+    color: #494545;
 }
 
 .submit {

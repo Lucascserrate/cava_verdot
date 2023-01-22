@@ -4,17 +4,21 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
 import Button3 from "../Button3/Button3";
-import ButtonArrow from '../ButtonArrow/ButtonArrow';
-import { parseJwt } from '../../functions/parseTokenJwt'
+import ButtonArrow from "../ButtonArrow/ButtonArrow";
+import { parseJwt } from "../../functions/parseTokenJwt";
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
+  const getUserId = window.localStorage.getItem("userId");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
-    navigate('/login')
+    if (getUserId) {
+      window.localStorage.removeItem("userId");
+    }
+    navigate("/login");
   };
 
   const [vistaBtnLogin, setVistaBtnLogin] = useState();
@@ -32,24 +36,33 @@ export default function NavBar({ searchbar }) {
     );
   }, [getToken]);
 
-  useEffect(()=>{
-    if(getToken){
-      const decodingToken = parseJwt(getToken)
-      if(decodingToken?.role === 3){
+  useEffect(() => {
+    if (getToken) {
+      let decodingToken = parseJwt(getToken);
+
+      if (decodingToken?.role === 3) {
         setViewDashboard(
-          <Link to={'/admin'}>
-            <Button3 value="Dashboard admin"/>
+          <Link to={"/admin"}>
+            <img
+              src={decodingToken?.image}
+              alt="image profile"
+              className={s.image__profile}
+            />
           </Link>
-        )
-      }else if(decodingToken?.role === 2){
+        );
+      } else if (decodingToken?.role === 2) {
         setViewDashboard(
-          <Link>
-            <Button3 value="Dashboard"/>
+          <Link to={"/dashboard"}>
+            <img
+              src={decodingToken?.image}
+              alt="image profile"
+              className={s.image__profile}
+            />
           </Link>
-        )
+        );
       }
     }
-  },[getToken])
+  }, [getToken]);
 
   return (
     <div className={s.bg}>
@@ -61,10 +74,10 @@ export default function NavBar({ searchbar }) {
           </Link>
           <div className={s.navButtons}>
             <Link to="/store">
-              <ButtonArrow value='Store' />
+              <ButtonArrow value="Store" />
             </Link>
             <Link to="/about">
-              <ButtonArrow value='About Us' />
+              <ButtonArrow value="About Us" />
             </Link>
           </div>
         </div>

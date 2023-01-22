@@ -2,7 +2,7 @@
   width: 100%;
   min-height: 100vh;
   max-height: 100%;
-  background-color: #F1EEE5;
+  background: linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.2)), url('../../assets/moroccan-flower.png');
 }
 
 .container {
@@ -12,7 +12,6 @@
 
 .store__components {
   display: flex;
-  background-color: #F1EEE5;
 }
 
 .store__cards {

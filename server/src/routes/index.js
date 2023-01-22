@@ -6,12 +6,13 @@ const countrys = require("./countrys.routes.js");
 const drinks = require("./drinksIntegred.routes.js");
 const order = require("./orderProductsDesc.routes");
 const users = require("./users.routes.js");
-const alta = require("./routesMails/alta.route.js")
-const pago = require("./routesMails/pago.route.js")
-const dato = require("./routesMails/datos.route.js")
-const baja  = require("./routesMails/baja.routes.js");
-const news  = require("./routesMails/news.route.js");
-const welcome = require("./routesMails/welcome.route.js")
+const alta = require("./routesMails/alta.route.js");
+const pago = require("./routesMails/pago.route.js");
+const dato = require("./routesMails/datos.route.js");
+const baja = require("./routesMails/baja.routes.js");
+const news = require("./routesMails/news.route.js");
+const welcome = require("./routesMails/welcome.route.js");
+const cargarData = require("./cargarData.routes.js");
 const history = require("./historial.js")
 
 const checkOut = require("./controllers/checkOut.js");
@@ -32,7 +33,7 @@ router.use("/users", users);
 
 router.use("/shopingCart", shopingCart);
 
-router.use('/auth', authRouter)
+router.use("/auth", authRouter);
 
 router.use('/alta',alta )
 router.use('/pago',pago )
@@ -43,5 +44,6 @@ router.use('/welcome', welcome)
 router.use('/history', history )
 
 
+router.use("/cargarData", cargarData);
 
 module.exports = router;

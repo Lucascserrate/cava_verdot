@@ -5,7 +5,6 @@ const { Op } = require("sequelize");
 const postAddToShopingCart = async (req, res) => {
   const { userId, drinkId, amount } = req.body;
   const { add } = req.query;
-  console.log(add);
   try {
     let errors = {};
     //validando datos recibidos
@@ -54,7 +53,7 @@ const postAddToShopingCart = async (req, res) => {
         email: `def${newUserPosition.count + 1}@def.def`,
         password: "def",
         address: "def",
-        roleId: 3,
+        roleId: 1,
       });
     } else {
       //buscando bebida en el carrito de usuario en caso de previa existencia de usuario
@@ -63,7 +62,6 @@ const postAddToShopingCart = async (req, res) => {
           [Op.and]: [{ userId: userId }, { drinkId: drinkId }],
         },
       });
-      console.log("esto", searchShopingCart);
     }
     if (!searchShopingCart) {
       //agregando bebida y cantidad
@@ -98,11 +96,6 @@ const postAddToShopingCart = async (req, res) => {
         );
       }
     }
-    //obtener el total de productos de un usuario
-    /* const totalProducts = await ShopingCart.sum("amount", {
-      where: { userId },
-    }); */
-    //TODO:agregar id a User (es necesario primero crear un PutUser)
     return res.status(200).send({
       userId: userId ? userId : newUser.id,
       //totalProducts: totalProducts,

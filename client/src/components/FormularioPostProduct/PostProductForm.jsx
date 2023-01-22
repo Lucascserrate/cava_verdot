@@ -1,71 +1,18 @@
 import React, { useState, useEffect } from "react";
-// import { PostProduct, getAllCategories, getCountries } from '../../redux/actions';
-// import { useDispatch, useSelector } from 'react-redux'
 import s from "./PostProduct.module.css";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllCategories, getCountries } from "../../redux/actions";
+import Alert from "../Alert/Alert";
 
 export default function PostProductForm({ setDisplay }) {
-  function Validate(currentInput) {
-    let currentErrors = {};
+  const stateCountries = useSelector((state) => state.countries);
+  const stateCategories = useSelector((state) => state.categories);
 
-    let RegExInputUsersressionText = /^[a-zA-Z\s]*$/;
-    let RegExInputUsersressionNum = /^[0-9,$]*$/;
+  const [timeAlert, setTimeAlert] = useState(false);
+  const [viewAlert, setViewAlert] = useState();
 
-    //Validación nombres
-    if (!currentInput.name) {
-      currentErrors.name = "Por favor ingresa un nombre a la bebida";
-    } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(currentInput.name)) {
-      currentErrors.name = "El nombre solo puede contener letras y espacios";
-    }
-
-    // Validación Description
-
-    if (!currentInput.description) {
-      currentErrors.description = "Description is required";
-    }
-
-    // Validación Stock
-
-    if (!RegExInputUsersressionNum.test(currentInput.stock))
-      currentErrors.stock = "Only numbers are allowed";
-    if (!currentInput.stock) currentErrors.stock = "Stock is required";
-
-    //Validación Precio
-
-    if (!currentInput.price) {
-      currentErrors.price = "Por favor ingresa un precio";
-    } else if (currentInput.price < 1) {
-      currentErrors.price = "El precio mínimo es $1";
-    }
-
-    //   //Validación image
-
-    //   if (!currentInput.image) {
-    //     currentErrors.image = "Por favor ingresa una imagen";
-    //   }
-
-    //Validacion Country
-
-    //   if (!currentInput.country) {
-    //     currentErrors.country = "Por favor ingresa un país";
-    //   }
-
-    // Validación Categories
-
-    //   if (currentInput.category.length === 0) {
-    //     currentErrors.category = "Por favor ingresa una categoría";
-    //   }
-
-    return currentErrors;
-  }
-
-  //Guarda todas las categorias
-  const [categories, setCategories] = useState("");
-  //Guarda todos los Paises
-  const [countries, setCountries] = useState("");
-
-  //Guarda los Usuarios
-  // const [users, setUsers] = useState("")
+  const dispatch = useDispatch();
 
   //Guarda los datos de los inputs
   const [data, setData] = useState({
@@ -73,83 +20,39 @@ export default function PostProductForm({ setDisplay }) {
     description: "",
     stock: "",
     price: "",
-    rating: "5",
     image: "",
     country: "",
     category: "",
-    subCategory: "",
   });
-  /* 
-    //Captura los errores del axios
-    const [error, setError] = useState(""); */
 
-  //Captura errores de validación
-  const [currentErrors, setCurrentErrors] = useState({});
-
-  //trae todas las Categorias
-  const getCategory = async () => {
-    // const url = 'http://localhost:3001/categories'
-    const res = await axios.get(`/categories`, data);
-    console.log(categories);
-    setCategories(...categories, res.data);
-  };
-
-  console.log(data);
-
-  const getCountries = async () => {
-    const url = "/countries";
-    const res = await axios.get(url, data);
-    setCountries(...countries, res.data);
-  };
-
-  //Trae todos los Usuarios
-  // const getUsers = async () => {
-  //     const url = 'http://localhost:3001/users'
-  //     const res = await axios.get(url, data)
-  //     setUsers(...users, res.data)
-  // }
-
-  //Carga Categorias y Usuarios
   useEffect(() => {
-    getCategory();
-    // getUsers();
-    getCountries();
-  }, []);
+    dispatch(getAllCategories());
+    dispatch(getCountries());
+  }, [dispatch]);
+
+  const handleImage = async (e) => {
+    const files = e.target.files;
+    console.log(files);
+    const datas = new FormData();
+    datas.append("file", files[0]);
+    datas.append("upload_preset", "CAVA-verdot");
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dcxiks4ku/upload",
+      {
+        method: "POST",
+        body: datas,
+      }
+    );
+    const file = await res.json();
+    setData({
+      ...data,
+      image: file.secure_url,
+    });
+  };
 
   //Registra los cambios en los inputs en el FORM
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
-    setCurrentErrors(Validate({ ...data, [input.name]: input.value }));
-  };
-
-  // Envia los datos del FORM al back, actualiza, resetea estado y captura errores
-  const handleSubmit = async (ev) => {
-    ev.preventDefault();
-    setDisplay(false)
-
-    try {
-      // const url = 'https://cavaverdot-production.up.railway.app/products/'
-      const res = await axios.post(`/products`, data);
-
-      console.log("estas dandole a submit");
-      alert("Producto creado con éxito");
-      setData({
-        name: "",
-        description: "",
-        stock: "",
-        price: "",
-        rating: "5",
-        image: "",
-        country: "",
-        category: "",
-        subCategory: "",
-      });
-    } catch (error) {
-      if (error) {
-        console.log(data);
-      }
-      // setError(error.response.data.message)
-    }
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
   //Registra los values de los selects
@@ -169,196 +72,176 @@ export default function PostProductForm({ setDisplay }) {
     });
   };
 
-  // const handleSelectUsers = (e) => {
-  //     e.preventDefault();
-  //     setData({
-  //       ...data,
-  //       user: e.target.value,
-  //     });
-  //   };
+  // Envia los datos del FORM al back, actualiza, resetea estado y captura errores
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
+    const { name, description, stock, price, image, country, category } = data;
 
-  //Este handler convierte la imagen en base64
-  const handleImage = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-    setFileToBase(file);
-  };
-
-  const setFileToBase = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
+    if (
+      !name ||
+      !description ||
+      !stock ||
+      !price ||
+      !image ||
+      !country ||
+      !category
+    ) {
+      setViewAlert(<Alert type="error" message="Campos vacios" />);
+      setTimeAlert(true);
+      setTimeout(() => {
+        setTimeAlert(false);
+      }, 1500);
+    } else {
+      setViewAlert(<Alert type="ok" message="Producto creado" />);
+      setTimeAlert(true);
+      setTimeout(() => {
+        setTimeAlert(false);
+        setDisplay(false);
+      }, 1500);
+      await axios.post(`/products`, data);
       setData({
-        ...data,
-        image: reader.result,
+        name: "",
+        description: "",
+        stock: "",
+        price: "",
+        image: "",
+        country: "",
+        category: "",
       });
-    };
+    }
   };
 
   return (
     <div className={s.form}>
-      <button onClick={() => setDisplay(false)} className={s.close}>✖</button>
-      <form className={`${s.form__content} ${s.container}`} onSubmit={handleSubmit}>
+      <form
+        className={`${s.form__content} ${s.container}`}
+        onSubmit={handleSubmit}
+      >
+        <p onClick={() => setDisplay(false)} className={s.close}>
+          ✖
+        </p>
         <h1 className={s.form__title}>Add a product</h1>
         <div className={s.form__inputs}>
-          <div>
+          <div className={s.form__elements}>
             <div className={s.form__group}>
+              <label htmlFor="name" className={s.form__lbl}>
+                Drink:
+              </label>
               <input
                 className={s.form__input}
                 type="text"
                 id="name"
                 name="name"
-                placeholder=" "
+                placeholder="Name..."
                 value={data.name}
                 onChange={handleChange}
               />
-              <label disabled htmlFor="name" className={s.form__lbl}>
-                Drink:
-              </label>
-              <span className={s.form__bar}></span>
             </div>
-            <div className={s.form__message}>
-              {currentErrors.name && (
-                <p className={s.error}>{currentErrors.name}</p>
-              )}
-            </div>
+
             <div className={s.form__group}>
+              <label htmlFor="description" className={s.form__lbl}>
+                Description
+              </label>
               <input
                 id="description"
                 className={s.form__input}
                 as="textarea"
                 name="description"
-                placeholder=" "
+                placeholder="Description..."
                 onChange={handleChange}
                 value={data.description}
               />
-              <label htmlFor="description" className={s.form__lbl}>
-                Description
-              </label>
-              <span className={s.form__bar}></span>
             </div>
-            <div className={s.form__message}>
-              {currentErrors.description && (
-                <p className={s.error}>{currentErrors.description}</p>
-              )}
-            </div>
+
             <div className={s.form__group}>
+              <label htmlFor="stock" className={s.form__lbl}>
+                Stock:
+              </label>
               <input
                 type="number"
                 id="stock"
                 name="stock"
                 className={s.form__input}
-                placeholder=" "
+                placeholder="Stock..."
                 onChange={handleChange}
                 value={data.stock}
               />
-              <label htmlFor="stock" className={s.form__lbl}>
-                Stock:
-              </label>
-              <span className={s.form__bar}></span>
             </div>
-            <div className={s.form__message}>
-              {currentErrors.stock && (
-                <p className={s.error}>{currentErrors.stock}</p>
-              )}
-            </div>
+
             <div className={s.form__group}>
+              <label htmlFor="price" className={s.form__lbl}>
+                Price:
+              </label>
               <input
                 type="number"
                 id="price"
                 className={s.form__input}
                 name="price"
-                placeholder=" "
+                placeholder="Price..."
                 onChange={handleChange}
                 value={data.price}
               />
-              <label htmlFor="price" className={s.form__lbl}>
-                Price:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-            <div className={s.form__message}>
-              {currentErrors.price && (
-                <p className={s.error}>{currentErrors.price}</p>
-              )}
-            </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
-                type="file"
-                placeholder="Image"
-                name="image"
-                onChange={handleImage}
-                required
-                className={s.form__input}
-              />
-
-              <label htmlFor="image" className={s.form__lbl}>
-                Image:
-              </label>
-              <span className={s.form__bar}></span>
             </div>
 
-            <div className={s.imgSide}>
-              {<img src={data.image} alt="" width="250px" height="250px" />}
-            </div>
-          </div>
-
-          <div>
             <div className={s.form__group}>
               <select
                 className={s.form__input}
                 onChange={handleSelectCategories}
-                placeholder=" "
               >
-                {categories.length &&
-                  categories?.map((item) => {
-                    return (
-                      <option key={item.id} value={item.category}>
-                        {item.category}
-                      </option>
-                    );
-                  })}
+                <option value="default" selected disabled>
+                  Seleccione Categoria
+                </option>
+                {stateCategories &&
+                  stateCategories.map((e) => (
+                    <option key={e.id} value={e.category}>
+                      {e.category}
+                    </option>
+                  ))}
               </select>
-              <label htmlFor="category" className={s.form__lbl}>
-                Category:
-              </label>
-              <span className={s.form__bar}></span>
             </div>
-            <div className={s.form__message}>
-              {currentErrors.category && (
-                <p className={s.error}>{currentErrors.category}</p>
-              )}
-            </div>
-          </div>
 
-          <div>
             <div className={s.form__group}>
               <select
                 className={s.form__input}
                 onChange={handleSelectCountries}
-                placeholder=" "
               >
-                {countries.length &&
-                  countries?.map((item) => {
-                    return (
-                      <option key={item.id} value={item.country}>
-                        {item.country}
-                      </option>
-                    );
-                  })}
+                <option value="default" disabled selected>
+                  Seleccione pais
+                </option>
+                {stateCountries &&
+                  stateCountries.map((e) => (
+                    <option key={e.id} value={e.country}>
+                      {e.country}
+                    </option>
+                  ))}
               </select>
-              <label htmlFor="country" className={s.form__lbl}>
-                Country:
+            </div>
+
+            <div className={s.form__group}>
+              <label htmlFor="img" className={s.form__lbl}>
+                Image:
               </label>
-              <span className={s.form__bar}></span>
+              <input
+                type="file"
+                name="image"
+                id="img"
+                onChange={handleImage}
+                required
+                className={s.form__input}
+              />
             </div>
           </div>
-          <button type="submit" className={s.btn}>
-            Add
-          </button>
+
+          <div className={s.form__elements}>
+            <div className={s.imgSide}>
+              {<img src={data.image} alt="" className={s.form__viewimg} />}
+            </div>
+
+            <button type="submit" className={s.btn}>
+              Add
+            </button>
+            <div className={s.form__alert}>{timeAlert && viewAlert}</div>
+          </div>
         </div>
       </form>
     </div>

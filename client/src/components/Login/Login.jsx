@@ -1,54 +1,63 @@
-import React, { useState } from 'react';
-import { Formik, Form, ErrorMessage, Field } from 'formik';
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import { auth, provider, } from "../../firebase/firebase.js"
-import { Link } from 'react-router-dom'
-import s from './Login.module.css';
-import Alert from '../Alert/Alert';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { parseJwt } from '../../functions/parseTokenJwt'
-import GoogleButton from 'react-google-button'
+import React, { useState } from "react";
+import { Formik, Form, ErrorMessage, Field } from "formik";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../../firebase/firebase.js";
+import { Link } from "react-router-dom";
+import s from "./Login.module.css";
+import Alert from "../Alert/Alert";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { parseJwt } from "../../functions/parseTokenJwt";
+import GoogleButton from "react-google-button";
+
 function Login() {
   const [timeAlert, setTimeAlert] = useState(false);
-  const [timeAlertError, setTimeAlertError] = useState(false);
+  const [viewAlert, setViewAlert] = useState();
   const navigate = useNavigate();
 
   const handleOnClose = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
   const handleClickGoogle = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      signInWithPopup(auth, provider).then(
-        async (result) => {
+      signInWithPopup(auth, provider)
+        .then(async (result) => {
           GoogleAuthProvider.credentialFromResult(result);
-          const { email, uid } = result.user
+          const { email, uid } = result.user;
           const res = await axios.post("auth/login", {
             email: email,
             password: uid,
           });
           window.localStorage.setItem("token", res.data);
           parseJwt(res.data);
-          setTimeAlert(true)
+          setViewAlert(<Alert type="ok" message="Inicio exitoso" />);
+          setTimeAlert(true);
           setTimeout(() => {
             navigate("/");
-          }, 2000);
-        }
-      ).catch((error) => {
-        setTimeAlertError(true)
-        setTimeout(() => {
-          setTimeAlertError(false)
-        }, 7000);
-      });
+          }, 1000);
+        })
+        .catch((error) => {
+          setViewAlert(<Alert type="error" message="No existe un usuario" />);
+          setTimeAlert(true);
+          setTimeout(() => {
+            setTimeAlert(false);
+          }, 4000);
+        });
     } catch (err) {
-      console.log(err.message)
+      console.log(err.message);
     }
-  }
+  };
   return (
     <div className={s.login}>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{
+          email: "",
+          password: "",
+          oldId: window.localStorage.getItem("userId")
+            ? window.localStorage.getItem("userId")
+            : null,
+        }}
         validate={(values) => {
           let errores = {};
 
@@ -71,13 +80,15 @@ function Login() {
         }}
         onSubmit={async (values, { resetForm }) => {
           try {
-            const res = await axios.post('/auth/login', values)
+            const res = await axios.post("/auth/login", values);
             window.localStorage.setItem("token", res.data);
-            parseJwt(res.data);
+            const decript = parseJwt(res.data);
+            window.localStorage.setItem("userId", decript.id);
             resetForm();
+            setViewAlert(<Alert type="ok" message="Inicio exitoso" />);
             setTimeAlert(true);
             setTimeout(() => {
-              setTimeAlert(false)
+              setTimeAlert(false);
               navigate("/");
             }, 2000);
           } catch (error) {
@@ -91,44 +102,46 @@ function Login() {
               <h1 className={s.login__title}>Login</h1>
 
               <div className={s.login__inputs}>
-                <div className={s.login__group}>
-                  <Field
-                    type="email"
-                    className={s.login__input}
-                    placeholder=" "
-                    name="email"
-                    id="email"
-                  />
-                  <label className={s.login__lbl}>Email:</label>
-                  <span className={s.login__bar}></span>
-                </div>
-                <div className={s.login__message}>
-                  <ErrorMessage
-                    name="email"
-                    component={() => (
-                      <span className={s.error}>{errors.email}</span>
-                    )}
-                  />
+                <div>
+                  <div className={s.login__group}>
+                    <label className={s.login__lbl}>Email:</label>
+                    <Field
+                      type="email"
+                      className={s.login__input}
+                      placeholder="email@email.com"
+                      name="email"
+                      id="email"
+                    />
+                  </div>
+                  <div className={s.login__message}>
+                    <ErrorMessage
+                      name="email"
+                      component={() => (
+                        <span className={s.error}>{errors.email}</span>
+                      )}
+                    />
+                  </div>
                 </div>
 
-                <div className={s.login__group}>
-                  <Field
-                    type="password"
-                    className={s.login__input}
-                    placeholder=" "
-                    name="password"
-                    id="password"
-                  />
-                  <label className={s.login__lbl}>Password:</label>
-                  <span className={s.login__bar}></span>
-                </div>
-                <div className={s.login__message}>
-                  <ErrorMessage
-                    name="password"
-                    component={() => (
-                      <span className={s.error}>{errors.password}</span>
-                    )}
-                  />
+                <div>
+                  <div className={s.login__group}>
+                    <label className={s.login__lbl}>Password:</label>
+                    <Field
+                      type="password"
+                      className={s.login__input}
+                      placeholder="....."
+                      name="password"
+                      id="password"
+                    />
+                  </div>
+                  <div className={s.login__message}>
+                    <ErrorMessage
+                      name="password"
+                      component={() => (
+                        <span className={s.error}>{errors.password}</span>
+                      )}
+                    />
+                  </div>
                 </div>
 
                 <input
@@ -136,24 +149,21 @@ function Login() {
                   className={s.login__submit}
                   value="Iniciar Sesion"
                 />
+
                 <GoogleButton
+
+                  type='light'
                   onClick={e => handleClickGoogle(e)}
                 />
+
                 <p>¿No tiene cuenta?<Link to='/register'> Registrate.</Link></p>
 
               </div>
+              <div className={s.login__alert}>{timeAlert && viewAlert}</div>
 
               <label onClick={handleOnClose} className={s.login__close}>
-                X
+              ✖
               </label>
-              <div className={s.login__alert}>
-                {timeAlert && (
-                  <Alert type="ok" message="Inicio de sesion exitoso" />
-                )}
-                {timeAlertError && (
-                  <Alert type="error" message="Este correo no esta registrado" />
-                )}
-              </div>
             </div>
           </Form>
         )}
@@ -162,4 +172,4 @@ function Login() {
   );
 }
 
-export default Login
+export default Login;

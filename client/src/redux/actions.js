@@ -11,6 +11,8 @@ export const POST_PRODUCT = 'POST_PRODUCT'
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_CART = 'GET_CART';
 export const GET_DRINKS_BY_RATING = 'GET_DRINKS_BY_RATING';
+export const GET_USER_BY_ID = 'GET_USER_BY_ID';
+export const CLEAR_USER = 'CLEAR_USER';
 
 
 // Actions Creators get all products
@@ -96,5 +98,18 @@ export const getDrinksByRating = () => {
   return async (dispatch) => {
     const dataApi = await axios.get('/products/highScore')
     return dispatch({type: GET_DRINKS_BY_RATING, payload: dataApi.data})
+  }
+}
+
+export const getUserById = (id) => {
+  return async (dispatch) => {
+    const dataApi = await axios.get(`/users/${id}`)
+    return dispatch({type: GET_USER_BY_ID, payload: dataApi.data})
+  }
+}
+
+export const clearUser = () => {
+  return async (dispatch) => {
+    return dispatch({type: CLEAR_USER})
   }
 }

@@ -14,12 +14,21 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 // );
 
  const sequelize = new Sequelize(
+  `postgresql://postgres:kpSBAKrmRQHjfEsM4XDl@containers-us-west-123.railway.app:6728/railway`,
+  {
+    logging: false,
+    native: false,
+  }
+); 
+
+/*
+const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/cava`,
   {
     logging: false,
     native: false,
   }
-);
+); */
 
 const basename = path.basename(__filename);
 
@@ -47,8 +56,18 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Category, Drink, Country, SubCategory, Role, User, ShopingCart, Historial } =
-  sequelize.models;
+const {
+  Category,
+  Drink,
+  Country,
+  SubCategory,
+  Role,
+  User,
+  AllCountry,
+  AllState,
+  AllCit, Historialy,
+  Address,
+} = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -64,6 +83,12 @@ User.belongsToMany(Historial, {through: "userHistory" })
 Historial.belongsToMany(User, {through: "userHistory" })
 Drink.belongsToMany(Historial,{through: "drinkHistory" }) 
 Historial.belongsToMany(Drink,{through: "drinkHistory" })
+AllCountry.hasMany(AllState);
+AllState.belongsTo(AllCountry, { foreignKey: "id_country" });
+AllState.hasMany(AllCity);
+AllCity.belongsTo(AllState, { foreignKey: "id_state" });
+Address.hasMany(User);
+User.belongsTo(Address, { foreignKey: "id_user" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
