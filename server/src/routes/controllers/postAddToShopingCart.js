@@ -53,6 +53,7 @@ const postAddToShopingCart = async (req, res) => {
         email: `def${newUserPosition.count + 1}@def.def`,
         password: "def",
         address: "def",
+        emailProvider: "local",
         roleId: 1,
       });
     } else {
@@ -102,6 +103,7 @@ const postAddToShopingCart = async (req, res) => {
       message: `Drink '${searchDrink.name}' has been add`,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).send({ error: error.message });
   }
 };

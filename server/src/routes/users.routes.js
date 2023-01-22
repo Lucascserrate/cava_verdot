@@ -11,6 +11,7 @@ const getCitiesByState = require("./controllers/getCitiesByState.js");
 const { postUser } = require("./controllers/postUser.js");
 const postAddress = require("./controllers/postAddress.js");
 const putUser = require("./controllers/putUser.js");
+const putAddress = require("./controllers/putAddress.js");
 const deleteUser = require("./controllers/deleteUser.js");
 
 router.get("/address/allCountries", getAllCountries);
@@ -18,7 +19,8 @@ router.get("/address/allStates/:countryId", getAllStatesByCountry);
 router.get("/address/allCities/:stateId", getCitiesByState);
 router.get("/:userId", midlewareValidation, getUserById);
 router.post("/", postUser);
-router.post("/address/:userId", midlewareValidation, postAddress); //TODO:protejer ruta
+router.post("/address/:userId", midlewareValidation, postAddress);
+router.put("/address/:userID", midlewareValidation, putAddress);
 router.put("/:userId", midlewareValidation, putUser);
 router.delete("/:userId", midlewareValidation, deleteUser);
 
