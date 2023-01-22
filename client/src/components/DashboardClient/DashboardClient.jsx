@@ -22,6 +22,7 @@ function DashboardClient() {
       const getId = async () => {
         let decoding = await parseJwt(getToken);
         dispatch(getUserById(decoding.id));
+        console.log(decoding.id);
       };
       getId();
     }
