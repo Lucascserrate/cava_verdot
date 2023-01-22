@@ -6,7 +6,7 @@ const getAllStatesByCountry = async (req, res) => {
     const errors = {};
     //validando countryId
     if (countryId === "null") {
-      errors.countryId = "Select country";
+      errors.name = "Select country";
     } else {
       const countryIdValidator = await AllCountry.findByPk(countryId);
       !Object.keys(countryIdValidator).length
