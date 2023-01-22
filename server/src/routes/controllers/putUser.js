@@ -4,7 +4,7 @@ const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 const putUser = async (req, res) => {
   const { userId } = req.params;
   const verifyId = req.verifyId;
-  const { name, surname, address, age, newImage } = req.body;
+  const { name, surname, email, age, newImage } = req.body;
   try {
     //Capa de seguridad
     if (!userId) {
