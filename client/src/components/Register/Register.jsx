@@ -21,6 +21,7 @@ function Register() {
     surname: "",
     age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
     image: "",
+    emailProvider: ""
   });
 
   const uploadImage = async (e) => {
@@ -73,6 +74,7 @@ function Register() {
               ? sessionStorage.getItem("age")
               : "",
             image: photoURL,
+            emailProvider: "google"
           });
           setViewAlert(<Alert type="ok" message="Registro creado." />);
           setTimeAlertError(true);
@@ -123,6 +125,7 @@ function Register() {
     } else {
       const encriptado = encriptar(datosInputs.password);
       datosInputs.password = encriptado;
+      datosInputs.emailProvider = "local"
       const res = await axios.post("/users", datosInputs);
       setViewAlert(<Alert type="ok" message="Registro creado." />);
       setTimeAlertError(true);
@@ -137,6 +140,7 @@ function Register() {
         surname: "",
         age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
         image: "",
+        emailProvider: ""
       });
       setTimeout(() => {
         navigate("/");
@@ -243,7 +247,7 @@ function Register() {
             value="Register"
             onClick={onSubmit}
           />
-          <GoogleButton onClick={(e) => handleClickGoogle(e)} />
+          <GoogleButton type="light" label="Sign Up with Google" onClick= {(e) => handleClickGoogle(e)} />
         </div>
         <div className={s.form__alert}>{timeAlertError && viewAlert}</div>
       </form>
