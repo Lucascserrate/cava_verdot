@@ -45,9 +45,6 @@
     overflow-y: scroll;
     height: 390px;
 
-
-
-
 }
 
 .stockItems:nth-child(2n +1) {
@@ -62,7 +59,7 @@
 
 
 .stockContainer::-webkit-scrollbar-thumb {
-    background-color: #030f22;
+    background-color: #263238;
     border-radius: 3px;
 }
 
@@ -140,4 +137,18 @@
     width: 15px;
     border: none;
     background-color: transparent;
+}
+
+.input {
+    padding: 5px;
+    align-self: center;
+    font-size: 13px;
+    width: 90%;
+    background-color: transparent;
+    border: none;
+
+}
+
+.input:focus {
+    border: 1px solid black;
 }

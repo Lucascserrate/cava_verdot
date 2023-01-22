@@ -1,4 +1,4 @@
-﻿const countries = [
+﻿const allCountries = [
   {
     id: 144,
     name: "Afganistán",
@@ -856,3 +856,5 @@
     name: "Zimbabwe",
   },
 ];
+
+exports.allCountries = allCountries;

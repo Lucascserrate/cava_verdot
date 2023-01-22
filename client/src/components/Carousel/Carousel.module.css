@@ -1,7 +1,8 @@
-.carousel{
-  width: 100%;
+.carousel {
+  width: 80%;
   text-align: center;
 }
+
 .carousel__title {
   padding: 20px 0 0 60px;
   font-size: 2rem;
@@ -46,8 +47,7 @@
   height: 100%;
   border-radius: 5px;
   display: flex;
-  padding: 50px 0 30px 0;
-  background: rgba(0, 0, 0, .3);
+  padding: 30px 0 30px 0;
 }
 
 .center {

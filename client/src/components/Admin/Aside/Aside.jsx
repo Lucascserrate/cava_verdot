@@ -9,11 +9,11 @@ const Aside = () => {
 
   const getToken = window.localStorage.getItem("token");
 
-  useEffect(()=>{
-    if(getToken){
+  useEffect(() => {
+    if (getToken) {
       setDecodingToken(parseJwt(getToken))
     }
-  },[])
+  }, [])
 
   console.log(decodingToken);
 
@@ -21,7 +21,12 @@ const Aside = () => {
     <div className={s.container}>
       <div className={s.picContainer}>
         <div className={s.picture}>
-          <img className={s.img} src={decodingToken?.image} alt="imagen perfil" />
+          {
+            decodingToken ?
+              <img className={s.img} src={decodingToken?.image} alt="imagen perfil" />
+              :
+              <img className={s.img} src={img} alt="img" />
+          }
         </div>
         <p className={s.name}>{decodingToken?.surname ? decodingToken.name + ' ' + decodingToken.surname : decodingToken?.name}</p>
         <p className={s.admin}>Administrator</p>
