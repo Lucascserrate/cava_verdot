@@ -6,8 +6,16 @@ const { JWT_SECRET } = process.env;
 const { desEncriptar } = require("../../utils/password.js");
 
 const postUser = async (req, res) => {
-  const { name, surname, age, email, password, address, image, oldUserId } =
-    req.body;
+  const {
+    name,
+    surname,
+    age,
+    email,
+    password,
+    image,
+    oldUserId,
+    emailProvider,
+  } = req.body;
   try {
     let errors = {};
     //validando datos recibidos
@@ -33,16 +41,18 @@ const postUser = async (req, res) => {
         },
       });
     }
-    !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    if (email) {
+      !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      )
+        ? (errors.emailFormat = "invalid email")
+        : null;
       email
-    )
-      ? (errors.emailFormat = "invalid email")
-      : null;
-    email
-      ? uniqueEmailValidator.length
-        ? (errors.emailExists = "this email already exists")
-        : null
-      : null;
+        ? uniqueEmailValidator.length
+          ? (errors.emailExists = "this email already exists")
+          : null
+        : null;
+    }
     !password ? (errors.password = "password is requiered") : null;
 
     image
@@ -52,10 +62,14 @@ const postUser = async (req, res) => {
         ? (errors.image = "URL invalid")
         : null
       : null;
-
-    //respuesta en caso de errores
-    console.log(errors);
-    if (Object.keys(errors).length) return res.status(400).send(errors);
+    let providerOptions = ["local", "google"];
+    if (!emailProvider || !providerOptions.includes(emailProvider)) {
+      errors.emailProvider =
+        "emailProvider is required and must be 'local' or 'google'";
+    }
+    if (Object.keys(errors).length)
+      //respuesta en caso de errores
+      return res.status(400).send(errors);
     //cargando roles a la base de datos solo si aún no han sido cargadas
     let allRoles = await Role.findAll();
     if (!allRoles.length) {
@@ -72,11 +86,11 @@ const postUser = async (req, res) => {
       age,
       email,
       password: pws,
-      address: address ? address : null,
       image: image
         ? image
         : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg",
       roleId: 2,
+      emailProvider: emailProvider,
     });
     if (oldUserId) {
       const searchCart = await ShopingCart.findAll({
