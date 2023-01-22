@@ -10,6 +10,7 @@ import Login from '../Login/Login'
 import PasarelaStripe from '../Pasarela/PasarelaStripe'
 import Cart from '../Cart/Cart'
 import Dashboard from '../Admin/Dashboard/Dashboard'
+import DashboardClient from '../DashboardClient/DashboardClient'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/admin' element={<Dashboard />} />
+        <Route path='/dashboard' element={<DashboardClient />} />
       </Routes>
     </div>
   );

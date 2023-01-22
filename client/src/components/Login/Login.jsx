@@ -104,15 +104,14 @@ function Login() {
               <div className={s.login__inputs}>
                 <div>
                   <div className={s.login__group}>
+                    <label className={s.login__lbl}>Email:</label>
                     <Field
                       type="email"
                       className={s.login__input}
-                      placeholder=" "
+                      placeholder="email@email.com"
                       name="email"
                       id="email"
                     />
-                    <label className={s.login__lbl}>Email:</label>
-                    <span className={s.login__bar}></span>
                   </div>
                   <div className={s.login__message}>
                     <ErrorMessage
@@ -126,15 +125,14 @@ function Login() {
 
                 <div>
                   <div className={s.login__group}>
+                    <label className={s.login__lbl}>Password:</label>
                     <Field
                       type="password"
                       className={s.login__input}
-                      placeholder=" "
+                      placeholder="....."
                       name="password"
                       id="password"
                     />
-                    <label className={s.login__lbl}>Password:</label>
-                    <span className={s.login__bar}></span>
                   </div>
                   <div className={s.login__message}>
                     <ErrorMessage
@@ -159,7 +157,7 @@ function Login() {
               <div className={s.login__alert}>{timeAlert && viewAlert}</div>
 
               <label onClick={handleOnClose} className={s.login__close}>
-                X
+              ✖
               </label>
             </div>
           </Form>

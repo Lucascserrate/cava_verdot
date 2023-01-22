@@ -4,21 +4,21 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
 import Button3 from "../Button3/Button3";
-import ButtonArrow from '../ButtonArrow/ButtonArrow';
-import { parseJwt } from '../../functions/parseTokenJwt'
+import ButtonArrow from "../ButtonArrow/ButtonArrow";
+import { parseJwt } from "../../functions/parseTokenJwt";
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
   const getUserId = window.localStorage.getItem("userId");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
-    if(getUserId){
+    if (getUserId) {
       window.localStorage.removeItem("userId");
     }
-    navigate('/login')
+    navigate("/login");
   };
 
   const [vistaBtnLogin, setVistaBtnLogin] = useState();
@@ -35,26 +35,35 @@ export default function NavBar({ searchbar }) {
         </Link>
       )
     );
+  }, [getToken]);
 
-    if(getToken){
-      setDecodingToken(parseJwt(getToken))
+  useEffect(() => {
+    if (getToken) {
+      setDecodingToken(parseJwt(getToken));
 
-      if(decodingToken?.role === 3){
+      if (decodingToken?.role === 3) {
         setViewDashboard(
-          <Link to={'/admin'}>
-            <img src={decodingToken?.image} alt="image profile" className={s.image__profile} />
+          <Link to={"/admin"}>
+            <img
+              src={decodingToken?.image}
+              alt="image profile"
+              className={s.image__profile}
+            />
           </Link>
-        )
-      }else if(decodingToken?.role === 2){
+        );
+      } else if (decodingToken?.role === 2) {
         setViewDashboard(
-          <Link>
-            <img src={decodingToken?.image} alt="image profile" className={s.image__profile} />
+          <Link to={"/dashboard"}>
+            <img
+              src={decodingToken?.image}
+              alt="image profile"
+              className={s.image__profile}
+            />
           </Link>
-        )
+        );
       }
     }
   }, [getToken, decodingToken]);
-  
 
   return (
     <div className={s.bg}>
@@ -66,10 +75,10 @@ export default function NavBar({ searchbar }) {
           </Link>
           <div className={s.navButtons}>
             <Link to="/store">
-              <ButtonArrow value='Store' />
+              <ButtonArrow value="Store" />
             </Link>
             <Link to="/about">
-              <ButtonArrow value='About Us' />
+              <ButtonArrow value="About Us" />
             </Link>
           </div>
         </div>
