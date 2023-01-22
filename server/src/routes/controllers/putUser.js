@@ -4,15 +4,17 @@ const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 const putUser = async (req, res) => {
   console.log(req.params);
   const { userId } = req.params;
-  const { name, surname, address, age, newImage, email } = req.body;
+  const role = req.role;
+  const verifyId = req.verifyId;
+  const { name, surname, address, age, newImage } = req.body;
   try {
+    //Capa de seguridad
+    if (role < 3) {
+      if (parseInt(userId) !== verifyId)
+        return res.status(400).send("Not authorized");
+    }
     //validaciones
     let errors = {};
-    //Subiendo imagen a Cloudinary
-    let image;
-    if (newImage) {
-      image = await uploadImage(newImage);
-    }
     //validando datos recibidos
     if (name) {
       !/^[a-záéíóúäëïöü]*$/i.test(name)
@@ -62,6 +64,11 @@ const putUser = async (req, res) => {
     }
     //respuesta en caso de errores
     if (Object.keys(errors).length) return res.status(400).send(errors);
+    //Subiendo imagen a Cloudinary
+    let image;
+    if (newImage) {
+      image = await uploadImage(newImage);
+    }
     //cargando roles a la base de datos solo si aún no han sido cargadas
     const oldUser = await User.findByPk(userId, {
       attributes: ["id", "name", "surname", "age", "image", "emailProvider"],
