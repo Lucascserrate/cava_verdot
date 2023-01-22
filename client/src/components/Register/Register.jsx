@@ -247,7 +247,7 @@ function Register() {
             value="Register"
             onClick={onSubmit}
           />
-          <GoogleButton onClick={(e) => handleClickGoogle(e)} />
+          <GoogleButton type="light" label="Sign Up with Google" onClick= {(e) => handleClickGoogle(e)} />
         </div>
         <div className={s.form__alert}>{timeAlertError && viewAlert}</div>
       </form>

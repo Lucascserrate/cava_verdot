@@ -2,14 +2,14 @@ const { User } = require("../../db.js");
 const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 
 const putUser = async (req, res) => {
-  console.log(req.params);
   const { userId } = req.params;
-  const role = req.role;
   const verifyId = req.verifyId;
   const { name, surname, email, age, newImage } = req.body;
   try {
     //Capa de seguridad
-    if (role < 3) {
+    if (!userId) {
+      res.status(400).send("userId is required");
+    } else {
       if (parseInt(userId) !== verifyId)
         return res.status(400).send("Not authorized");
     }
