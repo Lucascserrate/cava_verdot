@@ -11,12 +11,12 @@ import Button3 from '../Button3/Button3';
 import Error from '../Error/Error';
 
 function Cards({ category, price, country, setPrice }) {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.drinks);
+
   // estados del paginado
   const [datos, setDatos] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state.drinks);
 
   useEffect(() => {
     dispatch(getDrinks());

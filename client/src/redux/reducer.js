@@ -9,7 +9,8 @@ import {
   POST_PRODUCT,
   GET_COUNTRIES,
   GET_CART,
-  GET_DRINKS_BY_RATING
+  GET_DRINKS_BY_RATING,
+  GET_USER_BY_ID
 } from "./actions";
 
 const initialState = {
@@ -19,7 +20,8 @@ const initialState = {
   countries: [],
   bubbleCart: 0,
   cart: [],
-  drinksRating: []
+  drinksRating: [],
+  user: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -77,6 +79,11 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         drinksRating: action.payload
+      }
+    case GET_USER_BY_ID:
+      return{
+        ...state,
+        user: action.payload
       }
     default:
       return state;

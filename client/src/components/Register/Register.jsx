@@ -151,111 +151,90 @@ function Register() {
         <h1 className={s.form__title}>Register</h1>
 
         <div className={s.form__inputs}>
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="name"
-                type="text"
-                placeholder=" "
-                className={s.form__input}
-                name="name"
-                value={datosInputs.name}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="name" className={s.form__lbl}>
-                Name:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
+          <div className={s.form__group}>
+            <label htmlFor="name" className={s.form__lbl}>
+              Name:
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Name..."
+              className={s.form__input}
+              name="name"
+              value={datosInputs.name}
+              onChange={handleOnChangeInputs}
+            />
           </div>
 
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="surname"
-                type="text"
-                placeholder=" "
-                className={s.form__input}
-                name="surname"
-                value={datosInputs.surname}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="surname" className={s.form__lbl}>
-                Surname:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
+          <div className={s.form__group}>
+            <label htmlFor="surname" className={s.form__lbl}>
+              Surname:
+            </label>
+            <input
+              id="surname"
+              type="text"
+              placeholder="Surname..."
+              className={s.form__input}
+              name="surname"
+              value={datosInputs.surname}
+              onChange={handleOnChangeInputs}
+            />
           </div>
 
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="age"
-                type="number"
-                placeholder=" "
-                className={s.form__input}
-                name="age"
-                value={datosInputs.age}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="age" className={s.form__lbl}>
-                Age: {getAge}
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
+          <div className={s.form__group}>
+            <label htmlFor="age" className={s.form__lbl}>
+              Age:
+            </label>
+            <input
+              id="age"
+              type="number"
+              className={s.form__input}
+              name="age"
+              value={datosInputs.age}
+              onChange={handleOnChangeInputs}
+            />
           </div>
 
-          <div>
-            <div className={s.form__group}>
-              <input
-                type="file"
-                placeholder=" "
-                name="image"
-                onChange={uploadImage}
-                required
-                className={s.form__input}
-              />
-              <label htmlFor="image" className={s.form__lbl}>
-                Image:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
+          <div className={s.form__group}>
+            <label htmlFor="image" className={s.form__lbl}>
+              Image:
+            </label>
+            <input
+              type="file"
+              name="image"
+              onChange={uploadImage}
+              className={s.form__input}
+            />
           </div>
 
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="email"
-                type="email"
-                placeholder=" "
-                className={s.form__input}
-                name="email"
-                value={datosInputs.email}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="email" className={s.form__lbl}>
-                Email:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
+          <div className={s.form__group}>
+            <label htmlFor="email" className={s.form__lbl}>
+              Email:
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="email@email.com"
+              className={s.form__input}
+              name="email"
+              value={datosInputs.email}
+              onChange={handleOnChangeInputs}
+            />
           </div>
 
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="password"
-                type="password"
-                placeholder=" "
-                className={s.form__input}
-                name="password"
-                value={datosInputs.password}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="password" className={s.form__lbl}>
-                Password:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
+          <div className={s.form__group}>
+            <label htmlFor="password" className={s.form__lbl}>
+              Password:
+            </label>
+            <input
+              id="password"
+              type="password"
+              placeholder="....."
+              className={s.form__input}
+              name="password"
+              value={datosInputs.password}
+              onChange={handleOnChangeInputs}
+            />
           </div>
 
           <input
@@ -266,10 +245,7 @@ function Register() {
           />
           <GoogleButton onClick={(e) => handleClickGoogle(e)} />
         </div>
-        {/* <div className={s.form__alert}>{viewAlert}</div> */}
-        <div className={s.form__alert}>
-          {timeAlertError && viewAlert}
-        </div>
+        <div className={s.form__alert}>{timeAlertError && viewAlert}</div>
       </form>
     </div>
   );
