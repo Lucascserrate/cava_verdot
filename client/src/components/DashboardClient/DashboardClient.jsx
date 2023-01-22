@@ -37,13 +37,13 @@ function DashboardClient() {
 
       dispatch(getUserById(decodingToken.id));
       setStatusLoad(true);
-    } else if(!window.localStorage.getItem("token")) {
-      setTimeout(()=>{
+    } else if (!window.localStorage.getItem("token")) {
+      setTimeout(() => {
         navigate("/login");
-      },2000);
+      }, 2000);
     }
 
-    return()=>{
+    return () => {
       dispatch(clearUser())
     }
   }, [dispatch]);
@@ -88,7 +88,7 @@ function DashboardClient() {
                 <figure className={s.dashboard__picture}>
                   <img
                     src={stateUser?.image}
-                    alt="image user"
+                    alt="user"
                     className={s.dashboard__img}
                   />
                 </figure>

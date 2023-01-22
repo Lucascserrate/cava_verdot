@@ -45,7 +45,7 @@ export default function NavBar({ searchbar }) {
           <Link to={"/admin"}>
             <img
               src={decodingToken?.image}
-              alt="image profile"
+              alt="profile"
               className={s.image__profile}
             />
           </Link>
@@ -55,7 +55,7 @@ export default function NavBar({ searchbar }) {
           <Link to={"/dashboard"}>
             <img
               src={decodingToken?.image}
-              alt="image profile"
+              alt="profile"
               className={s.image__profile}
             />
           </Link>
