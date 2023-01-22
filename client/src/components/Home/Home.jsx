@@ -9,6 +9,9 @@ import Notification from '../Notification/Notification';
 import AlertAge from "../AlertAge/AlertAge";
 import { modifyBubbleCart } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import Brands from '../Brands/Brands';
+import imgHeader from '../../assets/vinedo.jpg'
+import copa from '../../assets/copaVino.jpg'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -26,7 +29,7 @@ const Home = () => {
     if (bubbleCart) dispatch(modifyBubbleCart(user))
 
     // si no existe un usuario logueado le muestra la alerta de edad
-    if(!getToken){
+    if (!getToken) {
       if (!dia && !mes && !anio) {
         setTimeout(() => {
           setViewAlert(
@@ -42,10 +45,20 @@ const Home = () => {
         {viewAlert}
       </div>
       <Navbar />
-      <div className={s.home__content}>
-        <CarouselSlide />
+      <div className={s.headerContainer}>
+        <div className={s.headerBox}>
+          <h2 className={s.header}>Descubri los mejores vinos</h2>
+          <p className={s.subHeader}>En Cava Verdot vas a encontrar los mejores vinos al mejor precio</p>
+        </div>
+        <img className={s.imgHeader} src={imgHeader} alt="vinedo" />
       </div>
-
+      <div className={s.home__content}>
+        <div className={s.featured}>
+          <img className={s.copa} src={copa} alt="" />
+          <CarouselSlide />
+        </div>
+        <Brands />
+      </div>
       <BubbleCart />
       <BubbleWpp />
       {
