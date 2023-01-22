@@ -3,7 +3,6 @@ const { roles } = require("../../../api.js");
 const jwt = require("jsonwebtoken");
 const { generateHash } = require("../../utils/password.js");
 const { JWT_SECRET } = process.env;
-const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 const { desEncriptar } = require("../../utils/password.js");
 
 const postUser = async (req, res) => {
@@ -11,11 +10,6 @@ const postUser = async (req, res) => {
     req.body;
   try {
     let errors = {};
-    //Subiendo imagen a Cloudinary
-    // let result;
-    // if (image) {
-    //   result = await uploadImage(image);
-    // }
     //validando datos recibidos
     !name ? (errors.name = "name is required") : null;
     !/^[a-záéíóúäëïöü ]*$/i.test(name)
@@ -60,6 +54,7 @@ const postUser = async (req, res) => {
       : null;
 
     //respuesta en caso de errores
+    console.log(errors);
     if (Object.keys(errors).length) return res.status(400).send(errors);
     //cargando roles a la base de datos solo si aún no han sido cargadas
     let allRoles = await Role.findAll();
