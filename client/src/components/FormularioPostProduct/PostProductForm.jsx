@@ -90,11 +90,9 @@ export default function PostProductForm({ setDisplay }) {
   const getCategory = async () => {
     // const url = 'http://localhost:3001/categories'
     const res = await axios.get(`/categories`, data);
-    console.log(categories);
     setCategories(...categories, res.data);
   };
 
-  console.log(data);
 
   const getCountries = async () => {
     const url = "/countries";
@@ -131,7 +129,6 @@ export default function PostProductForm({ setDisplay }) {
       // const url = 'https://cavaverdot-production.up.railway.app/products/'
       const res = await axios.post(`/products`, data);
 
-      console.log("estas dandole a submit");
       alert("Producto creado con éxito");
       setData({
         name: "",
