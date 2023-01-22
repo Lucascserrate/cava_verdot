@@ -12,7 +12,15 @@ const getUserById = async (req, res) => {
     }
     //cargando roles a la base de datos solo si aún no han sido cargadas
     const userInfo = await User.findByPk(userId, {
-      attributes: ["id", "name", "surname", "age", "email", "address", "image"],
+      attributes: [
+        "id",
+        "name",
+        "surname",
+        "age",
+        "email",
+        "image",
+        "emailProvider",
+      ],
     });
     if (userInfo) {
       res.status(200).json(userInfo);
