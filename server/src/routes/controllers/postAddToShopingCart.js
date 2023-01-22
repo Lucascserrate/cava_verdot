@@ -53,6 +53,7 @@ const postAddToShopingCart = async (req, res) => {
         email: `def${newUserPosition.count + 1}@def.def`,
         password: "def",
         address: "def",
+        emailProvider: "local",
         roleId: 1,
       });
     } else {
