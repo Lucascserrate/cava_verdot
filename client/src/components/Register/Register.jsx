@@ -21,7 +21,7 @@ function Register() {
     surname: "",
     age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
     image: "",
-    proveedor: ""
+    emailProvider: ""
   });
 
   const uploadImage = async (e) => {
@@ -74,7 +74,7 @@ function Register() {
               ? sessionStorage.getItem("age")
               : "",
             image: photoURL,
-            proveedor: "google"
+            emailProvider: "google"
           });
           setViewAlert(<Alert type="ok" message="Registro creado." />);
           setTimeAlertError(true);
@@ -125,7 +125,7 @@ function Register() {
     } else {
       const encriptado = encriptar(datosInputs.password);
       datosInputs.password = encriptado;
-      datosInputs.proveedor = "local"
+      datosInputs.emailProvider = "local"
       const res = await axios.post("/users", datosInputs);
       setViewAlert(<Alert type="ok" message="Registro creado." />);
       setTimeAlertError(true);
@@ -140,7 +140,7 @@ function Register() {
         surname: "",
         age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
         image: "",
-        proveedor: ""
+        emailProvider: ""
       });
       setTimeout(() => {
         navigate("/");

@@ -6,7 +6,7 @@ const putUser = async (req, res) => {
   const { userId } = req.params;
   const role = req.role;
   const verifyId = req.verifyId;
-  const { name, surname, address, age, newImage } = req.body;
+  const { name, surname, email, age, newImage } = req.body;
   try {
     //Capa de seguridad
     if (role < 3) {
