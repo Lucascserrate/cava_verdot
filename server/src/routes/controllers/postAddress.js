@@ -1,7 +1,8 @@
 const { AllCountry, AllState, AllCity, Address } = require("../../db");
 
 const postAddress = async (req, res) => {
-  const { userId } = req.query;
+  const { userId } = req.params;
+  const verifyId = req.verifyId;
   const {
     countryId,
     stateId,
@@ -13,6 +14,13 @@ const postAddress = async (req, res) => {
     reference,
   } = req.body;
   try {
+    //Capa de seguridad
+    if (!userId) {
+      res.status(400).send("userId is required");
+    } else {
+      if (parseInt(userId) !== verifyId)
+        return res.status(400).send("Not authorized");
+    }
     const errors = {};
     //verificar countryId
     if (!countryId) {

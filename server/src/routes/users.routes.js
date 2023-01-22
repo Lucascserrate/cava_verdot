@@ -18,7 +18,7 @@ router.get("/address/allStates/:countryId", getAllStatesByCountry);
 router.get("/address/allCities/:stateId", getCitiesByState);
 router.get("/:userId", midlewareValidation, getUserById);
 router.post("/", postUser);
-router.post("/address", postAddress); //TODO:protejer ruta
+router.post("/address/:userId", midlewareValidation, postAddress); //TODO:protejer ruta
 router.put("/:userId", midlewareValidation, putUser);
 router.delete("/:userId", midlewareValidation, deleteUser);
 
