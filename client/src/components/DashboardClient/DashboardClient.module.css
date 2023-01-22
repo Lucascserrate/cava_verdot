@@ -8,4 +8,34 @@
 .container{
   width: 90%;
   height: 100%;
+  margin: 0 auto;
+}
+.dashboard__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dashboard__cabecera{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.dashboard__picture{
+  width: 150px;
+  border-radius: 50%;
+}
+.dashboard__img{
+  width: 100%;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  background-size: cover;
+}
+
+.dashboard__data{
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
