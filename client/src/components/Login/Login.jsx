@@ -9,11 +9,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { parseJwt } from "../../functions/parseTokenJwt";
 import GoogleButton from "react-google-button";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/actions";
 
 function Login() {
   const [timeAlert, setTimeAlert] = useState(false);
   const [viewAlert, setViewAlert] = useState();
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const handleOnClose = () => {
     navigate("/");
@@ -30,7 +34,8 @@ function Login() {
             password: uid,
           });
           window.localStorage.setItem("token", res.data);
-          parseJwt(res.data);
+          const decript = parseJwt(res.data);
+          dispatch(setUser(decript));
           setViewAlert(<Alert type="ok" message="Inicio exitoso" />);
           setTimeAlert(true);
           setTimeout(() => {
@@ -83,6 +88,7 @@ function Login() {
             const res = await axios.post("/auth/login", values);
             window.localStorage.setItem("token", res.data);
             const decript = parseJwt(res.data);
+            dispatch(setUser(decript));
             window.localStorage.setItem("userId", decript.id);
             resetForm();
             setViewAlert(<Alert type="ok" message="Inicio exitoso" />);
@@ -157,7 +163,7 @@ function Login() {
               <div className={s.login__alert}>{timeAlert && viewAlert}</div>
 
               <label onClick={handleOnClose} className={s.login__close}>
-              ✖
+                ✖
               </label>
             </div>
           </Form>
