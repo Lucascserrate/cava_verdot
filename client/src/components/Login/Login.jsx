@@ -149,10 +149,15 @@ function Login() {
                   className={s.login__submit}
                   value="Iniciar Sesion"
                 />
-                <GoogleButton onClick={(e) => handleClickGoogle(e)} />
-                <p>
-                  ¿No tiene cuenta?<Link to="/register"> Registrate.</Link>
-                </p>
+
+                <GoogleButton
+
+                  type='light'
+                  onClick={e => handleClickGoogle(e)}
+                />
+
+                <p>¿No tiene cuenta?<Link to='/register'> Registrate.</Link></p>
+
               </div>
               <div className={s.login__alert}>{timeAlert && viewAlert}</div>
 

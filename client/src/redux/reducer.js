@@ -10,7 +10,8 @@ import {
   GET_COUNTRIES,
   GET_CART,
   GET_DRINKS_BY_RATING,
-  GET_USER_BY_ID
+  GET_USER_BY_ID,
+  CLEAR_USER
 } from "./actions";
 
 const initialState = {
@@ -84,6 +85,11 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         user: action.payload
+      }
+    case CLEAR_USER:
+      return{
+        ...state,
+        user: []
       }
     default:
       return state;
