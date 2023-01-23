@@ -10,9 +10,9 @@ import {
   GET_COUNTRIES,
   GET_CART,
   GET_DRINKS_BY_RATING,
-  GET_USER_BY_ID,
+  SET_USER,
   CLEAR_USER,
-  PUT_DRINKS
+  CLEAR_CART,
 } from "./actions";
 
 const initialState = {
@@ -23,7 +23,7 @@ const initialState = {
   bubbleCart: 0,
   cart: [],
   drinksRating: [],
-  user: [],
+  user: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -82,15 +82,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         drinksRating: action.payload
       }
-    case GET_USER_BY_ID:
-      return {
+    case SET_USER:
+      return{
         ...state,
         user: action.payload
       }
     case CLEAR_USER:
       return {
         ...state,
-        user: []
+        user: {}
+      }
+    case CLEAR_CART:
+      return{
+        ...state,
+        cart: [],
+        bubbleCart: 0
       }
     case PUT_DRINKS:
       return {

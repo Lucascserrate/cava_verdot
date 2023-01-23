@@ -5,19 +5,26 @@ import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
 import Button3 from "../Button3/Button3";
 import ButtonArrow from "../ButtonArrow/ButtonArrow";
-import { parseJwt } from "../../functions/parseTokenJwt";
+import { useDispatch, useSelector } from "react-redux";
+import { clearUser, clearCart } from "../../redux/actions";
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
   const getUserId = window.localStorage.getItem("userId");
 
+  const stateUser = useSelector((state) => state.user);
+
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
+    dispatch(clearUser());
     if (getUserId) {
       window.localStorage.removeItem("userId");
     }
+    dispatch(clearCart());
     navigate("/login");
   };
 
@@ -37,24 +44,30 @@ export default function NavBar({ searchbar }) {
   }, [getToken]);
 
   useEffect(() => {
-    if (getToken) {
-      let decodingToken = parseJwt(getToken);
-
-      if (decodingToken?.role === 3) {
+    if (window.localStorage.getItem("token")) {
+      if (stateUser.role === 3) {
         setViewDashboard(
           <Link to={"/admin"}>
             <img
-              src={decodingToken?.image}
+              src={
+                stateUser.image
+                  ? stateUser.image
+                  : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
+              }
               alt="image profile"
               className={s.image__profile}
             />
           </Link>
         );
-      } else if (decodingToken?.role === 2) {
+      } else if (stateUser.role === 2) {
         setViewDashboard(
           <Link to={"/dashboard"}>
             <img
-              src={decodingToken?.image}
+              src={
+                stateUser.image
+                  ? stateUser.image
+                  : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
+              }
               alt="image profile"
               className={s.image__profile}
             />
@@ -62,7 +75,7 @@ export default function NavBar({ searchbar }) {
         );
       }
     }
-  }, [getToken]);
+  }, [getToken, stateUser]);
 
   return (
     <div className={s.bg}>

@@ -11,9 +11,11 @@ export const POST_PRODUCT = 'POST_PRODUCT'
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_CART = 'GET_CART';
 export const GET_DRINKS_BY_RATING = 'GET_DRINKS_BY_RATING';
-export const GET_USER_BY_ID = 'GET_USER_BY_ID';
+export const SET_USER = 'SET_USER';
 export const CLEAR_USER = 'CLEAR_USER';
 export const PUT_DRINKS = "PUT_DRINKS"
+export const CLEAR_CART = 'CLEAR_CART';
+
 
 // Actions Creators get all products
 export const getDrinks = () => {
@@ -117,15 +119,20 @@ export const getDrinksByRating = () => {
   }
 }
 
-export const getUserById = (id) => {
+export const setUser = (data) => {
   return async (dispatch) => {
-    const dataApi = await axios.get(`/users/${id}`)
-    return dispatch({ type: GET_USER_BY_ID, payload: dataApi.data })
+    return dispatch({type: SET_USER, payload: data})
   }
 }
 
 export const clearUser = () => {
   return async (dispatch) => {
     return dispatch({ type: CLEAR_USER })
+  }
+}
+
+export const clearCart = () => {
+  return async (dispatch) => {
+    return dispatch({type: CLEAR_CART});
   }
 }

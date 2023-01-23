@@ -49,7 +49,6 @@ export default function CarouselSlide() {
       </Link>
     </div>
   ));
-  console.log(state);
 
   return (
     <div className={`${s.carousel} Slide`}>
