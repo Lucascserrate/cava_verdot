@@ -126,6 +126,8 @@ const postUser = async (req, res) => {
         name: newUser.name,
         surname: newUser.surname,
         email: newUser.email,
+        emailProvider: newUser.emailProvider,
+        age: newUser.age,
       },
       JWT_SECRET,
       { expiresIn: "3h" }

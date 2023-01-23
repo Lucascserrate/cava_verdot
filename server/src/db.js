@@ -18,7 +18,8 @@ const sequelize = new Sequelize(
     logging: false,
     native: false,
   }
-); 
+);
+
 
 const basename = path.basename(__filename);
 

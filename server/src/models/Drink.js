@@ -32,8 +32,8 @@ module.exports = (sequelize) => {
       },
       avalible: {
         type: DataTypes.BOOLEAN,
-        defaultValue: true
-      }
+        defaultValue: true,
+      },
     },
     {
       createdAt: false,

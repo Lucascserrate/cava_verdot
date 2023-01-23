@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import s from "./Register.module.css";
 import Alert from "../Alert/Alert";
 import axios from "axios";
@@ -7,10 +7,32 @@ import criptoJS from "crypto-js";
 import GoogleButton from "react-google-button";
 import { auth, provider } from "../../firebase/firebase.js";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/actions";
+import { parseJwt } from "../../functions/parseTokenJwt";
+import AlertAge from "../AlertAge/AlertAge";
+
 function Register() {
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   let getAge = sessionStorage.getItem("age");
+
+  const [viewAlertAge, setViewAlertAge] = useState();
+
+  useEffect(() => {
+    let dia = sessionStorage.getItem("dia");
+    let mes = sessionStorage.getItem("mes");
+    let anio = sessionStorage.getItem("anio");
+
+    if (!window.localStorage.getItem("token")) {
+      if (!dia || !mes || !anio) {
+        setViewAlertAge(<AlertAge />);
+      }
+    }
+  }, []);
+
   const [timeAlertError, setTimeAlertError] = useState(false);
   const [viewAlert, setViewAlert] = useState();
 
@@ -21,7 +43,7 @@ function Register() {
     surname: "",
     age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
     image: "",
-    emailProvider: ""
+    emailProvider: "",
   });
 
   const uploadImage = async (e) => {
@@ -70,12 +92,14 @@ function Register() {
             email: email,
             password: encriptado,
             name: displayName,
-            age: sessionStorage.getItem("age")
-              ? sessionStorage.getItem("age")
-              : "",
+            age: sessionStorage.getItem("age"),
+            // ? sessionStorage.getItem("age")
+            // : "",
             image: photoURL,
-            emailProvider: "google"
+            emailProvider: "google",
           });
+          const decript = parseJwt(res.data);
+          dispatch(setUser(decript));
           setViewAlert(<Alert type="ok" message="Registro creado." />);
           setTimeAlertError(true);
           setTimeout(() => {
@@ -125,8 +149,10 @@ function Register() {
     } else {
       const encriptado = encriptar(datosInputs.password);
       datosInputs.password = encriptado;
-      datosInputs.emailProvider = "local"
+      datosInputs.emailProvider = "local";
       const res = await axios.post("/users", datosInputs);
+      const decript = parseJwt(res.data);
+      dispatch(setUser(decript));
       setViewAlert(<Alert type="ok" message="Registro creado." />);
       setTimeAlertError(true);
       setTimeout(() => {
@@ -140,7 +166,7 @@ function Register() {
         surname: "",
         age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
         image: "",
-        emailProvider: ""
+        emailProvider: "",
       });
       setTimeout(() => {
         navigate("/");
@@ -151,6 +177,7 @@ function Register() {
 
   return (
     <div className={s.form}>
+      <div className={s.alert_age}>{viewAlertAge}</div>
       <form className={`${s.form__content} ${s.container}`}>
         <h1 className={s.form__title}>Register</h1>
 
@@ -247,7 +274,11 @@ function Register() {
             value="Register"
             onClick={onSubmit}
           />
-          <GoogleButton type="light" label="Sign Up with Google" onClick= {(e) => handleClickGoogle(e)} />
+          <GoogleButton
+            type="light"
+            label="Sign Up with Google"
+            onClick={(e) => handleClickGoogle(e)}
+          />
         </div>
         <div className={s.form__alert}>{timeAlertError && viewAlert}</div>
       </form>
