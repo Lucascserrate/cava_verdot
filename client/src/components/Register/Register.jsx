@@ -87,7 +87,9 @@ function Register() {
         .then(async (result) => {
           GoogleAuthProvider.credentialFromResult(result);
           const { email, displayName, uid, photoURL } = result.user;
+          console.log(uid);
           const encriptado = encriptar(uid);
+          console.log(encriptado);
           const res = await axios.post("/users", {
             email: email,
             password: encriptado,
