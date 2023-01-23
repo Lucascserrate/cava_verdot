@@ -59,6 +59,7 @@ function Cards({ category, price, country, setPrice }) {
   const handleApplyFilter = () => {
     console.log(price);
     dispatch(getProductFilter(category, price, country));
+    setCurrentPage(0)
     // si surge error, descomentar este codigo
     // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);
   };
