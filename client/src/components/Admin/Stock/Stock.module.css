@@ -95,49 +95,70 @@
 }
 
 .stockEdit {
-    display: flex;
-    flex-direction: row;
+    height: 30px;
+    width: 87%;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0 5px;
+    font-size: 13px;
+
+    display: grid;
+    grid-template-columns: 1fr 6fr 2fr 1fr;
+
 }
 
 .inputID {
-    padding: 1%;
-    font-size: 80%;
-    width: 10%;
-    height: auto;
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px;
+    width: 60%;
 }
 
 .inputName {
-    padding: 1%;
-    font-size: 80%;
-    width: 50%;
-    height: auto;
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px;
+    width: 85%;
 }
 
 .inputCategory {
-    padding: 1%;
-    font-size: 80%;
-    width: 17%;
-    height: auto;
+    border-radius: 3px;
+    background-color: transparent;
+    width: 60%;
+    margin: 0 0 0 -5px;
 }
 
 .inputStock {
-    padding: 1%;
-    font-size: 80%;
-    width: 10%;
-    height: auto;
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px;
+    width: 60%;
+    margin: 0 0 0 -10px;
+
+}
+
+
+.botones {
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    right: 40px;
 }
 
 .boton {
-    margin-inline: 0.5%;
-    background: black;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background: var(--colorDark);
     border-radius: 10%;
     color: #fff;
     transition: 200ms;
+
+
 }
 
 .boton:hover {
-    border-color: lightblue;
-    background: lightblue;
+    opacity: .9;
 }
 
 .bold {
@@ -175,16 +196,6 @@
     border: 1px solid black;
 }
 
-.stockInput {
-    border: none;
-    background-color: transparent;
-    padding: 5px;
-    width: 90%;
-}
-
-.stockInput:focus {
-    border: 1px solid black;
-}
 
 .btnEdit {
     width: 15px;
