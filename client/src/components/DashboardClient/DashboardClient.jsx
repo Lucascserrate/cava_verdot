@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import s from "./DashboardClient.module.css";
 import { useNavigate } from "react-router-dom";
-import { clearUser } from "../../redux/actions";
 import axios from "axios";
 import Error from "../Error/Error";
 
@@ -15,25 +14,19 @@ function DashboardClient() {
   const refEmail = useRef(null);
   const refAge = useRef(null);
 
-  const [email, setCurrentEmail] = useState();
-  const [age, setCurrentAge] = useState();
+  const [email, setCurrentEmail] = useState(stateUser?.email);
+  const [age, setCurrentAge] = useState(stateUser?.age);
 
   const [editEmail, setEditEmail] = useState(false);
   const [editAge, setEditAge] = useState(false);
 
   useEffect(() => {
-    if (window.localStorage.getItem("token")) {
-    } else if (!window.localStorage.getItem("token")) {
+    if (!window.localStorage.getItem("token")) {
       setTimeout(() => {
         navigate("/login");
       }, 2000);
     }
-
-    return () => {
-      dispatch(clearUser());
-    };
   }, [dispatch, window.localStorage.getItem("token")]);
-
   console.log(stateUser);
 
   const handleEditEmail = () => {
@@ -108,7 +101,7 @@ function DashboardClient() {
                     </>
                   )
                 ) : (
-                  <label>{stateUser?.email}</label>
+                  <label>{email}</label>
                 )}
               </div>
 
