@@ -3,25 +3,24 @@ const { Drink } = require("../../db.js")
 const putProduct = async (req, res) => {
     try {
         const { queryId } = req.query
-
-        const { id, name, description, stock, price, rating, image } = req.body
-
-        const bebida = await Drink.update({
-            id: id,
-            name: name,
+        const { id, name, description, stock, price, rating, image, category } = req.body
+        await Drink.update({
+            id: id === 0 ? undefined : id,
+            name: name === "" ? undefined : name,
             description: description,
-            stock: stock,
+            stock: stock === 0 ? undefined : stock,
             price: price,
             rating: rating,
-            image: image
+            image: image,
+            categoryId: category === 0 ? undefined : category
         }, {
             where: { id: queryId }
         })
 
-        res.status(200).json(await Drink.findOne({ where: { id: queryId } }))
+        res.status(200).json(await Drink.findOne({ where: { id: id } }))
 
     } catch (error) {
-        res.status(500).send({ error: error.message });
+        res.status(404).send({ error: error.message });
     }
 };
 

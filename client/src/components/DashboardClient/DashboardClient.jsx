@@ -113,15 +113,15 @@ function DashboardClient() {
   const closeModalFullname = () => {
     setModalFullname("hidden")
   }
-  const handleSaveFullname = async()=>{
+  const handleSaveFullname = async () => {
     setModalFullname("hidden");
-    if(name && surname){
+    if (name && surname) {
       const res = await axios.put(`/users/${stateUser.id}`, { name: name, surname: surname });
       console.log(res);
-    }else if(name && !surname){
+    } else if (name && !surname) {
       const res = await axios.put(`/users/${stateUser.id}`, { name: name });
       console.log(res);
-    }else if(surname && !name){
+    } else if (surname && !name) {
       const res = await axios.put(`/users/${stateUser.id}`, { surname: surname });
       console.log(res);
     }
@@ -131,7 +131,7 @@ function DashboardClient() {
     <>
       {window.localStorage.getItem("token") ? (
         <div className={s.dashboard}>
-          <NavbarClient/>
+          <NavbarClient />
           <div className={`${s.dashboard__content} ${s.container}`}>
             <div className={s.dashboard__cabecera}>
               {/* TODO image */}
@@ -144,7 +144,7 @@ function DashboardClient() {
                     >
                       <img
                         src={stateUser?.image}
-                        alt="image user"
+                        alt="user"
                         className={s.dashboard__img}
                       />
                       <figcaption className={s.dashboard__picoverlay}>
@@ -189,7 +189,7 @@ function DashboardClient() {
                     <figure className={s.dashboard__picture}>
                       <img
                         src={stateUser?.image}
-                        alt="image user"
+                        alt="user"
                         className={s.dashboard__img}
                       />
                     </figure>
