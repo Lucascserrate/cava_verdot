@@ -26,6 +26,8 @@ passport.use(
             "email",
             "name",
             "surname",
+            "emailProvider",
+            "age",
           ],
         });
         if (userFound && compareHash(password, userFound.password)) {
