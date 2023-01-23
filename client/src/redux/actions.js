@@ -13,6 +13,7 @@ export const GET_CART = 'GET_CART';
 export const GET_DRINKS_BY_RATING = 'GET_DRINKS_BY_RATING';
 export const SET_USER = 'SET_USER';
 export const CLEAR_USER = 'CLEAR_USER';
+export const CLEAR_CART = 'CLEAR_CART';
 
 
 // Actions Creators get all products
@@ -109,5 +110,11 @@ export const setUser = (data) => {
 export const clearUser = () => {
   return async (dispatch) => {
     return dispatch({type: CLEAR_USER})
+  }
+}
+
+export const clearCart = () => {
+  return async (dispatch) => {
+    return dispatch({type: CLEAR_CART});
   }
 }

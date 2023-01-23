@@ -5,9 +5,18 @@
 
 .form {
   display: grid;
+  width: 100%;
   min-height: 100vh;
   max-height: 100%;
   background-color: var(--bgColor);
+  position: relative;
+}
+
+.alert_age{
+  width: 100%;
+  max-height: 100%;
+  z-index: 1000;
+  position: fixed;
 }
 
 .form__content {
