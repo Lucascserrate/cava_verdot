@@ -1,10 +1,13 @@
 const { User } = require("../../db.js");
 const { uploadImage } = require("../../Cloudinary/cloudinary.js");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
+
 
 const putUser = async (req, res) => {
   const { userId } = req.params;
   const verifyId = req.verifyId;
-  const { name, surname, email, age, newImage } = req.body;
+  const { name, surname, email, age, image } = req.body;
   try {
     //Capa de seguridad
     if (!userId) {
@@ -33,15 +36,13 @@ const putUser = async (req, res) => {
         ? (errors.ageMin = "age must be greater than or equal to 18")
         : null;
     }
-    if (newImage) {
-      result.url
-        ? !/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/.test(
-            image.url
-          )
-          ? (errors.image = "URL invalid")
-          : null
-        : null;
-    }
+    image
+      ? !/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/.test(
+          image
+        )
+        ? (errors.image = "URL invalid")
+        : null
+      : null;
     let uniqueEmailValidator;
     if (email) {
       uniqueEmailValidator = await User.findAll({
@@ -64,14 +65,10 @@ const putUser = async (req, res) => {
     }
     //respuesta en caso de errores
     if (Object.keys(errors).length) return res.status(400).send(errors);
-    //Subiendo imagen a Cloudinary
-    let image;
-    if (newImage) {
-      image = await uploadImage(newImage);
-    }
+    
     //cargando roles a la base de datos solo si aún no han sido cargadas
     const oldUser = await User.findByPk(userId, {
-      attributes: ["id", "name", "surname", "age", "image", "emailProvider"],
+      attributes: ["id", "name", "surname", "age", "image", "email", "emailProvider"],
     });
     //devolviendo error si intenta cambiar email cuando emailProvider es diferente de "local"
     if (email && oldUser.emailProvider !== "local") {
@@ -85,7 +82,7 @@ const putUser = async (req, res) => {
         name: name ? name : oldUser.name,
         surname: surname ? surname : oldUser.surname,
         age: age ? age : oldUser.age,
-        image: newImage ? image.url : oldUser.image,
+        image: image ? image : oldUser.image,
         email: email ? email : oldUser.email,
       });
     } else {
@@ -93,10 +90,24 @@ const putUser = async (req, res) => {
         name: name ? name : oldUser.name,
         surname: surname ? surname : oldUser.surname,
         age: age ? age : oldUser.age,
-        image: newImage ? image.url : oldUser.image,
+        image: image ? image : oldUser.image,
       });
     }
-    res.status(200).json(newUser);
+    const token = jwt.sign(
+      {
+        id: newUser.id,
+        role: newUser.roleId,
+        image: newUser.image,
+        name: newUser.name,
+        surname: newUser.surname,
+        email: newUser.email,
+        emailProvider: newUser.emailProvider,
+        age: newUser.age,
+      },
+      JWT_SECRET,
+      { expiresIn: "3h" }
+    );
+    res.status(200).json(token);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

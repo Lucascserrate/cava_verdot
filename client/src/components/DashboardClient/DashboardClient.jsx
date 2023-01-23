@@ -6,18 +6,38 @@ import axios from "axios";
 import "./dashboardClient.css";
 import Error from "../Error/Error";
 import NavbarClient from "./NavbarClient/NavbarClient";
+import { useDispatch } from "react-redux";
+import { setUser } from '../../redux/actions';
 
 function DashboardClient() {
   const stateUser = useSelector((state) => state.user);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // estados que guardan los nuevos valores
-  const [image, setImage] = useState();
-  const [email, setEmail] = useState();
-  const [name, setName] = useState();
-  const [surname, setSurname] = useState();
-  const [age, setAge] = useState();
+  const [image, setImage] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [age, setAge] = useState("");
+
+  // objeto contenedor
+  let nuevoObjeto = {
+    age: age ? age : stateUser.age,
+    email: email ? email : stateUser.email,
+    emailProvider: "local",
+    exp: 1674521169,
+    iat: 1674510369,
+    id: 15,
+    image: image ? image : stateUser.image,
+    name: name ? name : stateUser.name,
+    role: 2,
+    surname: surname ? surname : stateUser.surname
+  }
+
+  // enviar alerta de error o confirmacion
+  const [alert, setAlert] = useState("")
 
   // estos estados ocultan el modal para luego ser modificados al dar click con las funciones manejadora
   const [modalEmail, setModalEmail] = useState("hidden");
@@ -44,7 +64,6 @@ function DashboardClient() {
 
   const handleChangeImage = async (e) => {
     const files = e.target.files;
-    console.log(files);
     const datas = new FormData();
     datas.append("file", files[0]);
     datas.append("upload_preset", "CAVA-verdot");
@@ -67,20 +86,40 @@ function DashboardClient() {
     setSurname(e.target.value);
   };
 
-  // manejadores del modal email
+  // manejadores del modal email 100% funcional
   const editEmail = () => {
     setModalEmail("show");
   };
   const closeModalEmail = () => {
     setModalEmail("hidden");
+    setAlert("")
   };
   const handleSaveEmail = async () => {
-    setModalEmail("hidden");
-    const res = await axios.put(`/users/${stateUser.id}`, { email: email });
-    console.log(res);
+    if(email.length === ""){
+      setAlert("No se puede guardar un email vacio.")
+      setTimeout(()=>{
+        setAlert("")
+      },2000)
+    }
+    if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)){
+      setAlert("El correo solo puede tener letras, numeros, puntos y guion bajo.")
+      setTimeout(()=>{
+        setAlert("")
+      },2000)
+    }else{
+      const res = await axios.put(`/users/${stateUser.id}`, { email: email });
+      dispatch(setUser(nuevoObjeto));
+      setAlert("Email modificado.")
+      setTimeout(()=>{
+        setAlert("")
+        setModalEmail("hidden");
+      },1000)
+      setEmail("")
+      window.localStorage.setItem("token", res.data)
+    }
   };
 
-  // manejadores del modal age
+  // manejadores del modal age 100% funcional
   const editAge = () => {
     setModalAge("show");
   };
@@ -88,12 +127,30 @@ function DashboardClient() {
     setModalAge("hidden");
   };
   const handleSaveAge = async () => {
-    setModalAge("hidden");
-    const res = await axios.put(`/users/${stateUser.id}`, { age: age });
-    console.log(res);
+    if(!age){
+      setAlert("No hay datos que modificar")
+      setTimeout(()=>{
+        setAlert("")
+      },2000) 
+    }else if(Number(age) < 18){
+      setAlert("No puedes ser menor de edad")
+      setTimeout(()=>{
+        setAlert("")
+      },2000) 
+    }else{
+      const res = await axios.put(`/users/${stateUser.id}`, { age: age });
+      dispatch(setUser(nuevoObjeto));
+      setAlert("Edad modificada")
+      setTimeout(()=>{
+        setAge("")
+        setAlert("")
+        setModalAge("hidden");
+      })
+      window.localStorage.setItem("token", res.data)
+    }
   };
 
-  // manejadores del modal image
+  // manejadores del modal image 100% funcional
   const editImage = () => {
     setModalImage("show");
   };
@@ -101,12 +158,25 @@ function DashboardClient() {
     setModalImage("hidden");
   };
   const handleSaveImage = async () => {
-    setModalImage("hidden");
-    const res = await axios.put(`/users/${stateUser.id}`, { image: image });
-    console.log(res);
+    if(!image){
+      setAlert("No hay datos que modificar")
+      setTimeout(()=>{
+        setAlert("")
+      },2000) 
+    }else{
+      const res = await axios.put(`/users/${stateUser.id}`, { image: image });
+      dispatch(setUser(nuevoObjeto));
+      setAlert("Imagen modificada")
+      setTimeout(()=>{
+        setAlert("")
+        setImage("")
+        setModalImage("hidden");
+      },2000)
+      window.localStorage.setItem("token", res.data)
+    }
   };
 
-  // manejadores del fullname
+  // manejadores del fullname 100% funcional
   const editFullname = () => {
     setModalFullname("show")
   }
@@ -114,17 +184,44 @@ function DashboardClient() {
     setModalFullname("hidden")
   }
   const handleSaveFullname = async()=>{
-    setModalFullname("hidden");
-    if(name && surname){
+    if(!name && !surname){
+      setAlert("No hay datos que modificar")
+      setTimeout(()=>{
+        setAlert("")
+      },2000) 
+    }else if(name && surname){
       const res = await axios.put(`/users/${stateUser.id}`, { name: name, surname: surname });
-      console.log(res);
+      dispatch(setUser(nuevoObjeto));
+      setAlert("name y surname modificados.")
+      setTimeout(()=>{
+        setAlert("")
+        setName("");
+        setSurname("");
+        setModalFullname("hidden");
+      },2000)
+      window.localStorage.setItem("token", res.data)
     }else if(name && !surname){
       const res = await axios.put(`/users/${stateUser.id}`, { name: name });
-      console.log(res);
+      dispatch(setUser(nuevoObjeto));
+      setAlert("name modificado.")
+      setTimeout(()=>{
+        setAlert("")
+        setName("")
+        setModalFullname("hidden");
+      },2000)
+      window.localStorage.setItem("token", res.data)
     }else if(surname && !name){
       const res = await axios.put(`/users/${stateUser.id}`, { surname: surname });
-      console.log(res);
+      dispatch(setUser(nuevoObjeto));
+      setAlert("surname modificado.")
+      setTimeout(()=>{
+        setAlert("")
+        setSurname("")
+        setModalFullname("hidden");
+      },2000)
+      window.localStorage.setItem("token", res.data)
     }
+
   }
 
   return (
@@ -181,6 +278,7 @@ function DashboardClient() {
                         >
                           ✖
                         </button>
+                        <label className="modal__alert">{alert && alert}</label>
                       </div>
                     </div>
                   </>
@@ -213,12 +311,14 @@ function DashboardClient() {
                         type="text"
                         placeholder="New name..."
                         className="input__edit"
+                        value={name}
                         onChange={handleChangeName}
                       />
                       <input
                         type="text"
                         placeholder="New surname..."
                         className="input__edit"
+                        value={surname}
                         onChange={handleChangeSurname}
                       />
                       <button onClick={handleSaveFullname} className="modal__save">
@@ -230,6 +330,7 @@ function DashboardClient() {
                     <button className="modal__close" onClick={closeModalFullname}>
                       ✖
                     </button>
+                    <label className="modal__alert">{alert && alert}</label>
                   </div>
                 </div>
               </div>
@@ -254,6 +355,7 @@ function DashboardClient() {
                             type="text"
                             placeholder="New email..."
                             className="input__edit"
+                            value={email}
                             onChange={handleChangeEmail}
                           />
                           <button
@@ -271,6 +373,7 @@ function DashboardClient() {
                         >
                           ✖
                         </button>
+                        <label className="modal__alert">{alert && alert}</label>
                       </div>
                     </div>
                   </>
@@ -298,6 +401,7 @@ function DashboardClient() {
                         type="text"
                         placeholder="New age..."
                         className="input__edit"
+                        value={age}
                         onChange={handleChangeAge}
                       />
                       <button onClick={handleSaveAge} className="modal__save">
@@ -309,6 +413,7 @@ function DashboardClient() {
                     <button className="modal__close" onClick={closeModalAge}>
                       ✖
                     </button>
+                    <label className="modal__alert">{alert && alert}</label>
                   </div>
                 </div>
               </div>
