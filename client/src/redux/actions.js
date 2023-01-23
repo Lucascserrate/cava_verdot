@@ -13,13 +13,30 @@ export const GET_CART = 'GET_CART';
 export const GET_DRINKS_BY_RATING = 'GET_DRINKS_BY_RATING';
 export const GET_USER_BY_ID = 'GET_USER_BY_ID';
 export const CLEAR_USER = 'CLEAR_USER';
-
+export const PUT_DRINKS = "PUT_DRINKS"
 
 // Actions Creators get all products
 export const getDrinks = () => {
   return async (dispatch) => {
     let datosApi = await axios.get("/products/");
     dispatch({ type: GET_DRINKS, payload: datosApi.data })
+  }
+}
+
+export const putDrink = (value) => {
+  return async (dispatch) => {
+    try {
+      const { id, name, category, stock, previewid } = value
+      let editada = await axios.put(`/products?queryId=${id}`, {
+        id: previewid,
+        name: name,
+        category: category,
+        stock: stock
+      })
+      dispatch({ type: PUT_DRINKS, payload: editada })
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
@@ -96,19 +113,19 @@ export const getCart = id => async dispatch => {
 export const getDrinksByRating = () => {
   return async (dispatch) => {
     const dataApi = await axios.get('/products/highScore')
-    return dispatch({type: GET_DRINKS_BY_RATING, payload: dataApi.data})
+    return dispatch({ type: GET_DRINKS_BY_RATING, payload: dataApi.data })
   }
 }
 
 export const getUserById = (id) => {
   return async (dispatch) => {
     const dataApi = await axios.get(`/users/${id}`)
-    return dispatch({type: GET_USER_BY_ID, payload: dataApi.data})
+    return dispatch({ type: GET_USER_BY_ID, payload: dataApi.data })
   }
 }
 
 export const clearUser = () => {
   return async (dispatch) => {
-    return dispatch({type: CLEAR_USER})
+    return dispatch({ type: CLEAR_USER })
   }
 }
