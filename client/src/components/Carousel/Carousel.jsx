@@ -22,7 +22,7 @@ export default function CarouselSlide() {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: 5,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -54,7 +54,7 @@ export default function CarouselSlide() {
     <div className={`${s.carousel} Slide`}>
       <div className={s.center}>
         <Carousel
-          showDots={true}
+          showDots={false}
           responsive={responsive}
           className={s.carousel__cards}
           removeArrowOnDeviceType={["tablet", "mobile"]}

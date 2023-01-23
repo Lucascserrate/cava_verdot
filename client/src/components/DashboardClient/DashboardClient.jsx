@@ -228,7 +228,7 @@ function DashboardClient() {
     <>
       {window.localStorage.getItem("token") ? (
         <div className={s.dashboard}>
-          <NavbarClient/>
+          <NavbarClient />
           <div className={`${s.dashboard__content} ${s.container}`}>
             <div className={s.dashboard__cabecera}>
               {/* TODO image */}
@@ -241,7 +241,7 @@ function DashboardClient() {
                     >
                       <img
                         src={stateUser?.image}
-                        alt="image user"
+                        alt="user"
                         className={s.dashboard__img}
                       />
                       <figcaption className={s.dashboard__picoverlay}>
@@ -287,7 +287,7 @@ function DashboardClient() {
                     <figure className={s.dashboard__picture}>
                       <img
                         src={stateUser?.image}
-                        alt="image user"
+                        alt="user"
                         className={s.dashboard__img}
                       />
                     </figure>

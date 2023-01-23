@@ -11,6 +11,8 @@ import { modifyBubbleCart } from "../../redux/actions";
 import Footer from "../Footer/Footer";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
+import Ratings from '../Rating/Ratings';
+import { Rating } from '@mui/material';
 
 const Details = () => {
   const [detail, setDetail] = useState({});
@@ -74,7 +76,8 @@ const Details = () => {
               </div>
               <div className={s.detailContainer}>
                 <h1 className={s.name}>{detail?.name}</h1>
-                <p>⭐⭐⭐⭐⭐</p>
+                <Rating name="read-only" value={detail?.rating} readOnly />
+                <br />
                 <div className={s.tags}>{detail.category?.category}</div>
                 <p className={s.price}>${detail?.price}</p>
                 <div className={s.itemsTextContainer}>
@@ -127,6 +130,8 @@ const Details = () => {
         ) : (
           <Loader />
         )}
+        <hr className={s.hr} />
+        <Ratings />
       </div>
       <Footer />
     </div>

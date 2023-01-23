@@ -1,11 +1,13 @@
-.details{
+.details {
     min-height: 100vh;
     max-height: 100%;
 }
-.detail__elements{
+
+.detail__elements {
     padding: 20px 0;
     background-color: var(--bgColor);
 }
+
 .container {
     width: 60%;
     margin: auto;
@@ -102,4 +104,9 @@
     box-shadow: rgba(169, 169, 169, 0.626) 0 .1px 10px 0;
     border: 1px solid #e6e6e6;
     background-color: #fff;
+}
+
+.hr {
+    margin: 30px 400px;
+    opacity: .5;
 }
