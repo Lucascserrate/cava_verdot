@@ -13,8 +13,10 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
   }
 );  */
 
+
+
 const sequelize = new Sequelize(
-  `postgres://postgres:19378264@localhost/cava`,
+  `postgres:${DB_USER}:${DB_PASSWORD}@${DB_HOST}/cava`,
   {
     logging: false,
     native: false,
