@@ -1,0 +1,16 @@
+.navbarclient{
+  width: 100%;
+  height: 90px;
+  display: flex;
+  background-color: var(--colorPrimary);
+}
+.navbarclient__content{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbarclient__logo{
+  height: 65px;
+}

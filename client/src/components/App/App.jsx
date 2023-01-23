@@ -24,7 +24,6 @@ function App() {
   
   useEffect(()=>{
     if(!!stateUser && !!token){
-      console.log((!!stateUser && !!token));
       let decript = parseJwt(token);
       dispatch(setUser(decript));
     }
