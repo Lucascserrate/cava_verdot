@@ -78,10 +78,11 @@ function Register() {
             name: displayName,
             age: sessionStorage.getItem("age")
               ? sessionStorage.getItem("age")
-              : "",
+              : "18",
             image: photoURL,
             emailProvider: "google",
           });
+          console.log(res);
           const decript = parseJwt(res.data);
           dispatch(setUser(decript));
           setViewAlert(<Alert type="ok" message="Registro creado." />);

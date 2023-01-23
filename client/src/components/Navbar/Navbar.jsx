@@ -45,17 +45,17 @@ export default function NavBar({ searchbar }) {
   useEffect(() => {
     if (getToken) {
 
-      if (stateUser?.role === 3) {
+      if (stateUser.role === 3) {
         setViewDashboard(
           <Link to={"/admin"}>
             <img
-              src={stateUser?.image}
+              src={stateUser.image}
               alt="image profile"
               className={s.image__profile}
             />
           </Link>
         );
-      } else if (stateUser?.role === 2) {
+      } else if (stateUser.role === 2) {
         setViewDashboard(
           <Link to={"/dashboard"}>
             <img
