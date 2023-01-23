@@ -15,6 +15,8 @@ router.post("/", passport.authenticate("local"), async (req, res) => {
         name: req.user.name,
         surname: req.user.surname,
         email: req.user.email,
+        emailProvider: req.user.emailProvider,
+        age: req.user.age,
       },
       JWT_SECRET,
       { expiresIn: "3h" }

@@ -12,7 +12,6 @@ import {
   GET_DRINKS_BY_RATING,
   SET_USER,
   CLEAR_USER,
-  GET_USER
 } from "./actions";
 
 const initialState = {
@@ -23,7 +22,7 @@ const initialState = {
   bubbleCart: 0,
   cart: [],
   drinksRating: [],
-  user: [],
+  user: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -90,7 +89,7 @@ const rootReducer = (state = initialState, action) => {
     case CLEAR_USER:
       return{
         ...state,
-        user: []
+        user: {}
       }
     default:
       return state;

@@ -7,8 +7,14 @@ import criptoJS from "crypto-js";
 import GoogleButton from "react-google-button";
 import { auth, provider } from "../../firebase/firebase.js";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/actions";
+import { parseJwt } from "../../functions/parseTokenJwt";
+
 function Register() {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   let getAge = sessionStorage.getItem("age");
   const [timeAlertError, setTimeAlertError] = useState(false);
@@ -21,7 +27,7 @@ function Register() {
     surname: "",
     age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
     image: "",
-    emailProvider: ""
+    emailProvider: "",
   });
 
   const uploadImage = async (e) => {
@@ -74,8 +80,10 @@ function Register() {
               ? sessionStorage.getItem("age")
               : "",
             image: photoURL,
-            emailProvider: "google"
+            emailProvider: "google",
           });
+          const decript = parseJwt(res.data);
+          dispatch(setUser(decript));
           setViewAlert(<Alert type="ok" message="Registro creado." />);
           setTimeAlertError(true);
           setTimeout(() => {
@@ -125,8 +133,10 @@ function Register() {
     } else {
       const encriptado = encriptar(datosInputs.password);
       datosInputs.password = encriptado;
-      datosInputs.emailProvider = "local"
+      datosInputs.emailProvider = "local";
       const res = await axios.post("/users", datosInputs);
+      const decript = parseJwt(res.data);
+      dispatch(setUser(decript));
       setViewAlert(<Alert type="ok" message="Registro creado." />);
       setTimeAlertError(true);
       setTimeout(() => {
@@ -140,7 +150,7 @@ function Register() {
         surname: "",
         age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
         image: "",
-        emailProvider: ""
+        emailProvider: "",
       });
       setTimeout(() => {
         navigate("/");
@@ -247,7 +257,11 @@ function Register() {
             value="Register"
             onClick={onSubmit}
           />
-          <GoogleButton type="light" label="Sign Up with Google" onClick= {(e) => handleClickGoogle(e)} />
+          <GoogleButton
+            type="light"
+            label="Sign Up with Google"
+            onClick={(e) => handleClickGoogle(e)}
+          />
         </div>
         <div className={s.form__alert}>{timeAlertError && viewAlert}</div>
       </form>
