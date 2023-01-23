@@ -55,6 +55,7 @@ const CheckOutForm = () => {
       }, 0));
 
       setDescription(stateCart.map(ele => {
+        console.log('soy elemento' ,ele);
         const obj = { 
           userId: decodingToken.id,
           id: ele.id,          
@@ -62,7 +63,6 @@ const CheckOutForm = () => {
           subtotal: ele.subtotal
         }
         
-         console.log(obj);
         
         return obj;
       }))
