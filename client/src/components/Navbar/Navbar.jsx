@@ -67,7 +67,7 @@ export default function NavBar({ searchbar }) {
         );
       }
     }
-  }, [getToken]);
+  }, [getToken, stateUser]);
 
   return (
     <div className={s.bg}>

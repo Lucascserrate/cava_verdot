@@ -7,7 +7,6 @@ import Error from "../Error/Error";
 
 function DashboardClient() {
   const stateUser = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -26,7 +25,7 @@ function DashboardClient() {
         navigate("/login");
       }, 2000);
     }
-  }, [dispatch, window.localStorage.getItem("token")]);
+  }, [stateUser, window.localStorage.getItem("token")]);
   console.log(stateUser);
 
   const handleEditEmail = () => {
