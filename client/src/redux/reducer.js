@@ -13,6 +13,7 @@ import {
   SET_USER,
   CLEAR_USER,
   CLEAR_CART,
+  PUT_DRINKS
 } from "./actions";
 
 const initialState = {
