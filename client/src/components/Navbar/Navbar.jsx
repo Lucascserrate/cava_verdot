@@ -5,16 +5,22 @@ import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
 import Button3 from "../Button3/Button3";
 import ButtonArrow from "../ButtonArrow/ButtonArrow";
-import { parseJwt } from "../../functions/parseTokenJwt";
+import { useDispatch, useSelector } from 'react-redux'
+import { clearUser } from '../../redux/actions'
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
   const getUserId = window.localStorage.getItem("userId");
 
+  const stateUser = useSelector(state => state.user)
+
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
+    dispatch(clearUser())
     if (getUserId) {
       window.localStorage.removeItem("userId");
     }
@@ -38,23 +44,22 @@ export default function NavBar({ searchbar }) {
 
   useEffect(() => {
     if (getToken) {
-      let decodingToken = parseJwt(getToken);
 
-      if (decodingToken?.role === 3) {
+      if (stateUser?.role === 3) {
         setViewDashboard(
           <Link to={"/admin"}>
             <img
-              src={decodingToken?.image}
+              src={stateUser?.image}
               alt="image profile"
               className={s.image__profile}
             />
           </Link>
         );
-      } else if (decodingToken?.role === 2) {
+      } else if (stateUser?.role === 2) {
         setViewDashboard(
           <Link to={"/dashboard"}>
             <img
-              src={decodingToken?.image}
+              src={stateUser?.image}
               alt="image profile"
               className={s.image__profile}
             />
@@ -62,7 +67,7 @@ export default function NavBar({ searchbar }) {
         );
       }
     }
-  }, [getToken]);
+  }, [getToken, stateUser]);
 
   return (
     <div className={s.bg}>

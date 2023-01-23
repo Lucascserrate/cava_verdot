@@ -12,7 +12,6 @@ export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_CART = 'GET_CART';
 export const GET_DRINKS_BY_RATING = 'GET_DRINKS_BY_RATING';
 export const SET_USER = 'SET_USER';
-export const GET_USER = 'GET_USER'
 export const CLEAR_USER = 'CLEAR_USER';
 
 
@@ -104,12 +103,6 @@ export const getDrinksByRating = () => {
 export const setUser = (data) => {
   return async (dispatch) => {
     return dispatch({type: SET_USER, payload: data})
-  }
-}
-
-export const getUser = () => {
-  return async (dispatch) => {
-    return dispatch({type: GET_USER})
   }
 }
 
