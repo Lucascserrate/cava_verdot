@@ -1,4 +1,5 @@
 const { User, Drink, RatingAndReview } = require("../../db");
+const { Op } = require("sequelize");
 
 const postReview = async (req, res) => {
   const { userId, drinkId } = req.query;
@@ -31,19 +32,6 @@ const postReview = async (req, res) => {
     }
     //respuesta de errores
     if (Object.keys(errors).length) return res.status(400).send(errors);
-    //si existe punctuation y es mayor que cero se actualiza la informacion en drik.rating
-    let suma;
-    if (punctuation && punctuation > 0) {
-      suma = await RatingAndReview.findAll({
-        where: {
-          drinkId: drinkId,
-          punctuation: {
-            [Op.not]: 0,
-          },
-        },
-      });
-    }
-    console.log(suma);
     //si todo va bien
     await RatingAndReview.create({
       userId: parseInt(userId),
@@ -51,7 +39,38 @@ const postReview = async (req, res) => {
       punctuation,
       review,
     });
-    res.status(200).send(`Success`);
+    //si existe punctuation y es mayor que cero se actualiza la informacion en drik.rating
+    //se obtiene suma de puntuaciones omite los de valor 0
+    const totalPoints = await RatingAndReview.sum("punctuation", {
+      where: {
+        drinkId: drinkId,
+        punctuation: {
+          [Op.not]: 0,
+        },
+      },
+    });
+    //se obtiene total de votantes se omite los valores 0
+    const totalVoters = await RatingAndReview.findAndCountAll({
+      where: {
+        drinkId: drinkId,
+        punctuation: {
+          [Op.not]: 0,
+        },
+      },
+    });
+    //obtenemos el promedio y actualizamos el rating
+    const rating = Math.round(totalPoints / totalVoters.count);
+    const drinkUpdate = await Drink.findByPk(drinkId);
+    await drinkUpdate.update({
+      rating,
+    });
+    //obtenemos todas las votaciones para enviarlas
+    const allReviews = await RatingAndReview.findAll({
+      where: {
+        drinkId,
+      },
+    });
+    res.status(200).send(allReviews);
   } catch (error) {
     console.log(error);
     res.status(500).send({ error: error.message });
