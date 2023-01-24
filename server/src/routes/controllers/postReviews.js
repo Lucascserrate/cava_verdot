@@ -30,6 +30,15 @@ const postReview = async (req, res) => {
     if (review) {
       review.length > 250 ? (errors.review = "review is very large") : null;
     }
+    //verificar si este usuario ya ha realizado comentario para este producto
+    const searchOld = await RatingAndReview.findOne({
+      where: {
+        [Op.and]: [{ userId }, { drinkId }],
+      },
+    });
+    searchOld
+      ? (errors.searchOld = `This user already made a post for this product ID:${searchOld.id}`)
+      : null;
     //respuesta de errores
     if (Object.keys(errors).length) return res.status(400).send(errors);
     //si todo va bien
@@ -70,6 +79,16 @@ const postReview = async (req, res) => {
         drinkId,
       },
     });
+    await Promise.all(
+      allReviews.map(async (review) => {
+        let userImage = await User.findByPk(review.userId, {
+          attributes: ["image"],
+        });
+        console.log(userImage);
+        review.dataValues.userImage = userImage.dataValues.image;
+        return review;
+      })
+    ).then((e) => e);
     res.status(200).send(allReviews);
   } catch (error) {
     console.log(error);
