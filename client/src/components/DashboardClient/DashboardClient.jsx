@@ -7,8 +7,9 @@ import "./dashboardClient.css";
 import Error from "../Error/Error";
 import NavbarClient from "./NavbarClient/NavbarClient";
 import { useDispatch } from "react-redux";
-import { setUser } from '../../redux/actions';
-import Footer from '../Footer/Footer'
+import { setUser } from "../../redux/actions";
+import ViewAddress from "../Address/ViewAddress/ViewAddress";
+import Footer from "../Footer/Footer";
 
 function DashboardClient() {
   const stateUser = useSelector((state) => state.user);
@@ -34,17 +35,18 @@ function DashboardClient() {
     image: image ? image : stateUser.image,
     name: name ? name : stateUser.name,
     role: 2,
-    surname: surname ? surname : stateUser.surname
-  }
+    surname: surname ? surname : stateUser.surname,
+  };
 
   // enviar alerta de error o confirmacion
-  const [alert, setAlert] = useState("")
+  const [alert, setAlert] = useState("");
 
   // estos estados ocultan el modal para luego ser modificados al dar click con las funciones manejadora
   const [modalEmail, setModalEmail] = useState("hidden");
   const [modalAge, setModalAge] = useState("hidden");
   const [modalImage, setModalImage] = useState("hidden");
   const [modalFullname, setModalFullname] = useState("hidden");
+  const [modalAddress, setModalAddress] = useState("hidden");
 
   useEffect(() => {
     if (!window.localStorage.getItem("token")) {
@@ -93,30 +95,32 @@ function DashboardClient() {
   };
   const closeModalEmail = () => {
     setModalEmail("hidden");
-    setAlert("")
+    setAlert("");
   };
   const handleSaveEmail = async () => {
-    if(email.length === ""){
-      setAlert("No se puede guardar un email vacio.")
-      setTimeout(()=>{
-        setAlert("")
-      },2000)
+    if (email.length === "") {
+      setAlert("No se puede guardar un email vacio.");
+      setTimeout(() => {
+        setAlert("");
+      }, 2000);
     }
-    if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)){
-      setAlert("El correo solo puede tener letras, numeros, puntos y guion bajo.")
-      setTimeout(()=>{
-        setAlert("")
-      },2000)
-    }else{
+    if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
+      setAlert(
+        "El correo solo puede tener letras, numeros, puntos y guion bajo."
+      );
+      setTimeout(() => {
+        setAlert("");
+      }, 2000);
+    } else {
       const res = await axios.put(`/users/${stateUser.id}`, { email: email });
       dispatch(setUser(nuevoObjeto));
-      setAlert("Email modificado.")
-      setTimeout(()=>{
-        setAlert("")
+      setAlert("Email modificado.");
+      setTimeout(() => {
+        setAlert("");
         setModalEmail("hidden");
-      },1000)
-      setEmail("")
-      window.localStorage.setItem("token", res.data)
+      }, 1000);
+      setEmail("");
+      window.localStorage.setItem("token", res.data);
     }
   };
 
@@ -128,26 +132,26 @@ function DashboardClient() {
     setModalAge("hidden");
   };
   const handleSaveAge = async () => {
-    if(!age){
-      setAlert("No hay datos que modificar")
-      setTimeout(()=>{
-        setAlert("")
-      },2000) 
-    }else if(Number(age) < 18){
-      setAlert("No puedes ser menor de edad")
-      setTimeout(()=>{
-        setAlert("")
-      },2000) 
-    }else{
+    if (!age) {
+      setAlert("No hay datos que modificar");
+      setTimeout(() => {
+        setAlert("");
+      }, 2000);
+    } else if (Number(age) < 18) {
+      setAlert("No puedes ser menor de edad");
+      setTimeout(() => {
+        setAlert("");
+      }, 2000);
+    } else {
       const res = await axios.put(`/users/${stateUser.id}`, { age: age });
       dispatch(setUser(nuevoObjeto));
-      setAlert("Edad modificada")
-      setTimeout(()=>{
-        setAge("")
-        setAlert("")
+      setAlert("Edad modificada");
+      setTimeout(() => {
+        setAge("");
+        setAlert("");
         setModalAge("hidden");
-      })
-      window.localStorage.setItem("token", res.data)
+      });
+      window.localStorage.setItem("token", res.data);
     }
   };
 
@@ -159,71 +163,83 @@ function DashboardClient() {
     setModalImage("hidden");
   };
   const handleSaveImage = async () => {
-    if(!image){
-      setAlert("No hay datos que modificar")
-      setTimeout(()=>{
-        setAlert("")
-      },2000) 
-    }else{
+    if (!image) {
+      setAlert("No hay datos que modificar");
+      setTimeout(() => {
+        setAlert("");
+      }, 2000);
+    } else {
       const res = await axios.put(`/users/${stateUser.id}`, { image: image });
       dispatch(setUser(nuevoObjeto));
-      setAlert("Imagen modificada")
-      setTimeout(()=>{
-        setAlert("")
-        setImage("")
+      setAlert("Imagen modificada");
+      setTimeout(() => {
+        setAlert("");
+        setImage("");
         setModalImage("hidden");
-      },2000)
-      window.localStorage.setItem("token", res.data)
+      }, 2000);
+      window.localStorage.setItem("token", res.data);
     }
   };
 
   // manejadores del fullname 100% funcional
   const editFullname = () => {
-    setModalFullname("show")
-  }
+    setModalFullname("show");
+  };
   const closeModalFullname = () => {
-    setModalFullname("hidden")
-  }
-  const handleSaveFullname = async()=>{
-    if(!name && !surname){
-      setAlert("No hay datos que modificar")
-      setTimeout(()=>{
-        setAlert("")
-      },2000) 
-    }else if(name && surname){
-      const res = await axios.put(`/users/${stateUser.id}`, { name: name, surname: surname });
+    setModalFullname("hidden");
+  };
+  const handleSaveFullname = async () => {
+    if (!name && !surname) {
+      setAlert("No hay datos que modificar");
+      setTimeout(() => {
+        setAlert("");
+      }, 2000);
+    } else if (name && surname) {
+      const res = await axios.put(`/users/${stateUser.id}`, {
+        name: name,
+        surname: surname,
+      });
       dispatch(setUser(nuevoObjeto));
-      setAlert("name y surname modificados.")
-      setTimeout(()=>{
-        setAlert("")
+      setAlert("name y surname modificados.");
+      setTimeout(() => {
+        setAlert("");
         setName("");
         setSurname("");
         setModalFullname("hidden");
-      },2000)
-      window.localStorage.setItem("token", res.data)
-    }else if(name && !surname){
+      }, 2000);
+      window.localStorage.setItem("token", res.data);
+    } else if (name && !surname) {
       const res = await axios.put(`/users/${stateUser.id}`, { name: name });
       dispatch(setUser(nuevoObjeto));
-      setAlert("name modificado.")
-      setTimeout(()=>{
-        setAlert("")
-        setName("")
+      setAlert("name modificado.");
+      setTimeout(() => {
+        setAlert("");
+        setName("");
         setModalFullname("hidden");
-      },2000)
-      window.localStorage.setItem("token", res.data)
-    }else if(surname && !name){
-      const res = await axios.put(`/users/${stateUser.id}`, { surname: surname });
+      }, 2000);
+      window.localStorage.setItem("token", res.data);
+    } else if (surname && !name) {
+      const res = await axios.put(`/users/${stateUser.id}`, {
+        surname: surname,
+      });
       dispatch(setUser(nuevoObjeto));
-      setAlert("surname modificado.")
-      setTimeout(()=>{
-        setAlert("")
-        setSurname("")
+      setAlert("surname modificado.");
+      setTimeout(() => {
+        setAlert("");
+        setSurname("");
         setModalFullname("hidden");
-      },2000)
-      window.localStorage.setItem("token", res.data)
+      }, 2000);
+      window.localStorage.setItem("token", res.data);
     }
+  };
 
-  }
+  // manejador del edit address
+  const editAddress = () => {
+    setModalAddress("show");
+  };
+  const closeModalAddress = () => {
+    setModalAddress("hidden");
+  };
 
   return (
     <>
@@ -303,7 +319,9 @@ function DashboardClient() {
                   {stateUser.surname ? stateUser.surname : ""}
                 </h2>
                 <button onClick={editFullname} className={s.dashboard__edit}>
-                  <span className="material-symbols-outlined modal__icon--edit">edit</span>
+                  <span className="material-symbols-outlined modal__icon--edit">
+                    edit
+                  </span>
                 </button>
                 <div className={`${modalFullname}`}>
                   <div className="modal__content modal__content--fullname">
@@ -322,13 +340,19 @@ function DashboardClient() {
                         value={surname}
                         onChange={handleChangeSurname}
                       />
-                      <button onClick={handleSaveFullname} className="modal__save">
+                      <button
+                        onClick={handleSaveFullname}
+                        className="modal__save"
+                      >
                         <span className="material-symbols-outlined modal__icon--save">
                           save
                         </span>
                       </button>
                     </div>
-                    <button className="modal__close" onClick={closeModalFullname}>
+                    <button
+                      className="modal__close"
+                      onClick={closeModalFullname}
+                    >
                       ✖
                     </button>
                     <label className="modal__alert">{alert && alert}</label>
@@ -337,90 +361,102 @@ function DashboardClient() {
               </div>
             </div>
 
-            <div className={s.dashboard__edit}>
-              <h2>Datos Personales</h2>
-              {/* TODO: email */}
-              <div className={s.dashboard__data}>
-                {stateUser?.emailProvider === "local" ? (
-                  <>
-                    <button onClick={editEmail} className={s.dashboard__edit}>
-                      <span className="material-symbols-outlined modal__icon--edit">edit</span>
-                    </button>
-                    <p className={s.dashboard__text}>
-                      Email: <span>{stateUser.email}</span>
-                    </p>
-                    <div className={`${modalEmail}`}>
-                      <div className="modal__content">
-                        <div className="modal__elements">
-                          <input
-                            type="text"
-                            placeholder="New email..."
-                            className="input__edit"
-                            value={email}
-                            onChange={handleChangeEmail}
-                          />
-                          <button
-                            onClick={handleSaveEmail}
-                            className="modal__save"
-                          >
-                            <span className="material-symbols-outlined modal__icon--save">
-                              save
-                            </span>
-                          </button>
-                        </div>
-                        <button
-                          className="modal__close"
-                          onClick={closeModalEmail}
-                        >
-                          ✖
-                        </button>
-                        <label className="modal__alert">{alert && alert}</label>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      Email: <span>{stateUser.email}</span>
-                    </p>
-                  </>
-                )}
-              </div>
-
-              {/* TODO: age */}
-              <div className={s.dashboard__data}>
-                <button onClick={editAge} className={s.dashboard__edit}>
-                  <span className="material-symbols-outlined modal__icon--edit">edit</span>
-                </button>
-                <p className={s.dashboard__text}>
-                  Age: <span>{stateUser.age}</span>
-                </p>
-                <div className={`${modalAge}`}>
-                  <div className="modal__content">
-                    <div className="modal__elements">
-                      <input
-                        type="text"
-                        placeholder="New age..."
-                        className="input__edit"
-                        value={age}
-                        onChange={handleChangeAge}
-                      />
-                      <button onClick={handleSaveAge} className="modal__save">
-                        <span className="material-symbols-outlined modal__icon--save">
-                          save
+            <div className={s.dashboard__elements}>
+              <div className={s.dashboard__edit}>
+                <h2>Datos Personales</h2>
+                {/* TODO: email */}
+                <div className={s.dashboard__data}>
+                  {stateUser?.emailProvider === "local" ? (
+                    <>
+                      <button onClick={editEmail} className={s.dashboard__edit}>
+                        <span className="material-symbols-outlined modal__icon--edit">
+                          edit
                         </span>
                       </button>
+                      <p className={s.dashboard__text}>
+                        Email: <span>{stateUser.email}</span>
+                      </p>
+                      <div className={`${modalEmail}`}>
+                        <div className="modal__content">
+                          <div className="modal__elements">
+                            <input
+                              type="text"
+                              placeholder="New email..."
+                              className="input__edit"
+                              value={email}
+                              onChange={handleChangeEmail}
+                            />
+                            <button
+                              onClick={handleSaveEmail}
+                              className="modal__save"
+                            >
+                              <span className="material-symbols-outlined modal__icon--save">
+                                save
+                              </span>
+                            </button>
+                          </div>
+                          <button
+                            className="modal__close"
+                            onClick={closeModalEmail}
+                          >
+                            ✖
+                          </button>
+                          <label className="modal__alert">
+                            {alert && alert}
+                          </label>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        Email: <span>{stateUser.email}</span>
+                      </p>
+                    </>
+                  )}
+                </div>
+
+                {/* TODO: age */}
+                <div className={s.dashboard__data}>
+                  <button onClick={editAge} className={s.dashboard__edit}>
+                    <span className="material-symbols-outlined modal__icon--edit">
+                      edit
+                    </span>
+                  </button>
+                  <p className={s.dashboard__text}>
+                    Age: <span>{stateUser.age}</span>
+                  </p>
+                  <div className={`${modalAge}`}>
+                    <div className="modal__content">
+                      <div className="modal__elements">
+                        <input
+                          type="text"
+                          placeholder="New age..."
+                          className="input__edit"
+                          value={age}
+                          onChange={handleChangeAge}
+                        />
+                        <button onClick={handleSaveAge} className="modal__save">
+                          <span className="material-symbols-outlined modal__icon--save">
+                            save
+                          </span>
+                        </button>
+                      </div>
+                      <button className="modal__close" onClick={closeModalAge}>
+                        ✖
+                      </button>
+                      <label className="modal__alert">{alert && alert}</label>
                     </div>
-                    <button className="modal__close" onClick={closeModalAge}>
-                      ✖
-                    </button>
-                    <label className="modal__alert">{alert && alert}</label>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div className={s.dashboard__address}>
+              <ViewAddress />
             </div>
           </div>
-          <Footer/>
+          <Footer />
         </div>
       ) : (
         <Error />
