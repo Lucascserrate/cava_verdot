@@ -33,9 +33,7 @@ const Ratings = ({ id }) => {
 
     const handlePostReview = async (e) => {
         e.preventDefault()
-        let a = await axios.post(`/products/review?userId=${userId?.id}&drinkId=${id}`, value)
-        console.log(a);
-        return a
+        await axios.post(`/products/review?userId=${userId?.id}&drinkId=${id}`, value)
     }
 
 
@@ -44,41 +42,46 @@ const Ratings = ({ id }) => {
             setDecodingToken(parseJwt(getToken))
         }
     }, [])
-    console.log(value);
+    /* console.log(id); */
     return (
         <div className={s.container}>
-            <div className={s.box}>
-                <form onSubmit={() => handlePostReview()}>
-                    <div className={s.rateBox}>
+            <div className={s.center}>
+                <h2 className={s.title}>Customer ratings</h2>
+                <div className={s.box}>
+                    <form onSubmit={(e) => handlePostReview(e)}>
+                        <div className={s.rateBox}>
 
-                        <p>Rate</p>
-                        <Rating
-                            name="simple-controlled"
-                            value={value?.punctuation}
-                            onChange={handleChangeRate}
-                        />
-                    </div>
-                    {
-                        value?.punctuation
-                            ? <div>
-                                <p>Review</p>
-                                <div className={s.reviewBox}>
-                                    <div className={s.picture}>
-                                        {
-                                            decodingToken ?
-                                                <img className={s.img} src={decodingToken?.image} alt="imagen perfil" />
-                                                :
-                                                <img className={s.img} src={img} alt="img" />
-                                        }
+                            <p>Rate</p>
+                            <Rating
+                                name="simple-controlled"
+                                value={value?.punctuation}
+                                onChange={handleChangeRate}
+                            />
+                        </div>
+                        {
+                            value?.punctuation
+                                ? <div>
+                                    <p>Review</p>
+                                    <div className={s.reviewBox}>
+                                        <div className={s.picture}>
+                                            {
+                                                decodingToken ?
+                                                    <img className={s.img} src={decodingToken?.image} alt="imagen perfil" />
+                                                    :
+                                                    <img className={s.img} src={img} alt="img" />
+                                            }
+                                        </div>
+                                        <textarea onChange={handleChangeReview} placeholder='Let us a review...' className={s.textarea} name="review" id="" cols="80" rows="6" ></textarea>
                                     </div>
-                                    <textarea onChange={handleChangeReview} placeholder='Let us a review...' className={s.textarea} name="review" id="" cols="80" rows="6" ></textarea>
-                                    <button>Send</button>
-                                </div>
+                                    <div className={s.flexEnd}>
+                                        <button className={s.btn}>Send</button>
+                                    </div>
 
-                            </div>
-                            : undefined
-                    }
-                </form>
+                                </div>
+                                : undefined
+                        }
+                    </form>
+                </div>
             </div>
         </div>
     )

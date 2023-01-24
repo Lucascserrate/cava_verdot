@@ -13,6 +13,7 @@ import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import Ratings from '../Rating/Ratings';
 import { Rating } from '@mui/material';
+import Reviews from '../Reviews/Reviews';
 
 const Details = () => {
 
@@ -21,6 +22,9 @@ const Details = () => {
   const dispatch = useDispatch();
   const cartAmount = document.getElementById("amount");
   const bubbleCart = useSelector((state) => state.bubbleCart);
+  const allReviews = useSelector(state => state.allReviews)
+  const userId = useSelector(state => state.user)
+
 
   const getDetail = async () => {
     let res = await axios.get(`/products/${id}`);
@@ -59,6 +63,7 @@ const Details = () => {
     }
     cartAmount.value = 1;
   };
+  console.log(allReviews.filter(e => e.userId === userId.id).length);
 
 
 
@@ -134,7 +139,13 @@ const Details = () => {
           <Loader />
         )}
         <hr className={s.hr} />
-        <Ratings id={id} />
+        {
+          !allReviews.filter(e => e.userId === userId.id).length ?
+            < Ratings id={id} />
+            : undefined
+
+        }
+        <Reviews id={id} />
       </div>
       <Footer />
     </div>
