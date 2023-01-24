@@ -19,7 +19,8 @@ export const CLEAR_CART = 'CLEAR_CART';
 // para el address
 export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES';
 export const GET_ALL_STATE = 'GET_ALL_STATE';
-export const GET_ALL_CITIES = 'GET_ALL_CITIES'
+export const GET_ALL_CITIES = 'GET_ALL_CITIES';
+export const GET_ADDRESS_BY_ID = 'GET_ADDRESS_BY_ID';
 
 
 // Actions Creators get all products
@@ -158,5 +159,11 @@ export const getAllCities = (stateId) => {
   return async (dispatch) => {
     const dataApi = await axios.get(`/users/address/allCities/${stateId}`);
     return dispatch({type: GET_ALL_CITIES, payload: dataApi.data});
+  }
+}
+export const getAddressById = (userId) => {
+  return async (dispatch) => {
+    const dataApi = await axios.get(`/users/address/${userId}`);
+    return dispatch({type: GET_ADDRESS_BY_ID, payload: dataApi.data});
   }
 }

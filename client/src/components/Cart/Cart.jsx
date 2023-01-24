@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import PasarelaStripe from "../Pasarela/PasarelaStripe";
 import Address from "../Address/Address";
+import ViewAddress from "../Address/ViewAddress/ViewAddress";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -85,6 +86,7 @@ const Cart = () => {
         </div>
         <div className={s.pay}>
           <PasarelaStripe />
+          <ViewAddress/>
         </div>
         <div className={s.direction}>
           <Address/>

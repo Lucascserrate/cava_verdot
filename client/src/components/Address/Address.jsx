@@ -2,12 +2,15 @@ import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCountries, getAllStates, getAllCities } from '../../redux/actions'
 import Button3 from "../Button3/Button3";
+import axios from 'axios';
 import s from './Address.module.css';
 
 function Address() {
   const stateCountries = useSelector(state => state.allCountries);
   const stateStates = useSelector(state => state.allStates);
   const stateCities = useSelector(state => state.allCities);
+  const stateUser = useSelector(state => state.user);
+  const stateAddress = useSelector(state => state.addressUser);
 
   const dispatch = useDispatch();
 
@@ -65,19 +68,34 @@ function Address() {
   }
 
   // validador de guardado
-  const handleOnSave = () => {
+  const handleOnSave = async() => {
     const { cityId, countryId, stateId, postalCode, phone, streetName, streetNumber, reference } = dataAddress;
     if(!cityId || !countryId || !stateId || !postalCode || !phone || !streetName || !streetNumber || !reference){
       setViewAlert(<p className={s.error}>Campos vacios.</p>);
       setTimeout(()=>{
         setViewAlert("");
       },2000)
-    }else{
-      console.log(dataAddress);
-      setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
+    }else if(!window.localStorage.getItem("token")){
+      setViewAlert(<p className={s.error}>Inicia sesion para guardar la direcion.</p>);
       setTimeout(()=>{
         setViewAlert("");
       },2000)
+    }else{
+      // en caso que exista informacion en stateAddress significa que el usuario ya tiene una direccion por lo cual se realizara un modificado
+      // en caso que no exista informacion se realizara un post
+      if(stateAddress){
+        const res = await axios.put(`/users/address/${stateUser.id}`, dataAddress)
+        setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
+        setTimeout(()=>{
+          setViewAlert("");
+        },2000)
+      }else{
+        const res = await axios.post(`/users/address/${stateUser.id}`, dataAddress)
+        setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
+        setTimeout(()=>{
+          setViewAlert("");
+        },2000)
+      }
     }
   }
 
