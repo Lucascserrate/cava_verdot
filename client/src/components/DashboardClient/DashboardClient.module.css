@@ -14,7 +14,7 @@
   display: grid;
   margin: auto;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
 }
 
 .dashboard__cabecera{
@@ -35,8 +35,9 @@
 .dashboard__edit > h2{
   text-align: center;
   font-size: 1.6rem;
+  font-weight: 400;
   padding-bottom: 4px;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #49454567;
 }
 .dashboard__data{
   margin: 20px 0 10px;
@@ -54,6 +55,7 @@
 }
 .dashboard__img{
   width: 100%;
+  border: 2px solid #49454567;
   border-radius: 50%;
   display: block;
   object-fit: cover;
@@ -78,11 +80,25 @@
   align-items: center;
   gap: 10px;
 }
+.dashboard__name,
+.dashboard__surname{
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-family: inherit;
+}
 
 .dashboard__data{
   display: flex;
   align-items: center;
   gap: 20px;
+}
+.dashboard__text{
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: inherit;
+}
+.dashboard__text > span{
+  font-weight: lighter;
 }
 
 .dashboard__edit{

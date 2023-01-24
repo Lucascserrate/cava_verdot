@@ -8,6 +8,7 @@ import Error from "../Error/Error";
 import NavbarClient from "./NavbarClient/NavbarClient";
 import { useDispatch } from "react-redux";
 import { setUser } from '../../redux/actions';
+import Footer from '../Footer/Footer'
 
 function DashboardClient() {
   const stateUser = useSelector((state) => state.user);
@@ -302,7 +303,7 @@ function DashboardClient() {
                   {stateUser.surname ? stateUser.surname : ""}
                 </h2>
                 <button onClick={editFullname} className={s.dashboard__edit}>
-                  <span className="material-symbols-outlined">edit</span>
+                  <span className="material-symbols-outlined modal__icon--edit">edit</span>
                 </button>
                 <div className={`${modalFullname}`}>
                   <div className="modal__content modal__content--fullname">
@@ -343,9 +344,9 @@ function DashboardClient() {
                 {stateUser?.emailProvider === "local" ? (
                   <>
                     <button onClick={editEmail} className={s.dashboard__edit}>
-                      <span className="material-symbols-outlined">edit</span>
+                      <span className="material-symbols-outlined modal__icon--edit">edit</span>
                     </button>
-                    <p>
+                    <p className={s.dashboard__text}>
                       Email: <span>{stateUser.email}</span>
                     </p>
                     <div className={`${modalEmail}`}>
@@ -389,9 +390,9 @@ function DashboardClient() {
               {/* TODO: age */}
               <div className={s.dashboard__data}>
                 <button onClick={editAge} className={s.dashboard__edit}>
-                  <span className="material-symbols-outlined">edit</span>
+                  <span className="material-symbols-outlined modal__icon--edit">edit</span>
                 </button>
-                <p>
+                <p className={s.dashboard__text}>
                   Age: <span>{stateUser.age}</span>
                 </p>
                 <div className={`${modalAge}`}>
@@ -419,6 +420,7 @@ function DashboardClient() {
               </div>
             </div>
           </div>
+          <Footer/>
         </div>
       ) : (
         <Error />
