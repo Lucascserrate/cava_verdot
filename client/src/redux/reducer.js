@@ -13,6 +13,7 @@ import {
   SET_USER,
   CLEAR_USER,
   CLEAR_CART,
+  PUT_DRINKS
 } from "./actions";
 
 const initialState = {
@@ -88,7 +89,7 @@ const rootReducer = (state = initialState, action) => {
         user: action.payload
       }
     case CLEAR_USER:
-      return{
+      return {
         ...state,
         user: {}
       }
@@ -97,6 +98,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: [],
         bubbleCart: 0
+      }
+    case PUT_DRINKS:
+      return {
+        ...state,
       }
     default:
       return state;
