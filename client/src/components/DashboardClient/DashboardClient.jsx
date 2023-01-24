@@ -29,7 +29,7 @@ function DashboardClient() {
     emailProvider: "local",
     exp: 1674521169,
     iat: 1674510369,
-    id: 15,
+    id: stateUser.id,
     image: image ? image : stateUser.image,
     name: name ? name : stateUser.name,
     role: 2,
