@@ -6,7 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 import s from "./Carousel.module.css";
 import { Link } from "react-router-dom";
 
-export default function CarouselSlide() {
+export default function CarouselSlide(props) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.drinksRating);
 
@@ -57,7 +57,10 @@ export default function CarouselSlide() {
           showDots={false}
           responsive={responsive}
           className={s.carousel__cards}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
+          removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
+          autoPlay={props.deviceType !== "mobile" ? true : false}
+          autoPlaySpeed={5000}
+          infinite={true}
         >
           {product}
         </Carousel>
