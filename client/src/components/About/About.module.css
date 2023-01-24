@@ -27,15 +27,14 @@
 }
 
 .about__picture{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  height: 600px;
+  display: block;
+  background-image: url('../../assets/about1.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
-.about__img{
-  display: block;
-  width: 600px;
-}
 
 .about__texts{
   display: grid;
@@ -43,6 +42,7 @@
   align-items: center;
   text-align: center;
   gap: 40px;
+  padding: 20px 30px;
 }
 
 .about__subtitle{
@@ -56,6 +56,12 @@
 }
 
 .about__picture__medio{
+  width: 100%;
+  height: 600px;
+  display: block;
+  background-image: url('../../assets/about2.jpg');
+  background-size: cover;
+  background-position: center;
   grid-column: 2/-1;
   grid-row: 1/2;
 }
