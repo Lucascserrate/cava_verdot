@@ -87,12 +87,32 @@ function Address() {
         const res = await axios.put(`/users/address/${stateUser.id}`, dataAddress)
         setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
         setTimeout(()=>{
+          setDataAddress({
+            countryId: "",
+            stateId: "",
+            cityId: "",
+            postalCode: "",
+            phone: "",
+            streetName: "",
+            streetNumber: "",
+            reference: "",
+          })
           setViewAlert("");
         },2000)
       }else{
         const res = await axios.post(`/users/address/${stateUser.id}`, dataAddress)
         setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
         setTimeout(()=>{
+          setDataAddress({
+            countryId: "",
+            stateId: "",
+            cityId: "",
+            postalCode: "",
+            phone: "",
+            streetName: "",
+            streetNumber: "",
+            reference: "",
+          })
           setViewAlert("");
         },2000)
       }
