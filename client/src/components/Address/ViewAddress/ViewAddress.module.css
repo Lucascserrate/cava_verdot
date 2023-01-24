@@ -1,0 +1,24 @@
+.viewaddress{
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid #49454567;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 14px;
+}
+.viewaddress__title{
+  color: #191919;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #191919;
+}
+.viewaddress__data{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.viewaddress__data p{
+  font-size: 1.1rem;
+}

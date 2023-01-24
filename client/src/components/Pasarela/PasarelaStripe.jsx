@@ -106,7 +106,8 @@ const CheckOutForm = () => {
 
   return (
     <div className={s.container}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={s.form__content}>
+        <h2 className={s.title}>Payment Methods</h2>
         <h2 className={s.label}>Set your payment method</h2>
         <CardElement className={s.input} />
         <button className={s.btn}>Buy</button>

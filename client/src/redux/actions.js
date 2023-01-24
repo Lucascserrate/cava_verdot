@@ -16,6 +16,12 @@ export const CLEAR_USER = 'CLEAR_USER';
 export const PUT_DRINKS = "PUT_DRINKS"
 export const CLEAR_CART = 'CLEAR_CART';
 
+// para el address
+export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES';
+export const GET_ALL_STATE = 'GET_ALL_STATE';
+export const GET_ALL_CITIES = 'GET_ALL_CITIES';
+export const GET_ADDRESS_BY_ID = 'GET_ADDRESS_BY_ID';
+
 
 // Actions Creators get all products
 export const getDrinks = () => {
@@ -135,5 +141,30 @@ export const clearUser = () => {
 export const clearCart = () => {
   return async (dispatch) => {
     return dispatch({type: CLEAR_CART});
+  }
+}
+
+export const getAllCountries = () => {
+  return async (dispatch) => {
+    const dataApi = await axios.get('/users/address/allCountries');
+    return dispatch({type: GET_ALL_COUNTRIES, payload: dataApi.data});
+  }
+}
+export const getAllStates = (countryId) => {
+  return async (dispatch) => {
+    const dataApi = await axios.get(`/users/address/allStates/${countryId}`);
+    return dispatch({type: GET_ALL_STATE, payload: dataApi.data});
+  }
+}
+export const getAllCities = (stateId) => {
+  return async (dispatch) => {
+    const dataApi = await axios.get(`/users/address/allCities/${stateId}`);
+    return dispatch({type: GET_ALL_CITIES, payload: dataApi.data});
+  }
+}
+export const getAddressById = (userId) => {
+  return async (dispatch) => {
+    const dataApi = await axios.get(`/users/address/${userId}`);
+    return dispatch({type: GET_ADDRESS_BY_ID, payload: dataApi.data});
   }
 }

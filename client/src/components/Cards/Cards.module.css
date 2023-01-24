@@ -22,13 +22,18 @@
 
 
 .cards__paginado {
-  width: 98%;
+  width: 100%;
   height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 0 20px 0;
   padding: 0 20px;
+}
+
+.cards__btns__filter{
+  display: flex;
+  gap: 10px;
 }
 
 .arrows {
