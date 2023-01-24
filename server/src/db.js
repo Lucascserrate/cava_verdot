@@ -60,6 +60,7 @@ const {
   AllState,
   AllCity,
   Address,
+  RatingAndReview,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -78,6 +79,8 @@ AllState.hasMany(AllCity);
 AllCity.belongsTo(AllState, { foreignKey: "id_state" });
 Address.hasMany(User);
 User.belongsTo(Address, { foreignKey: "id_user" });
+User.belongsToMany(Drink, { through: RatingAndReview });
+Drink.belongsToMany(User, { through: RatingAndReview });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
