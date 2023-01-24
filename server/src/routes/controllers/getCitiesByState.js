@@ -3,7 +3,7 @@ const { AllState, AllCity } = require("../../db");
 const getAllCitiesByState = async (req, res) => {
   const { stateId } = req.params;
   try {
-    const errors = {  };
+    const errors = {};
     //validando countryId
     if (stateId === "null") {
       errors.name = "Select state";
