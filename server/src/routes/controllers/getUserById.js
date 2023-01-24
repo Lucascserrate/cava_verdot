@@ -1,5 +1,4 @@
 const { User, Address } = require("../../db.js");
-const { uploadImage } = require("../../Cloudinary/cloudinary.js");
 
 const getUserById = async (req, res) => {
   const { userId } = req.params;
@@ -14,12 +13,19 @@ const getUserById = async (req, res) => {
     }
     //cargando roles a la base de datos solo si aún no han sido cargadas
     const userInfo = await User.findByPk(userId, {
-      attributes: ["id", "name", "surname", "age", "email", "image", "emailProvider"],
+      attributes: [
+        "id",
+        "name",
+        "surname",
+        "age",
+        "email",
+        "image",
+        "emailProvider",
+      ],
       include: [
         {
           model: Address,
         },
-
       ],
     });
     if (userInfo) {

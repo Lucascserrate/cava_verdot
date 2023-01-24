@@ -13,13 +13,13 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 //   }
 // );
 
- const sequelize = new Sequelize(
-   `postgres://postgres:19378264@localhost/cava`,
-   {
-     logging: false,
-   native: false,
+const sequelize = new Sequelize(
+  `postgres:${DB_USER}:${DB_PASSWORD}@${DB_HOST}/cava`,
+  {
+    logging: false,
+    native: false,
   }
- );
+);
 
 const basename = path.basename(__filename);
 
@@ -56,7 +56,7 @@ const {
   User,
   AllCountry,
   AllState,
-  AllCity, 
+  AllCity,
   Historial,
   Address,
   RatingAndReview,
@@ -72,10 +72,10 @@ Category.hasMany(SubCategory);
 SubCategory.belongsTo(Category, { foreignKey: "categoryId" });
 Role.hasMany(User);
 User.belongsTo(Role);
-User.belongsToMany(Historial, {through: "userHistory" })
-Historial.belongsToMany(User, {through: "userHistory" })
-Drink.belongsToMany(Historial,{through: "drinkHistory" }) 
-Historial.belongsToMany(Drink,{through: "drinkHistory" })
+User.belongsToMany(Historial, { through: "userHistory" });
+Historial.belongsToMany(User, { through: "userHistory" });
+Drink.belongsToMany(Historial, { through: "drinkHistory" });
+Historial.belongsToMany(Drink, { through: "drinkHistory" });
 AllCountry.hasMany(AllState);
 AllState.belongsTo(AllCountry, { foreignKey: "id_country" });
 AllState.hasMany(AllCity);
