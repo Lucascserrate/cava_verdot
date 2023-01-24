@@ -13,17 +13,18 @@ import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import Ratings from '../Rating/Ratings';
 import { Rating } from '@mui/material';
+import Reviews from '../Reviews/Reviews';
 
 const Details = () => {
-  const [value, setValue] = useState({
-    rate: 0,
-    review: ''
-  })
+
   const [detail, setDetail] = useState({});
   let { id } = useParams();
   const dispatch = useDispatch();
   const cartAmount = document.getElementById("amount");
   const bubbleCart = useSelector((state) => state.bubbleCart);
+  const allReviews = useSelector(state => state.allReviews)
+  const userId = useSelector(state => state.user)
+
 
   const getDetail = async () => {
     let res = await axios.get(`/products/${id}`);
@@ -62,10 +63,8 @@ const Details = () => {
     }
     cartAmount.value = 1;
   };
+  console.log(allReviews.filter(e => e.userId === userId.id).length);
 
-  const handlePostReview = async () => {
-    await axios.post(`/products/review?userId=${user}&drinkId=${id}`, value)
-  }
 
 
   return (
@@ -140,7 +139,13 @@ const Details = () => {
           <Loader />
         )}
         <hr className={s.hr} />
-        <Ratings handlePostReview={handlePostReview} value={value} setValue={setValue} />
+        {
+          !allReviews.filter(e => e.userId === userId.id).length ?
+            < Ratings id={id} />
+            : undefined
+
+        }
+        <Reviews id={id} />
       </div>
       <Footer />
     </div>

@@ -27,14 +27,22 @@
     display: flex;
     align-items: center;
 }
-.right{
+
+.right {
     display: flex;
     gap: 20px;
 }
-.image__profile{
+
+.image__profile {
     width: 50px;
     border-radius: 50%;
     object-fit: cover;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.logOut {
+    background-color: transparent;
+    border: none;
+    color: #fff;
 }
