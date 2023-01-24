@@ -1,28 +1,49 @@
 .container {
-    background-color: var(--colorWhite);
-    border-radius: 3px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid #49454567;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.253);
+}
+.form__content{
+  width: 100%;
+  padding: 10px 14px;
+}
+.title {
+  color: #191919;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
 }
 
 .label {
-    padding: 10px 10px 0 10px;
-    font-size: 16px;
-    color: #595959;
+  font-size: 1rem;
+  color: #595959;
 }
 
 .input {
-    padding: 10px 45px 10px 45px;
-    scale: 1.11;
+  width: 100%;
+  margin: 0 auto;
+  outline: none;
+  padding: 10px 15px;
+  border: 1px solid #49454567;
+  border-radius: 10px;
+  background: #fff;
+  color: #49454567;
+  display: block;
+  margin-top: 10px;
 }
 
 .btn {
-    margin: 10px 0 10px 10px;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #e8e8e8;
+  transition: .4s all ease-in-out;
 }
 
 .btn:hover {
-    background-color: var(--colorPrimary);
-    color: #e8e8e8;
+  background-color: var(--colorWine);
+  color: #e8e8e8;
 }

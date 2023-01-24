@@ -13,7 +13,10 @@ import {
   SET_USER,
   CLEAR_USER,
   CLEAR_CART,
-  PUT_DRINKS
+  PUT_DRINKS,
+  GET_ALL_COUNTRIES,
+  GET_ALL_STATE,
+  GET_ALL_CITIES,
 } from "./actions";
 
 const initialState = {
@@ -25,6 +28,9 @@ const initialState = {
   cart: [],
   drinksRating: [],
   user: {},
+  allCountries: [],
+  allStates: [],
+  allCities: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -102,6 +108,21 @@ const rootReducer = (state = initialState, action) => {
     case PUT_DRINKS:
       return {
         ...state,
+      }
+    case GET_ALL_COUNTRIES:
+      return{
+        ...state,
+        allCountries: action.payload
+      }
+    case GET_ALL_STATE:
+      return{
+        ...state,
+        allStates: action.payload
+      }
+    case GET_ALL_CITIES:
+      return{
+        ...state,
+        allCities: action.payload
       }
     default:
       return state;

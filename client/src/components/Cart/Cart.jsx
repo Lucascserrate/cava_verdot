@@ -8,6 +8,7 @@ import { getCart } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import PasarelaStripe from "../Pasarela/PasarelaStripe";
+import Address from "../Address/Address";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -83,8 +84,10 @@ const Cart = () => {
           </p>
         </div>
         <div className={s.pay}>
-          <h2 className={s.title}>Payment Methods</h2>
           <PasarelaStripe />
+        </div>
+        <div className={s.direction}>
+          <Address/>
         </div>
       </div>
       <Footer />
