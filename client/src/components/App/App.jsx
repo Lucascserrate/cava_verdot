@@ -14,12 +14,13 @@ import DashboardClient from '../DashboardClient/DashboardClient'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../../redux/actions'
 import { parseJwt } from '../../functions/parseTokenJwt'
+import axios from 'axios'
 
 function App() {
-
+  
   const stateUser = useSelector(state => state.user);
   const dispatch = useDispatch();
-
+  
   let token = window.localStorage.getItem("token");
   
   useEffect(()=>{
@@ -28,7 +29,8 @@ function App() {
       dispatch(setUser(decript));
     }
   },[dispatch]);
-
+  
+  axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
   return (
     <div>
       <Routes>
