@@ -1,9 +1,7 @@
-const { DataTypes } = require("sequelize");
-const User = require("./User.js");
-const Drink = require("./Drink.js");
+const { DataTypes, Drink, User } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define(
-    "ShopingCart",
+    "ratingAndReview",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -13,7 +11,6 @@ module.exports = (sequelize) => {
       },
       drinkId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         refereces: {
           model: Drink,
           key: "id",
@@ -21,15 +18,20 @@ module.exports = (sequelize) => {
       },
       userId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         refereces: {
           model: User,
-          key: "name",
+          key: "id",
         },
       },
-      amount: {
+      review: {
+        type: DataTypes.STRING,
+      },
+      punctuation: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        validate: {
+          max: 5,
+          min: 0,
+        },
       },
     },
     {

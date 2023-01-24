@@ -1,20 +1,27 @@
 import axios from "axios";
 // Actions
-export const MODIFY_BUBBLE_CART = "MODIFY_BUBBLE_CART";
-export const GET_DRINKS = "GET_DRINKS";
-export const GET_DRINK = "GET_DRINK";
-export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
-export const GET_PRODUCT_FILTER = "GET_PRODUCT_FILTER";
-export const GET_SORT = "GET_SORT";
-export const GET_DRINK_BY_NAME = "GET_DRINK_BY_NAME";
-export const POST_PRODUCT = "POST_PRODUCT";
-export const GET_COUNTRIES = "GET_COUNTRIES";
-export const GET_CART = "GET_CART";
-export const GET_DRINKS_BY_RATING = "GET_DRINKS_BY_RATING";
-export const SET_USER = "SET_USER";
-export const CLEAR_USER = "CLEAR_USER";
-export const PUT_DRINKS = "PUT_DRINKS";
-export const CLEAR_CART = "CLEAR_CART";
+export const MODIFY_BUBBLE_CART = 'MODIFY_BUBBLE_CART'
+export const GET_DRINKS = 'GET_DRINKS';
+export const GET_DRINK = 'GET_DRINK';
+export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
+export const GET_PRODUCT_FILTER = 'GET_PRODUCT_FILTER';
+export const GET_SORT = 'GET_SORT';
+export const GET_DRINK_BY_NAME = 'GET_DRINK_BY_NAME';
+export const POST_PRODUCT = 'POST_PRODUCT'
+export const GET_COUNTRIES = 'GET_COUNTRIES';
+export const GET_CART = 'GET_CART';
+export const GET_DRINKS_BY_RATING = 'GET_DRINKS_BY_RATING';
+export const SET_USER = 'SET_USER';
+export const CLEAR_USER = 'CLEAR_USER';
+export const PUT_DRINKS = "PUT_DRINKS"
+export const CLEAR_CART = 'CLEAR_CART';
+
+// para el address
+export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES';
+export const GET_ALL_STATE = 'GET_ALL_STATE';
+export const GET_ALL_CITIES = 'GET_ALL_CITIES';
+export const GET_ADDRESS_BY_ID = 'GET_ADDRESS_BY_ID';
+
 
 // Actions Creators get all products
 export const getDrinks = () => {
@@ -108,10 +115,11 @@ export const getCountries = () => {
 	};
 };
 
-export const getCart = (id) => async (dispatch) => {
-	let json = await axios.get(`/shopingCart?userId=${id}`);
-	return dispatch({ type: GET_CART, payload: json.data });
-};
+export const getCart = id => async dispatch => {
+  let json = await axios.get(`/shopingCart?userId=${id}`)
+  return dispatch({ type: GET_CART, payload: json.data })
+}
+
 
 export const getDrinksByRating = () => {
 	return async (dispatch) => {
@@ -133,7 +141,32 @@ export const clearUser = () => {
 };
 
 export const clearCart = () => {
-	return async (dispatch) => {
-		return dispatch({ type: CLEAR_CART });
-	};
-};
+  return async (dispatch) => {
+    return dispatch({type: CLEAR_CART});
+  }
+}
+
+export const getAllCountries = () => {
+  return async (dispatch) => {
+    const dataApi = await axios.get('/users/address/allCountries');
+    return dispatch({type: GET_ALL_COUNTRIES, payload: dataApi.data});
+  }
+}
+export const getAllStates = (countryId) => {
+  return async (dispatch) => {
+    const dataApi = await axios.get(`/users/address/allStates/${countryId}`);
+    return dispatch({type: GET_ALL_STATE, payload: dataApi.data});
+  }
+}
+export const getAllCities = (stateId) => {
+  return async (dispatch) => {
+    const dataApi = await axios.get(`/users/address/allCities/${stateId}`);
+    return dispatch({type: GET_ALL_CITIES, payload: dataApi.data});
+  }
+}
+export const getAddressById = (userId) => {
+  return async (dispatch) => {
+    const dataApi = await axios.get(`/users/address/${userId}`);
+    return dispatch({type: GET_ADDRESS_BY_ID, payload: dataApi.data});
+  }
+}

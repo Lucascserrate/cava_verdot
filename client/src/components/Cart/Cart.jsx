@@ -8,6 +8,8 @@ import { getCart } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import PasarelaStripe from "../Pasarela/PasarelaStripe";
+import Address from "../Address/Address";
+import ViewAddress from "../Address/ViewAddress/ViewAddress";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ const Cart = () => {
   let user = window.localStorage.getItem("userId");
 
   useEffect(() => {
-    if(user){
+    if (user) {
       dispatch(getCart(user));
     }
   }, [dispatch]);
@@ -68,23 +70,26 @@ const Cart = () => {
                 $
                 {cart.length
                   ? cart.reduce((acc, e) => {
-                      return acc + e.subtotal;
-                    }, 0)
+                    return Math.round(acc + e.subtotal);
+                  }, 0)
                   : undefined}
               </p>
             </div>
           </div>
           <p className={s.info}>
-            ¿Falta un producto?{" "}
+            Are you looking for another product?{" "}
             <Link to="/store">
               {" "}
-              <span className={s.link}> Seguir Comprando</span>
+              <span className={s.link}>Keep buying</span>
             </Link>
           </p>
         </div>
         <div className={s.pay}>
-          <h2 className={s.title}>Payment Methods</h2>
+          <Address/>
           <PasarelaStripe />
+          <ViewAddress/>
+        </div>
+        <div className={s.direction}>
         </div>
       </div>
       <Footer />

@@ -1,7 +1,8 @@
 .container {
   width: 100%;
   text-align: center;
-  background-color: rgb(228, 232, 237);
+  background-color: rgba(228, 232, 237, 0.377);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
 
 }
 

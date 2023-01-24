@@ -1,63 +1,62 @@
-.container {
+.home{
   width: 100%;
   min-height: 100vh;
   max-height: 100%;
-  background-color: var(--bgColor);
   position: relative;
 }
-
-.headerContainer {
+.home__header{
   width: 100%;
   height: 95vh;
+  position: relative;
+}
+.home__cabecera{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.616);
+  color: #fff;
+  font-size: 2rem;
+  gap: 10px;
+  background-image: url('../../assets/vinedo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.home__cabecera > h2{
+  font-weight: bold;
+  font-size: 4rem;
+}
 
+.home__destacados{
+  width: 100%;
+  height: 160px;
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+}
+.home__destacados > h2{
+  color: #000;
+  font-size: 2.4rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.home__carousel__products{
+  width: 100%;
+  height: 500px;
+  background-image: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.4)), url('../../assets/moroccan-flower.png');
+  background-position: center;
+  background-attachment: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.headerBox {
-  color: #fff;
-  width: 100%;
-  z-index: 20;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header {
-  font-size: 60px;
-}
-
-.subHeader {
-  font-size: 20px;
-}
-
-.imgHeader {
-  width: 100%;
-  height: 95vh;
-  position: absolute;
-}
-
-.home__content {
-  height: 100vh;
-}
-
-.featured {
-  padding: 50px 0;
-  width: 100%;
-  display: flex;
-
-}
-
-.copa {
-  height: 500px;
-  width: 450px;
-  border-radius: 0 5px 5px 0;
-}
-
-
-.alertage__component {
+.alertage__component{
   width: 100%;
   max-height: 100%;
   z-index: 1000;

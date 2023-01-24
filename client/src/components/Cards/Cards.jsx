@@ -64,17 +64,23 @@ function Cards({ category, price, country, setPrice }) {
     // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);
   };
 
-  /* console.log(datos); */
+  
+  const handleRestState = () => {
+    dispatch(getDrinks());
+  }
 
   return (
 
 
     <div className={s.cards}>
       <div className={s.cards__paginado}>
-        <Button3 value={"Aplicar Filtros"} handler={() => handleApplyFilter()} />
+        <div className={s.cards__btns__filter}>
+          <Button3 value={"Apply Filters"} handler={() => handleApplyFilter()} />
+          <Button3 value={"Rest Filters"} handler={() => handleRestState()} />
+        </div>
         <div className={s.arrows}>
           <button onClick={prev} className={s.btnLeft} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>
-          <label className={s.cards__currentpage}> {currentPage + 1} de {totalPage}</label>
+          <label className={s.cards__currentpage}> {currentPage + 1} of {totalPage}</label>
           <button onClick={next} className={s.btnRight} ><img src={arrowRight} alt="icon" className={s.cards__arrow} /></button>
         </div>
       </div>
