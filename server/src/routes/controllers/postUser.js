@@ -20,11 +20,11 @@ const postUser = async (req, res) => {
     let errors = {};
     //validando datos recibidos
     !name ? (errors.name = "name is required") : null;
-    !/^[a-záéíóúäëïöü ]*$/i.test(name)
+    !/^[a-záéíóúäëïöüñ ]*$/i.test(name)
       ? (errors.nameAlpha =
           "the name must only contain characters of the alphabet")
       : null;
-    !/^[a-záéíóúäëïöü ]*$/i.test(surname)
+    !/^[a-záéíóúäëïöüñ ]*$/i.test(surname)
       ? (errors.surnameAlpha =
           "the surname must only contain characters of the alphabet")
       : null;
