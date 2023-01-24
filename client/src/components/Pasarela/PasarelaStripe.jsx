@@ -57,7 +57,7 @@ const CheckOutForm = () => {
       setDescription(stateCart.map(ele => {
         console.log('soy elemento' ,ele);
         const obj = { 
-          userId: decodingToken.id,
+          userId: decodingToken?.id,
           id: ele.id,          
           amount: ele.amount,
           subtotal: ele.subtotal
