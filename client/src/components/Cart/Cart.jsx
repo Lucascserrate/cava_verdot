@@ -16,7 +16,7 @@ const Cart = () => {
   let user = window.localStorage.getItem("userId");
 
   useEffect(() => {
-    if(user){
+    if (user) {
       dispatch(getCart(user));
     }
   }, [dispatch]);
@@ -68,17 +68,17 @@ const Cart = () => {
                 $
                 {cart.length
                   ? cart.reduce((acc, e) => {
-                      return acc + e.subtotal;
-                    }, 0)
+                    return acc + e.subtotal;
+                  }, 0)
                   : undefined}
               </p>
             </div>
           </div>
           <p className={s.info}>
-            ¿Falta un producto?{" "}
+            Are you looking for another product?{" "}
             <Link to="/store">
               {" "}
-              <span className={s.link}> Seguir Comprando</span>
+              <span className={s.link}>Keep buying</span>
             </Link>
           </p>
         </div>
