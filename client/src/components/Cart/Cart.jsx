@@ -85,11 +85,11 @@ const Cart = () => {
           </p>
         </div>
         <div className={s.pay}>
+          <Address/>
           <PasarelaStripe />
           <ViewAddress/>
         </div>
         <div className={s.direction}>
-          <Address/>
         </div>
       </div>
       <Footer />
