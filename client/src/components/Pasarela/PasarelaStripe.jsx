@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import s from "./PasarelaStripe.module.css";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -27,11 +27,11 @@ const CheckOutForm = () => {
   // guardamos la decodificacion del token
   const [decodingToken, setDecodingToken] = useState()
 
-  useEffect(()=>{
-    if(getToken){
+  useEffect(() => {
+    if (getToken) {
       setDecodingToken(parseJwt(getToken))
     }
-  },[getToken])
+  }, [getToken])
 
   // traemos los datos del carrito
   const stateCart = useSelector(state => state.cart);
@@ -41,8 +41,8 @@ const CheckOutForm = () => {
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(stateCart.length){
+  useEffect(() => {
+    if (stateCart.length) {
 
       setPrice(stateCart.reduce((acc, e) => {
         return acc + e.subtotal;
@@ -59,7 +59,7 @@ const CheckOutForm = () => {
         return obj;
       }))
     }
-  },[stateCart]);
+  }, [stateCart]);
 
 
   const handleSubmit = async (e) => {
@@ -71,9 +71,9 @@ const CheckOutForm = () => {
       card: elements.getElement(CardElement),
     });
 
-    if(!getToken){
+    if (!getToken) {
       navigate("/login")
-    }else{
+    } else {
       if (!error) {
         //esta parte le envia el metodo de pago que tiene un id especial
         const { id } = paymentMethod;
@@ -98,7 +98,7 @@ const CheckOutForm = () => {
   return (
     <div className={s.container}>
       <form onSubmit={handleSubmit}>
-        <h2 className={s.label}>Introduce tu metodo de pago</h2>
+        <h2 className={s.label}>Set your payment method</h2>
         <CardElement className={s.input} />
         <button className={s.btn}>Buy</button>
       </form>

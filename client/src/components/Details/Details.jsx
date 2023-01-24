@@ -15,6 +15,10 @@ import Ratings from '../Rating/Ratings';
 import { Rating } from '@mui/material';
 
 const Details = () => {
+  const [value, setValue] = useState({
+    rate: 0,
+    review: ''
+  })
   const [detail, setDetail] = useState({});
   let { id } = useParams();
   const dispatch = useDispatch();
@@ -58,6 +62,11 @@ const Details = () => {
     }
     cartAmount.value = 1;
   };
+
+  const handlePostReview = async () => {
+    await axios.post(`/products/review?userId=${user}&drinkId=${id}`, value)
+  }
+
 
   return (
     <div className={s.details}>
@@ -131,7 +140,7 @@ const Details = () => {
           <Loader />
         )}
         <hr className={s.hr} />
-        <Ratings />
+        <Ratings handlePostReview={handlePostReview} value={value} setValue={setValue} />
       </div>
       <Footer />
     </div>

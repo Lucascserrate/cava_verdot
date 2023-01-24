@@ -1,4 +1,4 @@
-.cart{
+.cart {
     background-color: var(--bgColor);
     width: 100%;
 }
@@ -36,8 +36,11 @@
 .img {
     height: 70px;
     cursor: pointer;
-    filter: brightness(1.1);
     mix-blend-mode: multiply;
+}
+
+.img:hover {
+    filter: brightness(1.05);
 }
 
 .gridd {
