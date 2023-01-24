@@ -14,6 +14,7 @@ const postReviews = require("./controllers/postReviews.js");
 const putProduct = require("./controllers/putProduct.js");
 const Rating = require("./controllers/orderByRating.js");
 const getReviewsByDrinkId = require("./controllers/getReviewsByDrinkId.js");
+const putReview = require("./controllers/putReview.js");
 
 router.get("/highScore", getProductsHighSores);
 router.get("/", getAllProducts);
@@ -27,6 +28,7 @@ router.get("/:id", getAllProducts);
 router.post("/review", postReviews);
 router.post("/", midlewareValidation, postProduct);
 
+router.put("/review/:reviewId", putReview);
 router.put("/", putProduct);
 
 module.exports = router;
