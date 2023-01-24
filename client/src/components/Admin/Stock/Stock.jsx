@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDrinks, putDrink, getAllCategories } from "../../../redux/actions";
+import Alert from "./Alert";
 import s from "./Stock.module.css";
 
 const Stock = ({ setDisplay }) => {
@@ -19,36 +20,19 @@ const Stock = ({ setDisplay }) => {
 	const validation = (input) => {
 		let errors = {};
 		if (
-			drinks.find(
-				(d) =>
-					d.id === input.previewid && input.previewid !== parseInt(input.id),
-			)
-		) {
-			errors.previewid = "Este id ya esta siendo ocupado";
-		}
-		if (isNaN(input.previewid)) {
-			errors.previewid = "Solo numeros!";
-		}
-		if (
 			drinks.find((d) => d.id !== parseInt(input.id) && d.name === input.name)
 		) {
-			console.log(
-				drinks.find(
-					(d) => d.id !== parseInt(input.id) && d.name === input.name,
-				),
-			);
 			errors.name = "Este nombre ya esta ocupado";
 		}
 		return errors;
 	};
 	const [newValue, setNewValue] = useState({
-		previewid: 0,
 		id: 0,
 		name: "",
 		stock: 0,
 		category: "",
 	});
-    console.log(newValue);
+	console.log(newValue);
 	function editable(e) {
 		if (edit.editable === true) {
 			setEdit({
@@ -82,7 +66,7 @@ const Stock = ({ setDisplay }) => {
 			[e.target.name]: isNaN(parseInt(e.target.value))
 				? e.target.value
 				: parseInt(e.target.value),
-			id: e.target.id,
+			id: parseInt(e.target.id),
 		});
 		setError(
 			validation({
@@ -121,15 +105,17 @@ const Stock = ({ setDisplay }) => {
 									onBlur={(e) => handleBlur(e)}
 									className={s.stockEdit}
 								>
-                                    {console.log(typeof e === "object")}
-									<input
+									{console.log(typeof e === "object")}
+									<div
 										type="text"
 										className={s.inputID}
 										id={e.id}
 										name="previewid"
 										defaultValue={e.id}
-									/>
-									{errors.previewid && <span>{errors.previewid}</span>}
+									>
+										{e.id}
+									</div>
+
 									<input
 										type="text"
 										className={s.inputName}
@@ -137,7 +123,6 @@ const Stock = ({ setDisplay }) => {
 										name="name"
 										defaultValue={e.name}
 									/>
-									{errors.name && <p>{errors.name}</p>}
 									<select name="category" id={e.id} className={s.inputCategory}>
 										{categories.map((cat) => (
 											<option key={cat.id} value={cat.id}>
@@ -195,6 +180,7 @@ const Stock = ({ setDisplay }) => {
 				<button onClick={() => setDisplay(true)} className={s.btn}>
 					Add
 				</button>
+				{errors.name && <Alert>{errors.name}</Alert>}
 			</div>
 		</div>
 	);
