@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import s from "./About.module.css";
-import aboutImg from '../../assets/about_provisional.svg'
 
 function About() {
   return (
@@ -11,10 +10,9 @@ function About() {
       <div className={`${s.about__content} ${s.container}`}>
         <div className={s.about__element}>
           <figure className={s.about__picture}>
-            <img src={aboutImg} alt="img about" className={s.about__img} />
           </figure>
           <div className={s.about__texts}>
-            <h1 className={s.about__subtitle}>¿About Us?</h1>
+            <h1 className={s.about__subtitle}>¿Quienes Somos?</h1>
             <p className={s.about__paragraph}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
               semper nisi ante, vitae efficitur lorem egestas in. Vestibulum
@@ -32,7 +30,6 @@ function About() {
         </div>
         <div className={s.about__element}>
           <figure className={`${s.about__picture} ${s.about__picture__medio}`}>
-            <img src={aboutImg} alt="img about" className={s.about__img} />
           </figure>
           <div className={`${s.about__texts} ${s.about__texts__medio}`}>
             <h1 className={s.about__subtitle}>¿About Us?</h1>

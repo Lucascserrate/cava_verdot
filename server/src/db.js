@@ -12,19 +12,15 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 //     native: false,
 //   }
 // );
-// const sequelize = new Sequelize(
-//   `postgres://postgres:19378264@localhost/cava`,
-//   {
-//     logging: false,
-//     native: false,
-//   }
-// );
 
+ const sequelize = new Sequelize(
+   `postgres://postgres:19378264@localhost/cava`,
+   {
+     logging: false,
+   native: false,
+  }
+ );
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/cava`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -63,6 +59,7 @@ const {
   AllCity, 
   Historial,
   Address,
+  RatingAndReview,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -85,6 +82,8 @@ AllState.hasMany(AllCity);
 AllCity.belongsTo(AllState, { foreignKey: "id_state" });
 Address.hasMany(User);
 User.belongsTo(Address, { foreignKey: "id_user" });
+User.belongsToMany(Drink, { through: RatingAndReview });
+Drink.belongsToMany(User, { through: RatingAndReview });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

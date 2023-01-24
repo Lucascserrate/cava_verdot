@@ -12,7 +12,7 @@ function Footer() {
         <div className={s.footer__group}>
           <img src={logo} alt="Logo cavaverdot" className={s.footer__logo} />
           <p className={s.footer__copy}>
-            Todos los derechos reservados &copy; 2023 CavaVerdot
+            All rights reserved &copy; 2023 CavaVerdot
           </p>
         </div>
 
