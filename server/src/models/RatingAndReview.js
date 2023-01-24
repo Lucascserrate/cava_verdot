@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Drink, User } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define(
     "ratingAndReview",
@@ -8,6 +8,20 @@ module.exports = (sequelize) => {
         unique: true,
         primaryKey: true,
         autoIncrement: true,
+      },
+      drinkId: {
+        type: DataTypes.INTEGER,
+        refereces: {
+          model: Drink,
+          key: "id",
+        },
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        refereces: {
+          model: User,
+          key: "id",
+        },
       },
       review: {
         type: DataTypes.STRING,
