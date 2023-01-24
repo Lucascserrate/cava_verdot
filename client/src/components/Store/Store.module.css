@@ -12,6 +12,7 @@
 
 .store__components {
   display: flex;
+  min-height: 90vh;
 }
 
 .store__cards {
