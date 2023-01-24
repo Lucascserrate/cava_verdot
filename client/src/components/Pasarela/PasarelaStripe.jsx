@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux'
 import { parseJwt } from '../../functions/parseTokenJwt';
 
 
+
 const stripePromise = loadStripe(
   `pk_test_51MPvqQISTOrrumfMqiGlKo1MAGp9wHRHT8W1rmdHvsWCAYf51a50yJK5ZeUgpw0hnI0HNJgGBlHBIFINuKLOf7Ph00sNY7Ls6W`
 );
@@ -36,26 +37,34 @@ const CheckOutForm = () => {
   // traemos los datos del carrito
   const stateCart = useSelector(state => state.cart);
 
+  // const user = useSelector(state => state.user) este esta harcodeado
+
+  // console.log( "soy el USer ",user);
+
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState();
 
   const navigate = useNavigate();
 
+
   useEffect(() => {
     if (stateCart.length) {
+
 
       setPrice(stateCart.reduce((acc, e) => {
         return acc + e.subtotal;
       }, 0));
 
       setDescription(stateCart.map(ele => {
-        const obj = {
-          email: decodingToken?.email,
-          name: ele.name,
+        console.log('soy elemento' ,ele);
+        const obj = { 
+          userId: decodingToken?.id,
+          id: ele.id,          
           amount: ele.amount,
           subtotal: ele.subtotal
         }
-
+        
+        
         return obj;
       }))
     }

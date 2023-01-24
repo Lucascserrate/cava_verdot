@@ -55,6 +55,8 @@ const postAddToShopingCart = async (req, res) => {
         address: "def",
         emailProvider: "local",
         roleId: 1,
+        emailProvider: "local",
+        
       });
     } else {
       //buscando bebida en el carrito de usuario en caso de previa existencia de usuario
