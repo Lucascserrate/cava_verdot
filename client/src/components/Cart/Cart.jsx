@@ -69,7 +69,7 @@ const Cart = () => {
                 $
                 {cart.length
                   ? cart.reduce((acc, e) => {
-                    return acc + e.subtotal;
+                    return Math.round(acc + e.subtotal);
                   }, 0)
                   : undefined}
               </p>
