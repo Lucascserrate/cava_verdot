@@ -20,9 +20,11 @@ export default function NavBar({ searchbar }) {
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
-    if (getUserId) window.localStorage.removeItem("userId");
-
+    window.localStorage.removeItem("country");
+    window.localStorage.removeItem("state");
+    window.localStorage.removeItem("city")
     dispatch(clearUser())
+    if (getUserId) window.localStorage.removeItem("userId");
     navigate("/login");
   };
 

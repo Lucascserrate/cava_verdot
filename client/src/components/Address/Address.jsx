@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCountries, getAllStates, getAllCities } from '../../redux/actions'
+import { getAllCountries, getAllStates, getAllCities, getAddressById } from '../../redux/actions'
 import Button3 from "../Button3/Button3";
 import axios from 'axios';
 import s from './Address.module.css';
@@ -11,6 +11,8 @@ function Address() {
   const stateCities = useSelector(state => state.allCities);
   const stateUser = useSelector(state => state.user);
   const stateAddress = useSelector(state => state.addressUser);
+
+  let userId = stateUser.id;
 
   const dispatch = useDispatch();
 
@@ -83,39 +85,41 @@ function Address() {
     }else{
       // en caso que exista informacion en stateAddress significa que el usuario ya tiene una direccion por lo cual se realizara un modificado
       // en caso que no exista informacion se realizara un post
-      if(stateAddress){
-        const res = await axios.put(`/users/address/${stateUser.id}`, dataAddress)
-        setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
-        setTimeout(()=>{
-          setDataAddress({
-            countryId: "",
-            stateId: "",
-            cityId: "",
-            postalCode: "",
-            phone: "",
-            streetName: "",
-            streetNumber: "",
-            reference: "",
-          })
-          setViewAlert("");
-        },2000)
-      }else{
-        const res = await axios.post(`/users/address/${stateUser.id}`, dataAddress)
-        setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
-        setTimeout(()=>{
-          setDataAddress({
-            countryId: "",
-            stateId: "",
-            cityId: "",
-            postalCode: "",
-            phone: "",
-            streetName: "",
-            streetNumber: "",
-            reference: "",
-          })
-          setViewAlert("");
-        },2000)
-      }
+      // if(stateAddress){
+      //   const res = await axios.put(`/users/address/${stateUser.id}`, dataAddress)
+      //   setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
+      //   setTimeout(()=>{
+      //     setDataAddress({
+      //       countryId: "",
+      //       stateId: "",
+      //       cityId: "",
+      //       postalCode: "",
+      //       phone: "",
+      //       streetName: "",
+      //       streetNumber: "",
+      //       reference: "",
+      //     })
+      //     setViewAlert("");
+      //   },2000)
+      // }else{
+      // }
+      const res = await axios.post(`/users/address/${userId}`, dataAddress)
+      dispatch(getAddressById(stateUser.id));
+      setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
+      setTimeout(()=>{
+        setDataAddress({
+          countryId: "",
+          stateId: "",
+          cityId: "",
+          postalCode: "",
+          phone: "",
+          streetName: "",
+          streetNumber: "",
+          reference: "",
+        })
+        setViewAlert("");
+      },2000)
+      console.log(res);
     }
   }
 
@@ -129,7 +133,7 @@ function Address() {
             {
               stateCountries?.length &&
                 stateCountries.map(e => (
-                  <option value={e.id} key={e.id}>{e.name}</option>
+                  <option value={e.id} key={e.id} >{e.name}</option>
                 ))
             }
           </select>
@@ -141,7 +145,7 @@ function Address() {
             {
               stateStates?.length && 
               stateStates.map(e => (
-                <option value={e.id} key={e.id}>{e.name}</option>
+                <option value={e.id} key={e.id} >{e.name}</option>
               ))
             }
           </select>
@@ -153,7 +157,7 @@ function Address() {
             {
               stateCities?.length && 
               stateCities.map(e => (
-                <option value={e.id} key={e.id}>No hay</option>
+                <option value={e.id} key={e.id} >{e.name}</option>
               ))
             }
           </select>
@@ -178,7 +182,7 @@ function Address() {
           <input className={s.address__input} type="text" value={dataAddress.streetName} name={'streetName'} placeholder={"Calle..."} onChange={handleOnChangeStreetName} />
         </div>
         <div className={s.address__data__izq}>
-          <p>Nombre de la calle.</p>
+          <p>Numero de la calle.</p>
           <input className={s.address__input} type="text" value={dataAddress.streetNumber} name={'streetNumber'} placeholder={"#00-00..."} onChange={handleOnChangeStreetNumber} />
         </div>
       </div>

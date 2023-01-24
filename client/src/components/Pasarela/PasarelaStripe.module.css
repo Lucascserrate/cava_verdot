@@ -2,7 +2,7 @@
   background-color: #fff;
   border-radius: 10px;
   width: 100%;
-  border: 1px solid #49454567;
+  border: 1px solid #191919;
 }
 .form__content{
   width: 100%;
@@ -21,14 +21,9 @@
 
 .input {
   width: 100%;
-  margin: 0 auto;
-  outline: none;
   padding: 10px 15px;
-  border: 1px solid #49454567;
+  border: 1px solid #191919;
   border-radius: 10px;
-  background: #fff;
-  color: #49454567;
-  display: block;
   margin-top: 10px;
 }
 
