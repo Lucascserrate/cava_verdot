@@ -8,7 +8,7 @@
   min-height: 100vh;
   max-height: 100%;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fit, minmax(2, 1fr));
   width: 90%;
   margin: 0 auto;
   padding-top: 40px;
