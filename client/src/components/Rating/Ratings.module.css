@@ -1,0 +1,55 @@
+.container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    margin: 0 0 5px 0;
+}
+
+.box {
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.rateBox {
+    margin: 0 0 20px 0;
+}
+
+.reviewBox {
+    display: flex;
+}
+
+.picture {
+    background-color: var(--bgColor);
+    border-radius: 60px;
+    height: 65px;
+    width: 65px;
+    margin: 5px 10px 0 0;
+}
+
+.img {
+    object-fit: cover;
+    height: 100%;
+    border-radius: 50%;
+}
+
+
+.textarea {
+    font-size: 15px;
+    resize: none;
+    border-radius: 4px;
+    padding: 12px;
+    border: none;
+    box-shadow: var(--boxShadow);
+
+}
+
+.textarea:focus {
+    outline: none;
+    box-shadow: #251b1ba0 0 .1px 10px 0;
+}

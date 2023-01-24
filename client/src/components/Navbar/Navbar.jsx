@@ -20,11 +20,9 @@ export default function NavBar({ searchbar }) {
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
-    dispatch(clearUser());
-    if (getUserId) {
-      window.localStorage.removeItem("userId");
-    }
-    dispatch(clearCart());
+    if (getUserId) window.localStorage.removeItem("userId");
+
+    dispatch(clearUser())
     navigate("/login");
   };
 
@@ -54,7 +52,7 @@ export default function NavBar({ searchbar }) {
                   ? stateUser.image
                   : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
               }
-              alt="image profile"
+              alt="profile"
               className={s.image__profile}
             />
           </Link>
@@ -68,7 +66,7 @@ export default function NavBar({ searchbar }) {
                   ? stateUser.image
                   : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
               }
-              alt="image profile"
+              alt="profile"
               className={s.image__profile}
             />
           </Link>

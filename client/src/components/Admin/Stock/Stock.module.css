@@ -11,24 +11,33 @@
     position: relative;
 
 }
-.edit_input{
+
+.boton {
+    width: 50px;
+    height: auto;
+}
+
+.edit_input {
     padding: 3px;
     width: 350px;
     height: auto;
     align-self: center;
     font-size: 13px;
 }
+
 .ready {
     background: white;
     width: 35px;
     height: 25px;
     margin-left: 4px;
 }
-.ready:hover{
+
+.ready:hover {
     background: #000;
     color: white;
     cursor: pointer;
 }
+
 .title {
     margin: 25px 0 0 40px;
 }
@@ -85,7 +94,72 @@
     grid-template-columns: 1fr 6fr 2fr 1fr;
 }
 
+.stockEdit {
+    height: 30px;
+    width: 87%;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0 5px;
+    font-size: 13px;
 
+    display: grid;
+    grid-template-columns: 1fr 6fr 2fr 1fr;
+
+}
+
+.inputID {
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px;
+    width: 60%;
+}
+
+.inputName {
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px;
+    width: 85%;
+}
+
+.inputCategory {
+    border-radius: 3px;
+    background-color: transparent;
+    width: 60%;
+    margin: 0 0 0 -5px;
+}
+
+.inputStock {
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px;
+    width: 60%;
+    margin: 0 0 0 -10px;
+
+}
+
+
+.botones {
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    right: 40px;
+}
+
+.boton {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background: var(--colorDark);
+    border-radius: 10%;
+    color: #fff;
+    transition: 200ms;
+
+
+}
+
+.boton:hover {
+    opacity: .9;
+}
 
 .bold {
     align-self: center;
@@ -122,16 +196,6 @@
     border: 1px solid black;
 }
 
-.stockInput {
-    border: none;
-    background-color: transparent;
-    padding: 5px;
-    width: 90%;
-}
-
-.stockInput:focus {
-    border: 1px solid black;
-}
 
 .btnEdit {
     width: 15px;
