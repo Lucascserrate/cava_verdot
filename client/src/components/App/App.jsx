@@ -14,7 +14,6 @@ import DashboardClient from '../DashboardClient/DashboardClient'
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../../redux/actions'
 import { parseJwt } from '../../functions/parseTokenJwt'
-import ViewAddress from '../Address/ViewAddress/ViewAddress'
 
 function App() {
 
@@ -33,7 +32,6 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path='/view' element={<ViewAddress/>}/>
         <Route path='/' element={<Home />} />
         <Route path='/pasarela' element={<PasarelaStripe />} />
         <Route path='/store' element={<Store />} />
