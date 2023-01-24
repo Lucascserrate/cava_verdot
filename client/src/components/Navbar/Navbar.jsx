@@ -32,7 +32,9 @@ export default function NavBar({ searchbar }) {
   useEffect(() => {
     setVistaBtnLogin(
       getToken ? (
-        <Button3 value="Sign Out" handler={cerrarSesion} />
+        <button className={s.logOut} onClick={() => cerrarSesion()} ><span class="material-symbols-outlined">
+          logout
+        </span></button>
       ) : (
         <Link to="/login">
           <Button3 value="Sign In" />

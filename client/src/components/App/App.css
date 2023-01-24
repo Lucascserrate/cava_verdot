@@ -26,3 +26,10 @@ body::-webkit-scrollbar-thumb {
     background-color: #030f22;
     border-radius: 3px;
 } */
+
+/*Navbar*/
+.material-symbols-outlined {
+    font-size: 30px;
+    align-self: center;
+    cursor: pointer;
+}
