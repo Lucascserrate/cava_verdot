@@ -2,8 +2,8 @@
   width: 100%;
   min-height: 100vh;
   max-height: 100%;
-  background-color: var(--bgColor);
   position: relative;
+  background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.4)), url('../../assets/moroccan-flower.png');
 }
 .container{
   width: 90%;
@@ -13,8 +13,9 @@
 .dashboard__content{
   display: grid;
   margin: auto;
+  background-color: #edf1f6b0;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
 }
 
 .dashboard__cabecera{
@@ -30,7 +31,7 @@
   flex-direction: column;
   justify-content: center;
   grid-column: 2/3;
-  grid-row: 4/5;
+  grid-row: 3/4;
 }
 .dashboard__edit > h2{
   text-align: center;
