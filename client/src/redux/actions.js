@@ -25,26 +25,26 @@ export const GET_ADDRESS_BY_ID = 'GET_ADDRESS_BY_ID';
 
 // Actions Creators get all products
 export const getDrinks = () => {
-	return async (dispatch) => {
-		let datosApi = await axios.get("/products/");
+  return async (dispatch) => {
+    let datosApi = await axios.get("/products/");
 		dispatch({ type: GET_DRINKS, payload: datosApi.data });
 	};
 };
 
 export const putDrink = (value) => {
-	return async (dispatch) => {
-		try {
+  return async (dispatch) => {
+    try {
 			const { id, name, category, stock } = value;
-			let editada = await axios.put(`/products?queryId=${id}`, {
+      let editada = await axios.put(`/products?queryId=${id}`, {
 				id: id,
-				name: name,
-				category: category,
+        name: name,
+        category: category,
 				stock: stock,
 			});
 			dispatch({ type: PUT_DRINKS, payload: editada });
-		} catch (error) {
-			console.log(error);
-		}
+    } catch (error) {
+      console.log(error);
+    }
 	};
 };
 
@@ -56,31 +56,31 @@ export const modifyBubbleCart = (id) => async (dispatch) => {
 
 // Actions Creators get product id
 export const getDrinkId = (id) => {
-	return async (dispatch) => {
-		let datosApi = await axios.get(`/products/${id}`);
+  return async (dispatch) => {
+    let datosApi = await axios.get(`/products/${id}`);
 		dispatch({ type: GET_DRINK, payload: datosApi.data });
 	};
 };
 
 // Action creator get all categories
 export const getAllCategories = () => {
-	return async (dispatch) => {
+  return async (dispatch) => {
 		let datosApi = await axios.get("/categories/");
-		dispatch({ type: GET_ALL_CATEGORIES, payload: datosApi.data });
+    dispatch({ type: GET_ALL_CATEGORIES, payload: datosApi.data });
 	};
 };
 
 // Action creator get category product
 export const getProductFilter = (category, price, country) => {
-	return async (dispatch) => {
-		try {
+  return async (dispatch) => {
+    try {
 			let datosApi = await axios.get(
 				`/products?category=${category}&price=${price}&country=${country}`,
 			);
-			dispatch({ type: GET_PRODUCT_FILTER, payload: datosApi.data });
-		} catch (error) {
-			alert("No hay productos con esos filtros");
-		}
+      dispatch({ type: GET_PRODUCT_FILTER, payload: datosApi.data });
+    } catch (error) {
+      alert("No hay productos con esos filtros");
+    }
 	};
 };
 
@@ -91,8 +91,8 @@ export const getSort = (payload) => async (dispatch) => {
 
 // Actions Creators get product by name
 export const getDrinkName = (name) => {
-	return async (dispatch) => {
-		let datosApi = await axios.get("/products?name=" + name);
+  return async (dispatch) => {
+    let datosApi = await axios.get("/products?name=" + name);
 		dispatch({ type: GET_DRINK_BY_NAME, payload: datosApi.data });
 	};
 };
@@ -100,7 +100,7 @@ export const getDrinkName = (name) => {
 //Action PostProduct
 
 export const PostProduct = (payload) => {
-	return async function (dipatch) {
+  return async function (dipatch) {
 		const dataPost = await axios.post("/products", payload);
 
 		return dataPost;
@@ -109,7 +109,7 @@ export const PostProduct = (payload) => {
 
 // Action getCountries
 export const getCountries = () => {
-	return async (dispatch) => {
+  return async (dispatch) => {
 		const dataApi = await axios.get("/countries");
 		dispatch({ type: GET_COUNTRIES, payload: dataApi.data });
 	};
@@ -122,14 +122,14 @@ export const getCart = id => async dispatch => {
 
 
 export const getDrinksByRating = () => {
-	return async (dispatch) => {
+  return async (dispatch) => {
 		const dataApi = await axios.get("/products/highScore");
 		return dispatch({ type: GET_DRINKS_BY_RATING, payload: dataApi.data });
 	};
 };
 
 export const setUser = (data) => {
-	return async (dispatch) => {
+  return async (dispatch) => {
 		return dispatch({ type: SET_USER, payload: data });
 	};
 };
