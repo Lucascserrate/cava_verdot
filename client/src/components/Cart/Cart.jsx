@@ -8,6 +8,8 @@ import { getCart } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import PasarelaStripe from "../Pasarela/PasarelaStripe";
+import Address from "../Address/Address";
+import ViewAddress from "../Address/ViewAddress/ViewAddress";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -68,7 +70,7 @@ const Cart = () => {
                 $
                 {cart.length
                   ? cart.reduce((acc, e) => {
-                    return acc + e.subtotal;
+                    return Math.round(acc + e.subtotal);
                   }, 0)
                   : undefined}
               </p>
@@ -83,8 +85,11 @@ const Cart = () => {
           </p>
         </div>
         <div className={s.pay}>
-          <h2 className={s.title}>Payment Methods</h2>
           <PasarelaStripe />
+          <ViewAddress/>
+        </div>
+        <div className={s.direction}>
+          <Address/>
         </div>
       </div>
       <Footer />

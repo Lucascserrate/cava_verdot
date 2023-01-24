@@ -13,11 +13,15 @@ const baja = require("./routesMails/baja.routes.js");
 const news = require("./routesMails/news.route.js");
 const welcome = require("./routesMails/welcome.route.js");
 const cargarData = require("./cargarData.routes.js");
+const history = require("./historial.js")
+const getAllUser = require("./getAllUsers.routes.js")
 
 const checkOut = require("./controllers/checkOut.js");
 
 const shopingCart = require("./shopingCart.routes.js");
-const authRouter = require("./auth/index");
+const authRouter = require('./auth/index');
+const { route } = require("./products.routes.js");
+
 
 router.use("/categories", category);
 router.use("/products", productMiddleware);
@@ -32,12 +36,15 @@ router.use("/shopingCart", shopingCart);
 
 router.use("/auth", authRouter);
 
-router.use("/alta", alta);
-router.use("/pago", pago);
-router.use("/dato", dato);
-router.use("/baja", baja);
-router.use("/news", news);
-router.use("/welcome", welcome);
+router.use('/alta',alta )
+router.use('/pago',pago )
+router.use('/dato',dato )
+router.use('/baja',baja )
+router.use('/news', news)
+router.use('/welcome', welcome) 
+router.use('/history', history )
+router.use('/allUser', getAllUser)
+
 
 router.use("/cargarData", cargarData);
 

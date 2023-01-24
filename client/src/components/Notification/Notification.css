@@ -1,0 +1,25 @@
+.notification__bubble{
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  cursor: pointer;
+  transform: scale(1);
+  box-shadow: 0 0 6px rgba(12, 12, 12, 0.562);
+  transition: transform .3s ease-in-out;
+}
+.notification__bubble:hover{
+  transform: scale(1.1);
+}
+.hiddenMailer{
+  transform: scale(0);
+  transition: .5s all ease-in-out;
+}
+.showMailer{
+  transform: scale(1) rotate(360deg);
+  transition: .5s all ease-in-out;
+}
