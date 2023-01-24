@@ -9,8 +9,8 @@ import { useSelector } from 'react-redux';
 
 const Ratings = ({ id }) => {
     const [value, setValue] = useState({
-        punctuation: 0,
-        review: ''
+        review: '',
+        punctuation: 0
     })
 
     const userId = useSelector(state => state.user)
@@ -31,9 +31,11 @@ const Ratings = ({ id }) => {
         })
     }
 
-    const handlePostReview = async () => {
-        let a = await axios.post(`/products/review?userId=${userId.id}&drinkId=${id}`, value)
+    const handlePostReview = async (e) => {
+        e.preventDefault()
+        let a = await axios.post(`/products/review?userId=${userId?.id}&drinkId=${id}`, value)
         console.log(a);
+        return a
     }
 
 
@@ -42,7 +44,7 @@ const Ratings = ({ id }) => {
             setDecodingToken(parseJwt(getToken))
         }
     }, [])
-    console.log(id);
+    console.log(value);
     return (
         <div className={s.container}>
             <div className={s.box}>

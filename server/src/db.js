@@ -73,10 +73,10 @@ Category.hasMany(SubCategory);
 SubCategory.belongsTo(Category, { foreignKey: "categoryId" });
 Role.hasMany(User);
 User.belongsTo(Role);
-User.belongsToMany(Historial, { through: "userHistory" })
-Historial.belongsToMany(User, { through: "userHistory" })
-Drink.belongsToMany(Historial, { through: "drinkHistory" })
-Historial.belongsToMany(Drink, { through: "drinkHistory" })
+User.belongsToMany(Historial, { through: "userHistory" });
+Historial.belongsToMany(User, { through: "userHistory" });
+Drink.belongsToMany(Historial, { through: "drinkHistory" });
+Historial.belongsToMany(Drink, { through: "drinkHistory" });
 AllCountry.hasMany(AllState);
 AllState.belongsTo(AllCountry, { foreignKey: "id_country" });
 AllState.hasMany(AllCity);
