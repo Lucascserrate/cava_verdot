@@ -9,6 +9,7 @@
   left: 10px;
   cursor: pointer;
   transform: scale(1);
+  box-shadow: 0 0 6px rgba(12, 12, 12, 0.562);
   transition: transform .3s ease-in-out;
 }
 .notification__bubble:hover{
