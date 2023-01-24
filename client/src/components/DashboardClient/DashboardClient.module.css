@@ -2,8 +2,8 @@
   width: 100%;
   min-height: 100vh;
   max-height: 100%;
-  background-color: var(--bgColor);
   position: relative;
+  background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.4)), url('../../assets/moroccan-flower.png');
 }
 .container{
   width: 90%;
@@ -13,6 +13,7 @@
 .dashboard__content{
   display: grid;
   margin: auto;
+  background-color: #edf1f6b0;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
 }
@@ -30,13 +31,14 @@
   flex-direction: column;
   justify-content: center;
   grid-column: 2/3;
-  grid-row: 4/5;
+  grid-row: 3/4;
 }
 .dashboard__edit > h2{
   text-align: center;
   font-size: 1.6rem;
+  font-weight: 400;
   padding-bottom: 4px;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #49454567;
 }
 .dashboard__data{
   margin: 20px 0 10px;
@@ -54,6 +56,7 @@
 }
 .dashboard__img{
   width: 100%;
+  border: 2px solid #49454567;
   border-radius: 50%;
   display: block;
   object-fit: cover;
@@ -78,11 +81,25 @@
   align-items: center;
   gap: 10px;
 }
+.dashboard__name,
+.dashboard__surname{
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-family: inherit;
+}
 
 .dashboard__data{
   display: flex;
   align-items: center;
   gap: 20px;
+}
+.dashboard__text{
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: inherit;
+}
+.dashboard__text > span{
+  font-weight: lighter;
 }
 
 .dashboard__edit{

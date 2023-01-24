@@ -13,8 +13,10 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
   }
 );  */
 
+
+
 const sequelize = new Sequelize(
-  `postgres://postgres:19378264@localhost/cava`,
+  `postgres:${DB_USER}:${DB_PASSWORD}@${DB_HOST}/cava`,
   {
     logging: false,
     native: false,
@@ -58,6 +60,7 @@ const {
   AllState,
   AllCity,
   Address,
+  RatingAndReview,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -76,6 +79,8 @@ AllState.hasMany(AllCity);
 AllCity.belongsTo(AllState, { foreignKey: "id_state" });
 Address.hasMany(User);
 User.belongsTo(Address, { foreignKey: "id_user" });
+User.belongsToMany(Drink, { through: RatingAndReview });
+Drink.belongsToMany(User, { through: RatingAndReview });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

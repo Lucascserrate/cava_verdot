@@ -10,8 +10,6 @@ import AlertAge from "../AlertAge/AlertAge";
 import { modifyBubbleCart } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Brands from '../Brands/Brands';
-import imgHeader from '../../assets/vinedo.jpg'
-import copa from '../../assets/copaVino.jpg'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -41,31 +39,42 @@ const Home = () => {
     }
   }, []);
   return (
-    <div className={s.container}>
+    <div className={s.home}>
       <div className={s.alertage__component}>
         {viewAlert}
       </div>
       <Navbar />
-      <div className={s.headerContainer}>
-        <div className={s.headerBox}>
-          <h2 className={s.header}>Descubri los mejores vinos</h2>
-          <p className={s.subHeader}>En Cava Verdot vas a encontrar los mejores vinos al mejor precio</p>
-        </div>
-        <img className={s.imgHeader} src={imgHeader} alt="vinedo" />
-      </div>
       <div className={s.home__content}>
-        <div className={s.featured}>
-          <img className={s.copa} src={copa} alt="" />
+
+        <div className={s.home__header}>
+          <div className={s.home__cabecera}>
+            <h2 className={s.header}>Descubri los mejores vinos</h2>
+            <p className={s.subHeader}>En Cava Verdot vas a encontrar los mejores vinos al mejor precio</p>
+          </div>
+        </div>
+
+        <div className={s.home__destacados}>
+          <h2>Productos Destacados</h2>
+        </div>
+
+        <div className={s.home__carousel__products}>
           <CarouselSlide />
         </div>
-        <Brands />
+
+        <div className={s.home__destacados}>
+          <h2>Nuestras Marcas</h2>
+        </div>
+
+        <div className={s.home__carousel__products}>
+          <Brands />
+        </div>
+
+        <BubbleCart />
+        <BubbleWpp />
+        {
+          notification && <Notification setNotification={setNotification} />
+        }
       </div>
-      <BubbleCart />
-      <BubbleWpp />
-      {
-        /* notification && setTimeout(() => (<Notification setNotification={setNotification} />), 100) */
-        notification && <Notification setNotification={setNotification} />
-      }
       <Footer />
     </div>
   );
