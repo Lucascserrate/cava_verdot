@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setUser, getAddressById } from '../../redux/actions'
 import { parseJwt } from '../../functions/parseTokenJwt'
 import axios from 'axios'
+import Borrado from '../Admin/Borrado/Borrado'
 
 function App() {
   
@@ -35,6 +36,7 @@ function App() {
   return (
     <div>
       <Routes>
+        <Route path='/borrado' element={<Borrado/>}/>
         <Route path='/' element={<Home />} />
         <Route path='/pasarela' element={<PasarelaStripe />} />
         <Route path='/store' element={<Store />} />

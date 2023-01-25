@@ -72,15 +72,14 @@ const Details = () => {
       <div className={s.detail__elements}>
         {Object.keys(detail).length ? (
           <div className={s.container}>
-            <div className={s.grid}>
-              <div>
+            <div className={s.detail__picture}>
                 <img
                   className={s.img}
                   src={detail.image ? detail.image : "#"}
                   alt="img"
                 />
-              </div>
-              <div className={s.detailContainer}>
+            </div>
+            <div className={s.detail__info}>
                 <h1 className={s.name}>{detail?.name}</h1>
                 <Rating name="read-only" value={detail?.rating} readOnly />
                 <br />
@@ -128,27 +127,24 @@ const Details = () => {
                   <span className={s.bold}>Country:</span>{" "}
                   {detail.country?.country}
                 </p>
-              </div>
             </div>
-            <br></br>
             <div className={s.description}>{detail.description}</div>
           </div>
         ) : (
           <Loader />
         )}
-        <hr className={s.hr} />
-        {
-          !allReviews.filter(e => e.userId === userId.id).length ?
-            < Ratings id={id} />
-            : <div className={s.alertSubmited}>
-              <div className={s.alertBox}>
-                <img className={s.check} src={check} alt="check" />
-                <p >Review submitted</p>
-              </div>
-            </div>
-
-        }
-        <Reviews id={id} />
+            {
+              !allReviews.filter(e => e.userId === userId.id).length ?
+                < Ratings id={id} />
+                : 
+                <div className={s.alertSubmited}>
+                  <div className={s.alertBox}>
+                    <img className={s.check} src={check} alt="check" />
+                    <p >Review submitted</p>
+                  </div>
+                </div>
+            }
+            <Reviews id={id} />
       </div>
       <Footer />
     </div>

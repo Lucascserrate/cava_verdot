@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase/firebase.js";
@@ -11,6 +11,7 @@ import { parseJwt } from "../../functions/parseTokenJwt";
 import GoogleButton from "react-google-button";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/actions";
+import Loader from "../Loader/Loader.jsx";
 
 function Login() {
   const [timeAlert, setTimeAlert] = useState(false);
@@ -18,6 +19,14 @@ function Login() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (window.localStorage.getItem("token")) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+  }, []);
 
   const handleOnClose = () => {
     navigate("/");
@@ -47,7 +56,7 @@ function Login() {
           setTimeAlert(true);
           setTimeout(() => {
             setTimeAlert(false);
-          }, 4000);
+          }, 1500);
         });
     } catch (err) {
       console.log(err.message);
@@ -102,76 +111,80 @@ function Login() {
           }
         }}
       >
-        {({ errors }) => (
-          <Form className={s.login__modal} id="modal">
-            <div className={s.login__contain}>
-              <h1 className={s.login__title}>Login</h1>
+        {!window.localStorage.getItem("token") ? (
+          ({ errors }) => (
+            <Form className={s.login__modal} id="modal">
+              <div className={s.login__contain}>
+                <h1 className={s.login__title}>Login</h1>
 
-              <div className={s.login__inputs}>
-                <div>
-                  <div className={s.login__group}>
-                    <label className={s.login__lbl}>Email:</label>
-                    <Field
-                      type="email"
-                      className={s.login__input}
-                      placeholder="email@email.com"
-                      name="email"
-                      id="email"
-                    />
+                <div className={s.login__inputs}>
+                  <div>
+                    <div className={s.login__group}>
+                      <label className={s.login__lbl}>Email:</label>
+                      <Field
+                        type="email"
+                        className={s.login__input}
+                        placeholder="email@email.com"
+                        name="email"
+                        id="email"
+                      />
+                    </div>
+                    <div className={s.login__message}>
+                      <ErrorMessage
+                        name="email"
+                        component={() => (
+                          <span className={s.error}>{errors.email}</span>
+                        )}
+                      />
+                    </div>
                   </div>
-                  <div className={s.login__message}>
-                    <ErrorMessage
-                      name="email"
-                      component={() => (
-                        <span className={s.error}>{errors.email}</span>
-                      )}
-                    />
+
+                  <div>
+                    <div className={s.login__group}>
+                      <label className={s.login__lbl}>Password:</label>
+                      <Field
+                        type="password"
+                        className={s.login__input}
+                        placeholder="....."
+                        name="password"
+                        id="password"
+                      />
+                    </div>
+                    <div className={s.login__message}>
+                      <ErrorMessage
+                        name="password"
+                        component={() => (
+                          <span className={s.error}>{errors.password}</span>
+                        )}
+                      />
+                    </div>
                   </div>
+
+                  <input
+                    type="submit"
+                    className={s.login__submit}
+                    value="Iniciar Sesion"
+                  />
+
+                  <GoogleButton
+                    type="light"
+                    onClick={(e) => handleClickGoogle(e)}
+                  />
+
+                  <p>
+                    ¿No tiene cuenta?<Link to="/register"> Registrate.</Link>
+                  </p>
                 </div>
+                <div className={s.login__alert}>{timeAlert && viewAlert}</div>
 
-                <div>
-                  <div className={s.login__group}>
-                    <label className={s.login__lbl}>Password:</label>
-                    <Field
-                      type="password"
-                      className={s.login__input}
-                      placeholder="....."
-                      name="password"
-                      id="password"
-                    />
-                  </div>
-                  <div className={s.login__message}>
-                    <ErrorMessage
-                      name="password"
-                      component={() => (
-                        <span className={s.error}>{errors.password}</span>
-                      )}
-                    />
-                  </div>
-                </div>
-
-                <input
-                  type="submit"
-                  className={s.login__submit}
-                  value="Iniciar Sesion"
-                />
-
-                <GoogleButton
-
-                  type='light'
-                  onClick={e => handleClickGoogle(e)}
-                />
-
-                <p>¿No tiene cuenta?<Link to='/register'> Registrate.</Link></p>
-
+                <label onClick={handleOnClose} className={s.login__close}>
+                  ✖
+                </label>
               </div>
-              <div className={s.login__alert}>{timeAlert && viewAlert}</div>
-
-              <label onClick={handleOnClose} className={s.login__close}>
-                ✖
-              </label>
-            </div>
-          </Form>
+            </Form>
+          )
+        ) : (
+          <Loader />
         )}
       </Formik>
     </div>
