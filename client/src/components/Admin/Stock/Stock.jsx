@@ -42,6 +42,7 @@ const Stock = ({ setDisplay }) => {
 		stock: 0,
 		category: "",
 		country: "",
+		price: 0,
 	});
 	console.log(newValue);
 	function editable(e) {
@@ -73,6 +74,8 @@ const Stock = ({ setDisplay }) => {
 			name: "",
 			stock: 0,
 			category: "",
+			country: "",
+			price: 0,
 		});
 		setError({
 			name: "",
@@ -90,16 +93,16 @@ const Stock = ({ setDisplay }) => {
 		setNewValue({
 			...newValue,
 			id: parseInt(e.target.id),
-			[e.target.name]: isNaN(parseInt(e.target.value))
+			[e.target.name]: isNaN(parseFloat(e.target.value))
 				? e.target.value
-				: parseInt(e.target.value),
+				: parseFloat(e.target.value),
 		});
 		setError(
 			validation({
 				...newValue,
-				[e.target.name]: isNaN(parseInt(e.target.value))
+				[e.target.name]: isNaN(parseFloat(e.target.value))
 					? e.target.value
-					: parseInt(e.target.value),
+					: parseFloat(e.target.value),
 			}),
 		);
 	};
@@ -119,6 +122,7 @@ const Stock = ({ setDisplay }) => {
 				<div className={s.bold}>Name</div>
 				<div className={s.bold}>Category</div>
 				<div className={s.bold}>Country</div>
+				<div className={s.bold}>Price</div>
 				<div className={s.bold}>Stock</div>
 			</div>
 			<div className={s.stockContainer}>
@@ -173,6 +177,13 @@ const Stock = ({ setDisplay }) => {
 										type="text"
 										className={s.inputStock}
 										id={e.id}
+										name="price"
+										defaultValue={e.price}
+									/>
+									<input
+										type="text"
+										className={s.inputStock}
+										id={e.id}
 										name="stock"
 										defaultValue={e.stock}
 									/>
@@ -216,6 +227,9 @@ const Stock = ({ setDisplay }) => {
 									</div>
 									<div className={s.text} id={e.id}>
 										{e.country?.country}{" "}
+									</div>
+									<div className={s.text} id={e.id}>
+										{e.price}
 									</div>
 									<div className={s.text} id={e.id}>
 										{e.stock}

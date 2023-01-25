@@ -34,13 +34,14 @@ export const getDrinks = () => {
 export const putDrink = (value) => {
   return async (dispatch) => {
     try {
-      const { id, name, category, stock, country } = value
+      const { id, name, category, stock, country, price } = value
       let editada = await axios.put(`/products?queryId=${id}`, {
         id: id,
         name: name,
         category: category,
         country: country,
-        stock: stock
+        stock: stock,
+        price, price
       })
       dispatch({ type: PUT_DRINKS, payload: editada })
     } catch (error) {
