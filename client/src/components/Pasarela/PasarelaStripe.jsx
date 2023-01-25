@@ -61,6 +61,7 @@ const CheckOutForm = () => {
           userId: decodingToken?.id,
           drinkId: ele.id,
           amount: ele.amount,
+          name: ele.name,
           subtotal: ele.subtotal
         }
         return obj;
