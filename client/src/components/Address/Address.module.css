@@ -49,6 +49,7 @@
 
 .address__inputs{
   display: grid;
+  width: 100%;
   margin-top: 10px;
   gap: 10px;
   grid-template-columns: repeat(2, 1fr);

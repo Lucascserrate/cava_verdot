@@ -14,3 +14,8 @@
 .navbarclient__logo{
   height: 65px;
 }
+.logout{
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}

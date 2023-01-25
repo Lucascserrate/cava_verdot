@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {clearUser, clearCart} from '../../../redux/actions'
-import Button3 from '../../Button3/Button3'
 
 function NavbarClient() {
 
@@ -30,10 +29,12 @@ function NavbarClient() {
   useEffect(() => {
     setVistaBtnLogin(
       getToken ? (
-        <Button3 value="Sign Out" handler={cerrarSesion} />
+        <button className={s.logout} onClick={cerrarSesion}>
+          <span className="material-symbols-outlined">logout</span>
+        </button>
       ) : (
         <Link to="/login">
-          <Button3 value="Sign In" />
+          <span className="material-symbols-outlined">login</span>
         </Link>
       )
     );

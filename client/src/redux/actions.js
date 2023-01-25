@@ -17,6 +17,7 @@ export const PUT_DRINKS = "PUT_DRINKS"
 export const CLEAR_CART = 'CLEAR_CART';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_ALL_USER = 'GET_ALL_USER';
+export const CLEAR_ADDRESS = 'CLEAR_ADDRESS';
 
 
 // para el address
@@ -39,12 +40,12 @@ export const putDrink = (value) => {
     try {
       const { id, name, category, stock, country, price } = value
       let editada = await axios.put(`/products?queryId=${id}`, {
-        id: id,
-        name: name,
-        category: category,
-        country: country,
-        stock: stock,
-        price, price
+        id,
+        name,
+        category,
+        country,
+        stock,
+        price,
       })
       dispatch({ type: PUT_DRINKS, payload: editada })
     } catch (error) {
@@ -182,6 +183,12 @@ export const getReviews = userId => async dispatch => {
 export const getAllUser = () => {
   return async (dispatch) => {
     const dataApi = await axios.get('/allUser');
-    return dispatch({type: GET_ALL_USER, payload: dataApi.data})
+    return dispatch({ type: GET_ALL_USER, payload: dataApi.data })
+  }
+}
+
+export const clearAddress = () => {
+  return async (dispatch) => {
+    return dispatch({ type: CLEAR_ADDRESS });
   }
 }
