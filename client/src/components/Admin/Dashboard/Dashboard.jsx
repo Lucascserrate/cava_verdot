@@ -11,11 +11,14 @@ import Error from "../../Error/Error";
 import { parseJwt } from "../../../functions/parseTokenJwt";
 import { useNavigate } from "react-router-dom";
 import "chart.js/auto";
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
   const [display, setDisplay] = useState(false);
   const [decoding, setDecoding] = useState();
-
+  const user = useSelector(state => state.user)
+  console.log(decoding)
+  console.log(window.localStorage.getItem("token"))
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,17 +29,16 @@ const Dashboard = () => {
     }
   }, [window.localStorage.getItem("token")]);
 
-  useEffect(()=>{
-    if(window.localStorage.getItem("token")){
-      setDecoding(parseJwt(window.localStorage.getItem("token")));
-    }
-    if(decoding?.role !== 3){
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
+  useEffect(() => {
+    if (window.localStorage.getItem("token")) {
+      if (user?.role !== 3) {
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
     }
   }, [window.localStorage.getItem("token")]);
-  
+
 
   const data = {
     labels: [
@@ -77,7 +79,7 @@ const Dashboard = () => {
   return (
     <>
       {window.localStorage.getItem("token") ? (
-        decoding?.role === 3 ? (
+        user?.role === 3 ? (
           <div className={s.container}>
             <NavBar />
             <div className={s.aside}>
