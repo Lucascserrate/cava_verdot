@@ -24,10 +24,10 @@ const Stock = ({ setDisplay }) => {
           d.id === input.previewid && input.previewid !== parseInt(input.id)
       )
     ) {
-      errors.previewid = "Este id ya esta siendo ocupado";
+      errors.previewid = "";
     }
     if (isNaN(input.previewid)) {
-      errors.previewid = "Solo numeros!";
+      errors.previewid = "";
     }
     if (
       drinks.find((d) => d.id !== parseInt(input.id) && d.name === input.name)
@@ -35,7 +35,7 @@ const Stock = ({ setDisplay }) => {
       console.log(
         drinks.find((d) => d.id !== parseInt(input.id) && d.name === input.name)
       );
-      errors.name = "Este nombre ya esta ocupado";
+      errors.name = "";
     }
     return errors;
   };
@@ -109,80 +109,76 @@ const Stock = ({ setDisplay }) => {
       <div className={s.stockContainer}>
         {drinks.length
           ? drinks.map((e) =>
-              edit.editable === true && e.id === parseInt(edit.id) ? (
-                <div
-                  key={e.id}
-                  id={e.id}
-                  onBlur={(e) => handleBlur(e)}
-                  className={s.stockEdit}
-                >
-                  <input
-                    type="text"
-                    className={s.inputID}
-                    id={e.id}
-                    name="previewid"
-                    defaultValue={e.id}
-                  />
-                  {errors.previewid && <span>{errors.previewid}</span>}
-                  <input
-                    type="text"
-                    className={s.inputName}
-                    id={e.id}
-                    name="name"
-                    defaultValue={e.name}
-                  />
-                  {errors.name && <p>{errors.name}</p>}
-                  <select name="category" id={e.id} className={s.inputCategory}>
-                    {categories.map((cat) => (
-                      <option key={cat.id} value={cat.id}>
-                        {cat.category}
-                      </option>
-                    ))}
-                  </select>
-                  <input
-                    type="text"
-                    className={s.inputStock}
-                    id={e.id}
-                    name="stock"
-                    defaultValue={e.stock}
-                  />
-                  <div className={s.botones}>
-                    <input
-                      type="submit"
-                      className={s.boton}
-                      onClick={(e) => changed(e)}
-                      value="✔"
-                    />
-                    <input
-                      type="submit"
-                      className={s.boton}
-                      onClick={cancele}
-                      value="✖"
-                    />
-                  </div>
+            edit.editable === true && e.id === parseInt(edit.id) ? (
+              <div
+                key={e.id}
+                id={e.id}
+                onBlur={(e) => handleBlur(e)}
+                className={s.stockEdit}
+              >
+                <div className={s.text} id={e.id}>
+                  {e.id}
                 </div>
-              ) : (
-                <div
-                  onClickCapture={(e) => editable(e)}
-                  key={e.id}
+                {errors.previewid && <span>{errors.previewid}</span>}
+                <input
+                  type="text"
+                  className={s.inputName}
                   id={e.id}
-                  className={s.stockItems}
-                >
-                  <div className={s.text} id={e.id}>
-                    {e.id}
-                  </div>
-                  <div className={s.text} id={e.id}>
-                    {e.name}
-                  </div>
-                  <div className={s.text} id={e.id}>
-                    {e.category?.category}{" "}
-                  </div>
-                  <div className={s.text} id={e.id}>
-                    {e.stock}
-                  </div>
+                  name="name"
+                  defaultValue={e.name}
+                />
+                {errors.name && <p>{errors.name}</p>}
+                <select name="category" id={e.id} className={s.inputCategory}>
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.category}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="text"
+                  className={s.inputStock}
+                  id={e.id}
+                  name="stock"
+                  defaultValue={e.stock}
+                />
+                <div className={s.botones}>
+                  <input
+                    type="submit"
+                    className={s.boton}
+                    onClick={(e) => changed(e)}
+                    value="✔"
+                  />
+                  <input
+                    type="submit"
+                    className={s.boton}
+                    onClick={cancele}
+                    value="✖"
+                  />
                 </div>
-              )
+              </div>
+            ) : (
+              <div
+                onClickCapture={(e) => editable(e)}
+                key={e.id}
+                id={e.id}
+                className={s.stockItems}
+              >
+                <div className={s.text} id={e.id}>
+                  {e.id}
+                </div>
+                <div className={s.text} id={e.id}>
+                  {e.name}
+                </div>
+                <div className={s.text} id={e.id}>
+                  {e.category?.category}{" "}
+                </div>
+                <div className={s.text} id={e.id}>
+                  {e.stock}
+                </div>
+              </div>
             )
+          )
           : undefined}
       </div>
       <div className={s.buttons}>

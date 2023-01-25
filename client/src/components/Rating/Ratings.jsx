@@ -47,7 +47,6 @@ const Ratings = ({ id }) => {
             setDecodingToken(parseJwt(getToken))
         }
     }, [])
-    console.log(userId.id);
     return (
         <div className={s.container}>
             <div className={s.center}>
