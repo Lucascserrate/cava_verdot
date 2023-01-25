@@ -11,6 +11,7 @@ const Notification = ({ setNotification }) => {
   });
 
   const [viewMailer, setViewMailer] = useState("hiddenMailer");
+  const [viewAlert, setViewAlert] = useState()
 
   const handleChange = (e) => {
     setState({
@@ -28,10 +29,14 @@ const Notification = ({ setNotification }) => {
   const handleSubmit = async () => {
     console.log(state);
     await axios.post("/welcome", state);
+    setViewAlert(<p className={s.ok}>Thanks for subscribing</p>)
     setState({
       name: "",
       email: "",
     });
+    setTimeout(()=>{
+      setViewAlert()
+    },1000)
   };
 
   const handleViewMailer = () => {
@@ -67,6 +72,9 @@ const Notification = ({ setNotification }) => {
           />
           <div className={s.submit}>
             <Button3 handler={handleSubmit} value="Subscribe" />
+          </div>
+          <div className={s.alert}>
+            {viewAlert && viewAlert}
           </div>
         </div>
       </div>
