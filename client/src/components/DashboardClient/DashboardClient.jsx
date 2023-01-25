@@ -257,6 +257,7 @@ function DashboardClient() {
                       onClick={editImage}
                     >
                       <img
+                        srcSet="https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
                         src={stateUser?.image}
                         alt="user"
                         className={s.dashboard__img}

@@ -64,12 +64,10 @@ export default function NavBar({ searchbar }) {
       } else if (stateUser.role === 2) {
         setViewDashboard(
           <Link to={"/dashboard"}>
+            {console.log(stateUser.image)}
             <img
-              src={
-                stateUser.image
-                  ? stateUser.image
-                  : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
-              }
+              srcSet="https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
+              src={stateUser?.image}
               alt="profile"
               className={s.image__profile}
             />
