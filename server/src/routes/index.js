@@ -47,8 +47,6 @@ router.use('/history', history )
 router.use('/allUser', getAllUser)
 router.use('/orderByAmount', orderByAmount )
 
-
-
 router.use("/cargarData", cargarData);
 
 module.exports = router;

@@ -5,6 +5,25 @@ const {getIdHistory, getHistory} = require("./controllers/getIdHistory.js")
 const {Amount} = require("../routes/controllers/Filter&OrderHistory/OrderByAmount.js")
 
 
+
+router.get("/amount", Amount);
+router.get("/", getHistory);
+
+router.get("/:id", async (req, res) => {
+
+  try {
+
+    const { id } = req.params
+
+    if (id)  res.status(200).send( await getIdHistory(id))
+
+
+  } catch (error) {
+    res.status(404).send({ error: error.message })
+  }
+
+})
+
 router.post("/", async (req, res) => {
   const {
     userId,
@@ -13,6 +32,8 @@ router.post("/", async (req, res) => {
     name,
     subtotal,
   } = req.body
+
+
 
 
   try {
@@ -35,23 +56,7 @@ router.post("/", async (req, res) => {
   }
 })
 
-router.get("/:id", async (req, res) => {
 
-  try {
-
-    const { id } = req.params
-
-    if (id)  res.status(200).send( await getIdHistory(id))
-
-
-  } catch (error) {
-    res.status(404).send({ error: error.message })
-  }
-
-})
-
-router.get("/", Amount);
-router.get("/", getHistory);
 
 module.exports = router;
 
