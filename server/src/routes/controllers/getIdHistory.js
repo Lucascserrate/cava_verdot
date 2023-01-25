@@ -1,7 +1,13 @@
-const { Model } = require("sequelize")
 const { Historial } = require("../../db.js")
 const {Drink} = require("../../db.js")
 
+const getHistory = async(req, res) =>{
+
+    const result = await Historial.findAll()
+
+    res.send(result)
+
+}
 
 const getIdHistory = async (id) => {
 
@@ -23,4 +29,4 @@ const getIdHistory = async (id) => {
 
 }
 
-module.exports = getIdHistory 
+module.exports = {getIdHistory, getHistory} 
