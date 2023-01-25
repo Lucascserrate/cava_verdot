@@ -1,48 +1,58 @@
 .bg {
-    background-color: var(--colorPrimary);
-    height: 90px;
-    display: flex;
+  background-color: var(--colorPrimary);
+  width: 100%;
+  min-height: 90px;
+  max-height: max-content;
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+  flex-wrap: wrap;
 }
 
-
 .container {
-    height: 70px;
-    width: 90%;
-    margin: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .img {
-    height: 65px;
+  height: 65px;
 }
 
 .left {
-    display: flex;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .navButtons {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .right {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 
 .image__profile {
-    width: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-size: cover;
-    background-repeat: no-repeat;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .logOut {
-    background-color: transparent;
-    border: none;
-    color: #fff;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
+.login{
+  background-color: transparent;
+  border: none;
+  color: #fff;
 }

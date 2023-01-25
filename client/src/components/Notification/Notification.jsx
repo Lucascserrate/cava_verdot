@@ -41,7 +41,7 @@ const Notification = ({ setNotification }) => {
   return (
     <div className="notification__content">
       <button className={`notification__bubble`} onClick={handleViewMailer}>
-        <span class="material-symbols-outlined">mail</span>
+        <span className="material-symbols-outlined">mail</span>
       </button>
       <div className={`${s.container} ${viewMailer}`}>
         <button className={s.btn} onClick={() => handleClick()}>

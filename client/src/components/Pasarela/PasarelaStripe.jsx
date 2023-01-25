@@ -13,7 +13,6 @@ import { useSelector } from 'react-redux'
 import { parseJwt } from '../../functions/parseTokenJwt';
 
 
-
 const stripePromise = loadStripe(
   `pk_test_51MPvqQISTOrrumfMqiGlKo1MAGp9wHRHT8W1rmdHvsWCAYf51a50yJK5ZeUgpw0hnI0HNJgGBlHBIFINuKLOf7Ph00sNY7Ls6W`
 );
@@ -21,6 +20,8 @@ const stripePromise = loadStripe(
 const CheckOutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+
+  const stateAddres = useSelector(state => state.addressUser);
 
   // obtengo el token
   const getToken = window.localStorage.getItem("token");
