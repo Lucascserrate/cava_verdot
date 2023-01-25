@@ -15,13 +15,12 @@ const Reviews = ({ id }) => {
         dispatch(getReviews(id))
     }, [])
 
-    console.log(allReviews);
     return (
         <div className={s.container}>
             <div className={s.center}>
                 <h2 className={s.title}>Reviews</h2>
                 {
-                    allReviews ? allReviews.map(e => (
+                    allReviews.length ? allReviews.map(e => (
                         <div className={s.reviewBox}>
                             <div className={s.review}>
                                 {e.review}
@@ -37,7 +36,7 @@ const Reviews = ({ id }) => {
                             </div>
                         </div>
                     ))
-                        : undefined
+                        : <div>No reviews yet</div>
                 }
             </div>
         </div>

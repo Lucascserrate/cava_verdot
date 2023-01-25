@@ -6,12 +6,14 @@ import img from "../../assets/perfil.png";
 import { parseJwt } from "../../functions/parseTokenJwt";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Ratings = ({ id }) => {
     const [value, setValue] = useState({
         review: '',
         punctuation: 0
     })
+    const navigate = useNavigate();
 
     const userId = useSelector(state => state.user)
     const [decodingToken, setDecodingToken] = useState()
@@ -31,9 +33,12 @@ const Ratings = ({ id }) => {
         })
     }
 
-    const handlePostReview = async (e) => {
-        e.preventDefault()
-        await axios.post(`/products/review?userId=${userId?.id}&drinkId=${id}`, value)
+    const handlePostReview = async () => {
+        if (userId.id === undefined) navigate('/login')
+        else {
+            await axios.post(`/products/review?userId=${userId?.id}&drinkId=${id}`, value)
+        }
+
     }
 
 
@@ -42,13 +47,13 @@ const Ratings = ({ id }) => {
             setDecodingToken(parseJwt(getToken))
         }
     }, [])
-    /* console.log(id); */
+    console.log(userId.id);
     return (
         <div className={s.container}>
             <div className={s.center}>
                 <h2 className={s.title}>Customer ratings</h2>
                 <div className={s.box}>
-                    <form onSubmit={(e) => handlePostReview(e)}>
+                    <form onSubmit={() => handlePostReview()}>
                         <div className={s.rateBox}>
 
                             <p>Rate</p>
