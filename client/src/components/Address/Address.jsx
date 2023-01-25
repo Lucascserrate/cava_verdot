@@ -95,35 +95,42 @@ function Address() {
       !streetNumber ||
       !reference
     ) {
-      setViewAlert(<p className={s.error}>Campos vacios.</p>);
+      setViewAlert(<p className={s.error}>empty fields.</p>);
       setTimeout(() => {
         setViewAlert("");
       }, 2000);
     } else if (!window.localStorage.getItem("token")) {
       setViewAlert(
-        <p className={s.error}>Inicia sesion para guardar la direcion.</p>
+        <p className={s.error}>Sign in to save address.</p>
       );
       setTimeout(() => {
         setViewAlert("");
       }, 2000);
     } else {
-      const res = await axios.post(`/users/address/${userId}`, dataAddress);
-      dispatch(getAddressById(stateUser.id));
-      setViewAlert(<p className={s.ok}>Direccion guardada.</p>);
-      setTimeout(() => {
-        setDataAddress({
-          countryId: "",
-          stateId: "",
-          cityId: "",
-          postalCode: "",
-          phone: "",
-          streetName: "",
-          streetNumber: "",
-          reference: "",
-        });
-        setViewAlert("");
-      }, 2000);
-      console.log(res);
+      if (!Object.keys(stateAddress).length) {
+        const res = await axios.post(`/users/address/${userId}`, dataAddress);
+        dispatch(getAddressById(stateUser.id));
+        setViewAlert(<p className={s.ok}>saved address.</p>);
+        setTimeout(() => {
+          setDataAddress({
+            countryId: "",
+            stateId: "",
+            cityId: "",
+            postalCode: "",
+            phone: "",
+            streetName: "",
+            streetNumber: "",
+            reference: "",
+          });
+          setViewAlert("");
+        }, 2000);
+        console.log(res);
+      } else {
+        setViewAlert(<p className={s.error}>The address already exists.</p>);
+        setTimeout(() => {
+          setViewAlert("");
+        }, 2000);
+      }
     }
   };
 
@@ -149,29 +156,40 @@ function Address() {
       !streetNumber &&
       !reference
     ) {
-      setViewAlert(<p className={s.error}>No hay datos que modificar</p>);
+      setViewAlert(<p className={s.error}>There is no data to modify</p>);
       setTimeout(() => {
         setViewAlert("");
       }, 2000);
     } else {
-      const res = await axios.put(
-        `/users/address/${stateUser.id}`,
-        dataAddress
-      );
-      setViewAlert(<p className={s.ok}>Direccion modificada.</p>);
-      setTimeout(() => {
-        setDataAddress({
-          countryId: "",
-          stateId: "",
-          cityId: "",
-          postalCode: "",
-          phone: "",
-          streetName: "",
-          streetNumber: "",
-          reference: "",
-        });
-        setViewAlert("");
-      }, 2000);
+      if (Object.keys(stateAddress).length) {
+        console.log(dataAddress);
+        const res = await axios.put(
+          `/users/address/${stateUser.id}`,
+          dataAddress
+        );
+        console.log(res);
+        setViewAlert(<p className={s.ok}>modified address.</p>);
+        setTimeout(() => {
+          setDataAddress({
+            countryId: "",
+            stateId: "",
+            cityId: "",
+            postalCode: "",
+            phone: "",
+            streetName: "",
+            streetNumber: "",
+            reference: "",
+          });
+          setViewAlert("");
+        }, 2000);
+      } else {
+        setViewAlert(
+          <p className={s.error}>You must create an address first.</p>
+        );
+        setTimeout(() => {
+          setViewAlert("");
+        }, 2000);
+      }
     }
   };
 
@@ -186,7 +204,7 @@ function Address() {
             className={s.address__select}
           >
             <option value="defaultCountries" selected disabled>
-              Seleccione Pais
+              Select country
             </option>
             {stateCountries?.length &&
               stateCountries.map((e) => (
@@ -204,7 +222,7 @@ function Address() {
             className={s.address__select}
           >
             <option value="defaultStates" selected disabled>
-              Seleccione Estado
+              Select state
             </option>
             {stateStates?.length &&
               stateStates.map((e) => (
@@ -222,7 +240,7 @@ function Address() {
             className={s.address__select}
           >
             <option value="defaultCities" selected disabled>
-              Seleccione Ciudad
+              Select city
             </option>
             {stateCities?.length &&
               stateCities.map((e) => (
@@ -236,7 +254,7 @@ function Address() {
 
       <div className={s.address__inputs}>
         <div className={s.address__data}>
-          <p>Codigo Postal.</p>
+          <p>Postal Code.</p>
           <input
             className={s.address__input}
             type="number"
@@ -248,7 +266,7 @@ function Address() {
         </div>
 
         <div className={s.address__data__izq}>
-          <p>Telefono.</p>
+          <p>Phone.</p>
           <input
             className={s.address__input}
             type="number"
@@ -262,18 +280,18 @@ function Address() {
 
       <div className={s.address__inputs}>
         <div className={s.address__data}>
-          <p>Nombre de la calle.</p>
+          <p>Street Name.</p>
           <input
             className={s.address__input}
             type="text"
             value={dataAddress.streetName}
             name={"streetName"}
-            placeholder={"Calle..."}
+            placeholder={"Street..."}
             onChange={handleOnChangeStreetName}
           />
         </div>
         <div className={s.address__data__izq}>
-          <p>Numero de la calle.</p>
+          <p>Street Number.</p>
           <input
             className={s.address__input}
             type="text"
@@ -286,12 +304,12 @@ function Address() {
       </div>
 
       <div className={s.address__reference}>
-        <p>Referencia.</p>
+        <p>Reference.</p>
         <textarea
           className={s.address__textarea}
           name="reference"
           value={dataAddress.reference}
-          placeholder={"Apartamento..."}
+          placeholder={"Description..."}
           cols="20"
           rows="4"
           onChange={handleOnChangeReference}
@@ -299,8 +317,8 @@ function Address() {
       </div>
 
       <div className={s.address__finish}>
-        <Button3 value={"Guardar"} handler={handleOnSave} />
-        <Button3 value={"Modificar"} handler={handleOnPut}/>
+        <Button3 value={"Save"} handler={handleOnSave} />
+        <Button3 value={"Modify"} handler={handleOnPut} />
       </div>
 
       <div className={s.address__alert}>{viewAlert && viewAlert}</div>
