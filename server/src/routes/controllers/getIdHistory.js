@@ -30,3 +30,4 @@ const getIdHistory = async (id) => {
 }
 
 module.exports = {getIdHistory, getHistory} 
+

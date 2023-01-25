@@ -112,7 +112,7 @@ const AsideFilters = ({ setPrice, setCountry, setCategory }) => {
           <div className={`${s.radioBox} aside__elements`} key={e.id}>
             <label>
               <div className={s.radioText}>
-                <span>{e.category}</span>
+                <span>{e.category.charAt(0).toUpperCase() + e.category.slice(1)}</span>
                 <input
                   className={s.radio}
                   type="radio"
@@ -189,7 +189,7 @@ const AsideFilters = ({ setPrice, setCountry, setCategory }) => {
           <div className={`${s.radioBox} aside__elements`} key={e.id}>
             <label>
               <div className={s.radioText}>
-                <span>{e.country}</span>
+                <span>{e.country.charAt(0).toUpperCase() + e.country.slice(1)}</span>
                 <input
                   className={s.radio}
                   type="radio"
