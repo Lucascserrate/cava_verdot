@@ -41,3 +41,15 @@
   background-color: var(--colorWine);
   color: #e8e8e8;
 }
+.alert__pago{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+.ok{
+  color: rgb(16, 161, 16);
+}
+.error{
+  color: crimson;
+}

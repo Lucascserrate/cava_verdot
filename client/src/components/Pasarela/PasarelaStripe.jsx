@@ -9,8 +9,9 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { parseJwt } from '../../functions/parseTokenJwt';
+import {clearCart} from '../../redux/actions'
 
 
 const stripePromise = loadStripe(
@@ -21,7 +22,12 @@ const CheckOutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
+  const [viewAlert, setViewAlert] = useState();
+
   const stateAddres = useSelector(state => state.addressUser);
+  const stateUser = useSelector(state => state.user);
+
+  const dispatch = useDispatch();
 
   // obtengo el token
   const getToken = window.localStorage.getItem("token");
@@ -57,7 +63,6 @@ const CheckOutForm = () => {
       }, 0));
 
       setDescription(stateCart.map(ele => {
-        console.log('soy elemento', ele);
         const obj = {
           userId: decodingToken?.id,
           drinkId: ele.id,
@@ -83,10 +88,9 @@ const CheckOutForm = () => {
     if (!getToken) {
       navigate("/login")
     } else {
-      if (!error) {
+      if (!error && !!Object.keys(stateAddres).length) {
         //esta parte le envia el metodo de pago que tiene un id especial
         const { id } = paymentMethod;
-        console.log(id);
         const { data } = await axios.post(`/checkout`, {
           // id o nombre del cliente
           // customer: "padermo",
@@ -100,20 +104,27 @@ const CheckOutForm = () => {
           description: "pago exitoso",
         });
         // console.log(data);
+        description?.map(async (e) => {
+          return await axios.post('http://localhost:3001/history', e)
+        })
+        await axios.post('/pago', {
+          name: stateUser?.name,
+          email: stateUser?.email
+        })
+        setViewAlert(<p className={s.ok}>Pago exitoso</p>)
+        setTimeout(()=>{
+          setViewAlert();
+          dispatch(clearCart());
+          navigate("/");
+        },2000)
+      }else{
+        setViewAlert(<p className={s.error}>Ingrese una direccion</p>)
+        setTimeout(()=>{
+          setViewAlert();
+        },2000)
       }
     }
 
-    // console.log( 'soy la desc' , description);
-
-    // await axios.post('http://localhost:3000/history', description)
-
-    
-
-      description?.map(async (e) => {
-
-        console.log(e);
-        return await axios.post('http://localhost:3001/history', e)
-      })
 
     
 
@@ -127,7 +138,10 @@ const CheckOutForm = () => {
         <h2 className={s.title}>Payment Methods</h2>
         <h2 className={s.label}>Set your payment method</h2>
         <CardElement className={s.input} />
-        <button className={s.btn}>Buy</button>
+        <div className={s.alert__pago}>
+          <button className={s.btn}>Buy</button>
+          {viewAlert && viewAlert}
+        </div>
       </form>
     </div>
   );
