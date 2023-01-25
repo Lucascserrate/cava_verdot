@@ -39,7 +39,7 @@ export default function NavBar({ searchbar }) {
         </button>
       ) : (
         <Link to="/login" className={s.login}>
-          <span className="material-symbols-outlined">login</span>
+          <span className="material-symbols-outlined" style={{ color: 'white' }}>login</span>
         </Link>
       )
     );

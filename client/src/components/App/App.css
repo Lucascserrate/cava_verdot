@@ -31,11 +31,8 @@ body::-webkit-scrollbar-thumb {
 
 /*Navbar*/
 .material-symbols-outlined {
-    color: #fff;
     font-weight: bold;
     font-size: 25px;
     align-self: center;
     cursor: pointer;
-
-
 }
