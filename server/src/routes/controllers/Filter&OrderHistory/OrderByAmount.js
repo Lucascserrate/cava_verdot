@@ -1,13 +1,10 @@
-const { Historial } = require("../../db.js");
+const { Historial } = require("../../../db.js");
 const Amount = async (req, res) => {
-  const { amount } = req.query;
-  if (amount == "up") {
-    let amountDb = await Historial.findOne({
-        include: {
-            name : name,
-        }
-    });
-    
+  const { amountDir } = req.query;
+
+  let amountDb = await Historial.findAll();
+
+  if (amountDir == "up") {
     let orderByAmount = await amountDb.sort((a, b) => {
       if (a.amount < b.amount) {
         return 1;
@@ -20,8 +17,9 @@ const Amount = async (req, res) => {
     });
     res.json(await orderByAmount);
   }
-  if (amount == "down") {
-    let amountDb = await Historial.findAll();
+
+
+  if (amountDir == "down") {
     let orderByAmount = await amountDb.sort((a, b) => {
       if (a.amount > b.amount) {
         return 1;
@@ -36,5 +34,5 @@ const Amount = async (req, res) => {
   }
 };
 
-module.exports = {Amount};
+module.exports = { Amount };
 

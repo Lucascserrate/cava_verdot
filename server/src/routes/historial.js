@@ -1,7 +1,7 @@
 const { Router } = require("express")
 const { Historial } = require("../db.js")
 const router = Router()
-const getIdHistory = require("./controllers/getIdHistory.js")
+const {getIdHistory, getHistory} = require("./controllers/getIdHistory.js")
 const {Amount} = require("../routes/controllers/Filter&OrderHistory/OrderByAmount.js")
 
 
@@ -51,6 +51,7 @@ router.get("/:id", async (req, res) => {
 })
 
 router.get("/", Amount);
+router.get("/", getHistory);
 
 module.exports = router;
 
