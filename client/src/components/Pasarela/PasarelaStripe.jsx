@@ -56,15 +56,13 @@ const CheckOutForm = () => {
       }, 0));
 
       setDescription(stateCart.map(ele => {
-        console.log('soy elemento' ,ele);
-        const obj = { 
+        console.log('soy elemento', ele);
+        const obj = {
           userId: decodingToken?.id,
-          id: ele.id,          
+          drinkId: ele.id,
           amount: ele.amount,
           subtotal: ele.subtotal
         }
-        
-        
         return obj;
       }))
     }
@@ -99,9 +97,26 @@ const CheckOutForm = () => {
           // la descripcion del objeto que va a comprar
           description: "pago exitoso",
         });
-        console.log(data);
+        // console.log(data);
       }
     }
+
+    // console.log( 'soy la desc' , description);
+
+    // await axios.post('http://localhost:3000/history', description)
+
+    
+
+      description?.map(async (e) => {
+
+        console.log(e);
+        return await axios.post('http://localhost:3001/history', e)
+      })
+
+    
+
+
+
   };
 
   return (
