@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
-import Button3 from "../Button3/Button3";
 import ButtonArrow from "../ButtonArrow/ButtonArrow";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser, clearCart } from "../../redux/actions";
@@ -40,7 +39,7 @@ export default function NavBar({ searchbar }) {
         </button>
       ) : (
         <Link to="/login" className={s.login}>
-          <span className="material-symbols-outlined">login</span>
+          <span className="material-symbols-outlined" style={{ color: 'white' }}>login</span>
         </Link>
       )
     );
