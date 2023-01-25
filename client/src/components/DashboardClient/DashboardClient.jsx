@@ -263,7 +263,7 @@ function DashboardClient() {
                       />
                       <figcaption className={s.dashboard__picoverlay}>
                         <p>
-                          <span class="material-symbols-outlined">
+                          <span className="material-symbols-outlined">
                             add_a_photo
                           </span>
                         </p>

@@ -1,0 +1,55 @@
+.borrado{
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .5);
+  padding: 14px 20px;
+}
+.borrado__content{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.borrado__delete{
+  display: flex;
+  flex-direction: row;
+}
+.borrado__btn{
+  border: none;
+  background-color: var(--colorBone);
+  border-radius: 5px;
+  padding: 10px;
+  color: var(--colorWine);
+  cursor: pointer;
+}
+.borrado__btn:hover{
+  color: var(--colorBone);
+  background-color: var(--colorWine);
+  transition: .3s all ease-in-out;
+}
+.borrado__users{
+  border: 1px solid #191919;
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 400px;
+  scroll-behavior: smooth;
+}
+.borrado__cabeceras,
+.borrado__items{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+}
+
+.borrado__cabeceras{
+  font-size: 1.2rem;
+  background-color: #191919;
+  color: #fff;
+  padding: 10px 0;
+}
+.borrado__items{
+  padding: 10px 0;
+}
+.borrado__items:nth-child(2n + 1){
+  background-color: var(--bgColor);
+}
