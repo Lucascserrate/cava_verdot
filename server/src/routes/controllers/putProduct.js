@@ -3,7 +3,7 @@ const { Drink } = require("../../db.js")
 const putProduct = async (req, res) => {
     try {
         const { queryId } = req.query
-        const { id, name, description, stock, price, rating, image, category } = req.body
+        const { id, name, description, stock, price, rating, image, category, country } = req.body
         await Drink.update({
             id: id === 0 ? undefined : id,
             name: name === "" ? undefined : name,
@@ -12,7 +12,8 @@ const putProduct = async (req, res) => {
             price: price,
             rating: rating,
             image: image,
-            categoryId: category === 0 ? undefined : category
+            categoryId: category === 0 ? undefined : category,
+            countryId: country === 0 ? undefined : country
         }, {
             where: { id: queryId }
         })
