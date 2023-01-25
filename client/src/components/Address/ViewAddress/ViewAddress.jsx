@@ -11,7 +11,7 @@ function ViewAddress() {
   
   useEffect(() => {
     dispatch(getAddressById(stateUser.id));
-  }, [stateAddress]);
+  }, [dispatch]);
 
   return (
     <div className={s.viewaddress}>
@@ -24,17 +24,17 @@ function ViewAddress() {
         </div>
 
         <div className={s.viewaddress__data}>
-          <p>Cod. Postal: {stateAddress.postalCode ? stateAddress.postalCode : ""}</p>
-          <p>Telefono: {stateAddress.phone ? stateAddress.phone : ""}</p>
+          <p>Postal Code: {stateAddress.postalCode ? stateAddress.postalCode : ""}</p>
+          <p>Phone: {stateAddress.phone ? stateAddress.phone : ""}</p>
         </div>
 
         <div className={s.viewaddress__data}>
-          <p>Nombre calle: {stateAddress.streetName ? stateAddress.streetName : ""}</p>
-          <p>Numero calle: {stateAddress.streetNumber ? stateAddress.streetNumber : ""}</p>
+          <p>Street Name: {stateAddress.streetName ? stateAddress.streetName : ""}</p>
+          <p>Street NUmber: {stateAddress.streetNumber ? stateAddress.streetNumber : ""}</p>
         </div>
 
         <div className={s.viewaddress__data}>
-          <p>Referencia: {stateAddress.reference ? stateAddress.reference : ""}</p>
+          <p>Reference: {stateAddress.reference ? stateAddress.reference : ""}</p>
         </div>
 
         <div className={s.viewaddress__edit}></div>

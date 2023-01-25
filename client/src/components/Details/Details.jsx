@@ -13,17 +13,19 @@ import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import Ratings from '../Rating/Ratings';
 import { Rating } from '@mui/material';
+import Reviews from '../Reviews/Reviews';
+import check from '../../assets/check.png'
 
 const Details = () => {
-  const [value, setValue] = useState({
-    rate: 0,
-    review: ''
-  })
+
   const [detail, setDetail] = useState({});
   let { id } = useParams();
   const dispatch = useDispatch();
   const cartAmount = document.getElementById("amount");
   const bubbleCart = useSelector((state) => state.bubbleCart);
+  const allReviews = useSelector(state => state.allReviews)
+  const userId = useSelector(state => state.user)
+
 
   const getDetail = async () => {
     let res = await axios.get(`/products/${id}`);
@@ -63,11 +65,6 @@ const Details = () => {
     cartAmount.value = 1;
   };
 
-  const handlePostReview = async () => {
-    await axios.post(`/products/review?userId=${user}&drinkId=${id}`, value)
-  }
-
-
   return (
     <div className={s.details}>
       <NavBar />
@@ -75,15 +72,14 @@ const Details = () => {
       <div className={s.detail__elements}>
         {Object.keys(detail).length ? (
           <div className={s.container}>
-            <div className={s.grid}>
-              <div>
+            <div className={s.detail__picture}>
                 <img
                   className={s.img}
                   src={detail.image ? detail.image : "#"}
                   alt="img"
                 />
-              </div>
-              <div className={s.detailContainer}>
+            </div>
+            <div className={s.detail__info}>
                 <h1 className={s.name}>{detail?.name}</h1>
                 <Rating name="read-only" value={detail?.rating} readOnly />
                 <br />
@@ -131,16 +127,24 @@ const Details = () => {
                   <span className={s.bold}>Country:</span>{" "}
                   {detail.country?.country}
                 </p>
-              </div>
             </div>
-            <br></br>
             <div className={s.description}>{detail.description}</div>
           </div>
         ) : (
           <Loader />
         )}
-        <hr className={s.hr} />
-        <Ratings handlePostReview={handlePostReview} value={value} setValue={setValue} />
+            {
+              !allReviews.filter(e => e.userId === userId.id).length ?
+                < Ratings id={id} />
+                : 
+                <div className={s.alertSubmited}>
+                  <div className={s.alertBox}>
+                    <img className={s.check} src={check} alt="check" />
+                    <p >Review submitted</p>
+                  </div>
+                </div>
+            }
+            <Reviews id={id} />
       </div>
       <Footer />
     </div>

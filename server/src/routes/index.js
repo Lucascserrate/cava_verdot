@@ -15,6 +15,7 @@ const welcome = require("./routesMails/welcome.route.js");
 const cargarData = require("./cargarData.routes.js");
 const history = require("./historial.js")
 const getAllUser = require("./getAllUsers.routes.js")
+const orderByAmount = require("../routes/historial.js")
 
 const checkOut = require("./controllers/checkOut.js");
 
@@ -44,6 +45,8 @@ router.use('/news', news)
 router.use('/welcome', welcome) 
 router.use('/history', history )
 router.use('/allUser', getAllUser)
+router.use('/orderByAmount', orderByAmount )
+
 
 
 router.use("/cargarData", cargarData);

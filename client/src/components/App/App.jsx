@@ -12,9 +12,10 @@ import Cart from '../Cart/Cart'
 import Dashboard from '../Admin/Dashboard/Dashboard'
 import DashboardClient from '../DashboardClient/DashboardClient'
 import { useSelector, useDispatch } from 'react-redux'
-import { setUser } from '../../redux/actions'
+import { setUser, getAddressById } from '../../redux/actions'
 import { parseJwt } from '../../functions/parseTokenJwt'
 import axios from 'axios'
+import Borrado from '../Admin/Borrado/Borrado'
 
 function App() {
   
@@ -27,6 +28,7 @@ function App() {
     if(!!stateUser && !!token){
       let decript = parseJwt(token);
       dispatch(setUser(decript));
+      dispatch(getAddressById(decript.id));
     }
   },[dispatch]);
   
@@ -34,6 +36,7 @@ function App() {
   return (
     <div>
       <Routes>
+        <Route path='/borrado' element={<Borrado/>}/>
         <Route path='/' element={<Home />} />
         <Route path='/pasarela' element={<PasarelaStripe />} />
         <Route path='/store' element={<Store />} />

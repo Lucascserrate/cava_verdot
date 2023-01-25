@@ -15,6 +15,9 @@ export const SET_USER = 'SET_USER';
 export const CLEAR_USER = 'CLEAR_USER';
 export const PUT_DRINKS = "PUT_DRINKS"
 export const CLEAR_CART = 'CLEAR_CART';
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const GET_ALL_USER = 'GET_ALL_USER';
+
 
 // para el address
 export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES';
@@ -34,12 +37,14 @@ export const getDrinks = () => {
 export const putDrink = (value) => {
   return async (dispatch) => {
     try {
-      const { id, name, category, stock, previewid } = value
+      const { id, name, category, stock, country, price } = value
       let editada = await axios.put(`/products?queryId=${id}`, {
-        id: previewid,
+        id: id,
         name: name,
         category: category,
-        stock: stock
+        country: country,
+        stock: stock,
+        price, price
       })
       dispatch({ type: PUT_DRINKS, payload: editada })
     } catch (error) {
@@ -128,7 +133,7 @@ export const getDrinksByRating = () => {
 
 export const setUser = (data) => {
   return async (dispatch) => {
-    return dispatch({type: SET_USER, payload: data})
+    return dispatch({ type: SET_USER, payload: data })
   }
 }
 
@@ -140,31 +145,43 @@ export const clearUser = () => {
 
 export const clearCart = () => {
   return async (dispatch) => {
-    return dispatch({type: CLEAR_CART});
+    return dispatch({ type: CLEAR_CART });
   }
 }
 
 export const getAllCountries = () => {
   return async (dispatch) => {
     const dataApi = await axios.get('/users/address/allCountries');
-    return dispatch({type: GET_ALL_COUNTRIES, payload: dataApi.data});
+    return dispatch({ type: GET_ALL_COUNTRIES, payload: dataApi.data });
   }
 }
 export const getAllStates = (countryId) => {
   return async (dispatch) => {
     const dataApi = await axios.get(`/users/address/allStates/${countryId}`);
-    return dispatch({type: GET_ALL_STATE, payload: dataApi.data});
+    return dispatch({ type: GET_ALL_STATE, payload: dataApi.data });
   }
 }
 export const getAllCities = (stateId) => {
   return async (dispatch) => {
     const dataApi = await axios.get(`/users/address/allCities/${stateId}`);
-    return dispatch({type: GET_ALL_CITIES, payload: dataApi.data});
+    return dispatch({ type: GET_ALL_CITIES, payload: dataApi.data });
   }
 }
 export const getAddressById = (userId) => {
   return async (dispatch) => {
     const dataApi = await axios.get(`/users/address/${userId}`);
-    return dispatch({type: GET_ADDRESS_BY_ID, payload: dataApi.data});
+    return dispatch({ type: GET_ADDRESS_BY_ID, payload: dataApi.data });
+  }
+}
+
+export const getReviews = userId => async dispatch => {
+  let json = await axios.get(`/products/review/${userId}`)
+  return dispatch({ type: GET_REVIEWS, payload: json.data })
+}
+
+export const getAllUser = () => {
+  return async (dispatch) => {
+    const dataApi = await axios.get('/allUser');
+    return dispatch({type: GET_ALL_USER, payload: dataApi.data})
   }
 }

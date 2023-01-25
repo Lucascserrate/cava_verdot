@@ -13,7 +13,6 @@ import { useSelector } from 'react-redux'
 import { parseJwt } from '../../functions/parseTokenJwt';
 
 
-
 const stripePromise = loadStripe(
   `pk_test_51MPvqQISTOrrumfMqiGlKo1MAGp9wHRHT8W1rmdHvsWCAYf51a50yJK5ZeUgpw0hnI0HNJgGBlHBIFINuKLOf7Ph00sNY7Ls6W`
 );
@@ -21,6 +20,8 @@ const stripePromise = loadStripe(
 const CheckOutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+
+  const stateAddres = useSelector(state => state.addressUser);
 
   // obtengo el token
   const getToken = window.localStorage.getItem("token");
@@ -56,15 +57,14 @@ const CheckOutForm = () => {
       }, 0));
 
       setDescription(stateCart.map(ele => {
-        console.log('soy elemento' ,ele);
-        const obj = { 
+        console.log('soy elemento', ele);
+        const obj = {
           userId: decodingToken?.id,
-          id: ele.id,          
+          drinkId: ele.id,
           amount: ele.amount,
+          name: ele.name,
           subtotal: ele.subtotal
         }
-        
-        
         return obj;
       }))
     }
@@ -99,9 +99,26 @@ const CheckOutForm = () => {
           // la descripcion del objeto que va a comprar
           description: "pago exitoso",
         });
-        console.log(data);
+        // console.log(data);
       }
     }
+
+    // console.log( 'soy la desc' , description);
+
+    // await axios.post('http://localhost:3000/history', description)
+
+    
+
+      description?.map(async (e) => {
+
+        console.log(e);
+        return await axios.post('http://localhost:3001/history', e)
+      })
+
+    
+
+
+
   };
 
   return (

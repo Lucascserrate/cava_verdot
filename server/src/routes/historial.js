@@ -1,7 +1,8 @@
 const { Router } = require("express")
 const { Historial } = require("../db.js")
 const router = Router()
-const getIdHistory = require("./controllers/getIdHistory.js")
+const {getIdHistory, getHistory} = require("./controllers/getIdHistory.js")
+const {Amount} = require("../routes/controllers/Filter&OrderHistory/OrderByAmount.js")
 
 
 router.post("/", async (req, res) => {
@@ -9,17 +10,19 @@ router.post("/", async (req, res) => {
     userId,
     drinkId,
     amount,
+    name,
     subtotal,
   } = req.body
 
 
   try {
-    if (userId && amount && drinkId && subtotal) {
+    if (userId && amount && drinkId && subtotal && name) {
 
       const newData = await Historial.create({
         userId,
         amount,
         drinkId,
+        name,
         subtotal
       })
       console.log(newData);
@@ -31,9 +34,6 @@ router.post("/", async (req, res) => {
     res.status(404).send({ error: error.message })
   }
 })
-
-
-
 
 router.get("/:id", async (req, res) => {
 
@@ -49,4 +49,10 @@ router.get("/:id", async (req, res) => {
   }
 
 })
-module.exports = router
+
+router.get("/", Amount);
+router.get("/", getHistory);
+
+module.exports = router;
+
+
