@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import Ratings from '../Rating/Ratings';
 import { Rating } from '@mui/material';
 import Reviews from '../Reviews/Reviews';
+import check from '../../assets/check.png'
 
 const Details = () => {
 
@@ -63,9 +64,6 @@ const Details = () => {
     }
     cartAmount.value = 1;
   };
-  console.log(allReviews.filter(e => e.userId === userId.id).length);
-
-
 
   return (
     <div className={s.details}>
@@ -142,7 +140,12 @@ const Details = () => {
         {
           !allReviews.filter(e => e.userId === userId.id).length ?
             < Ratings id={id} />
-            : undefined
+            : <div className={s.alertSubmited}>
+              <div className={s.alertBox}>
+                <img className={s.check} src={check} alt="check" />
+                <p >Review submitted</p>
+              </div>
+            </div>
 
         }
         <Reviews id={id} />
