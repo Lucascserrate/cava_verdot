@@ -17,6 +17,7 @@ export const PUT_DRINKS = "PUT_DRINKS"
 export const CLEAR_CART = 'CLEAR_CART';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_ALL_USER = 'GET_ALL_USER';
+export const CLEAR_ADDRESS = 'CLEAR_ADDRESS';
 
 
 // para el address
@@ -183,5 +184,11 @@ export const getAllUser = () => {
   return async (dispatch) => {
     const dataApi = await axios.get('/allUser');
     return dispatch({ type: GET_ALL_USER, payload: dataApi.data })
+  }
+}
+
+export const clearAddress = () => {
+  return async (dispatch) => {
+    return dispatch({ type: CLEAR_ADDRESS });
   }
 }
