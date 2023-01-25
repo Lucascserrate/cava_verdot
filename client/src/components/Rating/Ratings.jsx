@@ -5,10 +5,12 @@ import { useState } from 'react';
 import img from "../../assets/perfil.png";
 import { parseJwt } from "../../functions/parseTokenJwt";
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getReviews } from '../../redux/actions';
 
 const Ratings = ({ id }) => {
+    const dispatch = useDispatch();
     const [value, setValue] = useState({
         review: '',
         punctuation: 0
@@ -33,10 +35,13 @@ const Ratings = ({ id }) => {
         })
     }
 
-    const handlePostReview = async () => {
+    const handlePostReview = async (e) => {
         if (userId.id === undefined) navigate('/login')
         else {
+            e.preventDefault()
             await axios.post(`/products/review?userId=${userId?.id}&drinkId=${id}`, value)
+            dispatch(getReviews(id))
+            console.log(id);
         }
 
     }
@@ -52,7 +57,7 @@ const Ratings = ({ id }) => {
             <div className={s.center}>
                 <h2 className={s.title}>Customer ratings</h2>
                 <div className={s.box}>
-                    <form onSubmit={() => handlePostReview()}>
+                    <form onSubmit={(e) => handlePostReview(e)}>
                         <div className={s.rateBox}>
 
                             <p>Rate</p>

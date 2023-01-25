@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getReviews } from '../../redux/actions';
+import { deleteReviews, getReviews } from '../../redux/actions';
 import img from "../../assets/perfil.png";
 import { parseJwt } from '../../functions/parseTokenJwt';
 import s from './Reviews.module.css'
@@ -13,15 +13,15 @@ const Reviews = ({ id }) => {
 
     useEffect(() => {
         dispatch(getReviews(id))
+        return () => dispatch(deleteReviews())
     }, [])
-
     return (
         <div className={s.container}>
             <div className={s.center}>
                 <h2 className={s.title}>Reviews</h2>
                 {
                     allReviews.length ? allReviews.map(e => (
-                        <div className={s.reviewBox}>
+                        <div className={s.reviewBox} key={e.id}>
                             <div className={s.review}>
                                 {e.review}
                             </div>

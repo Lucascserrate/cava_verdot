@@ -18,6 +18,7 @@ export const CLEAR_CART = 'CLEAR_CART';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_ALL_USER = 'GET_ALL_USER';
 export const CLEAR_ADDRESS = 'CLEAR_ADDRESS';
+export const DELETE_REVIEWS = 'DELETE_REVIEWS';
 
 
 // para el address
@@ -191,4 +192,8 @@ export const clearAddress = () => {
   return async (dispatch) => {
     return dispatch({ type: CLEAR_ADDRESS });
   }
+}
+
+export const deleteReviews = () => dispatch => {
+  return dispatch({ type: DELETE_REVIEWS })
 }

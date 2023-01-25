@@ -40,7 +40,7 @@ export default function NavBar({ searchbar }) {
         </button>
       ) : (
         <Link to="/login" className={s.login}>
-          <span className="material-symbols-outlined" style={{ color: 'white' }}>login</span>
+          <span className="material-symbols-outlined" style={{ color: 'white', fontSize: '30px' }}>login</span>
         </Link>
       )
     );
@@ -65,10 +65,9 @@ export default function NavBar({ searchbar }) {
       } else if (stateUser.role === 2) {
         setViewDashboard(
           <Link to={"/dashboard"}>
-            {console.log(stateUser.image)}
             <img
-              srcSet="https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
-              src={stateUser?.image}
+              src="https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
+              srcSet={stateUser?.image}
               alt="profile"
               className={s.image__profile}
             />
