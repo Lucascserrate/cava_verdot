@@ -8,14 +8,14 @@ const postCountry = async (req, res) => {
     //si no creamos la categoría
     const validateCountry = await Country.findOne({
       where: {
-        country: country,
+        country: country.toLowerCase(),
       },
     });
     if (validateCountry !== null) {
       return res.status(404).send(`Country '${Country}' already exists`);
     }
     const newCountry = await Country.create({
-      country: country,
+      country: country.toLowerCase(),
     });
     console.log(newCountry);
     res.status(200).send(`Success '${newCountry.country}' has been created`);

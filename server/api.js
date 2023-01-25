@@ -5,10 +5,10 @@ const scotland = "Scotland";
 const england = "England";
 const suecia = "Suecia";
 const irland = "Irland";
-const USA = "USA";
+const usa = "USA";
 const cuba = "Cuba";
 const italy = "Italy";
-const Dom = "Dominican Republic";
+const dom = "Dominican Republic";
 const france = "France";
 const polonia = "Polonia";
 const mexico = "Mexico";
@@ -333,7 +333,7 @@ const drinks = [
   },
   {
     id: 18,
-    name: "Anno Domini Moscato Veneto",
+    name: "Anno domini Moscato Veneto",
     description: `Si algo tienen los vinos italianos es sabor y color, por ello son unos de los más conocidos y
       venerados del mundo. Elaborado con uva Nebbiolo es el tinto ideal para combinar con quesos y carnes.
       Vino tinto potente y soberbio, que gusta por tener una fragancia exuberante, esencialmente rica en notas de frutos rojos.
@@ -570,7 +570,7 @@ const drinks = [
   },
   {
     id: 32,
-    name: "Dom Brial Rivesalte Ambre 2011",
+    name: "dom Brial Rivesalte Ambre 2011",
     description: `El Néctar Pedro Ximénez es un vino de jerez elaborado por González Byass. El viñedo de la uva Pedro Ximénez se encuentra 
       en Jerez en la rotonda 20-70 m sobre el nivel del mar. Sin embargo, la variedad de uva PX sólo ocupa el 5% del sitio de cultivo, mientras que
       los restantes se dedican tradicionalmente a la variedad Palomino. Esta cuestión de hecho convierte a González Byass en la única bodega que cultiva a Pedro Ximénez en Jerez.
@@ -604,7 +604,7 @@ const drinks = [
   },
   {
     id: 34,
-    name: "Dom Brial Rivesaltes Tuile 2012",
+    name: "dom Brial Rivesaltes Tuile 2012",
     description: `El Néctar Pedro Ximénez es un vino de jerez elaborado por González Byass. El viñedo de la uva Pedro Ximénez se encuentra 
       en Jerez en la rotonda 20-70 m sobre el nivel del mar. Sin embargo, la variedad de uva PX sólo ocupa el 5% del sitio de cultivo, mientras que
       los restantes se dedican tradicionalmente a la variedad Palomino. Esta cuestión de hecho convierte a González Byass en la única bodega que cultiva a Pedro Ximénez en Jerez.
@@ -950,8 +950,8 @@ const drinks = [
   },
   {
     id: 56,
-    name: "Domaine de Crabitey 2017",
-    description: `Domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
+    name: "domaine de Crabitey 2017",
+    description: `domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
       justo enfrente de Sauternes. Es un vino de carácter artesanal y podríamos decir que familiar: tanto es así que incluso, para la recogida de la uva, Jacques reúne a una quincena de amigos todos los años.
       Destaca además por ser un vino fácil de beber, algo más fresco y menos dulce que su vecino Sauternes, 
       y que combina perfectamente bien con foie, almendras, vieiras o con cocina asiática. Aunque si te apetece beberlo para acompañar un jugoso pollo asado, ¡la combinación te parecerá deliciosa!`,
@@ -967,7 +967,7 @@ const drinks = [
   {
     id: 57,
     name: "Château Violet Lamothe 2018",
-    description: `Domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
+    description: `domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
       justo enfrente de Sauternes. Es un vino de carácter artesanal y podríamos decir que familiar: tanto es así que incluso, para la recogida de la uva, Jacques reúne a una quincena de amigos todos los años.
       Destaca además por ser un vino fácil de beber, algo más fresco y menos dulce que su vecino Sauternes, 
       y que combina perfectamente bien con foie, almendras, vieiras o con cocina asiática. Aunque si te apetece beberlo para acompañar un jugoso pollo asado, ¡la combinación te parecerá deliciosa!`,
@@ -983,7 +983,7 @@ const drinks = [
   {
     id: 58,
     name: "Chantalouette Monbazillac 2017",
-    description: `Domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
+    description: `domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
       justo enfrente de Sauternes. Es un vino de carácter artesanal y podríamos decir que familiar: tanto es así que incluso, para la recogida de la uva, Jacques reúne a una quincena de amigos todos los años.
       Destaca además por ser un vino fácil de beber, algo más fresco y menos dulce que su vecino Sauternes, 
       y que combina perfectamente bien con foie, almendras, vieiras o con cocina asiática. Aunque si te apetece beberlo para acompañar un jugoso pollo asado, ¡la combinación te parecerá deliciosa!`,
@@ -999,7 +999,7 @@ const drinks = [
   {
     id: 59,
     name: "Château d'Yquem 2016",
-    description: `Domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
+    description: `domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
       justo enfrente de Sauternes. Es un vino de carácter artesanal y podríamos decir que familiar: tanto es así que incluso, para la recogida de la uva, Jacques reúne a una quincena de amigos todos los años.
       Destaca además por ser un vino fácil de beber, algo más fresco y menos dulce que su vecino Sauternes, 
       y que combina perfectamente bien con foie, almendras, vieiras o con cocina asiática. Aunque si te apetece beberlo para acompañar un jugoso pollo asado, ¡la combinación te parecerá deliciosa!`,
@@ -1014,7 +1014,7 @@ const drinks = [
   {
     id: 60,
     name: "Moscatel Setubal Alambre 20 Anos 50cl",
-    description: `Domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
+    description: `domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
       justo enfrente de Sauternes. Es un vino de carácter artesanal y podríamos decir que familiar: tanto es así que incluso, para la recogida de la uva, Jacques reúne a una quincena de amigos todos los años.
       Destaca además por ser un vino fácil de beber, algo más fresco y menos dulce que su vecino Sauternes, 
       y que combina perfectamente bien con foie, almendras, vieiras o con cocina asiática. Aunque si te apetece beberlo para acompañar un jugoso pollo asado, ¡la combinación te parecerá deliciosa!`,
@@ -1030,7 +1030,7 @@ const drinks = [
   {
     id: 61,
     name: "Ermelinda Freitas Moscatel de Setubal",
-    description: `Domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
+    description: `domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
       justo enfrente de Sauternes. Es un vino de carácter artesanal y podríamos decir que familiar: tanto es así que incluso, para la recogida de la uva, Jacques reúne a una quincena de amigos todos los años.
       Destaca además por ser un vino fácil de beber, algo más fresco y menos dulce que su vecino Sauternes, 
       y que combina perfectamente bien con foie, almendras, vieiras o con cocina asiática. Aunque si te apetece beberlo para acompañar un jugoso pollo asado, ¡la combinación te parecerá deliciosa!`,
@@ -1046,7 +1046,7 @@ const drinks = [
   {
     id: 62,
     name: "Horácio Simões Moscatel Setubal 2017",
-    description: `Domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
+    description: `domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
       justo enfrente de Sauternes. Es un vino de carácter artesanal y podríamos decir que familiar: tanto es así que incluso, para la recogida de la uva, Jacques reúne a una quincena de amigos todos los años.
       Destaca además por ser un vino fácil de beber, algo más fresco y menos dulce que su vecino Sauternes, 
       y que combina perfectamente bien con foie, almendras, vieiras o con cocina asiática. Aunque si te apetece beberlo para acompañar un jugoso pollo asado, ¡la combinación te parecerá deliciosa!`,
@@ -1062,7 +1062,7 @@ const drinks = [
   {
     id: 63,
     name: "Burmester Sotto Voce Ruby Reserve",
-    description: `Domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
+    description: `domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
       justo enfrente de Sauternes. Es un vino de carácter artesanal y podríamos decir que familiar: tanto es así que incluso, para la recogida de la uva, Jacques reúne a una quincena de amigos todos los años.
       Destaca además por ser un vino fácil de beber, algo más fresco y menos dulce que su vecino Sauternes, 
       y que combina perfectamente bien con foie, almendras, vieiras o con cocina asiática. Aunque si te apetece beberlo para acompañar un jugoso pollo asado, ¡la combinación te parecerá deliciosa!`,
@@ -1078,7 +1078,7 @@ const drinks = [
   {
     id: 64,
     name: "Taylor's Vargellas Vintage 2015",
-    description: `Domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
+    description: `domaine de Crabitey, un coqueto vino dulce de producción limitada obra del vigneron Jacques Berbessou en Premières Côtes de Bordeaux, 
       justo enfrente de Sauternes. Es un vino de carácter artesanal y podríamos decir que familiar: tanto es así que incluso, para la recogida de la uva, Jacques reúne a una quincena de amigos todos los años.
       Destaca además por ser un vino fácil de beber, algo más fresco y menos dulce que su vecino Sauternes, 
       y que combina perfectamente bien con foie, almendras, vieiras o con cocina asiática. Aunque si te apetece beberlo para acompañar un jugoso pollo asado, ¡la combinación te parecerá deliciosa!`,
@@ -1299,7 +1299,7 @@ const drinks = [
   {
     id: 77,
     name: "Buchanan's Deluxe Aged 12 Years 1L",
-    description: `James Buchanan se mudó a Londres en 1878 para aprovechar una oferta de trabajo en Charles MacKinlay, una empresa de whisky. Usando lo que aprendió como agente, Buchanan creó su propio 
+    description: `James Buchanan se mudó a Londres en 1878 para aprovechar una oferta de trabajo en Charles MacKinlay, una empresa de whisky. usando lo que aprendió como agente, Buchanan creó su propio 
       whisky de mezcla y fundó James Buchanan & Co en 1884 en Glasgow, Escocia. Allí es donde empezó todo. La mezcla única y 
       refinada que ha hecho famoso al whisky de 12 años de Buchanan durante tanto tiempo es el resultado de toda su experiencia. 
       Buchanan's 12 Años 1L es suave y afrutado en el paladar. Su sabor fresco está matizado por notas de naranja y 
@@ -1530,7 +1530,7 @@ const drinks = [
     stock: 10,
     price: 22.5,
     image: "https://media.drinksandco.com/wines/jack-daniels-1121921_e.jpg",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Whisky",
   },
@@ -1546,7 +1546,7 @@ const drinks = [
     stock: 10,
     price: 28.5,
     image: "https://media.drinksandco.com/wines/jack-daniels-1l-435889_e.jpg",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Whisky",
   },
@@ -1564,7 +1564,7 @@ const drinks = [
     price: 38.9,
     image:
       "https://media.drinksandco.com/wines/bulleit-bourbon-10-year-old-1342848_e.jpg",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Whisky",
   },
@@ -1582,7 +1582,7 @@ const drinks = [
     price: 41.42,
     image:
       "https://media.drinksandco.com/wines/sazerac-rye-75cl-1344139-s10_e.jpg",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Whisky",
   },
@@ -2052,7 +2052,7 @@ const drinks = [
       Ron Barceló Imperial es un ron de alta gama y de enorme calidad gracias al cuidado y 
       espero puesto tanto en la elección de los ingredientes como en el proceso de elaboración. Se emplea un estricto control
       en la producción de la caña de azúcar, el agua más pura y, para su envejecimiento, se usan las mejores barricas de roble
-      americano de primer uso en bourbon. Ello, sumado al bello y óptimo clima de la República Dominicana y a casi un siglo de
+      americano de primer uso en bourbon. Ello, sumado al bello y óptimo clima de la República dominicana y a casi un siglo de
       experiencia elaborando rones, convierten a este Ron Barceló Imperial una referencia para los amantes del ron.
       Para disfrutar aún más de su sabor, Servir 50 ml solo o con tres cubitos de hielo, acompañado de una vaina de vainilla 
       natural en una copa tipo Borgoña o vaso corto Imperial. ¡Fantástico!
@@ -2061,7 +2061,7 @@ const drinks = [
     price: 31.5,
     image:
       "https://media.drinksandco.com/wines/ron-barcelo-imperial-434531_e.jpg",
-    country: Dom,
+    country: dom,
     rating: 0,
     category: "Ron",
   },
@@ -2071,7 +2071,7 @@ const drinks = [
     description: `
       El Matusalem 15 Años Gran Reserva es un Ron Premium de estilo cubano. Envejecido en un sistema de solera, su crianza es de un mínimo de 15 años.
       Es un ron suave y especiado que forma parte de la historia de Cuba desde que en 1872 los hermanos Camp y su socio Evaristo Álvarez 
-      comenzaran a producirlo con una fórmula secreta. Hoy en día se elabora en la República Dominicana, fiel al espíritu de sus creadores.
+      comenzaran a producirlo con una fórmula secreta. Hoy en día se elabora en la República dominicana, fiel al espíritu de sus creadores.
       Matusalem 15 Años Gran Reserva es también conocido como el coñac de los rones, el "apodo" perfecto para este ron complejo, suave y de cálido 
       sabor final a coñac que perdura agradablemente en boca.
       Para disfrutar al máximo de este ron, se recomienda tomarlo solo o con un poco de hielo, pero también es una excelente idea beberlo en cocktails.
@@ -2082,7 +2082,7 @@ const drinks = [
     price: 25.6,
     image:
       "https://media.drinksandco.com/wines/matusalem-15-anos-gran-reserva-434434_e.png",
-    country: Dom,
+    country: dom,
     rating: 0,
     category: "Ron",
   },
@@ -2099,7 +2099,7 @@ const drinks = [
     price: 14.9,
     image:
       "https://media.drinksandco.com/wines/ron-barcelo-anejo-1697844_e.jpg",
-    country: Dom,
+    country: dom,
     rating: 0,
     category: "Ron",
   },
@@ -2107,7 +2107,7 @@ const drinks = [
     id: 119,
     name: "Brugal Añejo",
     description: `
-      Es el ron emblema más vendido en España y en el Caribe. El único ron creado íntegramente en la República Dominicana, 
+      Es el ron emblema más vendido en España y en el Caribe. El único ron creado íntegramente en la República dominicana, 
       desde el cultivo de caña de azúcar hasta el embotellado, pasando por el proceso de envejecimiento. Ahora nos trae una nueva experiencia 
       con su cambio de imagen que realza el poder de la marca y sus colores emblemáticos. Logo horizontal en lugar de en arco, mejor papel para
       la etiqueta y nueva cápsula metálica. Esta nueva imagen lo postula como un gran ron premium orgullo de un país,
@@ -2116,7 +2116,7 @@ const drinks = [
     stock: 15,
     price: 14.1,
     image: "https://media.drinksandco.com/wines/brugal-anejo-437577_e.jpg",
-    country: Dom,
+    country: dom,
     rating: 0,
     category: "Ron",
   },
@@ -2124,8 +2124,8 @@ const drinks = [
     id: 120,
     name: "Ron Barceló Gran Añejo",
     description: `
-      En el año 1930 nació el Ron Barceló. Su creador fue Julian Barceló, un español de Mallorca, fundador de Barceló & Co. en la ciudad dominicana de Santo Domingo.
-      La marca se convirtió en muy poco tiempo en referente de los rones de la República Dominicana y la empresa creció hasta convertirse 
+      En el año 1930 nació el Ron Barceló. Su creador fue Julian Barceló, un español de Mallorca, fundador de Barceló & Co. en la ciudad dominicana de Santo domingo.
+      La marca se convirtió en muy poco tiempo en referente de los rones de la República dominicana y la empresa creció hasta convertirse 
       en una de las más prestigiosas del país. Para la década de los ‘80 el Ron Barceló lideraba la lista de los rones elegidos por los dominicanos. 
       Fue entonces que la empresa decidió expandirse más allá de las costas de la isla y conquistar el mundo.
       Pero nada como comprobar lo que te decimos en tu propio vaso, ¿verdad? Es por eso que te invitamos a que pruebes este Ron Barceló Gran Añejo.
@@ -2137,7 +2137,7 @@ const drinks = [
     price: 15.25,
     image:
       "https://media.drinksandco.com/wines/ron-barcelo-gran-anejo-435009_e.jpg",
-    country: Dom,
+    country: dom,
     rating: 0,
     category: "Ron",
   },
@@ -2155,7 +2155,7 @@ const drinks = [
     stock: 15,
     price: 28.5,
     image: "https://media.drinksandco.com/wines/dos-maderas-5-5-889549_e.jpg",
-    country: Dom,
+    country: dom,
     rating: 0,
     category: "Ron",
   },
@@ -2171,7 +2171,7 @@ const drinks = [
     price: 8.5,
     image:
       "https://media.drinksandco.com/wines/arehucas-ron-miel-guanche-483772_e.jpg",
-    country: Dom,
+    country: dom,
     rating: 0,
     category: "Ron",
   },
@@ -2192,7 +2192,7 @@ const drinks = [
     price: 9.5,
     image:
       "https://media.drinksandco.com/wines/ron-negrita-blanco-1l-436383_e.jpg",
-    country: Dom,
+    country: dom,
     rating: 0,
     category: "Ron",
   },
@@ -2939,7 +2939,7 @@ const drinks = [
     stock: 15,
     price: 25.95,
     image: "https://media.drinksandco.com/wines/makers-mark-446518_e.jpg",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Bourbon",
   },
@@ -2953,7 +2953,7 @@ const drinks = [
     stock: 15,
     price: 24.95,
     image: "https://media.drinksandco.com/wines/bulleit-bourbon-435145_e.jpg",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Bourbon",
   },
@@ -2967,7 +2967,7 @@ const drinks = [
     price: 105.95,
     image:
       "https://media.drinksandco.com/wines/blantons-the-original-single-barrel-bourbon-1196215_e.jpg",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Bourbon",
   },
@@ -2981,7 +2981,7 @@ const drinks = [
     stock: 15,
     price: 25.95,
     image: "https://media.drinksandco.com/wines/buffalo-trace-435143_e.jpg",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Bourbon",
   },
@@ -3041,7 +3041,7 @@ const drinks = [
     price: 4.95,
     image:
       "https://www.wine-searcher.com/images/labels/50/08/10935008.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Beer",
   },
@@ -3056,7 +3056,7 @@ const drinks = [
     price: 4.95,
     image:
       "https://www.wine-searcher.com/images/labels/76/33/11167633.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Beer",
   },
@@ -3071,7 +3071,7 @@ const drinks = [
     price: 2.95,
     image:
       "https://www.wine-searcher.com/images/labels/88/54/10288854.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Beer",
   },
@@ -3086,7 +3086,7 @@ const drinks = [
     price: 2.95,
     image:
       "https://www.wine-searcher.com/images/labels/22/24/10342224.jpg?width=260&height=260&fit=bounds&canvas=260,260",
-    country: USA,
+    country: usa,
     rating: 0,
     category: "Beer",
   },
@@ -3172,7 +3172,7 @@ const categorys = [
 const countrys = [
   {
     id: 1,
-    country: USA,
+    country: usa,
   },
   {
     id: 2,
@@ -3218,7 +3218,7 @@ const countrys = [
     id: 12,
     country: england,
   },
-  { id: 13, country: Dom },
+  { id: 13, country: dom },
   { id: 14, country: cuba },
   { id: 15, country: russian },
   { id: 16, country: suecia },

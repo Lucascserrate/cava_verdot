@@ -2,9 +2,10 @@ const { Category } = require("../../db");
 const { categorys } = require("../../../api");
 const getAllCategories = async (req, res) => {
   try {
-    let cate = await categorys.map((catego) => {
+    await categorys.map((catego) => {
+      console.log(catego.category)
       Category.findOrCreate({
-        where: { category: catego.category },
+        where: { category: catego.category.toLowerCase() },
       });
     });
     const allCategories = await Category.findAll();

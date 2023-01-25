@@ -31,18 +31,16 @@ const getAllProducts = async (req, res) => {
 
     if (category) {
 
-      let categoryFirstToMayus = await category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
-
       let categoryExist = await Category.findOne({
         where: {
-          category: categoryFirstToMayus
+          category: category
         }
       })
       if (categoryExist === null) {
         res.status(404).json(`the category '${category}' not found`)
       }
       if (categoryExist) {
-        drinks = await FilterCategory(drinks, categoryFirstToMayus)
+        drinks = await FilterCategory(drinks, category)
         if (await drinks.length === 0) {
           return res.status(404).json({ error: "No hay ningun elemento con esta categoria" })
         }
@@ -50,10 +48,10 @@ const getAllProducts = async (req, res) => {
     }
 
     if (country) {
-      let countryFirstToMayus = country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
+      
       let countryExist = await Country.findOne({
         where: {
-          country: countryFirstToMayus
+          country: country
         }
       })
 
@@ -62,14 +60,12 @@ const getAllProducts = async (req, res) => {
       }
 
       if (countryExist) {
-        drinks = await FilterCountry(drinks, countryFirstToMayus)
+        drinks = await FilterCountry(drinks, country)
         if (await drinks.length === 0) {
           return res.status(404).json({ error: "No hay ningun elemento con este pais" })
         }
       }
     }
-
-
     return res.status(200).send(await drinks);
 
   } catch (error) {
