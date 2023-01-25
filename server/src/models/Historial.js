@@ -10,32 +10,20 @@ module.exports = (sequelize) => {
       userId: {
         type: DataTypes.STRING,
         allowNull: false,
-        // primaryKey: true,
         foreignKey: true
 
-        
-        // refereces: {
-        //   model: User,
-        //   key: "id",
-        // }
 
       },
 
       drinkId: {
         type: DataTypes.STRING,
         allowNull: false,
-        foreignKey: true
-
-        // refereces: {
-        //   model: Drink,
-        //   key: "name",
-        // }
+        foreignKey: true    
       },
 
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-
       },
 
 
