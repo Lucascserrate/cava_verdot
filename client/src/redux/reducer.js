@@ -18,7 +18,8 @@ import {
   GET_ALL_STATE,
   GET_ALL_CITIES,
   GET_ADDRESS_BY_ID,
-  GET_REVIEWS
+  GET_REVIEWS,
+  GET_ALL_USER
 } from "./actions";
 
 const initialState = {
@@ -34,7 +35,8 @@ const initialState = {
   allStates: [],
   allCities: [],
   addressUser: {},
-  allReviews: []
+  allReviews: [],
+  allUsers: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -137,6 +139,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allReviews: action.payload
+      }
+    case GET_ALL_USER:
+      return{
+        ...state,
+        allUsers: action.payload
       }
     default:
       return state;
