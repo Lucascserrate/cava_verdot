@@ -112,6 +112,7 @@ const rootReducer = (state = initialState, action) => {
     case PUT_DRINKS:
       return {
         ...state,
+        drinks: [...state.drinks]
       }
     case GET_ALL_COUNTRIES:
       return {
