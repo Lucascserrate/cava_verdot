@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
-import Button3 from "../Button3/Button3";
 import ButtonArrow from "../ButtonArrow/ButtonArrow";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser, clearCart } from "../../redux/actions";
