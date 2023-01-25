@@ -16,6 +16,7 @@ export const CLEAR_USER = 'CLEAR_USER';
 export const PUT_DRINKS = "PUT_DRINKS"
 export const CLEAR_CART = 'CLEAR_CART';
 export const GET_REVIEWS = 'GET_REVIEWS';
+export const GET_ALL_USER = 'GET_ALL_USER';
 
 
 // para el address
@@ -36,12 +37,14 @@ export const getDrinks = () => {
 export const putDrink = (value) => {
   return async (dispatch) => {
     try {
-      const { id, name, category, stock, previewid } = value
+      const { id, name, category, stock, country, price } = value
       let editada = await axios.put(`/products?queryId=${id}`, {
-        id: previewid,
+        id: id,
         name: name,
         category: category,
-        stock: stock
+        country: country,
+        stock: stock,
+        price, price
       })
       dispatch({ type: PUT_DRINKS, payload: editada })
     } catch (error) {
@@ -174,4 +177,11 @@ export const getAddressById = (userId) => {
 export const getReviews = userId => async dispatch => {
   let json = await axios.get(`/products/review/${userId}`)
   return dispatch({ type: GET_REVIEWS, payload: json.data })
+}
+
+export const getAllUser = () => {
+  return async (dispatch) => {
+    const dataApi = await axios.get('/allUser');
+    return dispatch({type: GET_ALL_USER, payload: dataApi.data})
+  }
 }

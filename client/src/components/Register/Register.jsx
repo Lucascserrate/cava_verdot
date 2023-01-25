@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/actions";
 import { parseJwt } from "../../functions/parseTokenJwt";
 import AlertAge from "../AlertAge/AlertAge";
+import Loader from "../Loader/Loader";
 
 function Register() {
   const navigate = useNavigate();
@@ -30,6 +31,14 @@ function Register() {
       if (!dia || !mes || !anio) {
         setViewAlertAge(<AlertAge />);
       }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (window.localStorage.getItem("token")) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     }
   }, []);
 
@@ -106,7 +115,7 @@ function Register() {
           setTimeAlertError(true);
           setTimeout(() => {
             setTimeAlertError(false);
-          }, 4000);
+          }, 2000);
           window.localStorage.setItem("token", res.data);
           setTimeout(() => {
             navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
@@ -120,7 +129,7 @@ function Register() {
           setTimeAlertError(true);
           setTimeout(() => {
             setTimeAlertError(false);
-          }, 4000);
+          }, 2000);
         });
     } catch (err) {
       console.log(err.message);
@@ -134,7 +143,7 @@ function Register() {
       setTimeAlertError(true);
       setTimeout(() => {
         setTimeAlertError(false);
-      }, 4000);
+      }, 2000);
     } else if (
       !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)
     ) {
@@ -147,7 +156,7 @@ function Register() {
       setTimeAlertError(true);
       setTimeout(() => {
         setTimeAlertError(false);
-      }, 4000);
+      }, 2000);
     } else {
       const encriptado = encriptar(datosInputs.password);
       datosInputs.password = encriptado;
@@ -159,7 +168,7 @@ function Register() {
       setTimeAlertError(true);
       setTimeout(() => {
         setTimeAlertError(false);
-      }, 4000);
+      }, 2000);
       window.localStorage.setItem("token", res.data);
       setDatosInputs({
         email: "",
@@ -178,113 +187,119 @@ function Register() {
   };
 
   return (
-    <div className={s.form}>
-      <div className={s.alert_age}>{viewAlertAge}</div>
-      <form className={`${s.form__content} ${s.container}`}>
-        <h1 className={s.form__title}>Register</h1>
+    <>
+      {!window.localStorage.getItem("token") ? (
+        <div className={s.form}>
+          <div className={s.alert_age}>{viewAlertAge}</div>
+          <form className={`${s.form__content} ${s.container}`}>
+            <h1 className={s.form__title}>Register</h1>
 
-        <div className={s.form__inputs}>
-          <div className={s.form__group}>
-            <label htmlFor="name" className={s.form__lbl}>
-              Name:
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Name..."
-              className={s.form__input}
-              name="name"
-              value={datosInputs.name}
-              onChange={handleOnChangeInputs}
-            />
-          </div>
+            <div className={s.form__inputs}>
+              <div className={s.form__group}>
+                <label htmlFor="name" className={s.form__lbl}>
+                  Name:
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Name..."
+                  className={s.form__input}
+                  name="name"
+                  value={datosInputs.name}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
 
-          <div className={s.form__group}>
-            <label htmlFor="surname" className={s.form__lbl}>
-              Surname:
-            </label>
-            <input
-              id="surname"
-              type="text"
-              placeholder="Surname..."
-              className={s.form__input}
-              name="surname"
-              value={datosInputs.surname}
-              onChange={handleOnChangeInputs}
-            />
-          </div>
+              <div className={s.form__group}>
+                <label htmlFor="surname" className={s.form__lbl}>
+                  Surname:
+                </label>
+                <input
+                  id="surname"
+                  type="text"
+                  placeholder="Surname..."
+                  className={s.form__input}
+                  name="surname"
+                  value={datosInputs.surname}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
 
-          <div className={s.form__group}>
-            <label htmlFor="age" className={s.form__lbl}>
-              Age:
-            </label>
-            <input
-              id="age"
-              type="number"
-              className={s.form__input}
-              name="age"
-              value={datosInputs.age}
-              onChange={handleOnChangeInputs}
-            />
-          </div>
+              <div className={s.form__group}>
+                <label htmlFor="age" className={s.form__lbl}>
+                  Age:
+                </label>
+                <input
+                  id="age"
+                  type="number"
+                  className={s.form__input}
+                  name="age"
+                  value={datosInputs.age}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
 
-          <div className={s.form__group}>
-            <label htmlFor="image" className={s.form__lbl}>
-              Image:
-            </label>
-            <input
-              type="file"
-              name="image"
-              onChange={uploadImage}
-              className={s.form__input}
-            />
-          </div>
+              <div className={s.form__group}>
+                <label htmlFor="image" className={s.form__lbl}>
+                  Image:
+                </label>
+                <input
+                  type="file"
+                  name="image"
+                  onChange={uploadImage}
+                  className={s.form__input}
+                />
+              </div>
 
-          <div className={s.form__group}>
-            <label htmlFor="email" className={s.form__lbl}>
-              Email:
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="email@email.com"
-              className={s.form__input}
-              name="email"
-              value={datosInputs.email}
-              onChange={handleOnChangeInputs}
-            />
-          </div>
+              <div className={s.form__group}>
+                <label htmlFor="email" className={s.form__lbl}>
+                  Email:
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="email@email.com"
+                  className={s.form__input}
+                  name="email"
+                  value={datosInputs.email}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
 
-          <div className={s.form__group}>
-            <label htmlFor="password" className={s.form__lbl}>
-              Password:
-            </label>
-            <input
-              id="password"
-              type="password"
-              placeholder="....."
-              className={s.form__input}
-              name="password"
-              value={datosInputs.password}
-              onChange={handleOnChangeInputs}
-            />
-          </div>
+              <div className={s.form__group}>
+                <label htmlFor="password" className={s.form__lbl}>
+                  Password:
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="....."
+                  className={s.form__input}
+                  name="password"
+                  value={datosInputs.password}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
 
-          <input
-            type="submit"
-            className={s.form__submit}
-            value="Register"
-            onClick={onSubmit}
-          />
-          <GoogleButton
-            type="light"
-            label="Sign Up with Google"
-            onClick={(e) => handleClickGoogle(e)}
-          />
+              <input
+                type="submit"
+                className={s.form__submit}
+                value="Register"
+                onClick={onSubmit}
+              />
+              <GoogleButton
+                type="light"
+                label="Sign Up with Google"
+                onClick={(e) => handleClickGoogle(e)}
+              />
+            </div>
+            <div className={s.form__alert}>{timeAlertError && viewAlert}</div>
+          </form>
         </div>
-        <div className={s.form__alert}>{timeAlertError && viewAlert}</div>
-      </form>
-    </div>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 }
 

@@ -8,12 +8,12 @@ const drinksDB = async (req, res) => {
     drinksAPI.map(async (drink) => {
         let categoryDB = await Category.findOne({
           where: {
-            category: drink.category,
+            category: drink.category.toLowerCase(),
           },
         });
         let countryDB = await Country.findOne({
           where: {
-            country: drink.country,
+            country: drink.country.toLowerCase(),
           },
         });
         let newDrink = await Drink.findOrCreate({

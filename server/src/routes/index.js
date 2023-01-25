@@ -15,12 +15,14 @@ const welcome = require("./routesMails/welcome.route.js");
 const cargarData = require("./cargarData.routes.js");
 const history = require("./historial.js")
 const getAllUser = require("./getAllUsers.routes.js")
-
+const orderByAmount = require("../routes/historial.js")
+const drinkByName = require("./controllers/getNameDrinkHistory.js")
 const checkOut = require("./controllers/checkOut.js");
 
 const shopingCart = require("./shopingCart.routes.js");
 const authRouter = require('./auth/index');
 const { route } = require("./products.routes.js");
+
 
 
 router.use("/categories", category);
@@ -44,7 +46,8 @@ router.use('/news', news)
 router.use('/welcome', welcome) 
 router.use('/history', history )
 router.use('/allUser', getAllUser)
-
+router.use('/orderByAmount', orderByAmount )
+router.use('/drinkByName', drinkByName )
 
 router.use("/cargarData", cargarData);
 

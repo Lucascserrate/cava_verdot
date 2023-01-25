@@ -1,8 +1,8 @@
 .img {
     height: 80px;
     position: fixed;
-    right: 30px;
-    bottom: 20px;
+    right: 5px;
+    bottom: 3px;
     cursor: pointer;
 
     animation: opacidad 500ms cubic-bezier(.75, -3, .25, 4) 1;

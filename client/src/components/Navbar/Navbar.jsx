@@ -22,8 +22,9 @@ export default function NavBar({ searchbar }) {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("country");
     window.localStorage.removeItem("state");
-    window.localStorage.removeItem("city")
-    dispatch(clearUser())
+    window.localStorage.removeItem("city");
+    dispatch(clearUser());
+    dispatch(clearCart());
     if (getUserId) window.localStorage.removeItem("userId");
     navigate("/login");
   };
@@ -34,12 +35,12 @@ export default function NavBar({ searchbar }) {
   useEffect(() => {
     setVistaBtnLogin(
       getToken ? (
-        <button className={s.logOut} onClick={() => cerrarSesion()} ><span className="material-symbols-outlined">
-          logout
-        </span></button>
+        <button className={s.logOut} onClick={() => cerrarSesion()}>
+          <span className="material-symbols-outlined">logout</span>
+        </button>
       ) : (
-        <Link to="/login">
-          <Button3 value="Sign In" />
+        <Link to="/login" className={s.login}>
+          <span className="material-symbols-outlined">login</span>
         </Link>
       )
     );
