@@ -1,4 +1,4 @@
-const { Address } = require("../../db");
+const { Address, AllCountry, AllState, AllCity } = require("../../db");
 
 const getAddressByUserId = async (req, res) => {
   const { userId } = req.params;
@@ -16,7 +16,26 @@ const getAddressByUserId = async (req, res) => {
         id_user: userId,
       },
     });
-    return res.status(200).send(currentAddress);
+    if (currentAddress) {
+      const countryName = await AllCountry.findByPk(
+        currentAddress.dataValues.countryId
+      );
+      const stateName = await AllState.findByPk(
+        currentAddress.dataValues.stateId
+      );
+      const cityName = await await AllCity.findByPk(
+        currentAddress.dataValues.cityId
+      );
+      currentAddress.dataValues.countryName = countryName.dataValues.name;
+      currentAddress.dataValues.stateName = stateName.dataValues.name;
+      currentAddress.dataValues.cityName = cityName.dataValues.name;
+      console.log(countryName);
+      console.log(stateName);
+      console.log(cityName);
+      console.log(currentAddress);
+      return res.status(200).send(currentAddress);
+    }
+    return res.status(400).send("este usuario no tiene address");
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

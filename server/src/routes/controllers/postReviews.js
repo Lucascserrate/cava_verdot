@@ -6,6 +6,7 @@ const postReview = async (req, res) => {
   const { punctuation, review } = req.body;
   try {
     const errors = {};
+    console.log(punctuation)
     //capa de seguridad
     if (!userId) {
       errors.userId = "userId is required";
@@ -84,7 +85,6 @@ const postReview = async (req, res) => {
         let userImage = await User.findByPk(review.userId, {
           attributes: ["image"],
         });
-        console.log(userImage);
         review.dataValues.userImage = userImage.dataValues.image;
         return review;
       })

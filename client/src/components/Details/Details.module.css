@@ -110,3 +110,35 @@
     margin: 30px 400px;
     opacity: .5;
 }
+
+.alertSubmited {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alertBox {
+    width: 60%;
+    height: 50px;
+    padding: 6px 16px;
+    background-color: #fff;
+    box-shadow: rgba(169, 169, 169, 0.626) 0 .1px 10px 0;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+}
+
+.check {
+    height: 25px;
+    padding: 0 5px 0 0;
+}
+
+.alertBox p {
+    color: #191919;
+    padding-top: 5px;
+}
