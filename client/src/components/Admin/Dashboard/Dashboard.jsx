@@ -30,13 +30,14 @@ const Dashboard = () => {
 		if (window.localStorage.getItem("token")) {
 			setDecoding(parseJwt(window.localStorage.getItem("token")));
 		}
+
 		/*
-    if(decoding?.role !== 3){
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
-    }
-   */
+		if (decoding?.role !== 3) {
+			setTimeout(() => {
+				navigate("/login");
+			}, 2000);
+		}
+		*/
 	}, [window.localStorage.getItem("token")]);
 
 	const data = {
