@@ -24,6 +24,7 @@ export default function NavBar({ searchbar }) {
     window.localStorage.removeItem("state");
     window.localStorage.removeItem("city")
     dispatch(clearUser())
+    dispatch(clearCart())
     if (getUserId) window.localStorage.removeItem("userId");
     navigate("/login");
   };
