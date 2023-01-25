@@ -32,9 +32,6 @@ router.post("/", async (req, res) => {
   }
 })
 
-
-
-
 router.get("/:id", async (req, res) => {
 
   try {

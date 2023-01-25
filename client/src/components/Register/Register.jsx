@@ -77,7 +77,9 @@ function Register() {
   };
 
   const handleOnChangeInputs = (e) => {
-    setDatosInputs({ ...datosInputs, [e.target.name]: e.target.value });
+    setDatosInputs({ ...datosInputs, [e.target.name]: e.target.value });  
+
+  
   };
 
   const handleClickGoogle = async (e) => {
