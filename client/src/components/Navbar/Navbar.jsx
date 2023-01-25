@@ -24,6 +24,7 @@ export default function NavBar({ searchbar }) {
     window.localStorage.removeItem("state");
     window.localStorage.removeItem("city")
     dispatch(clearUser())
+    dispatch(clearCart())
     if (getUserId) window.localStorage.removeItem("userId");
     navigate("/login");
   };
@@ -34,7 +35,9 @@ export default function NavBar({ searchbar }) {
   useEffect(() => {
     setVistaBtnLogin(
       getToken ? (
-        <Button3 value="Sign Out" handler={cerrarSesion} />
+        <button className={s.logOut} onClick={() => cerrarSesion()} ><span className="material-symbols-outlined">
+          logout
+        </span></button>
       ) : (
         <Link to="/login">
           <Button3 value="Sign In" />

@@ -247,6 +247,7 @@ const Stock = ({ setDisplay }) => {
 			</div>
 		</div>
 	);
+
 };
 
 export default Stock;

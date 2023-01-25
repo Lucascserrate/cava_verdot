@@ -13,17 +13,19 @@ import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import Ratings from '../Rating/Ratings';
 import { Rating } from '@mui/material';
+import Reviews from '../Reviews/Reviews';
+import check from '../../assets/check.png'
 
 const Details = () => {
-  const [value, setValue] = useState({
-    rate: 0,
-    review: ''
-  })
+
   const [detail, setDetail] = useState({});
   let { id } = useParams();
   const dispatch = useDispatch();
   const cartAmount = document.getElementById("amount");
   const bubbleCart = useSelector((state) => state.bubbleCart);
+  const allReviews = useSelector(state => state.allReviews)
+  const userId = useSelector(state => state.user)
+
 
   const getDetail = async () => {
     let res = await axios.get(`/products/${id}`);
@@ -62,11 +64,6 @@ const Details = () => {
     }
     cartAmount.value = 1;
   };
-
-  const handlePostReview = async () => {
-    await axios.post(`/products/review?userId=${user}&drinkId=${id}`, value)
-  }
-
 
   return (
     <div className={s.details}>
@@ -140,7 +137,18 @@ const Details = () => {
           <Loader />
         )}
         <hr className={s.hr} />
-        <Ratings handlePostReview={handlePostReview} value={value} setValue={setValue} />
+        {
+          !allReviews.filter(e => e.userId === userId.id).length ?
+            < Ratings id={id} />
+            : <div className={s.alertSubmited}>
+              <div className={s.alertBox}>
+                <img className={s.check} src={check} alt="check" />
+                <p >Review submitted</p>
+              </div>
+            </div>
+
+        }
+        <Reviews id={id} />
       </div>
       <Footer />
     </div>

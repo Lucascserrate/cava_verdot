@@ -18,6 +18,7 @@ import {
   GET_ALL_STATE,
   GET_ALL_CITIES,
   GET_ADDRESS_BY_ID,
+  GET_REVIEWS
 } from "./actions";
 
 const initialState = {
@@ -32,7 +33,8 @@ const initialState = {
   allCountries: [],
   allStates: [],
   allCities: [],
-  addressUser: {}
+  addressUser: {},
+  allReviews: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -92,7 +94,7 @@ const rootReducer = (state = initialState, action) => {
         drinksRating: action.payload
       }
     case SET_USER:
-      return{
+      return {
         ...state,
         user: action.payload
       }
@@ -102,7 +104,7 @@ const rootReducer = (state = initialState, action) => {
         user: {}
       }
     case CLEAR_CART:
-      return{
+      return {
         ...state,
         cart: [],
         bubbleCart: 0
@@ -113,24 +115,29 @@ const rootReducer = (state = initialState, action) => {
         drinks: [...state.drinks]
       }
     case GET_ALL_COUNTRIES:
-      return{
+      return {
         ...state,
         allCountries: action.payload
       }
     case GET_ALL_STATE:
-      return{
+      return {
         ...state,
         allStates: action.payload
       }
     case GET_ALL_CITIES:
-      return{
+      return {
         ...state,
         allCities: action.payload
       }
     case GET_ADDRESS_BY_ID:
-      return{
+      return {
         ...state,
         addressUser: action.payload
+      }
+    case GET_REVIEWS:
+      return {
+        ...state,
+        allReviews: action.payload
       }
     default:
       return state;
