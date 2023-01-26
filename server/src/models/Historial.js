@@ -11,34 +11,22 @@ module.exports = (sequelize) => {
 
       nameUser: {
         type: DataTypes.STRING,
-        allowNull: false,
-        foreignKey: true
-
+        
 
       },
       surname: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        foreignKey: true
+        type: DataTypes.STRING,    
 
 
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
-        foreignKey: true
-
-
       },
 
-
-
       userId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         foreignKey: true
-
-
       },
 
       drinkId: {
@@ -47,14 +35,18 @@ module.exports = (sequelize) => {
         foreignKey: true    
       },
 
-      name: {
-        type: DataTypes.STRING,
+      buys: {
+        type: DataTypes.ARRAY(
+          DataTypes.STRING
+        ),
         allowNull: false,
       },
 
 
       amount: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.ARRAY(
+          DataTypes.STRING
+        ),
         allowNull: false,
 
       },
