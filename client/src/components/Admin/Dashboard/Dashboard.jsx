@@ -12,7 +12,7 @@ import { parseJwt } from "../../../functions/parseTokenJwt";
 import { useNavigate } from "react-router-dom";
 import "chart.js/auto";
 import History from "../history/History";
-import Borrado from '../Borrado/Borrado';
+import Borrado from "../Borrado/Borrado";
 
 const Dashboard = () => {
 	const [display, setDisplay] = useState(false);
@@ -91,7 +91,11 @@ const Dashboard = () => {
 							<h2 className={s.h2}>Dashboard</h2>
 							<h3 className={s.h3}>An admin table</h3>
 							<Stock setDisplay={setDisplay} />
+							<h2 className={s.h2h}>History</h2>
+							<h3 className={s.h3}>Shopping History</h3>
+							<History setDisplay={setDisplay} />
 						</div>
+
 						<div className={s.cards}>
 							<div className={s.card}>
 								<p className={s.cardTitle}>Sale of the day</p>

@@ -21,7 +21,7 @@ function History() {
 				<div className={s.bold}>Amount</div>
 			</div>
 			<div className={s.stockContainer}>
-					{history.length &&
+					{history.length > 0  &&
 						history.map((e) => (
 							<div className={s.stockItems} key={e.id} id={e.id}>
 								<div className={s.text}>{e.id}</div>

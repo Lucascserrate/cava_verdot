@@ -8,7 +8,14 @@
     display: flex;
 
 }
+.h2h {
+    color: #37474f;
+    font-size: 28px;
+    margin: 50px 20px 0 50px;
 
+    z-index: 1;
+    position: relative;
+}
 .title {
     margin: 20px;
 

@@ -23,7 +23,8 @@ export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_ALL_STATE = "GET_ALL_STATE";
 export const GET_ALL_CITIES = "GET_ALL_CITIES";
 export const GET_ADDRESS_BY_ID = "GET_ADDRESS_BY_ID";
-
+export const CLEAR_ADDRESS = "CLEAR_ADDRESS";
+export const DELETE_REVIEWS = "DELETE_REVIEWS";
 // Actions Creators get all products
 export const getDrinks = () => {
 	return async (dispatch) => {
@@ -34,29 +35,29 @@ export const getDrinks = () => {
 export const getHistory = () => {
 	return async (dispatch) => {
 		let history = await axios.get("/history");
-    console.log(await history);
+		console.log(await history);
 		dispatch({ type: GET_HISTORIAL, payload: history.data });
 	};
 };
 
 export const putDrink = (value) => {
-  return async (dispatch) => {
-    try {
-      const { id, name, category, stock, country, price } = value
-      let editada = await axios.put(`/products?queryId=${id}`, {
-        id,
-        name,
-        category,
-        country,
-        stock,
-        price,
-      })
-      dispatch({ type: PUT_DRINKS, payload: editada })
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
+	return async (dispatch) => {
+		try {
+			const { id, name, category, stock, country, price } = value;
+			let editada = await axios.put(`/products?queryId=${id}`, {
+				id,
+				name,
+				category,
+				country,
+				stock,
+				price,
+			});
+			dispatch({ type: PUT_DRINKS, payload: editada });
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
 
 // Action Creators Para modificar la cantidad del carrito
 export const modifyBubbleCart = (id) => async (dispatch) => {
@@ -186,18 +187,18 @@ export const getReviews = (userId) => async (dispatch) => {
 };
 
 export const getAllUser = () => {
-  return async (dispatch) => {
-    const dataApi = await axios.get('/allUser');
-    return dispatch({ type: GET_ALL_USER, payload: dataApi.data })
-  }
-}
+	return async (dispatch) => {
+		const dataApi = await axios.get("/allUser");
+		return dispatch({ type: GET_ALL_USER, payload: dataApi.data });
+	};
+};
 
 export const clearAddress = () => {
-  return async (dispatch) => {
-    return dispatch({ type: CLEAR_ADDRESS });
-  }
-}
+	return async (dispatch) => {
+		return dispatch({ type: CLEAR_ADDRESS });
+	};
+};
 
-export const deleteReviews = () => dispatch => {
-  return dispatch({ type: DELETE_REVIEWS })
-}
+export const deleteReviews = () => (dispatch) => {
+	return dispatch({ type: DELETE_REVIEWS });
+};
