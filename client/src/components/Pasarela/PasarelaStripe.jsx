@@ -116,22 +116,18 @@ const CheckOutForm = () => {
 
         setViewAlert(<p className={s.ok}>Pago exitoso</p>)
         setTimeout(() => {
-          setTimeout(() => {
-            setViewAlert();
-            dispatch(clearCart());
-            navigate("/");
-          }, 2000)
-          dispatch(resetCart())
-        } else {
-          setViewAlert(<p className = { s.error } > Ingrese una direccion</p>)
+          setViewAlert();
+          dispatch(clearCart());
+          navigate("/");
+        }, 2000)
+        dispatch(resetCart())
+      } else {
+        setViewAlert(<p className={s.error}>Ingrese una direccion</p>)
         setTimeout(() => {
-          setTimeout(() => {
-            setViewAlert();
-          }, 2000)
+          setViewAlert();
         }, 2000)
       }
     }
-
 
 
 
