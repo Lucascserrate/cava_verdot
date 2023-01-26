@@ -52,6 +52,7 @@ const Details = () => {
       }
       return post.data;
     } else {
+      console.log(cartAmount.value)
       let post = await axios.post("/shopingCart?add=true", {
         drinkId: id,
         amount: parseInt(cartAmount?.value),
