@@ -30,7 +30,7 @@
   transition: .2s ease-in-out;
 }
 
-@media(max-width:400px){
+@media(max-width:500px){
   .aside__section>button {
     color: #fff;
     background-color: var(--colorPrimary);
@@ -47,5 +47,12 @@
     justify-content: center;
     font-weight: 500;
     font-size:large;
+  }
+  .aside__menu--hiden {
+    font-size: 14px;
+    line-height: 2;
+    letter-spacing: 1px;
+    color: #363636;
+    cursor: pointer;
   }
 }

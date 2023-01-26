@@ -83,7 +83,7 @@
 
 }
 
-@media(max-width:400px){
+@media(max-width:500px){
   .cards__btns__filter{
     display: flex;
     gap: 100px;

@@ -69,7 +69,7 @@
   color: #fff;
 }
 
-@media(max-width:400px){
+@media(max-width:500px){
   .center {
     width: 100%;
     display: flex;

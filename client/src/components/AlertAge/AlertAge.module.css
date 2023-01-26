@@ -52,7 +52,7 @@
   height: 15px;
 }
 
-@media(max-width:400px){
+@media(max-width:500px){
   .alertage{
     width: 100%;
     height: 100vh;
