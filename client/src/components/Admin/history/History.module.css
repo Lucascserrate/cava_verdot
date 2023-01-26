@@ -78,7 +78,7 @@
     cursor: pointer;
     padding: 0 10px;
     display: grid;
-    grid-template-columns: 1fr 6fr 2fr 2fr 1fr 1fr;
+    grid-template-columns: 0.8fr 5fr 2fr 2fr 2fr 1fr;
 }
 
 .stockItems {
@@ -88,7 +88,7 @@
     cursor: pointer;
     padding: 0 10px;
     display: grid;
-    grid-template-columns: 1fr 6fr 2fr 2fr 1fr 1fr;
+    grid-template-columns: 0.8fr 5fr 2fr 2fr 2fr 1fr;
 }
 
 .stockItems:hover {

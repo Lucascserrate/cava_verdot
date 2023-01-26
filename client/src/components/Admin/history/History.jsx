@@ -10,113 +10,31 @@ function History() {
 	useEffect(() => {
 		dispatch(getHistory());
 	}, []);
-	console.log(history);
 	return (
 		<div className={s.container}>
 			<div className={s.stockTitles}>
 				<div className={s.bold}>ID</div>
+				<div className={s.bold}>Name</div>
 				<div className={s.bold}>UserID</div>
 				<div className={s.bold}>DrinkID</div>
-				<div className={s.bold}>Name</div>
 				<div className={s.bold}>SubTotal</div>
-				<div className={s.bold}>Stock</div>
-			</div>
-			{/*
-				<h2 className={s.title}>Stock</h2>
-			<h3 className={s.subtitle}>All our products are here</h3>
-			<div className={s.stockTitles}>
-				<div className={s.bold}>ID</div>
-				<div className={s.bold}>Name</div>
-				<div className={s.bold}>Category</div>
-				<div className={s.bold}>Country</div>
-				<div className={s.bold}>Price</div>
-				<div className={s.bold}>Stock</div>
+				<div className={s.bold}>Amount</div>
 			</div>
 			<div className={s.stockContainer}>
-				{drinks.length
-					? drinks.map((e) =>
-							edit.editable === true &&
-							e.id === parseInt(edit.id) &&
-							typeof e === "object" ? (
-								<div
-									key={e.id}
-									id={e.id}
-									onBlur={(e) => handleBlur(e)}
-									className={s.stockEdit}
-								>
-									<div
-										type="text"
-										className={s.inputID}
-										id={e.id}
-										name="previewid"
-										defaultValue={e.id}
-									>
-										{e.id}
-									</div>
-
-									<input
-										type="text"
-										className={s.inputName}
-										id={e.id}
-										name="name"
-										defaultValue={e.name}
-										style={
-											errors.name
-												? { borderColor: "red", color: "red" }
-												: { borderColor: "black" }
-										}
-									/>
-									<select name="category" id={e.id} className={s.inputCategory}>
-										{categories.map((cat) => (
-											<option key={cat.id} value={cat.id}>
-												{cat.category}
-											</option>
-										))}
-									</select>
-									<select name="country" id={e.id} className={s.inputCategory}>
-										{countries.map((con) => (
-											<option key={con.id} value={con.id}>
-												{con.country}
-											</option>
-										))}
-									</select>
-									<input
-										type="text"
-										className={s.inputStock}
-										id={e.id}
-										name="price"
-										defaultValue={e.price}
-									/>
-									<input
-										type="text"
-										className={s.inputStock}
-										id={e.id}
-										name="stock"
-										defaultValue={e.stock}
-									/>
-									<div className={s.botones}>
-										<input
-											type="submit"
-											className={s.boton}
-											onClick={(e) => changed(e)}
-											value="✔"
-											style={
-												errors.name
-													? { backgroundColor: "lightblue" }
-													: { backgroundColor: "#0d035a" }
-											}
-											disabled={errors.name ? true : false}
-										/>
-										<input
-											type="submit"
-											className={s.boton}
-											style={{ backgroundColor: "#0d035a" }}
-											onClick={cancele}
-											value="✖"
-										/>
-									</div>
-								</div>
-							) : (
+					{history.length &&
+						history.map((e) => (
+							<div className={s.stockItems} key={e.id} id={e.id}>
+								<div className={s.text}>{e.id}</div>
+								<div className={s.text}>{e.name}</div>
+								<div className={s.text}>{e.userId}</div>
+								<div className={s.text}>{e.drinkId}</div>
+								<div className={s.text}>{e.subtotal.toFixed(2)}</div>
+								<div className={s.text}>{e.amount}</div>
+							</div>
+						))}
+				</div>
+			{/*
+			<div className={s.stockContainer}> (
 								<div
 									onClickCapture={(e) => editable(e)}
 									key={e.id}
