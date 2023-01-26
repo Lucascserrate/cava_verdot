@@ -11,7 +11,8 @@ import Error from "../../Error/Error";
 import { parseJwt } from "../../../functions/parseTokenJwt";
 import { useNavigate } from "react-router-dom";
 import "chart.js/auto";
-import History from "../history/History";import Borrado from '../Borrado/Borrado';
+import History from "../history/History";
+import Borrado from '../Borrado/Borrado';
 
 const Dashboard = () => {
 	const [display, setDisplay] = useState(false);
