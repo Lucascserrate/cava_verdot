@@ -21,8 +21,7 @@ import {
   GET_REVIEWS,
   GET_ALL_USER,
   CLEAR_ADDRESS,
-  DELETE_REVIEWS,
-  RESET_CART
+  DELETE_REVIEWS
 } from "./actions";
 
 const initialState = {
@@ -158,11 +157,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allReviews: []
-      }
-    case RESET_CART:
-      return {
-        ...state,
-        cart: []
       }
     default:
       return state;

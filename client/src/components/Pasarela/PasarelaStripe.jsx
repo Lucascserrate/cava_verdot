@@ -11,7 +11,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { parseJwt } from '../../functions/parseTokenJwt';
-import { clearCart, resetCart } from '../../redux/actions'
+import { clearCart } from '../../redux/actions'
 
 
 const stripePromise = loadStripe(
@@ -120,7 +120,6 @@ const CheckOutForm = () => {
           dispatch(clearCart());
           navigate("/");
         }, 2000)
-        dispatch(resetCart())
       } else {
         setViewAlert(<p className={s.error}>Ingrese una direccion</p>)
         setTimeout(() => {

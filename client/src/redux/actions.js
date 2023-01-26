@@ -19,8 +19,6 @@ export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_ALL_USER = 'GET_ALL_USER';
 export const CLEAR_ADDRESS = 'CLEAR_ADDRESS';
 export const DELETE_REVIEWS = 'DELETE_REVIEWS';
-export const RESET_CART = 'RESET_CART';
-
 
 // para el address
 export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES';
@@ -199,6 +197,3 @@ export const deleteReviews = () => dispatch => {
   return dispatch({ type: DELETE_REVIEWS })
 }
 
-export const resetCart = () => dispatch => {
-  return dispatch({ type: RESET_CART })
-}
