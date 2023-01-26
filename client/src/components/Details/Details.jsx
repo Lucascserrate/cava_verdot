@@ -21,7 +21,8 @@ const Details = () => {
   const [detail, setDetail] = useState({});
   let { id } = useParams();
   const dispatch = useDispatch();
-  const cartAmount = document.getElementById("amount");
+  // const cartAmount = document.getElementById("amount");
+  const [ammount, setAmmount] = useState(1);
   const bubbleCart = useSelector((state) => state.bubbleCart);
   const allReviews = useSelector(state => state.allReviews)
   const userId = useSelector(state => state.user)
@@ -39,23 +40,27 @@ const Details = () => {
     if (user) dispatch(modifyBubbleCart(user));
   }, [dispatch]);
 
+  const hancdleOnChangeAmmount = (e) => {
+    setAmmount(e.target.value)
+  }
+
   const handlerAdd = async () => {
     let user = window.localStorage.getItem("userId");
     if (user) {
       let post = await axios.post("/shopingCart?add=true", {
         userId: user,
         drinkId: id,
-        amount: parseInt(cartAmount?.value),
+        amount: Number(ammount),
       });
       if (Object.keys(post).length) {
         dispatch(modifyBubbleCart(user));
       }
+      setAmmount(1)
       return post.data;
     } else {
-      console.log(cartAmount.value)
       let post = await axios.post("/shopingCart?add=true", {
         drinkId: id,
-        amount: parseInt(cartAmount?.value),
+        amount: Number(ammount),
       });
       window.localStorage.setItem("userId", post?.data.userId);
       let user = window.localStorage.getItem("userId");
@@ -63,7 +68,6 @@ const Details = () => {
         dispatch(modifyBubbleCart(user));
       }
     }
-    cartAmount.value = 1;
   };
 
   return (
@@ -102,6 +106,8 @@ const Details = () => {
                   className={s.inputAmount}
                   type="number"
                   defaultValue="1"
+                  value={ammount}
+                  onChange={hancdleOnChangeAmmount}
                   min="1"
                   maxLength="5"
                 />
