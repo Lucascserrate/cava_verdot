@@ -19,6 +19,7 @@ const Ratings = ({ id }) => {
 
     const userId = useSelector(state => state.user)
     const [decodingToken, setDecodingToken] = useState()
+    const [loading, setLoading] = useState(false)
 
     const getToken = window.localStorage.getItem("token");
 
@@ -36,16 +37,16 @@ const Ratings = ({ id }) => {
     }
 
     const handlePostReview = async (e) => {
+        e.preventDefault()
         if (userId.id === undefined) navigate('/login')
-        else {
-            e.preventDefault()
+        else if (value.review.length > 0) {
+            setLoading(true)
             await axios.post(`/products/review?userId=${userId?.id}&drinkId=${id}`, value)
             dispatch(getReviews(id))
-            console.log(id);
+            setLoading(false)
         }
 
     }
-
 
     useEffect(() => {
         if (getToken) {
@@ -82,9 +83,13 @@ const Ratings = ({ id }) => {
                                         </div>
                                         <textarea onChange={handleChangeReview} placeholder='Let us a review...' className={s.textarea} name="review" id="" cols="80" rows="6" ></textarea>
                                     </div>
-                                    <div className={s.flexEnd}>
-                                        <button className={s.btn}>Send</button>
-                                    </div>
+                                    {
+                                        loading ? <div className={s.flexEnd}> <div className={s.loader}></div> </div>
+                                            : <div className={s.flexEnd}>
+                                                <button className={s.btn}>Send</button>
+                                            </div>
+                                    }
+
 
                                 </div>
                                 : undefined
