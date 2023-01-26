@@ -64,6 +64,7 @@ const Ratings = ({ id }) => {
                             <p>Rate</p>
                             <Rating
                                 name="simple-controlled"
+                                size='large'
                                 value={value?.punctuation}
                                 onChange={handleChangeRate}
                             />
