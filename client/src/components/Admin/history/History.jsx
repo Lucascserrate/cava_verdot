@@ -1,121 +1,20 @@
 import React from "react";
+import s from "./History.module.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	getDrinks,
-	putDrink,
-	getAllCategories,
-	getCountries,
-} from "../../../redux/actions";
-import Alert from "./Alert";
-import s from "./Stock.module.css";
-
-const Stock = ({ setDisplay }) => {
+import { getHistory } from "../../../redux/actions";
+function History() {
 	const dispatch = useDispatch();
-	const drinks = useSelector((state) => state.drinks);
-	const categories = useSelector((state) => state.categories);
-	const countries = useSelector((state) => state.countries);
-	const [edit, setEdit] = useState({
-		editable: false,
-		id: 0,
-	});
-
-	const [errors, setError] = useState({});
-
-	const validation = (input) => {
-		let errors = {};
-		let findedDrink;
-		if (input.name && input.id) {
-			findedDrink = drinks.find(
-				(d) => d.name.toLowerCase() === input.name.toLowerCase(),
-			);
-			if (findedDrink.id !== parseInt(input.id)) {
-				errors.name = "Este nombre ya esta ocupado";
-			}
-		}
-		return errors;
-	};
-	const [newValue, setNewValue] = useState({
-		id: 0,
-		name: "",
-		stock: 0,
-		category: "",
-		country: "",
-		price: 0,
-	});
-
-	function editable(e) {
-		if (edit.editable === true) {
-			setEdit({
-				editable: false,
-				id: parseInt(e.target.id),
-			});
-			setNewValue({
-				id: parseInt(e.target.id),
-			});
-		}
-		if (edit.editable === false) {
-			setEdit({
-				editable: true,
-				id: parseInt(e.target.id),
-			});
-			setNewValue({
-				id: parseInt(e.target.id),
-			});
-		}
-	}
-	function cancele() {
-		setEdit({
-			editable: false,
-		});
-		setNewValue({
-			id: 0,
-			name: "",
-			stock: 0,
-			category: "",
-			country: "",
-			price: 0,
-		});
-		setError({
-			name: "",
-		});
-	}
-	async function changed(e) {
-		e.preventDefault();
-		dispatch(putDrink(newValue));
-		dispatch(getDrinks());
-		setEdit({
-			editable: false,
-		});
-	}
-	const handleBlur = (e) => {
-		setNewValue({
-			...newValue,
-			id: parseInt(e.target.id),
-			[e.target.name]: isNaN(parseFloat(e.target.value))
-				? e.target.value
-				: parseFloat(e.target.value),
-		});
-		setError(
-			validation({
-				...newValue,
-				[e.target.name]: isNaN(parseFloat(e.target.value))
-					? e.target.value
-					: parseFloat(e.target.value),
-			}),
-		);
-	};
-
+	const history = useSelector((state) => state.historial);
 	useEffect(() => {
-		dispatch(getAllCategories());
-		dispatch(getCountries());
-		dispatch(getDrinks());
-	}, [dispatch]);
-
+		dispatch(getHistory());
+	}, []);
+	console.log(history);
 	return (
 		<div className={s.container}>
-			<h2 className={s.title}>Stock</h2>
+			{/*
+				<h2 className={s.title}>Stock</h2>
 			<h3 className={s.subtitle}>All our products are here</h3>
 			<div className={s.stockTitles}>
 				<div className={s.bold}>ID</div>
@@ -244,10 +143,9 @@ const Stock = ({ setDisplay }) => {
 					Add
 				</button>
 				{errors.name && <Alert>{errors.name}</Alert>}
-			</div>
+			</div> */}
 		</div>
 	);
+}
 
-};
-
-export default Stock;
+export default History;

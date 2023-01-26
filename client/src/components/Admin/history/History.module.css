@@ -1,0 +1,219 @@
+.container {
+    background-color: #fff;
+    height: 600px;
+    width: 1000px;
+    margin: 40px;
+    border-radius: 5px;
+    border: var(--border);
+    box-shadow: var(--boxShadow);
+    z-index: 10;
+    position: relative;
+
+}
+
+.boton {
+    width: 50px;
+    height: auto;
+}
+
+.edit_input {
+    padding: 3px;
+    width: 350px;
+    height: auto;
+    align-self: center;
+    font-size: 13px;
+}
+
+.ready {
+    background: white;
+    width: 35px;
+    height: 25px;
+    margin-left: 4px;
+}
+
+.ready:hover {
+    background: #000;
+    color: white;
+    cursor: pointer;
+}
+
+.title {
+    margin: 25px 0 0 40px;
+}
+
+.subtitle {
+    margin: 0 0 0 40px;
+    font-size: 15px;
+    color: #595959;
+    font-weight: 400;
+}
+
+.stockContainer {
+    margin: 0 0 0 180px;
+    overflow-y: scroll;
+    height: 390px;
+
+}
+
+.stockItems:nth-child(2n +1) {
+    background-color: var(--bgColor);
+
+}
+
+.stockContainer::-webkit-scrollbar {
+    opacity: 0;
+    width: 10px;
+}
+
+
+.stockContainer::-webkit-scrollbar-thumb {
+    background-color: #263238;
+    border-radius: 3px;
+}
+
+.stockTitles {
+    margin: 20px 0 5px 180px;
+    height: 30px;
+    width: 70%;
+    cursor: pointer;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: 1fr 6fr 2fr 2fr 1fr 1fr;
+}
+
+.stockItems {
+    height: 30px;
+    width: 87%;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: 1fr 6fr 2fr 2fr 1fr 1fr;
+}
+
+.stockItems:hover {
+    color: white;
+    background: rgb(13, 3, 90);
+    transition: 200ms ease-in;
+}
+.stockEdit {
+    height: 30px;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    display: grid;
+    grid-template-columns: 0.1fr 0.5fr 0.2fr 0.2fr 0.2fr 0.2fr 0.5fr ;
+}
+
+.inputID {
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px;
+    width: 60%;
+}
+
+.inputName {
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px;
+    width: 100%;
+}
+
+.inputCategory {
+    border-radius: 3px;
+    background-color: transparent;
+    width: 100%;
+    margin: 0 0 0 2px;
+}
+
+.inputStock {
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px;
+    width: 100%;
+    margin: 0 0 0 5px;
+}
+.botones {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    right: 40px;
+    margin-left: 15px;
+}
+
+.boton {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background: var(--colorDark);
+    border-radius: 10%;
+    color: #fff;
+    transition: 200ms;
+
+
+}
+
+.boton:hover {
+    opacity: .9;
+}
+
+.bold {
+    align-self: center;
+    font-weight: bold;
+}
+
+.text {
+    align-self: center;
+    font-size: 13px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.btn {
+    background-color: var(--colorDark);
+    color: #fff;
+    border-radius: var(--borderRadiusButtons);
+    padding: 6px 12px;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.name {
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    width: 95%;
+}
+
+.name:focus {
+    border: 1px solid black;
+}
+
+
+.btnEdit {
+    width: 15px;
+    border: none;
+    background-color: transparent;
+}
+
+.input {
+    padding: 5px;
+    align-self: center;
+    font-size: 13px;
+    width: 90%;
+    background-color: transparent;
+    border: none;
+
+}
+
+.input:focus {
+    border: 1px solid rgb(13, 3, 90);
+}

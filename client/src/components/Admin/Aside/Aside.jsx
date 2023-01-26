@@ -15,7 +15,6 @@ const Aside = () => {
     }
   }, [])
 
-  console.log(decodingToken);
 
   return (
     <div className={s.container}>

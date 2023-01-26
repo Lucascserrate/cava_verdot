@@ -1,11 +1,23 @@
 .container {
     grid-template-columns: repeat(3, 1fr);
     background-color: var(--bgColor);
-    height: 100vh;
+    height: 175vh;
     z-index: -1;
-
     display: flex;
 
+}
+.h2h{
+    color: rgb(52, 48, 48);
+    font-size: 28px;
+    margin: 50px 20px 0 50px;
+    z-index: 1;
+    position: relative;
+}
+.h3h{
+    color: rgb(43, 22, 22);
+    font-size: 16px;
+    margin: 0 20px 0 50px;
+    position: relative;
 }
 
 .h2 {
