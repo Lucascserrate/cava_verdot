@@ -7,12 +7,26 @@ module.exports = (sequelize) => {
   sequelize.define(
     "historial",
     {
-      userId: {
+
+
+      nameUser: {
         type: DataTypes.STRING,
+        
+
+      },
+      surname: {
+        type: DataTypes.STRING,    
+
+
+      },
+      email: {
+        type: DataTypes.STRING,
+      },
+
+      userId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         foreignKey: true
-
-
       },
 
       drinkId: {
@@ -21,14 +35,18 @@ module.exports = (sequelize) => {
         foreignKey: true    
       },
 
-      name: {
-        type: DataTypes.STRING,
+      buys: {
+        type: DataTypes.ARRAY(
+          DataTypes.STRING
+        ),
         allowNull: false,
       },
 
 
       amount: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.ARRAY(
+          DataTypes.STRING
+        ),
         allowNull: false,
 
       },

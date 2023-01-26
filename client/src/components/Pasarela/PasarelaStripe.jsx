@@ -44,9 +44,6 @@ const CheckOutForm = () => {
   // traemos los datos del carrito
   const stateCart = useSelector(state => state.cart);
 
-  // const user = useSelector(state => state.user) este esta harcodeado
-
-  // console.log( "soy el USer ",user);
 
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState();
@@ -63,13 +60,16 @@ const CheckOutForm = () => {
       }, 0));
 
       setDescription(stateCart.map(ele => {
+        //console.log('soy el map' , ele);
         const obj = {
           userId: decodingToken?.id,
           drinkId: ele.id,
           amount: ele.amount,
           name: ele.name,
           subtotal: ele.subtotal
+
         }
+        // console.log('soy el obj' , obj);
         return obj;
       }))
     }
@@ -102,6 +102,7 @@ const CheckOutForm = () => {
           amount: price * 100,
           // la descripcion del objeto que va a comprar
           description: "pago exitoso",
+
         });
         // console.log(data);
         description?.map(async (e) => {
@@ -111,20 +112,26 @@ const CheckOutForm = () => {
           name: stateUser?.name,
           email: stateUser?.email
         })
+
+
         setViewAlert(<p className={s.ok}>Pago exitoso</p>)
         setTimeout(() => {
-          setViewAlert();
-          dispatch(clearCart());
-          navigate("/");
-        }, 2000)
-        dispatch(resetCart())
-      } else {
-        setViewAlert(<p className={s.error}>Ingrese una direccion</p>)
+          setTimeout(() => {
+            setViewAlert();
+            dispatch(clearCart());
+            navigate("/");
+          }, 2000)
+          dispatch(resetCart())
+        } else {
+          setViewAlert(<p className = { s.error } > Ingrese una direccion</p>)
         setTimeout(() => {
-          setViewAlert();
+          setTimeout(() => {
+            setViewAlert();
+          }, 2000)
         }, 2000)
       }
     }
+
 
 
 

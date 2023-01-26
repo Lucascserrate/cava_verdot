@@ -117,3 +117,18 @@
 .error{
   color: crimson;
 }
+
+@media(max-width:400px){
+  .login__input{
+    display: block;
+    width: 70%;
+    background: #fff;
+    color: #49454567;
+    outline: none;
+    padding: 10px 65px;
+    border: 1px solid #49454567;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 60px;
+  }
+}

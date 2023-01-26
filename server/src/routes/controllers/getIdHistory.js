@@ -1,7 +1,8 @@
 const { Historial } = require("../../db.js")
-const {Drink} = require("../../db.js")
+const { Drink } = require("../../db.js")
+const {Op} = require("sequelize")
 
-const getHistory = async(req, res) =>{
+const getHistory = async (req, res) => {
 
     const result = await Historial.findAll()
 
@@ -13,11 +14,11 @@ const getIdHistory = async (id) => {
 
     return await Historial.findAll({
         where: {
-            userId: id
+            userId: parseInt(id)
 
         },
 
-        include:{
+        include: {
             model: Drink,
             attributes: ['name', 'price'],
             through: {
@@ -28,6 +29,27 @@ const getIdHistory = async (id) => {
 
 
 }
+const getNameHistory = async (name) => {
 
-module.exports = {getIdHistory, getHistory} 
+    return await Historial.findAll({
+        where: {
+            
+            nameUser: {
+                [Op.iLike]: name
+        }
+    },
+
+        include: {
+            model: Drink,
+            attributes: ['name', 'price'],
+            through: {
+                attributes: []
+            }
+        }
+    })
+}
+
+
+
+module.exports = { getIdHistory, getHistory, getNameHistory }
 
