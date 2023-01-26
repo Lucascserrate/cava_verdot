@@ -8,14 +8,15 @@ import arrowLeft from '../../assets/bxs-left-arrow.svg'
 import arrowRight from '../../assets/bxs-right-arrow.svg'
 import Loader from '../Loader/Loader';
 import Button3 from '../Button3/Button3';
+import Error from '../Error/Error';
 
-function Cards({ category, price, country }) {
+function Cards({ category, price, country, setPrice }) {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.drinks);
+
   // estados del paginado
   const [datos, setDatos] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state.drinks);
 
   useEffect(() => {
     dispatch(getDrinks());
@@ -24,10 +25,14 @@ function Cards({ category, price, country }) {
   // creamos el paginado
   let itemsPage = 12;
 
+  let totalElementsState = state?.length;
+  const [totalPage, setTotalPage] = useState()
+
   // cuando se carguen los datos del state, llenamos datos
   useEffect(() => {
     if (state) {
       setDatos([...state].splice(0, 12));
+      setTotalPage(parseInt(totalElementsState / itemsPage) + 1)
     }
   }, [state]);
 
@@ -52,33 +57,42 @@ function Cards({ category, price, country }) {
 
   // despachamos la accion al dar clic al btn aplicar filtros
   const handleApplyFilter = () => {
+    console.log(price);
     dispatch(getProductFilter(category, price, country));
+    setCurrentPage(0)
     // si surge error, descomentar este codigo
     // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);
   };
 
-  // console.log(datos);
+  
+  const handleRestState = () => {
+    dispatch(getDrinks());
+  }
 
   return (
 
 
     <div className={s.cards}>
       <div className={s.cards__paginado}>
-        <Button3 value={"Aplicar Filtros"} handler={() => handleApplyFilter()} />
+        <div className={s.cards__btns__filter}>
+          <Button3 value={"Apply Filters"} handler={() => handleApplyFilter()} />
+          <Button3 value={"Rest Filters"} handler={() => handleRestState()} />
+        </div>
         <div className={s.arrows}>
           <button onClick={prev} className={s.btnLeft} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>
-          <label className={s.cards__currentpage}> {currentPage + 1}</label>
+          <label className={s.cards__currentpage}> {currentPage + 1} of {totalPage}</label>
           <button onClick={next} className={s.btnRight} ><img src={arrowRight} alt="icon" className={s.cards__arrow} /></button>
         </div>
       </div>
       <div className={s.cards__content}>
-        {datos.length
+        {typeof datos[0] == 'object'
           ? datos.map((e) => (
             <Link to={`/store/${e.id}`} key={e.id} className={s.cards__link}>
               <Card id={e.id} img={e.image} name={e.name} />
             </Link>
-          ))
-          : <Loader />}
+          )) : typeof datos[0] == 'string'
+            ? <Error />
+            : <Loader />}
       </div>
     </div>
   );

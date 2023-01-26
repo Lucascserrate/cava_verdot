@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import s from "./PasarelaStripe.module.css";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -9,8 +9,9 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { parseJwt } from '../../functions/parseTokenJwt';
+import {clearCart} from '../../redux/actions'
 
 
 const stripePromise = loadStripe(
@@ -21,29 +22,41 @@ const CheckOutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
+  const [viewAlert, setViewAlert] = useState();
+
+  const stateAddres = useSelector(state => state.addressUser);
+  const stateUser = useSelector(state => state.user);
+
+  const dispatch = useDispatch();
+
   // obtengo el token
   const getToken = window.localStorage.getItem("token");
 
   // guardamos la decodificacion del token
   const [decodingToken, setDecodingToken] = useState()
 
-  useEffect(()=>{
-    if(getToken){
+  useEffect(() => {
+    if (getToken) {
       setDecodingToken(parseJwt(getToken))
     }
-  },[getToken])
-  console.log(decodingToken);
+  }, [getToken])
 
   // traemos los datos del carrito
   const stateCart = useSelector(state => state.cart);
+
+  // const user = useSelector(state => state.user) este esta harcodeado
+
+  // console.log( "soy el USer ",user);
 
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState();
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(stateCart.length){
+
+  useEffect(() => {
+    if (stateCart.length) {
+
 
       setPrice(stateCart.reduce((acc, e) => {
         return acc + e.subtotal;
@@ -51,16 +64,16 @@ const CheckOutForm = () => {
 
       setDescription(stateCart.map(ele => {
         const obj = {
-          email: decodingToken.email,
-          name: ele.name,
+          userId: decodingToken?.id,
+          drinkId: ele.id,
           amount: ele.amount,
+          name: ele.name,
           subtotal: ele.subtotal
         }
-
         return obj;
       }))
     }
-  },[stateCart]);
+  }, [stateCart]);
 
 
   const handleSubmit = async (e) => {
@@ -72,13 +85,12 @@ const CheckOutForm = () => {
       card: elements.getElement(CardElement),
     });
 
-    if(!getToken){
+    if (!getToken) {
       navigate("/login")
-    }else{
-      if (!error) {
+    } else {
+      if (!error && !!Object.keys(stateAddres).length) {
         //esta parte le envia el metodo de pago que tiene un id especial
         const { id } = paymentMethod;
-        console.log(id);
         const { data } = await axios.post(`/checkout`, {
           // id o nombre del cliente
           // customer: "padermo",
@@ -91,17 +103,45 @@ const CheckOutForm = () => {
           // la descripcion del objeto que va a comprar
           description: "pago exitoso",
         });
-        console.log(data);
+        // console.log(data);
+        description?.map(async (e) => {
+          return await axios.post('http://localhost:3001/history', e)
+        })
+        await axios.post('/pago', {
+          name: stateUser?.name,
+          email: stateUser?.email
+        })
+        setViewAlert(<p className={s.ok}>Pago exitoso</p>)
+        setTimeout(()=>{
+          setViewAlert();
+          dispatch(clearCart());
+          navigate("/");
+        },2000)
+      }else{
+        setViewAlert(<p className={s.error}>Ingrese una direccion</p>)
+        setTimeout(()=>{
+          setViewAlert();
+        },2000)
       }
     }
+
+
+    
+
+
+
   };
 
   return (
     <div className={s.container}>
-      <form onSubmit={handleSubmit}>
-        <h2 className={s.label}>Introduce tu metodo de pago</h2>
+      <form onSubmit={handleSubmit} className={s.form__content}>
+        <h2 className={s.title}>Payment Methods</h2>
+        <h2 className={s.label}>Set your payment method</h2>
         <CardElement className={s.input} />
-        <button className={s.btn}>Buy</button>
+        <div className={s.alert__pago}>
+          <button className={s.btn}>Buy</button>
+          {viewAlert && viewAlert}
+        </div>
       </form>
     </div>
   );

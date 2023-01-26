@@ -5,7 +5,6 @@ const { Op } = require("sequelize");
 const postAddToShopingCart = async (req, res) => {
   const { userId, drinkId, amount } = req.body;
   const { add } = req.query;
-  console.log(add);
   try {
     let errors = {};
     //validando datos recibidos
@@ -54,7 +53,10 @@ const postAddToShopingCart = async (req, res) => {
         email: `def${newUserPosition.count + 1}@def.def`,
         password: "def",
         address: "def",
+        emailProvider: "local",
         roleId: 1,
+        emailProvider: "local",
+        
       });
     } else {
       //buscando bebida en el carrito de usuario en caso de previa existencia de usuario
@@ -63,7 +65,6 @@ const postAddToShopingCart = async (req, res) => {
           [Op.and]: [{ userId: userId }, { drinkId: drinkId }],
         },
       });
-      console.log("esto", searchShopingCart);
     }
     if (!searchShopingCart) {
       //agregando bebida y cantidad
@@ -98,17 +99,13 @@ const postAddToShopingCart = async (req, res) => {
         );
       }
     }
-    //obtener el total de productos de un usuario
-    /* const totalProducts = await ShopingCart.sum("amount", {
-      where: { userId },
-    }); */
-    //TODO:agregar id a User (es necesario primero crear un PutUser)
     return res.status(200).send({
       userId: userId ? userId : newUser.id,
       //totalProducts: totalProducts,
       message: `Drink '${searchDrink.name}' has been add`,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).send({ error: error.message });
   }
 };

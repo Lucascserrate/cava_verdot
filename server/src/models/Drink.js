@@ -7,6 +7,8 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        //primaryKey: true       
+        // foreignKey: true
       },
       description: {
         type: DataTypes.TEXT,
@@ -28,10 +30,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      avalible:{
+      avalible: {
         type: DataTypes.BOOLEAN,
-        defaultValue: true
-      }
+        defaultValue: true,
+      },
     },
     {
       createdAt: false,

@@ -5,7 +5,7 @@ const getShopingCart = async (req, res) => {
   const { userId } = req.query;
   try {
     //validando datos recibidos
-    if (!userId) {
+    if (userId === "null") {
       return res.status(400).send("userId is requiered");
     } else {
       const searchUser = await User.findByPk(userId);

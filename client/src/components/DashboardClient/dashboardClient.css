@@ -1,0 +1,130 @@
+.hidden{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.3));
+  transform: scale(1);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0);
+  transition: .4s transform ease-in-out;
+}
+.show{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.3));
+  transform: scale(1);
+  transition: .4s transform ease-in-out;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.show .modal__content{
+  width: 540px;
+  height: 200px;
+  padding: 20px 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+}
+.modal__elements{
+  display: flex;
+  gap: 20px;
+}
+.input__edit{
+  display: block;
+  width: 100%;
+  background: #fff;
+  color: #49454567;
+  outline: none;
+  padding: 10px 15px;
+  border: 1px solid #49454567;
+  border-radius: 10px;
+}
+.input__edit:focus{
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+.modal__save{
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.modal__icon--save{
+  color: #494545;
+}
+.modal__icon--save:hover{
+  color: rgb(10, 180, 10);
+}
+.modal__close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #494545;
+}
+.modal__close:hover{
+  color: crimson;
+}
+.modal__alert{
+  height: 20px;
+  text-align: center;
+  font-size: 1rem;
+  color: rgb(31, 144, 219);
+}
+
+.input__edit--img{
+  width: 240px;
+}
+
+.show .modal__content--img{
+  width: 450px;
+  height: 400px;
+}
+.modal__elements--img{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal__border{
+  border: 2px dotted rgb(80, 80, 80);
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+.moda__preview{
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.show .modal__content--fullname{
+  width: 650px;
+  height: 150px;
+  padding: 10px 20px;
+}
+
+.modal__icon--edit{
+  color: #49454567;
+}
+.modal__icon--edit:hover{
+  transform: scale(1.1);
+}

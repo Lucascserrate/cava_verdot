@@ -1,0 +1,127 @@
+.dashboard{
+  width: 100%;
+  min-height: 100vh;
+  max-height: 100%;
+  position: relative;
+  background: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.4)), url('../../assets/moroccan-flower.png');
+}
+.container{
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+.dashboard__content{
+  display: grid;
+  margin: auto;
+  gap: 10px;
+  background-color: #edf1f6b0;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.dashboard__cabecera{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  grid-column: 1/3;
+  grid-row: 1/2;
+}
+.dashboard__elements{
+  width: 550px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #191919;
+  padding: 20px 14px;
+  grid-column: 2/5;
+  grid-row: 2/3;
+}
+.dashboard__edit{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dashboard__edit > h2{
+  font-size: 1.8rem;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #191919;
+  color: #191919;
+}
+.dashboard__data{
+  margin: 20px 0 10px;
+  font-size: 1.2rem;
+}
+.dashboard__picture{
+  width: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+.dashboard__picture:hover .dashboard__picoverlay{
+  transform: translate(0) rotate(360deg);
+  cursor: pointer;
+}
+.dashboard__img{
+  width: 100%;
+  height: 100%;
+  border: 2px solid #191919;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  background-size: cover;
+}
+.dashboard__picoverlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.425);
+  width: 100%;
+  height: 100%;
+  padding: 60px 20px;
+  text-align: center;
+  color: #fff;
+  transform: translate(100%, 100%) rotate(0);
+  transition: transform .5s;
+}
+
+.dashboard__fullname{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dashboard__name,
+.dashboard__surname{
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-family: inherit;
+}
+
+.dashboard__data{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.dashboard__text{
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: inherit;
+}
+.dashboard__text > span{
+  font-weight: lighter;
+}
+
+.dashboard__edit{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
+
+.dashboard__address{
+  width: 550px;
+  margin: 0 auto;
+  grid-column: 2/5;
+  grid-row: 3/4;
+}

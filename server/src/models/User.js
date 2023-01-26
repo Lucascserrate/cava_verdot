@@ -13,13 +13,13 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          is: /^[a-záéíóúäëïöü ]*$/i,
+          is: /^[a-záéíóúäëïöüñ ]*$/i,
         },
       },
       surname: {
         type: DataTypes.STRING,
         validate: {
-          is: /^[a-záéíóúäëïöü ]*$/i,
+          is: /^[a-záéíóúäëïöüñ ]*$/i,
         },
       },
       age: {
@@ -37,12 +37,13 @@ module.exports = (sequelize) => {
           isEmail: true,
         },
       },
-      password: {
+      emailProvider: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      address: {
+      password: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       image: {
         type: DataTypes.STRING,

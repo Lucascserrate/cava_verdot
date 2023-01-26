@@ -10,15 +10,15 @@ const transport = nodemailer.createTransport({
   },
 });
 
-transport.verify().then(() => {
+/*  transport.verify().then(() => {
   console.log("Lista la configuracion para enviar correos");
-});
+});  */
 
 const mailActivateAccount = async (name, email) => {
   await transport.sendMail({
     from: "Cava Verdot <cava.verdot@gmail.com>",
     to: email,
-    subject: "Activa tu cuenta en E-commerce cava",
+    subject: "Activa tu cuenta en cava",
     html: `
             <h2>Hola ${name}</h2>
             <h4>Gracias por registrarte en nuestra pagina</h4>
@@ -65,6 +65,8 @@ const datos = async (name, email) => {
          `,
   });
 };
+
+
 const baja = async (name, email) => {
   await transport.sendMail({
     from: "Cava Verdot <cava.verdot@gmail.com>",

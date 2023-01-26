@@ -3,22 +3,30 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
-import Button3 from "../Button3/Button3";
-import ButtonArrow from '../ButtonArrow/ButtonArrow';
-import { parseJwt } from '../../functions/parseTokenJwt'
+import ButtonArrow from "../ButtonArrow/ButtonArrow";
+import { useDispatch, useSelector } from "react-redux";
+import { clearUser, clearCart, clearAddress } from "../../redux/actions";
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
   const getUserId = window.localStorage.getItem("userId");
 
-  const navigate = useNavigate()
+  const stateUser = useSelector((state) => state.user);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const cerrarSesion = () => {
     window.localStorage.removeItem("token");
-    if(getUserId){
-      window.localStorage.removeItem("userId");
-    }
-    navigate('/login')
+    window.localStorage.removeItem("country");
+    window.localStorage.removeItem("state");
+    window.localStorage.removeItem("city");
+    dispatch(clearUser());
+    dispatch(clearCart());
+    dispatch(clearAddress())
+    if (getUserId) window.localStorage.removeItem("userId");
+    navigate("/login");
   };
 
   const [vistaBtnLogin, setVistaBtnLogin] = useState();
@@ -27,33 +35,47 @@ export default function NavBar({ searchbar }) {
   useEffect(() => {
     setVistaBtnLogin(
       getToken ? (
-        <Button3 value="Sign Out" handler={cerrarSesion} />
+        <button className={s.logOut} onClick={() => cerrarSesion()}>
+          <span className="material-symbols-outlined">logout</span>
+        </button>
       ) : (
-        <Link to="/login">
-          <Button3 value="Sign In" />
+        <Link to="/login" className={s.login}>
+          <span className="material-symbols-outlined" style={{ color: 'white', fontSize: '30px' }}>login</span>
         </Link>
       )
     );
   }, [getToken]);
 
-  useEffect(()=>{
-    if(getToken){
-      const decodingToken = parseJwt(getToken)
-      if(decodingToken?.role === 3){
+  useEffect(() => {
+    if (window.localStorage.getItem("token")) {
+      if (stateUser.role === 3) {
         setViewDashboard(
-          <Link to={'/admin'}>
-            <Button3 value="Dashboard admin"/>
+          <Link to={"/admin"}>
+            <img
+              src={
+                stateUser.image
+                  ? stateUser.image
+                  : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
+              }
+              alt="profile"
+              className={s.image__profile}
+            />
           </Link>
-        )
-      }else if(decodingToken?.role === 2){
+        );
+      } else if (stateUser.role === 2) {
         setViewDashboard(
-          <Link>
-            <Button3 value="Dashboard"/>
+          <Link to={"/dashboard"}>
+            <img
+              src="https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
+              srcSet={stateUser?.image}
+              alt="profile"
+              className={s.image__profile}
+            />
           </Link>
-        )
+        );
       }
     }
-  },[getToken])
+  }, [getToken, stateUser]);
 
   return (
     <div className={s.bg}>
@@ -65,10 +87,10 @@ export default function NavBar({ searchbar }) {
           </Link>
           <div className={s.navButtons}>
             <Link to="/store">
-              <ButtonArrow value='Store' />
+              <ButtonArrow value="Store" />
             </Link>
             <Link to="/about">
-              <ButtonArrow value='About Us' />
+              <ButtonArrow value="About Us" />
             </Link>
           </div>
         </div>

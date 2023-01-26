@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './App.css'
 import Register from '../Register/Register'
 import { Routes, Route } from 'react-router-dom'
@@ -10,8 +10,28 @@ import Login from '../Login/Login'
 import PasarelaStripe from '../Pasarela/PasarelaStripe'
 import Cart from '../Cart/Cart'
 import Dashboard from '../Admin/Dashboard/Dashboard'
+import DashboardClient from '../DashboardClient/DashboardClient'
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser, getAddressById } from '../../redux/actions'
+import { parseJwt } from '../../functions/parseTokenJwt'
+import axios from 'axios'
 
 function App() {
+  
+  const stateUser = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  
+  let token = window.localStorage.getItem("token");
+  
+  useEffect(()=>{
+    if(!!stateUser && !!token){
+      let decript = parseJwt(token);
+      dispatch(setUser(decript));
+      dispatch(getAddressById(decript.id));
+    }
+  },[dispatch]);
+  
+  axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
   return (
     <div>
       <Routes>
@@ -24,6 +44,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/admin' element={<Dashboard />} />
+        <Route path='/dashboard' element={<DashboardClient />} />
       </Routes>
     </div>
   );

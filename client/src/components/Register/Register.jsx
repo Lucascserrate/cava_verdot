@@ -1,16 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import s from "./Register.module.css";
 import Alert from "../Alert/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import criptoJS from "crypto-js";
-import GoogleButton from 'react-google-button'
-import { auth, provider, } from "../../firebase/firebase.js"
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import GoogleButton from "react-google-button";
+import { auth, provider } from "../../firebase/firebase.js";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/actions";
+import { parseJwt } from "../../functions/parseTokenJwt";
+import AlertAge from "../AlertAge/AlertAge";
+import Loader from "../Loader/Loader";
+
 function Register() {
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   let getAge = sessionStorage.getItem("age");
+
+  const [viewAlertAge, setViewAlertAge] = useState();
+
+  useEffect(() => {
+    let dia = sessionStorage.getItem("dia");
+    let mes = sessionStorage.getItem("mes");
+    let anio = sessionStorage.getItem("anio");
+
+    if (!window.localStorage.getItem("token")) {
+      if (!dia || !mes || !anio) {
+        setViewAlertAge(<AlertAge />);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (window.localStorage.getItem("token")) {
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+  }, []);
+
   const [timeAlertError, setTimeAlertError] = useState(false);
   const [viewAlert, setViewAlert] = useState();
 
@@ -20,8 +51,8 @@ function Register() {
     name: "",
     surname: "",
     age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-    address: "",
     image: "",
+    emailProvider: "",
   });
 
   const uploadImage = async (e) => {
@@ -31,19 +62,19 @@ function Register() {
     data.append("file", files[0]);
     data.append("upload_preset", "CAVA-verdot");
     const res = await fetch(
-      'https://api.cloudinary.com/v1_1/dcxiks4ku/upload',
+      "https://api.cloudinary.com/v1_1/dcxiks4ku/upload",
       {
         method: "POST",
-        body: data
+        body: data,
       }
     );
     const file = await res.json();
     setDatosInputs({
       ...datosInputs,
-      image: file.secure_url
+      image: file.secure_url,
     });
     console.log(res);
-  }
+  };
   // console.log(datosInputs);
 
   const encriptar = (password) => {
@@ -59,41 +90,60 @@ function Register() {
   };
 
   const handleClickGoogle = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      signInWithPopup(auth, provider).then(
-        async (result) => {
+      signInWithPopup(auth, provider)
+        .then(async (result) => {
           GoogleAuthProvider.credentialFromResult(result);
-          const { email, displayName, uid, photoURL } = result.user
+          const { email, displayName, uid, photoURL } = result.user;
+          console.log(uid);
           const encriptado = encriptar(uid);
+          console.log(encriptado);
           const res = await axios.post("/users", {
             email: email,
             password: encriptado,
             name: displayName,
-            age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
+            age: sessionStorage.getItem("age"),
+            // ? sessionStorage.getItem("age")
+            // : "",
             image: photoURL,
+            emailProvider: "google",
           });
+          const decript = parseJwt(res.data);
+          dispatch(setUser(decript));
           setViewAlert(<Alert type="ok" message="Registro creado." />);
+          setTimeAlertError(true);
           setTimeout(() => {
-            navigate("/login"); // modificar esta ruta para que redirija al dasboard del cliente
-          }, 2000)
-        }
-      ).catch((error) => {
-        GoogleAuthProvider.credentialFromError(error);
-        setTimeAlertError(true)
-        setTimeout(() => {
-          setTimeAlertError(false)
-        }, 7000);
-      });
+            setTimeAlertError(false);
+          }, 2000);
+          window.localStorage.setItem("token", res.data);
+          setTimeout(() => {
+            navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
+          }, 1000);
+        })
+        .catch((error) => {
+          GoogleAuthProvider.credentialFromError(error);
+          setViewAlert(
+            <Alert type="error" message="Este correo ya esta registrado" />
+          );
+          setTimeAlertError(true);
+          setTimeout(() => {
+            setTimeAlertError(false);
+          }, 2000);
+        });
     } catch (err) {
       console.log(err.message);
     }
-  }
+  };
   const onSubmit = async (e) => {
-    const { name, surname, password, image, email, address, age } = datosInputs
+    const { name, surname, password, image, email, age } = datosInputs;
     e.preventDefault();
     if (!name || !password || !email || !age) {
       setViewAlert(<Alert type="error" message="Campos vacios" />);
+      setTimeAlertError(true);
+      setTimeout(() => {
+        setTimeAlertError(false);
+      }, 2000);
     } else if (
       !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)
     ) {
@@ -103,11 +153,22 @@ function Register() {
           message="El correo solo puede tener letras, numeros, puntos y guion bajo."
         />
       );
+      setTimeAlertError(true);
+      setTimeout(() => {
+        setTimeAlertError(false);
+      }, 2000);
     } else {
       const encriptado = encriptar(datosInputs.password);
       datosInputs.password = encriptado;
+      datosInputs.emailProvider = "local";
       const res = await axios.post("/users", datosInputs);
+      const decript = parseJwt(res.data);
+      dispatch(setUser(decript));
       setViewAlert(<Alert type="ok" message="Registro creado." />);
+      setTimeAlertError(true);
+      setTimeout(() => {
+        setTimeAlertError(false);
+      }, 2000);
       window.localStorage.setItem("token", res.data);
       setDatosInputs({
         email: "",
@@ -115,163 +176,130 @@ function Register() {
         name: "",
         surname: "",
         age: sessionStorage.getItem("age") ? sessionStorage.getItem("age") : "",
-        address: "",
         image: "",
+        emailProvider: "",
       });
       setTimeout(() => {
-        navigate("/"); // modificar esta ruta para que redirija al dasboard del cliente
-      }, 2000);
-      console.log("res post",res);
+        navigate("/");
+      }, 1000);
+      console.log("res post", res);
     }
   };
 
   return (
-    <div className={s.form}>
-      <form className={`${s.form__content} ${s.container}`}>
-        <h1 className={s.form__title}>Register</h1>
+    <>
+      {!window.localStorage.getItem("token") ? (
+        <div className={s.form}>
+          <div className={s.alert_age}>{viewAlertAge}</div>
+          <form className={`${s.form__content} ${s.container}`}>
+            <h1 className={s.form__title}>Register</h1>
 
-        <div className={s.form__inputs}>
-          <div>
-            <div className={s.form__group}>
+            <div className={s.form__inputs}>
+              <div className={s.form__group}>
+                <label htmlFor="name" className={s.form__lbl}>
+                  Name:
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Name..."
+                  className={s.form__input}
+                  name="name"
+                  value={datosInputs.name}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
+
+              <div className={s.form__group}>
+                <label htmlFor="surname" className={s.form__lbl}>
+                  Surname:
+                </label>
+                <input
+                  id="surname"
+                  type="text"
+                  placeholder="Surname..."
+                  className={s.form__input}
+                  name="surname"
+                  value={datosInputs.surname}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
+
+              <div className={s.form__group}>
+                <label htmlFor="age" className={s.form__lbl}>
+                  Age:
+                </label>
+                <input
+                  id="age"
+                  type="number"
+                  className={s.form__input}
+                  name="age"
+                  value={datosInputs.age}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
+
+              <div className={s.form__group}>
+                <label htmlFor="image" className={s.form__lbl}>
+                  Image:
+                </label>
+                <input
+                  type="file"
+                  name="image"
+                  onChange={uploadImage}
+                  className={s.form__input}
+                />
+              </div>
+
+              <div className={s.form__group}>
+                <label htmlFor="email" className={s.form__lbl}>
+                  Email:
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="email@email.com"
+                  className={s.form__input}
+                  name="email"
+                  value={datosInputs.email}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
+
+              <div className={s.form__group}>
+                <label htmlFor="password" className={s.form__lbl}>
+                  Password:
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="....."
+                  className={s.form__input}
+                  name="password"
+                  value={datosInputs.password}
+                  onChange={handleOnChangeInputs}
+                />
+              </div>
+
               <input
-                id="name"
-                type="text"
-                placeholder=" "
-                className={s.form__input}
-                name="name"
-                value={datosInputs.name}
-                onChange={handleOnChangeInputs}
+                type="submit"
+                className={s.form__submit}
+                value="Register"
+                onClick={onSubmit}
               />
-              <label htmlFor="name" className={s.form__lbl}>
-                Name:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="surname"
-                type="text"
-                placeholder=" "
-                className={s.form__input}
-                name="surname"
-                value={datosInputs.surname}
-                onChange={handleOnChangeInputs}
+              <GoogleButton
+                type="light"
+                label="Sign Up with Google"
+                onClick={(e) => handleClickGoogle(e)}
               />
-              <label htmlFor="surname" className={s.form__lbl}>
-                Surname:
-              </label>
-              <span className={s.form__bar}></span>
             </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="age"
-                type="number"
-                placeholder=" "
-                className={s.form__input}
-                name="age"
-                value={datosInputs.age}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="age" className={s.form__lbl}>
-                Age: {getAge}
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="address"
-                type="text"
-                placeholder=" "
-                className={s.form__input}
-                name="address"
-                value={datosInputs.address}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="address" className={s.form__lbl}>
-                Address:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
-                type="file"
-                placeholder=" "
-                name="image"
-                onChange={uploadImage}
-                required
-                className={s.form__input}
-              />
-              <label htmlFor="image" className={s.form__lbl}>
-                Image:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="email"
-                type="email"
-                placeholder=" "
-                className={s.form__input}
-                name="email"
-                value={datosInputs.email}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="email" className={s.form__lbl}>
-                Email:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-          </div>
-
-          <div>
-            <div className={s.form__group}>
-              <input
-                id="password"
-                type="password"
-                placeholder=" "
-                className={s.form__input}
-                name="password"
-                value={datosInputs.password}
-                onChange={handleOnChangeInputs}
-              />
-              <label htmlFor="password" className={s.form__lbl}>
-                Password:
-              </label>
-              <span className={s.form__bar}></span>
-            </div>
-          </div>
-
-          <input
-            type="submit"
-            className={s.form__submit}
-            value="Register"
-            onClick={onSubmit}
-          />
-          <GoogleButton onClick={(e) => handleClickGoogle(e)} />
+            <div className={s.form__alert}>{timeAlertError && viewAlert}</div>
+          </form>
         </div>
-        <div className={s.form__alert}>{viewAlert}</div>
-        <div className={s.form__alert}>
-          {timeAlertError && (
-            <Alert type="error" message="Este correo ya esta registrado" />
-          )}
-        </div>
-      </form>
-    </div>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 }
 

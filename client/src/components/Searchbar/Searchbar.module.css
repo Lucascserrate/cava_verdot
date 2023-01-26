@@ -49,3 +49,13 @@
     width: 1.3em;
     fill: #b4b4b4;
 }
+
+@media(max-width:400px){
+    .search {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        margin: 20px;
+    }
+}
