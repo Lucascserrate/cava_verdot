@@ -167,3 +167,39 @@
   color: #191919;
   padding-top: 5px;
 }
+
+@media(max-width:500px){
+  .img {
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(1.1);
+    mix-blend-mode: multiply;
+  }
+  .container {
+    width: 60%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto-fit);
+  }
+  .detail__picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    width: 200px;
+    height: 200px;
+    padding-top: 100px;
+    padding-right: 0px;
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .detail__elements {
+    width: 100px;
+    height: 100%;
+    padding: 10px;
+    margin: 0px 5px 1px 0px;
+  }
+}
