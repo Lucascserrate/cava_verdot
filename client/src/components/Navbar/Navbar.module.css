@@ -56,3 +56,37 @@
   border: none;
   color: #fff;
 }
+
+@media(max-width:400px){
+    .container {
+        width: 90%;
+        margin: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .navButtons {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 10px;
+      }
+      .left {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;        
+      }
+
+      .img {
+        height: 100px;
+      }
+
+      .right {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 0px;
+      }
+      
+}
