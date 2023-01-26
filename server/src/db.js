@@ -5,22 +5,22 @@ const path = require("path");
 
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-// const sequelize = new Sequelize(
-// 	`postgresql://postgres:kpSBAKrmRQHjfEsM4XDl@containers-us-west-123.railway.app:6728/railway`,
-// 	{
-// 		logging: false,
-// 		native: false,
-// 	},
-// );
-
-
- const sequelize = new Sequelize(
-  `postgres:${DB_USER}:${DB_PASSWORD}@${DB_HOST}/cava`,
-  {
-	logging: false,
-	native: false,
-  }
+const sequelize = new Sequelize(
+	`postgresql://postgres:9y7mV3RuLOJGH6kKslNz@containers-us-west-40.railway.app:7277/railway`,
+	{
+		logging: false,
+		native: false,
+	},
 );
+
+
+//  const sequelize = new Sequelize(
+//   `postgres:${DB_USER}:${DB_PASSWORD}@${DB_HOST}/cava`,
+//   {
+// 	logging: false,
+// 	native: false,
+//   }
+// );
 
 
 

@@ -17,8 +17,7 @@ module.exports = (sequelize) => {
 
       },
       surname: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: DataTypes.STRING,        
         foreignKey: true
 
 
@@ -30,8 +29,6 @@ module.exports = (sequelize) => {
 
 
       },
-
-
 
       userId: {
         type: DataTypes.STRING,
