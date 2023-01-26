@@ -11,7 +11,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { parseJwt } from '../../functions/parseTokenJwt';
-import {clearCart} from '../../redux/actions'
+import { clearCart } from '../../redux/actions'
 
 
 const stripePromise = loadStripe(
@@ -44,9 +44,6 @@ const CheckOutForm = () => {
   // traemos los datos del carrito
   const stateCart = useSelector(state => state.cart);
 
-  // const user = useSelector(state => state.user) este esta harcodeado
-
-  // console.log( "soy el USer ",user);
 
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState();
@@ -63,13 +60,16 @@ const CheckOutForm = () => {
       }, 0));
 
       setDescription(stateCart.map(ele => {
+        //console.log('soy el map' , ele);
         const obj = {
           userId: decodingToken?.id,
           drinkId: ele.id,
           amount: ele.amount,
           name: ele.name,
           subtotal: ele.subtotal
+
         }
+        // console.log('soy el obj' , obj);
         return obj;
       }))
     }
@@ -102,31 +102,46 @@ const CheckOutForm = () => {
           amount: price * 100,
           // la descripcion del objeto que va a comprar
           description: "pago exitoso",
+
         });
-        // console.log(data);
-        description?.map(async (e) => {
-          return await axios.post('http://localhost:3001/history', e)
-        })
+
+        const emailUser = {
+          nameUser: stateUser.name,
+          surname: stateUser.surname,
+          email: stateUser.email,
+          userId: description[0].userId,
+          amount: description[0].amount,
+          drinkId: description[0].drinkId,
+          name: description[0].name,
+          subtotal: description[0].subtotal
+
+        }        
+
+        await axios.post('/history', emailUser)
+    
+
         await axios.post('/pago', {
           name: stateUser?.name,
           email: stateUser?.email
         })
+
+
         setViewAlert(<p className={s.ok}>Pago exitoso</p>)
-        setTimeout(()=>{
+        setTimeout(() => {
           setViewAlert();
           dispatch(clearCart());
           navigate("/");
-        },2000)
-      }else{
+        }, 2000)
+      } else {
         setViewAlert(<p className={s.error}>Ingrese una direccion</p>)
-        setTimeout(()=>{
+        setTimeout(() => {
           setViewAlert();
-        },2000)
+        }, 2000)
       }
     }
 
 
-    
+
 
 
 
