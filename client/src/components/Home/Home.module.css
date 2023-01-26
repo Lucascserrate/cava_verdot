@@ -62,3 +62,58 @@
   z-index: 1000;
   position: fixed;
 }
+
+@media(max-width:400px){
+  .home__header{
+    width: 100%;
+    height: 60vh;
+    position: relative;
+  }
+  .home__cabecera{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.616);
+    color: #fff;
+    font-size: 2rem;
+    gap: 10px;
+    background-image: url('../../assets/vinedo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .home__cabecera > h2{
+    font-weight: bold;
+    font-size: 4rem;
+    align-items: center;
+  }
+
+  .home__destacados > h2{
+    color: #000;
+    font-size: 2.4rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  }
+  .home__carousel__products{
+    width: 100%;
+    height: 400px;
+    background-image: linear-gradient(180deg, rgba(0,0,0,.4), rgba(0,0,0,.4)), url('../../assets/moroccan-flower.png');
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .home__destacados{
+    width: 100%;
+    height: 80px;
+    background-color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+  }
+}

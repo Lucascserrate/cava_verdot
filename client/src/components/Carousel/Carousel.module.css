@@ -68,3 +68,13 @@
 .price {
   color: #fff;
 }
+
+@media(max-width:400px){
+  .center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1px;
+    z-index: 1;
+  }
+}
