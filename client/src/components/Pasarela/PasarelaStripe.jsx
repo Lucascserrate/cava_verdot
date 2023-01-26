@@ -49,7 +49,7 @@ const CheckOutForm = () => {
   const [description, setDescription] = useState();
 
   const navigate = useNavigate();
-console.log('soy la descrip', description);
+
 
   useEffect(() => {
     if (stateCart.length) {
@@ -104,23 +104,10 @@ console.log('soy la descrip', description);
           description: "pago exitoso",
 
         });
-
-        const emailUser = {
-          nameUser: stateUser.name,
-          surname: stateUser.surname,
-          email: stateUser.email,
-          userId: description[0].userId,
-          amount: description.map(e => e.amount),
-          drinkId: description[0].drinkId,
-          buys: description.map(e => e.name ),
-          subtotal: description[0].subtotal
-          
-        }        
-        
-        
-        await axios.post('/history', emailUser)
-    
-
+        // console.log(data);
+        description?.map(async (e) => {
+          return await axios.post('http://localhost:3001/history', e)
+        })
         await axios.post('/pago', {
           name: stateUser?.name,
           email: stateUser?.email

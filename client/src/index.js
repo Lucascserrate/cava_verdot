@@ -10,22 +10,22 @@ import axios from "axios";
 
 // en caso de trabajar con el back en local, descomentar esta linea y comentar la otra
 /* axios.defaults.baseURL = 'https://cavaverdot-production.up.railway.app'; */
-// axios.defaults.baseURL = "http://localhost:3001"; 
+// axios.defaults.baseURL = "http://localhost:3001";
 
 // const token = window.localStorage.getItem("token");
-axios.defaults.baseURL = 'https://cavaverdot-production.up.railway.app' || "http://localhost:3001/";
+axios.defaults.baseURL = "http://localhost:3001";
 // axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 export default axios;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<Provider store={store}>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</Provider>
+	</React.StrictMode>,
 );
 
 reportWebVitals();

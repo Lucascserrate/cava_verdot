@@ -18,13 +18,14 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_REVIEWS = "GET_REVIEWS";
 export const GET_ALL_USER = "GET_ALL_USER";
 export const GET_HISTORIAL = "GET_HISTORIAL";
+export const CLEAR_ADDRESS = 'CLEAR_ADDRESS';
+export const DELETE_REVIEWS = 'DELETE_REVIEWS';
 // para el address
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_ALL_STATE = "GET_ALL_STATE";
 export const GET_ALL_CITIES = "GET_ALL_CITIES";
 export const GET_ADDRESS_BY_ID = "GET_ADDRESS_BY_ID";
-export const CLEAR_ADDRESS = "CLEAR_ADDRESS";
-export const DELETE_REVIEWS = "DELETE_REVIEWS";
+
 // Actions Creators get all products
 export const getDrinks = () => {
 	return async (dispatch) => {
@@ -199,6 +200,7 @@ export const clearAddress = () => {
 	};
 };
 
-export const deleteReviews = () => (dispatch) => {
-	return dispatch({ type: DELETE_REVIEWS });
-};
+export const deleteReviews = () => dispatch => {
+  return dispatch({ type: DELETE_REVIEWS })
+}
+
