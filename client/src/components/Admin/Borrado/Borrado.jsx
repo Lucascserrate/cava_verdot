@@ -11,6 +11,8 @@ function Borrado() {
   const stateUsers = useSelector(state => state.allUsers);
   const dispatch = useDispatch();
 
+  console.log(stateUsers);
+
   useEffect(()=>{
     dispatch(getAllUser())
   },[dispatch])
@@ -24,7 +26,8 @@ function Borrado() {
     if(!userId){
       console.log("seleccione un usuario");
     }else{
-      const res = await axios.delete(`/users/${userId}`, {status:status});
+      console.log(status);
+      const res = await axios.delete(`/users/${userId}/?status=${status}`);
       dispatch(getAllUser());
       console.log(res);
     }
@@ -34,7 +37,7 @@ function Borrado() {
     <div className={s.borrado}>
       <div className={s.borrado__content}>
         <div className={s.borrado__delete}>
-          <button onClick={onClickDisable} className={s.borrado__btn}>Disabled</button>
+          <button onClick={onClickDisable} className={s.borrado__btn}>Modify</button>
         </div>
         <div className={s.borrado__users}>
           <div className={s.borrado__cabeceras}>
@@ -48,13 +51,40 @@ function Borrado() {
             stateUsers.length && 
             stateUsers.map(e => (
               e.name === "def" ? "" :
+              e.status.toString() === "true" ?
               <div key={e.id} className={s.borrado__items}>
                 <p>{e.name === "def" ? "" : e.id}</p>
                 <p>{e.name === "def" ? "" : e.name}</p>
                 <p>{e.name === "def" ? "" : e.surname ? e.surname : ""}</p>
-                { e.name === "def" ? "" : <p>{e.status ? "true" : "false"}</p>}
-                { e.name === "def" ? "" : <input type="radio" value={e.id} name={ e.name === "def" ? "" : e.status ? "true" : "false"} onChange={handleRadio} />}
+                { e.name === "def" ? "" : <p>{e.status.toString()}</p>}
+                { e.name === "def" ? "" : <input type="radio" value={e.id} name={ e.name === "def" ? "" : e.status ? "false" : "true"} onChange={handleRadio} />}
               </div>
+              :<></>
+            ))
+          }
+        </div>
+
+        <div className={s.borrado__users}>
+          <div className={s.borrado__cabeceras}>
+            <p>Id</p>
+            <p>Name</p>
+            <p>Surname</p>
+            <p>Status</p>
+            <p>Enable</p>
+          </div>
+          {
+            stateUsers.length && 
+            stateUsers.map(e => (
+              e.name === "def" ? "" :
+              e.status.toString() === "false" ?
+              <div key={e.id} className={s.borrado__items}>
+                <p>{e.name === "def" ? "" : e.id}</p>
+                <p>{e.name === "def" ? "" : e.name}</p>
+                <p>{e.name === "def" ? "" : e.surname ? e.surname : ""}</p>
+                { e.name === "def" ? "" : <p>{e.status.toString()}</p>}
+                { e.name === "def" ? "" : <input type="radio" value={e.id} name={ e.name === "def" ? "" : e.status ? "false" : "true"} onChange={handleRadio} />}
+              </div>
+              :<></>
             ))
           }
         </div>

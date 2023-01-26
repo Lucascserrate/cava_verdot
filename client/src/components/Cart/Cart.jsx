@@ -53,8 +53,8 @@ const Cart = () => {
                     </button>
                   </div>
                   <div className={s.between}>
-                    <p className={s.amount}>Amount: {e.amount}</p>
-                    <p>${e.subtotal}</p>
+                    <p className={s.amount}>Amount: {(e.amount)}</p>
+                    <p>${Number(e.subtotal).toFixed(2)}</p>
                   </div>
                 </div>
               </div>
@@ -69,9 +69,7 @@ const Cart = () => {
               <p className={s.totals}>
                 $
                 {cart.length
-                  ? cart.reduce((acc, e) => {
-                    return Math.round(acc + e.subtotal);
-                  }, 0)
+                  ? Number.parseFloat(cart.reduce((acc, e) => acc + e.subtotal, 0).toFixed(2))
                   : undefined}
               </p>
             </div>
@@ -85,9 +83,9 @@ const Cart = () => {
           </p>
         </div>
         <div className={s.pay}>
-          <Address/>
+          <Address />
           <PasarelaStripe />
-          <ViewAddress/>
+          <ViewAddress />
         </div>
         <div className={s.direction}>
         </div>

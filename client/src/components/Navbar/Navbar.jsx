@@ -3,10 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar";
 import logo from "../../assets/Logo_cava-verdot_blanco.svg";
-import Button3 from "../Button3/Button3";
 import ButtonArrow from "../ButtonArrow/ButtonArrow";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser, clearCart } from "../../redux/actions";
+import { clearUser, clearCart, clearAddress } from "../../redux/actions";
 
 export default function NavBar({ searchbar }) {
   const getToken = window.localStorage.getItem("token");
@@ -25,6 +24,7 @@ export default function NavBar({ searchbar }) {
     window.localStorage.removeItem("city");
     dispatch(clearUser());
     dispatch(clearCart());
+    dispatch(clearAddress())
     if (getUserId) window.localStorage.removeItem("userId");
     navigate("/login");
   };
@@ -40,7 +40,7 @@ export default function NavBar({ searchbar }) {
         </button>
       ) : (
         <Link to="/login" className={s.login}>
-          <span className="material-symbols-outlined">login</span>
+          <span className="material-symbols-outlined" style={{ color: 'white', fontSize: '30px' }}>login</span>
         </Link>
       )
     );
@@ -66,11 +66,8 @@ export default function NavBar({ searchbar }) {
         setViewDashboard(
           <Link to={"/dashboard"}>
             <img
-              src={
-                stateUser.image
-                  ? stateUser.image
-                  : "https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
-              }
+              src="https://img2.freepng.es/20180325/wlw/kisspng-computer-icons-user-profile-avatar-5ab7528676bb25.9036280415219636544863.jpg"
+              srcSet={stateUser?.image}
               alt="profile"
               className={s.image__profile}
             />

@@ -60,9 +60,13 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.submit {
-  margin-bottom: 10px;
-  color: #333333;
+.alert{
+  width: 100%;
+  height: 20px;
+  text-align: center;
+}
+.ok{
+  color: rgb(20, 163, 20);
 }
 
 @keyframes opacidad {

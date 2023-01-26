@@ -18,3 +18,11 @@
 .store__cards {
   width: 100%;
 }
+
+@media(max-width:400px){
+  .store__components {
+    display: flex;
+    min-height: 90vh;
+    flex-direction: column;
+  }
+}

@@ -1,26 +1,28 @@
 import {
-	GET_DRINKS,
-	GET_DRINK,
-	GET_ALL_CATEGORIES,
-	GET_PRODUCT_FILTER,
-	MODIFY_BUBBLE_CART,
-	GET_SORT,
-	GET_DRINK_BY_NAME,
-	POST_PRODUCT,
-	GET_COUNTRIES,
-	GET_CART,
-	GET_DRINKS_BY_RATING,
-	SET_USER,
-	CLEAR_USER,
-	CLEAR_CART,
-	PUT_DRINKS,
-	GET_ALL_COUNTRIES,
-	GET_ALL_STATE,
-	GET_ALL_CITIES,
-	GET_ADDRESS_BY_ID,
-	GET_REVIEWS,
-	GET_ALL_USER,
-	GET_HISTORIAL,
+  GET_DRINKS,
+  GET_DRINK,
+  GET_ALL_CATEGORIES,
+  GET_PRODUCT_FILTER,
+  MODIFY_BUBBLE_CART,
+  GET_SORT,
+  GET_DRINK_BY_NAME,
+  POST_PRODUCT,
+  GET_COUNTRIES,
+  GET_CART,
+  GET_DRINKS_BY_RATING,
+  SET_USER,
+  CLEAR_USER,
+  CLEAR_CART,
+  PUT_DRINKS,
+  GET_ALL_COUNTRIES,
+  GET_ALL_STATE,
+  GET_ALL_CITIES,
+  GET_ADDRESS_BY_ID,
+  GET_REVIEWS,
+  GET_ALL_USER,
+  GET_HISTORIAL,
+  CLEAR_ADDRESS,
+  DELETE_REVIEWS
 } from "./actions";
 
 const initialState = {
@@ -149,10 +151,20 @@ const rootReducer = (state = initialState, action) => {
 				allReviews: action.payload,
 			};
 		case GET_ALL_USER:
-			return {
+			return  {
 				...state,
 				allUsers: action.payload,
 			};
+    case CLEAR_ADDRESS:
+      return {
+        ...state,
+        addressUser: {}
+      }
+    case DELETE_REVIEWS:
+      return {
+        ...state,
+        allReviews: []
+      }
 		default:
 			return state;
 	}

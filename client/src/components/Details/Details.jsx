@@ -73,78 +73,78 @@ const Details = () => {
         {Object.keys(detail).length ? (
           <div className={s.container}>
             <div className={s.detail__picture}>
-                <img
-                  className={s.img}
-                  src={detail.image ? detail.image : "#"}
-                  alt="img"
-                />
+              <img
+                className={s.img}
+                src={detail.image ? detail.image : "#"}
+                alt="img"
+              />
             </div>
             <div className={s.detail__info}>
-                <h1 className={s.name}>{detail?.name}</h1>
-                <Rating name="read-only" value={detail?.rating} readOnly />
-                <br />
-                <div className={s.tags}>{detail.category?.category}</div>
-                <p className={s.price}>${detail?.price}</p>
-                <div className={s.itemsTextContainer}>
-                  {bubbleCart === 1 ? (
-                    <p className={s.itemsText}>An item in your bag</p>
-                  ) : bubbleCart > 1 ? (
-                    <p className={s.itemsText}>
-                      {bubbleCart} items in your bag{" "}
-                    </p>
-                  ) : undefined}
-                </div>
-                <div>
-                  <span className={s.bold}>Amount:</span>
-                  <input
-                    id="amount"
-                    className={s.inputAmount}
-                    type="number"
-                    defaultValue="1"
-                    min="1"
-                    maxLength="5"
+              <h1 className={s.name}>{detail?.name}</h1>
+              <Rating name="read-only" value={detail?.rating} readOnly />
+              <br />
+              <div className={s.tags}>{detail.category?.category}</div>
+              <p className={s.price}>${detail?.price}</p>
+              <div className={s.itemsTextContainer}>
+                {bubbleCart === 1 ? (
+                  <p className={s.itemsText}>An item in your bag</p>
+                ) : bubbleCart > 1 ? (
+                  <p className={s.itemsText}>
+                    {bubbleCart} items in your bag{" "}
+                  </p>
+                ) : undefined}
+              </div>
+              <div>
+                <span className={s.bold}>Amount:</span>
+                <input
+                  id="amount"
+                  className={s.inputAmount}
+                  type="number"
+                  defaultValue="1"
+                  min="1"
+                  maxLength="5"
+                />
+              </div>
+              {bubbleCart ? (
+                <div className={s.buttons}>
+                  <ButtonPrimary
+                    handler={() => handlerAdd()}
+                    value="Add more"
                   />
-                </div>
-                {bubbleCart ? (
-                  <div className={s.buttons}>
-                    <ButtonPrimary
-                      handler={() => handlerAdd()}
-                      value="Add more"
-                    />
-                    <Link className={s.buttons} to="/cart">
-                      {" "}
-                      <Button3 value="Pay Now" />
-                    </Link>
-                  </div>
-                ) : (
-                  <div className={s.buttons}>
+                  <Link className={s.buttons} to="/cart">
                     {" "}
-                    <Button3 handler={() => handlerAdd()} value="Add" />{" "}
-                  </div>
-                )}
+                    <Button3 value="Pay Now" />
+                  </Link>
+                </div>
+              ) : (
+                <div className={s.buttons}>
+                  {" "}
+                  <Button3 handler={() => handlerAdd()} value="Add" />{" "}
+                </div>
+              )}
 
-                <p className={s.country}>
-                  <span className={s.bold}>Country:</span>{" "}
-                  {detail.country?.country}
-                </p>
+              <p className={s.country}>
+                <span className={s.bold}>Country:</span>{" "}
+                {detail.country?.country}
+              </p>
             </div>
             <div className={s.description}>{detail.description}</div>
           </div>
         ) : (
           <Loader />
         )}
-            {
-              !allReviews.filter(e => e.userId === userId.id).length ?
-                < Ratings id={id} />
-                : 
-                <div className={s.alertSubmited}>
-                  <div className={s.alertBox}>
-                    <img className={s.check} src={check} alt="check" />
-                    <p >Review submitted</p>
-                  </div>
-                </div>
-            }
-            <Reviews id={id} />
+        {
+          allReviews.filter(e => e.userId === userId.id).length ?
+            <div className={s.alertSubmited}>
+              <div className={s.alertBox}>
+                <img className={s.check} src={check} alt="check" />
+                <p >Review submitted</p>
+              </div>
+            </div>
+            : < Ratings id={id} />
+
+        }
+        <Reviews id={id} />
       </div>
       <Footer />
     </div>
