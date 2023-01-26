@@ -64,7 +64,7 @@ function Cards({ category, price, country, setPrice }) {
     // console.log(`price = ${price} \n country = ${country} \n category = ${category}`);
   };
 
-  
+
   const handleRestState = () => {
     dispatch(getDrinks());
   }
@@ -76,7 +76,7 @@ function Cards({ category, price, country, setPrice }) {
       <div className={s.cards__paginado}>
         <div className={s.cards__btns__filter}>
           <Button3 value={"Apply Filters"} handler={() => handleApplyFilter()} />
-          <Button3 value={"Rest Filters"} handler={() => handleRestState()} />
+          <Button3 value={"Reset Filters"} handler={() => handleRestState()} />
         </div>
         <div className={s.arrows}>
           <button onClick={prev} className={s.btnLeft} ><img src={arrowLeft} alt="icon" className={s.cards__arrow} /></button>

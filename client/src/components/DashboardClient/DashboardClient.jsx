@@ -364,7 +364,7 @@ function DashboardClient() {
 
             <div className={s.dashboard__elements}>
               <div className={s.dashboard__edit}>
-                <h2>Datos Personales</h2>
+                <h2>Personal information</h2>
                 {/* TODO: email */}
                 <div className={s.dashboard__data}>
                   {stateUser?.emailProvider === "local" ? (

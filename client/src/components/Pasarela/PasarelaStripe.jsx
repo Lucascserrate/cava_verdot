@@ -11,7 +11,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { parseJwt } from '../../functions/parseTokenJwt';
-import {clearCart} from '../../redux/actions'
+import { clearCart, resetCart } from '../../redux/actions'
 
 
 const stripePromise = loadStripe(
@@ -112,21 +112,22 @@ const CheckOutForm = () => {
           email: stateUser?.email
         })
         setViewAlert(<p className={s.ok}>Pago exitoso</p>)
-        setTimeout(()=>{
+        setTimeout(() => {
           setViewAlert();
           dispatch(clearCart());
           navigate("/");
-        },2000)
-      }else{
+        }, 2000)
+        dispatch(resetCart())
+      } else {
         setViewAlert(<p className={s.error}>Ingrese una direccion</p>)
-        setTimeout(()=>{
+        setTimeout(() => {
           setViewAlert();
-        },2000)
+        }, 2000)
       }
     }
 
 
-    
+
 
 
 

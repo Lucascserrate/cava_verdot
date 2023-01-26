@@ -54,7 +54,7 @@ const Home = () => {
         </div>
 
         <div className={s.home__destacados}>
-          <h2>Productos Destacados</h2>
+          <h2>Top products</h2>
         </div>
 
         <div className={s.home__carousel__products}>
@@ -62,7 +62,7 @@ const Home = () => {
         </div>
 
         <div className={s.home__destacados}>
-          <h2>Nuestras Marcas</h2>
+          <h2>Our brands</h2>
         </div>
 
         <div className={s.home__carousel__products}>
