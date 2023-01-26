@@ -13,7 +13,7 @@ import axios from "axios";
 /* axios.defaults.baseURL = "http://localhost:3001"; */
 
 // const token = window.localStorage.getItem("token");
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001/";
+axios.defaults.baseURL = 'https://cavaverdot-production.up.railway.app' || "http://localhost:3001/";
 // axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
 export default axios;
 

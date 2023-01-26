@@ -21,18 +21,18 @@ function History() {
 				<div className={s.bold}>Amount</div>
 			</div>
 			<div className={s.stockContainer}>
-					{history.length > 0  &&
-						history.map((e) => (
-							<div className={s.stockItems} key={e.id} id={e.id}>
-								<div className={s.text}>{e.id}</div>
-								<div className={s.text}>{e.name}</div>
-								<div className={s.text}>{e.userId}</div>
-								<div className={s.text}>{e.drinkId}</div>
-								<div className={s.text}>{e.subtotal.toFixed(2)}</div>
-								<div className={s.text}>{e.amount}</div>
-							</div>
-						))}
-				</div>
+				{history.length > 0 &&
+					history.map((e) => (
+						<div className={s.stockItems} key={e.id} id={e.id}>
+							<div className={s.text}>{e.id}</div>
+							<div className={s.text}>{e.name}</div>
+							<div className={s.text}>{e.userId}</div>
+							<div className={s.text}>{e.drinkId}</div>
+							<div className={s.text}>{e.subtotal.toFixed(2)}</div>
+							<div className={s.text}>{e.amount}</div>
+						</div>
+					))}
+			</div>
 			{/*
 			<div className={s.stockContainer}> (
 								<div
