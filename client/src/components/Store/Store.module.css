@@ -19,7 +19,7 @@
   width: 100%;
 }
 
-@media(max-width:400px){
+@media(max-width:500px){
   .store__components {
     display: flex;
     min-height: 90vh;

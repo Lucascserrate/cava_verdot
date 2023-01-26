@@ -57,7 +57,7 @@
     transition-delay: 0.2s;
 }
 
-@media(max-width:400px){
+@media(max-width:500px){
     .btn p {
         margin: 0;
         position: relative;

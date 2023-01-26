@@ -118,7 +118,7 @@
   color: crimson;
 }
 
-@media(max-width:400px){
+@media(max-width:500px){
   .login__input{
     display: block;
     width: 70%;

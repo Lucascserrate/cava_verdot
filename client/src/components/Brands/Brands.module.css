@@ -13,14 +13,6 @@
   z-index: 10;
 }
 
-@media(max-width:400px){
-  
-}
-
-
-
-
-
 .img {
   height: 80px;
 }
@@ -39,4 +31,8 @@
   display: flex;
   justify-content: center;
   z-index: 1;
+}
+
+@media(max-width:500px){
+  
 }
