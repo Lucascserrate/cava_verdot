@@ -20,7 +20,8 @@ import {
   GET_ADDRESS_BY_ID,
   GET_REVIEWS,
   GET_ALL_USER,
-  CLEAR_ADDRESS
+  CLEAR_ADDRESS,
+  DELETE_REVIEWS
 } from "./actions";
 
 const initialState = {
@@ -143,14 +144,19 @@ const rootReducer = (state = initialState, action) => {
         allReviews: action.payload
       }
     case GET_ALL_USER:
-      return{
+      return {
         ...state,
         allUsers: action.payload
       }
     case CLEAR_ADDRESS:
-      return{
+      return {
         ...state,
         addressUser: {}
+      }
+    case DELETE_REVIEWS:
+      return {
+        ...state,
+        allReviews: []
       }
     default:
       return state;

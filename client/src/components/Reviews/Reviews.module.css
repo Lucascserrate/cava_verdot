@@ -26,7 +26,8 @@
 .review {
     font-size: 15px;
     border-radius: 4px;
-    padding: 12px;
+    max-width: 500px;
+    padding: 12px 50px 12px 12px;
     margin-right: 10px;
     border: none;
     box-shadow: var(--boxShadow);
