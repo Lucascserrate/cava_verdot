@@ -13,6 +13,14 @@ function History() {
 	console.log(history);
 	return (
 		<div className={s.container}>
+			<div className={s.stockTitles}>
+				<div className={s.bold}>ID</div>
+				<div className={s.bold}>UserID</div>
+				<div className={s.bold}>DrinkID</div>
+				<div className={s.bold}>Name</div>
+				<div className={s.bold}>SubTotal</div>
+				<div className={s.bold}>Stock</div>
+			</div>
 			{/*
 				<h2 className={s.title}>Stock</h2>
 			<h3 className={s.subtitle}>All our products are here</h3>

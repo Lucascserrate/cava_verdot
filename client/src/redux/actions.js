@@ -33,7 +33,7 @@ export const getDrinks = () => {
 };
 export const getHistory = () => {
 	return async (dispatch) => {
-		let history = await axios.get("localhost:3001/history");
+		let history = await axios.get("/history");
     console.log(await history);
 		dispatch({ type: GET_HISTORIAL, payload: history.data });
 	};
