@@ -48,7 +48,7 @@ const putAddress = async (req, res) => {
     //si hay errores se envia objeto de errores
     if (Object.keys(errors).length) return res.status(400).send(errors);
     //si todo va bien se modifica la direccion
-    const oldAddress = await Address.findByPk(userId);
+    const oldAddress = await Address.findOne({wheres: {id_user: userId}});
     const newAddress = await oldAddress.update(
       {
         where: {

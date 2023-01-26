@@ -161,13 +161,12 @@ function Address() {
         setViewAlert("");
       }, 2000);
     } else {
-      if (Object.keys(stateAddress).length) {
-        console.log(dataAddress);
+      if (!!Object.keys(stateAddress).length) {
         const res = await axios.put(
           `/users/address/${stateUser.id}`,
           dataAddress
         );
-        console.log(res);
+        dispatch(getAddressById(stateUser.id));
         setViewAlert(<p className={s.ok}>modified address.</p>);
         setTimeout(() => {
           setDataAddress({
