@@ -134,15 +134,15 @@ const Details = () => {
           <Loader />
         )}
         {
-          !allReviews.filter(e => e.userId === userId.id).length ?
-            < Ratings id={id} />
-            :
+          allReviews.filter(e => e.userId === userId.id).length ?
             <div className={s.alertSubmited}>
               <div className={s.alertBox}>
                 <img className={s.check} src={check} alt="check" />
                 <p >Review submitted</p>
               </div>
             </div>
+            : < Ratings id={id} />
+
         }
         <Reviews id={id} />
       </div>
